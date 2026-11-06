@@ -607,6 +607,20 @@
     openDialog(drinkDialog);
   }
 
+  /* ---------------- Seiten-CTA (rechts fixiert) ---------------- */
+  var cta = $("[data-side-cta]");
+  if (cta) {
+    var tab = $(".side-cta-tab", cta);
+    var setCta = function (open) { cta.classList.toggle("is-open", open); tab.setAttribute("aria-expanded", String(open)); };
+    tab.addEventListener("click", function (e) { e.stopPropagation(); setCta(!cta.classList.contains("is-open")); });
+    document.addEventListener("click", function (e) { if (!cta.contains(e.target)) setCta(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") setCta(false); });
+    // erst nach kurzem Scrollen bzw. 1,2 s einblenden – stört den ersten Eindruck nicht
+    var showCta = function () { cta.classList.add("is-visible"); };
+    setTimeout(showCta, 1200);
+    window.addEventListener("scroll", function () { if (window.scrollY > 120) showCta(); }, { passive: true });
+  }
+
   renderBadge();
   renderCartPage();
 
