@@ -294,7 +294,7 @@
     }).join("");
     $("[data-item-opts]", itemForm).innerHTML = it.opts.map(function (gid) {
       var g = GROUPS[gid], one = g.type === "one";
-      return '<fieldset class="opt-group"><legend>' + esc(g.label) + (one ? "" : " (optional)") + '</legend><div class="opt-list">' +
+      return '<fieldset class="opt-group" data-group="' + gid + '"><legend>' + esc(g.label) + (one ? "" : " (optional)") + '</legend><div class="opt-list">' +
         g.options.map(function (o, i) {
           return '<label class="opt"><input type="' + (one ? "radio" : "checkbox") + '" name="g-' + gid + '" data-g="' + gid + '" value="' + i + '"' + (one && i === 0 ? " checked" : "") +
             "><span>" + esc(o.name) + '</span><span class="opt-price" data-opt-price="' + gid + ":" + i + '"></span></label>';

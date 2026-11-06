@@ -133,7 +133,7 @@ function footer(root) {
       <div class="container footer-bottom-inner">
         <p>© <span data-year>2026</span> ${esc(R.name)} · ${esc(R.city)}</p>
         <p><a href="${root}impressum.html">Impressum</a> · <a href="${root}datenschutz.html">Datenschutz</a></p>
-        <p class="footer-credit"><span>Webauftritt von</span> <a class="credit-link" href="https://braeuer.digital" target="_blank" rel="noopener">BRÄUER.DIGITAL</a></p>
+        <p class="footer-credit"><span>Webauftritt von</span> <a class="credit-link" href="https://braeuer.digital" target="_blank" rel="noopener">Bräuer.Digital</a></p>
       </div>
     </div>
   </footer>
@@ -380,12 +380,12 @@ built.push(page({
           <button type="button" class="search-clear" data-search-clear aria-label="Suche leeren" hidden>×</button>
         </form>
       </div>
-      <nav class="cat-nav" aria-label="Kategorien">
+    </section>
+    <nav class="cat-nav" aria-label="Kategorien">
         <div class="container"><ul class="chips" data-scrollspy>
           ${CATS.map((x) => `<li><a class="chip" href="#${x.slug}">${esc(x.name)}</a></li>`).join("")}
         </ul></div>
       </nav>
-    </section>
     <section class="section section-tight">
       <div class="container">
         ${noscript}
@@ -427,12 +427,12 @@ CATS.forEach((c, i) => {
           ${c.img ? `<figure class="cat-head-img"><img src="../assets/images/${c.img}-sm.jpg" alt="${esc(c.imgAlt || c.name)}" width="720" height="540" decoding="async"><figcaption>Foto ist ein Beispiel.</figcaption></figure>` : ""}
         </div>
       </div>
-      <nav class="cat-nav" aria-label="Kategorien">
+    </section>
+    <nav class="cat-nav" aria-label="Kategorien">
         <div class="container"><ul class="chips">
           ${CATS.map((x) => `<li><a class="chip" href="${x.slug}.html"${x.id === c.id ? ' aria-current="page"' : ""}>${esc(x.name)}</a></li>`).join("")}
         </ul></div>
       </nav>
-    </section>
     <section class="section section-tight">
       <div class="container">
         ${noscript}

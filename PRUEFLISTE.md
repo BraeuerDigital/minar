@@ -46,6 +46,7 @@ Keine Kennzeichnung ist mehr als „auf Anfrage“ markiert.
 | D10 | Kategorie „Schnitzel und Steak“ bleibt so | | bestätigt |
 | D11 | Gerichte ohne Kennzeichnung (z. B. 99, 116, 131–134a) – Legende weist darauf hin, dass fehlende Kennzeichnung nicht „allergenfrei“ bedeutet | | offen (optional) |
 | D12 | Napoli (140) 9,00 € | Preise insgesamt bestätigt | bestätigt |
+| D13 | Dip-/Soßen-Abfrage beim Hinzufügen (Preise laut Nr. 80–88: Dips 1,20 €, Ketchup/Majo/Remoulade 0,50 €) | bei allen Burgern, Potatoes, Fingerfood, Party Platten inkl. Menü 73, Schnitzel sowie 95, 96a, 97, 98, 98a, 98b – je Dip eine Portion pro Gericht | auf Kundenwunsch umgesetzt |
 
 ## E. Korrigierte Schreibweisen
 
