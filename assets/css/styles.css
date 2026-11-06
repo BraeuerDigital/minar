@@ -1155,3 +1155,8 @@ main:has(> .cta-band:last-child) + .swoosh-footer .sw-yellow { fill: #0d1307; }
 .field.is-invalid input, .field.is-invalid select { box-shadow: inset 0 0 0 2px var(--minar-orange), 0 0 0 4px rgba(248,112,18,.15); }
 .field.is-invalid > span::after { content: " – bitte ausfüllen"; color: var(--orange-deep); font-weight: 600; font-size: .8rem; }
 .btn-whatsapp[aria-disabled="true"] { pointer-events: auto; cursor: not-allowed; }
+
+/* ---------- Warenkorb: Anpassen / Lieferung aus ---------- */
+.cart-line-edit { border: 0; background: var(--lime-soft); color: var(--green-deep); font-weight: 700; font-size: .85rem; min-height: 36px; padding: .3rem .8rem; border-radius: 10px 3px 10px 3px; cursor: pointer; transition: background .25s, color .25s, border-radius .4s var(--spring); }
+.cart-line-edit:hover { background: var(--night); color: var(--lime); border-radius: 3px 10px 3px 10px; }
+.seg label.is-off span { opacity: .4; cursor: not-allowed; text-decoration: line-through; }

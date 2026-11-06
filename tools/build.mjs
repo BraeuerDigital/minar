@@ -451,7 +451,7 @@ CATS.forEach((c, i) => {
 
 /* ===================== Bestellen ===================== */
 built.push(page({
-  file: "bestellen.html", active: "bestellen", bodyClass: "page-order",
+  file: "bestellen.html", active: "bestellen", dialog: true, bodyClass: "page-order",
   title: "Bestellen · MINAR Küche Bad Buchau",
   desc: "Warenkorb und Bestellvorbereitung per WhatsApp – MINAR Küche Bad Buchau.",
   body: (root) => `${pageHead("Bestellen", "Ihre Bestellung", "Stellen Sie Ihre Bestellung zusammen und senden Sie sie als WhatsApp-Nachricht an uns.")}
@@ -478,6 +478,7 @@ built.push(page({
               <label><input type="radio" name="mode" value="Abholung" checked data-mode><span>Abholung</span></label>
               <label><input type="radio" name="mode" value="Lieferung" data-mode><span>Lieferung</span></label>
             </div>
+            <p class="cart-min" data-delivery-off hidden></p>
             <label class="field" data-place-field hidden><span>Lieferort</span><select data-f-place></select></label>
             <p class="cart-min" data-cart-min hidden></p>
             <div class="cart-total" data-cart-total-row hidden>

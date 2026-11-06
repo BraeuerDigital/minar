@@ -279,15 +279,16 @@
       el.textContent = pr ? "+ " + money(pr) : "";
     });
     $("[data-qty]", itemForm).textContent = curQty;
-    $("[data-item-add]", itemForm).textContent = "Hinzufügen · " + money(sum * curQty);
+    $("[data-item-add]", itemForm).textContent = (editLine ? "Übernehmen · " : "Hinzufügen · ") + money(sum * curQty);
   }
-  function openItem(it) {
+  var editLine = null;                                   // Warenkorb-Zeile, die gerade angepasst wird
+  function openItem(it, line) {
     if (!itemDialog) return;
-    cur = it; curQty = 1;
+    cur = it; editLine = line || null; curQty = line ? line.qty : 1;
     $("[data-item-nr]", itemForm).textContent = it.nr ? "Nr. " + it.nr : "";
     $("[data-item-title]", itemForm).textContent = it.name;
     $("[data-item-desc]", itemForm).textContent = it.description;
-    $("[data-item-note]", itemForm).value = "";
+    $("[data-item-note]", itemForm).value = line ? (line.note || "") : "";
     $("[data-item-variants]", itemForm).hidden = it.prices.length < 2;
     $("[data-variant-list]", itemForm).innerHTML = it.prices.map(function (p, i) {
       return '<label class="opt"><input type="radio" name="variant" value="' + i + '"' + (i === 0 ? " checked" : "") + "><span>" + esc(p.label || "Standard") + '</span><span class="opt-price">' + money(p.price) + "</span></label>";
@@ -301,6 +302,14 @@
             "><span>" + esc(o.name) + '</span><span class="opt-price" data-opt-price="' + gid + ":" + i + '"></span></label>';
         }).join("") + "</div></fieldset>";
     }).join("");
+    if (line) {                                          // bisherige Auswahl vorbelegen
+      var vr = itemForm.querySelector('input[name=variant][value="' + line.v + '"]'); if (vr) vr.checked = true;
+      it.opts.forEach(function (gid) {
+        var chosen = (line.sel && line.sel[gid]) || [];
+        $$('input[data-g="' + gid + '"]', itemForm).forEach(function (x) { x.checked = chosen.indexOf(+x.value) > -1; });
+        if (GROUPS[gid].type === "one" && !chosen.length) { var f = $('input[data-g="' + gid + '"]', itemForm); if (f) f.checked = true; }
+      });
+    }
     enforceMax();
     updateItemPrice();
     openDialog(itemDialog);
@@ -322,7 +331,13 @@
     $("[data-qty-plus]", itemForm).addEventListener("click", function () { curQty = Math.min(50, curQty + 1); updateItemPrice(); });
     itemForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      addToCart(cur, variantIdx(), readSelection(), curQty, $("[data-item-note]", itemForm).value.trim());
+      var note = $("[data-item-note]", itemForm).value.trim();
+      if (editLine && cart.indexOf(editLine) > -1) {      // Zeile im Warenkorb ersetzen
+        editLine.v = variantIdx(); editLine.sel = readSelection(); editLine.qty = curQty; editLine.note = note;
+        editLine.key = cur._id + "|" + editLine.v + "|" + JSON.stringify(editLine.sel) + "|" + note;
+        saveCart(); renderBadge(); renderCartPage(); toast("Änderung übernommen");
+      } else addToCart(cur, variantIdx(), readSelection(), curQty, note);
+      editLine = null;
       closeDialog(itemDialog);
     });
   }
@@ -378,12 +393,23 @@
         '<div class="cart-line-ctrl"><div class="qty qty-sm"><button type="button" data-l-minus aria-label="Weniger">−</button><output>' + l.qty +
         '</output><button type="button" data-l-plus aria-label="Mehr">+</button></div>' +
         '<input class="cart-line-note" type="text" maxlength="120" placeholder="Hinweis (optional)" value="' + esc(l.note) + '" data-l-note aria-label="Hinweis zu ' + esc(c.it.name) + '">' +
+        ((c.it.opts.length || c.it.prices.length > 1) ? '<button type="button" class="cart-line-edit" data-l-edit>Anpassen</button>' : "") +
         '<button type="button" class="cart-line-remove" data-l-remove>Entfernen</button></div></li>';
     }).join("");
     updateCheckout();
   }
 
+  /* Lieferungen werden nur bis zur Bestellannahme (21:15) angenommen – danach und am Ruhetag aus */
+  function deliveryAvailable() { var n = berlinNow(); return H.closedDays.indexOf(n.day) < 0 && n.min < toMin(H.orderUntil); }
+  function applyDeliveryCutoff() {
+    var radio = $('[data-mode][value="Lieferung"]'), info = $("[data-delivery-off]"); if (!radio) return;
+    var on = deliveryAvailable();
+    radio.disabled = !on; radio.closest("label").classList.toggle("is-off", !on);
+    if (!on && radio.checked) { radio.checked = false; $('[data-mode][value="Abholung"]').checked = true; }
+    if (info) { info.hidden = on; info.textContent = "Lieferungen nehmen wir bis " + H.orderUntil + " Uhr an (Dienstag Ruhetag). Jetzt ist nur Abholung möglich."; }
+  }
   function updateCheckout() {
+    applyDeliveryCutoff();
     var delivery = mode() === "Lieferung", sum = subtotal(), z = delivery ? currentZone() : null;
     $("[data-address-field]").hidden = !delivery;
     $("[data-place-field]").hidden = !delivery;
@@ -456,7 +482,8 @@
   function fillTimes() {
     var sel = F.time; if (!sel) return;
     var keep = sel.value, n = berlinNow(), closedToday = H.closedDays.indexOf(n.day) > -1;
-    var open = toMin(H.open), close = toMin(H.close), lead = 30;
+    var open = toMin(H.open), lead = 30;
+    var close = mode() === "Lieferung" ? toMin(H.orderUntil) : toMin(H.close);   // Lieferung nur bis 21:15
     var start = Math.max(open, Math.ceil((n.min + lead) / 15) * 15);
     var opts = ['<option value="asap">So schnell wie möglich</option>'];
     if (!closedToday && n.min < toMin(H.orderUntil)) {
@@ -484,6 +511,7 @@
     var saved = store.get(FORM_KEY) || {};
     ["name", "phone", "address", "place"].forEach(function (k) { if (saved[k]) F[k].value = saved[k]; });
     if (saved.mode) $$("[data-mode]").forEach(function (r) { r.checked = r.value === saved.mode; });
+    applyDeliveryCutoff(); fillTimes();
 
     linesEl.addEventListener("click", function (e) {
       var li = e.target.closest("[data-line]"); if (!li) return;
@@ -491,6 +519,7 @@
       if (e.target.closest("[data-l-minus]")) { l.qty -= 1; if (l.qty < 1) cart.splice(cart.indexOf(l), 1); }
       else if (e.target.closest("[data-l-plus]")) l.qty = Math.min(50, l.qty + 1);
       else if (e.target.closest("[data-l-remove]")) cart.splice(cart.indexOf(l), 1);
+      else if (e.target.closest("[data-l-edit]")) { openItem(itemById[l._id], l); return; }
       else return;
       saveCart(); renderBadge(); renderCartPage();
     });
@@ -501,7 +530,7 @@
     });
     ["input", "change"].forEach(function (ev) {
       $("[data-cart-body]").addEventListener(ev, function (e) {
-        if (e.target.matches("[data-f-name],[data-f-phone],[data-f-address],[data-f-time],[data-f-note],[data-f-place],[data-mode]")) { saveForm(); updateCheckout(); markInvalid(); }
+        if (e.target.matches("[data-f-name],[data-f-phone],[data-f-address],[data-f-time],[data-f-note],[data-f-place],[data-mode]")) { if (e.target.matches("[data-mode]")) fillTimes(); saveForm(); updateCheckout(); markInvalid(); }
       });
     });
     $("[data-cart-clear]").addEventListener("click", function () { cart = []; saveCart(); renderBadge(); renderCartPage(); toast("Warenkorb geleert"); });
