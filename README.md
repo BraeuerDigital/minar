@@ -27,6 +27,7 @@ Alle Seiten sind mit `noindex` gekennzeichnet (unveröffentlichte Demo).
 │   ├── css/styles.css           Designsystem (Farbvariablen, Komponenten)
 │   ├── js/menu-data.js          ALLE Inhalte: Stammdaten, Zeiten, Lieferzonen, Kategorien, Gerichte
 │   ├── js/app.js                Navigation, Öffnungsstatus, Speisekarte, Suche, Warenkorb, WhatsApp
+│   ├── js/fx.js                 Interaktions-Effekte (Hover, Tilt, Magnet, Scroll-Fortschritt)
 │   ├── logo/                    Logo als SVG/PNG, Header-Variante, Halal-Siegel, Favicons, Referenz
 │   └── images/                  Platz für spätere Originalfotos
 ├── tools/
@@ -60,21 +61,23 @@ Aufbau eines Gerichts:
 
 `codesCheck: true` blendet unsichere Kennzeichnungen aus („auf Anfrage“).
 
-## Designgrundlage
+## Designgrundlage („Future Edition“)
 
-Farbvariablen in `assets/css/styles.css` (aus den Flyerfotos abgeleitet):
+Farbvariablen in `assets/css/styles.css` – Flyer-Farbwelt, leicht geschärft:
 
 | Variable | Wert | Einsatz |
 |----------|------|---------|
-| `--minar-green` | `#646C3E` | Header-Leiste, Navigation, Buttons, Akzente |
-| `--minar-yellow-light` | `#D2B52A` | Flyer-Band, Footer, Aktionsbuttons |
-| `--minar-yellow` | `#B39901` | Hinweis-Akzente |
-| `--minar-red` | `#8A4839` | Kategorieüberschriften, Artikelnummern, Trennlinien |
-| `--minar-orange` | `#C59771` | Sonnen-Akzente |
-| `--minar-cream` | `#E8DCC7` | Flächen, Abschnitte |
-| `--minar-dark` | `#2F2A23` | Fließtext |
+| `--minar-green` | `#5F7A1F` | Buttons, Navigation, Markenakzente |
+| `--lime` | `#9BC13A` | helles Markengrün: Leuchtakzente, Hover-Glow, aktive Zustände |
+| `--minar-yellow-light` | `#E3C33A` | Flyer-Band, Footer, Aktionsbuttons |
+| `--minar-red` | `#A23B2A` | Kategorieüberschriften, Artikelnummern |
+| `--minar-orange` | `#F07A1A` | Sonnen-Emblem, Verläufe |
+| `--minar-cream` | `#EADFCB` | Flächen |
+| `--night` | `#151A0E` | dunkle Bühnen (Topbar, Liefer-Bereich, Öffnungszeiten) |
 
-Wiederkehrende Elemente: rot gesetzte Kategorietitel in Versalien, das geschwungene Grün-Rot-Gelb-Band aus dem Flyer (vor dem Footer und unter dem Hero), Sonnen-Emblem, Halal-Siegel.
+Gestaltungselemente: Blattform-Ecken (`--r-leaf`), die beim Hover umklappen · Licht-Spot, Lichtstreif und Roll-Label auf Buttons · magnetische Buttons · 3D-Tilt und rotierender Verlaufsrand auf Kategorie-Karten · Spotlight auf Gerichten · gleitender Navigations-Indikator · Aurora-Hintergrund und Sonnen-Halo im Hero · Perspektiv-Raster im Liefer-Bereich · Scroll-Fortschritt in Flyer-Farben · geschwungenes Grün-Rot-Gelb-Band aus dem Flyer.
+
+Effekte stecken in `assets/js/fx.js` und werden bei „Bewegung reduzieren“ sowie auf Touch-Geräten automatisch reduziert.
 
 ## Lokal ansehen
 

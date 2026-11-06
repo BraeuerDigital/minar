@@ -184,7 +184,7 @@ function page({ file, title, desc, active, body, dialog = false, bodyClass = "" 
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(desc)}">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#646C3E">
+  <meta name="theme-color" content="#151A0E">
   <link rel="icon" href="${root}assets/logo/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="${root}assets/logo/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="${root}assets/logo/apple-touch-icon.png">
@@ -198,6 +198,7 @@ ${body(root)}
   ${footer(root)}${dialog ? itemDialog : ""}
   <script src="${root}assets/js/menu-data.js?v=${CSS_VERSION}"></script>
   <script src="${root}assets/js/app.js?v=${CSS_VERSION}"></script>
+  <script src="${root}assets/js/fx.js?v=${CSS_VERSION}"></script>
 </body>
 </html>
 `;
@@ -270,7 +271,7 @@ built.push(page({
         </div>
         <div class="hero-copy reveal">
           <p class="eyebrow"><span class="status-dot" data-open-dot></span><span data-open-status>Bad Buchau · ${esc(R.street)}</span></p>
-          <h1>Von Pizza bis Curry –<br><span>alles aus einer Küche.</span></h1>
+          <h1>Von Pizza bis Curry&nbsp;–<br><span>alles aus einer Küche.</span></h1>
           <p class="lead">Pizza, Döner, Burger, Salate, Nudeln sowie indische und pakistanische Gerichte: Bei MINAR Küche in Bad Buchau essen Sie im Restaurant, holen ab oder lassen sich beliefern.</p>
           <div class="hero-actions">
             <a class="btn btn-primary btn-lg" href="${root}speisekarte/index.html">Speisekarte entdecken</a>
