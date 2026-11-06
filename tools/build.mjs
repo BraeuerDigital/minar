@@ -487,12 +487,13 @@ built.push(page({
 
             <h2 class="h-red h-sm">Ihre Angaben</h2>
             <div class="field-grid">
-              <label class="field"><span>Name</span><input type="text" autocomplete="name" data-f-name></label>
-              <label class="field"><span>Telefon <small>(für Rückfragen)</small></span><input type="tel" autocomplete="tel" data-f-phone></label>
-              <label class="field field-wide" data-address-field hidden><span>Lieferadresse</span><input type="text" autocomplete="street-address" placeholder="Straße, Hausnummer" data-f-address></label>
-              <label class="field"><span>Wunschzeit <small>(optional)</small></span><input type="text" placeholder="z. B. 18:30 Uhr" data-f-time></label>
+              <label class="field"><span>Name <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="name" required aria-required="true" data-f-name></label>
+              <label class="field"><span>Telefon <b class="req" aria-hidden="true">*</b> <small>(für Rückfragen)</small></span><input type="tel" autocomplete="tel" required aria-required="true" data-f-phone></label>
+              <label class="field field-wide" data-address-field hidden><span>Lieferadresse <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="street-address" placeholder="Straße, Hausnummer" aria-required="true" data-f-address></label>
+              <label class="field"><span>Wunschzeit</span><select data-f-time></select></label>
               <label class="field field-wide"><span>Anmerkungen <small>(optional)</small></span><textarea rows="3" maxlength="300" data-f-note></textarea></label>
             </div>
+            <p class="fine req-note"><b class="req">*</b> Pflichtfeld</p>
             <p class="cart-closed" data-cart-closed hidden></p>
             <div class="cart-actions">
               <a class="btn btn-whatsapp btn-lg btn-block" href="#" target="_blank" rel="noopener" data-wa-send>${I.wa}Bestellung per WhatsApp vorbereiten</a>

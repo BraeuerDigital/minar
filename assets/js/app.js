@@ -401,7 +401,7 @@
     closedEl.hidden = s.ordering;
     if (!s.ordering) closedEl.textContent = "Derzeit ist laut Öffnungszeiten keine Bestellannahme (" + s.text + "). Ihre Nachricht wird möglicherweise erst später gelesen.";
     var send = $("[data-wa-send]");
-    var missing = delivery && !F.place.value ? "Bitte Lieferort wählen" : delivery && !F.address.value.trim() ? "Bitte Lieferadresse angeben" : "";
+    var missing = requiredMissing()[0] ? requiredMissing()[0].msg : "";
     var ok = cart.length && !missing;
     send.setAttribute("aria-disabled", ok ? "false" : "true");
     send.href = ok ? "https://wa.me/" + R.whatsappNumber + "?text=" + encodeURIComponent(buildMessage()) : "#";
@@ -426,10 +426,51 @@
       if (F.place.value) L.push("Lieferort: " + (F.place.value === "__other" ? "anderer Ort (auf Anfrage)" : F.place.value));
       if (F.address.value.trim()) L.push("Lieferadresse: " + F.address.value.trim());
     }
-    if (F.time.value.trim()) L.push("Wunschzeit: " + F.time.value.trim());
+    L.push("Wunschzeit: " + (F.time.value && F.time.value !== "asap" ? "heute, " + F.time.value + " Uhr" : "so schnell wie möglich"));
     if (F.note.value.trim()) L.push("Anmerkung: " + F.note.value.trim());
     L.push("", "Bitte bestätigen Sie mir die Bestellung. Vielen Dank!");
     return L.join("\n");
+  }
+
+  /* Pflichtfelder: Abholung → Name, Telefon · Lieferung → zusätzlich Lieferort und Adresse */
+  var triedSend = false;
+  function requiredMissing() {
+    if (!F.name) return [];
+    var del = mode() === "Lieferung", out = [];
+    if (!F.name.value.trim()) out.push({ el: F.name, msg: "Bitte Namen angeben" });
+    if (F.phone.value.replace(/[^0-9]/g, "").length < 6) out.push({ el: F.phone, msg: "Bitte Telefonnummer angeben" });
+    if (del && !F.place.value) out.push({ el: F.place, msg: "Bitte Lieferort wählen" });
+    if (del && !F.address.value.trim()) out.push({ el: F.address, msg: "Bitte Lieferadresse angeben" });
+    return out;
+  }
+  function markInvalid() {
+    var bad = requiredMissing().map(function (m) { return m.el; });
+    [F.name, F.phone, F.place, F.address].forEach(function (el) {
+      if (!el) return;
+      var invalid = triedSend && bad.indexOf(el) > -1;
+      el.setAttribute("aria-invalid", invalid ? "true" : "false");
+      el.closest(".field").classList.toggle("is-invalid", invalid);
+    });
+  }
+  /* Wunschzeit: „so schnell wie möglich“ oder heute in 15-Minuten-Schritten innerhalb der Öffnungszeiten */
+  function fillTimes() {
+    var sel = F.time; if (!sel) return;
+    var keep = sel.value, n = berlinNow(), closedToday = H.closedDays.indexOf(n.day) > -1;
+    var open = toMin(H.open), close = toMin(H.close), lead = 30;
+    var start = Math.max(open, Math.ceil((n.min + lead) / 15) * 15);
+    var opts = ['<option value="asap">So schnell wie möglich</option>'];
+    if (!closedToday && n.min < toMin(H.orderUntil)) {
+      var grp = [];
+      for (var m = start; m <= close; m += 15) {
+        var hh = String(Math.floor(m / 60)).padStart(2, "0"), mm = String(m % 60).padStart(2, "0");
+        grp.push('<option value="' + hh + ":" + mm + '">Heute, ' + hh + ":" + mm + " Uhr</option>");
+      }
+      if (grp.length) opts.push('<optgroup label="Heute zu einer bestimmten Uhrzeit">' + grp.join("") + "</optgroup>");
+    } else {
+      opts.push('<option value="" disabled>Heute keine weiteren Zeiten (außerhalb der Öffnungszeiten)</option>');
+    }
+    sel.innerHTML = opts.join("");
+    if (keep && sel.querySelector('option[value="' + keep + '"]:not([disabled])')) sel.value = keep; else sel.value = "asap";
   }
 
   if (linesEl) {
@@ -438,6 +479,8 @@
       var z = zones[p.zone];
       return '<option value="' + esc(p.name) + '">' + esc(p.name) + " (ab " + money(z.minOrder) + ", Lieferkosten " + money(z.fee) + ")</option>";
     }).join("") + '<option value="__other">Anderer Ort (auf Anfrage)</option>';
+    fillTimes();
+    setInterval(function () { fillTimes(); updateCheckout(); }, 60000);
     var saved = store.get(FORM_KEY) || {};
     ["name", "phone", "address", "place"].forEach(function (k) { if (saved[k]) F[k].value = saved[k]; });
     if (saved.mode) $$("[data-mode]").forEach(function (r) { r.checked = r.value === saved.mode; });
@@ -458,12 +501,16 @@
     });
     ["input", "change"].forEach(function (ev) {
       $("[data-cart-body]").addEventListener(ev, function (e) {
-        if (e.target.matches("[data-f-name],[data-f-phone],[data-f-address],[data-f-time],[data-f-note],[data-f-place],[data-mode]")) { saveForm(); updateCheckout(); }
+        if (e.target.matches("[data-f-name],[data-f-phone],[data-f-address],[data-f-time],[data-f-note],[data-f-place],[data-mode]")) { saveForm(); updateCheckout(); markInvalid(); }
       });
     });
     $("[data-cart-clear]").addEventListener("click", function () { cart = []; saveCart(); renderBadge(); renderCartPage(); toast("Warenkorb geleert"); });
     $("[data-wa-send]").addEventListener("click", function (e) {
-      if (this.getAttribute("aria-disabled") === "true") { e.preventDefault(); (mode() === "Lieferung" && !F.place.value ? F.place : F.address).focus(); return; }
+      if (this.getAttribute("aria-disabled") === "true") {
+        e.preventDefault(); triedSend = true; markInvalid();
+        var first = requiredMissing()[0]; if (first) first.el.focus();
+        return;
+      }
       if (!drinksAsked && !hasDrink()) { e.preventDefault(); openDrinks(); return; }
       toast("WhatsApp wird geöffnet – bitte Nachricht dort absenden");
     });

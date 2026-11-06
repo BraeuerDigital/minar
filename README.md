@@ -28,13 +28,13 @@ Alle Seiten sind mit `noindex` gekennzeichnet (unveröffentlichte Demo).
 │   ├── js/menu-data.js          ALLE Inhalte: Stammdaten, Zeiten, Lieferzonen, Kategorien, Gerichte
 │   ├── js/app.js                Navigation, Öffnungsstatus, Speisekarte, Suche, Warenkorb, WhatsApp
 │   ├── js/fx.js                 Interaktions-Effekte (Hover, Tilt, Magnet, Scroll-Fortschritt)
-│   ├── js/logo-anim.js          Logo-Animation der Startseite (einmalig, ca. 2,8 s)
+│   ├── js/logo-anim.js          Logo-Intro der Startseite (Aufbau, Stand, Scharren, Sprung – ca. 5,3 s)
 │   ├── logo/                    Logo als SVG/PNG, Header-Variante, Halal-Siegel, Favicons, Referenz
 │   └── images/                  Platz für spätere Originalfotos
 ├── tools/
 │   ├── build.mjs                Seitengenerator (Header, Footer, Navigation zentral)
 │   ├── trace.py, compose.py     Logo-Vektorisierung aus assets/logo/logo-referenz.png
-│   ├── logo_anim.py             erzeugt assets/logo/minar-logo-anim.svg (Gelenk-Rig der Tierfigur)
+│   ├── logo_anim.py             erzeugt assets/logo/minar-logo-anim.svg (zerlegtes Logo + Gelenk-Rig)
 ├── PRUEFLISTE.md                Prüfprotokoll: unsichere und zu bestätigende Angaben
 └── .nojekyll
 ```
@@ -95,3 +95,13 @@ python3 -m http.server 8000   # → http://localhost:8000
 
 Es ist bewusst **keine eigene Domain** hinterlegt (keine `CNAME`-Datei).
 Vor dem Livegang: `noindex` in `tools/build.mjs` entfernen, Seiten neu erzeugen und `PRUEFLISTE.md` abarbeiten.
+
+## Logo-Intro (Startseite)
+
+Ablauf: Logo-Aufbau (Sonne → Linien → Siegel → Halbmond → MINAR → Küche → Unterzeile) · ruhiger Stand · zweimaliges Scharren mit dem Vorderlauf · Ducken und Absprung in die Original-Pose · danach völlig still. Gesamt ca. 5,3 s, keine Schleife.
+
+- **Technik:** Vanilla JS + SVG (ein `requestAnimationFrame`-Loop, keine Bibliothek). Die Tierfigur ist die Original-Silhouette, zerlegt in ein Gelenk-Rig (Huf → Hüfte → Schulter → Ellbogen); Winkel 0 = Original-Pose. Am Ende wird auf die unzerlegte Silhouette umgeschaltet – Endbild pixelgleich zum statischen Logo (geprüft).
+- **Fallbacks:** `prefers-reduced-motion` oder erneuter Aufruf in derselben Sitzung → sofort statisches Logo. Ohne JavaScript ebenfalls statisch.
+- **Dateien:** `assets/logo/minar-logo-anim.svg` (wird von `tools/build.mjs` inline eingesetzt), `assets/js/logo-anim.js` (direkt hinter dem SVG laden).
+- **Einbau in andere Seiten:** `logo-intro/index.html` enthält SVG, CSS und JS zusammenhängend zum Kopieren.
+- **Anpassen:** Zeiten und Posen stehen kommentiert oben in `assets/js/logo-anim.js` (Phasen A–E). Nach Änderungen am Rig: `python3 tools/logo_anim.py && node tools/build.mjs`.

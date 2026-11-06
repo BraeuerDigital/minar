@@ -1145,3 +1145,13 @@ main:has(> .cta-band:last-child) + .swoosh-footer .sw-yellow { fill: #0d1307; }
 /* ---------- Animiertes Hero-Logo ---------- */
 .hero-logo svg.minar-logo-anim { display: block; width: 100%; max-width: 560px; height: auto; margin-inline: auto; overflow: visible; filter: drop-shadow(0 26px 34px rgba(21,26,14,.18)); animation: float 7s ease-in-out infinite; }
 @media (max-width: 860px) { .hero-logo svg.minar-logo-anim { max-width: 330px; } }
+/* Logo-Intro: Logo bleibt nach dem Aufbau vollständig still (kein Schweben) */
+.hero-logo svg.minar-logo-anim { animation: none; max-width: 640px; }
+@media (max-width: 860px) { .hero-logo svg.minar-logo-anim { max-width: 380px; } }
+
+/* ---------- Pflichtfelder ---------- */
+.req { color: var(--orange-deep); font-weight: 800; }
+.req-note { margin: -.3rem 0 .8rem; }
+.field.is-invalid input, .field.is-invalid select { box-shadow: inset 0 0 0 2px var(--minar-orange), 0 0 0 4px rgba(248,112,18,.15); }
+.field.is-invalid > span::after { content: " – bitte ausfüllen"; color: var(--orange-deep); font-weight: 600; font-size: .8rem; }
+.btn-whatsapp[aria-disabled="true"] { pointer-events: auto; cursor: not-allowed; }
