@@ -97,7 +97,6 @@ function header(root, active) {
 }
 
 function footer(root) {
-  const catLinks = CATS.slice(0, 9).map((c) => `<li><a href="${root}speisekarte/${c.slug}.html">${esc(c.name)}</a></li>`).join("");
   return `${swoosh("swoosh-footer")}
   <footer class="site-footer">
     <div class="container footer-grid">
@@ -123,10 +122,6 @@ function footer(root) {
           ${NAV.map(([, href, label]) => `<li><a href="${root}${href}">${label}</a></li>`).join("")}
           <li><a href="${root}bestellen.html">Bestellen</a></li>
         </ul>
-      </nav>
-      <nav aria-label="Speisekarte">
-        <h2 class="footer-h">Speisekarte</h2>
-        <ul class="footer-nav">${catLinks}<li><a href="${root}speisekarte/index.html">Alle Kategorien …</a></li></ul>
       </nav>
     </div>
     <div class="footer-bottom">

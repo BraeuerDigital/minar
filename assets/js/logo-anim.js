@@ -13,17 +13,14 @@
    Technik: Vanilla JS + SVG, ein requestAnimationFrame-Loop, keine Bibliothek.
    Rig: tools/logo_anim.py (Original-Silhouette, Gelenkkette Huf → Hüfte → Schulter → Ellbogen, zwei Vorderläufe,
    Winkel 0 = Original-Pose). Am Ende Umschalten auf die unzerlegte Original-Silhouette.
-   Fallbacks: prefers-reduced-motion oder bereits in dieser Sitzung gesehen → sofort statisch.
+   Läuft bei jedem Aufruf/Neuladen von vorne. Fallback: prefers-reduced-motion → sofort statisch.
    ===================================================================== */
 (function () {
   "use strict";
   var svg = document.querySelector(".minar-logo-anim");
   if (!svg || !window.requestAnimationFrame) return;
-  var KEY = "minar-logo-intro";
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var seen = false;
-  try { seen = sessionStorage.getItem(KEY) === "1"; } catch (e) { /* privat */ }
-  if (reduce || seen) return;                                   // statisches Logo bleibt stehen
+  if (reduce) return;                                           // statisches Logo bleibt stehen
 
   var $ = function (s) { return svg.querySelector(s); };
   var rig = $(".mg-rig"), stat = $(".mg-static");
@@ -144,7 +141,6 @@
     build.forEach(function (b) { b.el.removeAttribute("transform"); b.el.removeAttribute("opacity"); });
     goatG.removeAttribute("opacity");
     svg.classList.remove("is-intro"); svg.classList.add("is-done");
-    try { sessionStorage.setItem(KEY, "1"); } catch (e) { /* privat */ }
   }
   function go() { requestAnimationFrame(function () { requestAnimationFrame(frame); }); }
   // erst starten, wenn die Seite sichtbar ist („erster sichtbarer Aufruf“)
