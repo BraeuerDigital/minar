@@ -1166,3 +1166,5 @@ main:has(> .cta-band:last-child) + .swoosh-footer .sw-yellow { fill: #0d1307; }
 @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 /* Credit 0,7 cm weiter nach links */
 @media (min-width: 1000px) { .footer-credit { right: calc(clamp(.9rem, 1.6vw, 1.4rem) + 0.7cm); } }
+.test-banner { margin: 0 0 1rem; padding: .8rem 1rem; border-radius: var(--radius-sm); background: var(--night); color: #fff; font-size: .92rem; box-shadow: inset 0 0 0 2px var(--minar-orange); }
+.test-banner strong { color: var(--lime); }

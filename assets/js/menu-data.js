@@ -39,6 +39,12 @@ window.MINAR_DATA = {
     phoneLink: "+4975829346944",
     whatsappDisplay: "0163 359 01 88",
     whatsappNumber: "491633590188", // internationales Format ohne + und ohne führende 0
+
+    /* ===== TESTMODUS – vor dem Livegang auf false stellen bzw. entfernen =====
+       testMode: true  → Bestellungen gehen an testWhatsappNumber,
+                         Öffnungszeiten/Bestellschluss werden im Bestellvorgang ignoriert. */
+    testMode: true,
+    testWhatsappNumber: "4917647830274",
     fax: "0800 202 07 702",
     email: "minarbuchau@gmail.com",
     owner: "Rehan Naveed Raja",

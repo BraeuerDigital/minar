@@ -6,6 +6,8 @@ Punkte mit **PRÜFEN** sind auf der Website nicht als gesichert dargestellt oder
 
 ## A. Wichtigster Punkt
 
+> **TESTMODUS AKTIV** (`assets/js/menu-data.js` → `testMode: true`): Bestellungen gehen an die Testnummer 0176 47830274, Öffnungszeiten werden ignoriert. **Vor dem Livegang `testMode: false` setzen.**
+
 | # | Punkt | Status |
 |---|-------|--------|
 | A1 | Die Karte trägt den Vermerk **„(04/2023) – Karte ist gültig bis zur Neuerscheinung“**. Alle Preise vom Restaurant auf Aktualität bestätigen lassen. Die Website zeigt den Hinweis „Preise laut gedruckter Speisekarte, Stand 04/2023“. | **bestätigt 06.11.2026** – Preise aktuell |
