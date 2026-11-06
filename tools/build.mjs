@@ -112,7 +112,7 @@ function footer(root) {
         <h2 class="footer-h">Kontakt</h2>
         <p><a class="footer-link" href="${TEL}">${I.phone}${esc(R.phoneDisplay)}</a><br>
         <a class="footer-link" href="${WA}" target="_blank" rel="noopener">${I.wa}${esc(R.whatsappDisplay)}</a><br>
-        <a class="footer-link" href="mailto:${esc(R.email)}">${I.mail}${esc(R.email)}</a></p>
+        <a class="footer-link" href="mailto:${esc(R.email)}">${I.mail}<span>${esc(R.email).replace("@", "@<wbr>")}</span></a></p>
         <h2 class="footer-h">Öffnungszeiten</h2>
         <p>Täglich ${D.hours.open}–${D.hours.close} Uhr<br>Dienstag Ruhetag<br>Bestellannahme bis ${D.hours.orderUntil} Uhr</p>
       </div>
@@ -406,7 +406,7 @@ CATS.forEach((c, i) => {
   built.push(page({
     file: `speisekarte/${c.slug}.html`, active: "speisekarte", dialog: true, bodyClass: "page-menu page-category",
     title: `${c.name} · Speisekarte · MINAR Küche Bad Buchau`,
-    desc: `${c.name} bei MINAR Küche in Bad Buchau – alle Gerichte mit Preisen, Größen und Allergenkennzeichnung.`,
+    desc: `${c.name} bei MINAR Küche in Bad Buchau – mit Preisen, Größen und Allergenkennzeichnung.`,
     body: () => `
     <section class="page-head page-head-cat">
       <div class="container">
@@ -559,7 +559,7 @@ built.push(page({
     <section class="section section-tight">
       <div class="container about-grid">
         <div class="prose reveal">
-          <p>MINAR Küche verbindet auf einer Karte, was viele gern essen: Salate, Burger und Fingerfood, Döner und überbackene Teller, Pizza und Party Pizza, Nudelgerichte und Gnocchi, Schnitzel sowie Currys und Masala-Gerichte der indischen und pakistanischen Küche – dazu vegetarische Gerichte, Desserts und Getränke.</p>
+          <p>MINAR Küche verbindet auf einer Karte, was viele gern essen: Salate, Burger und Fingerfood, Döner und überbackene Teller, Pizza und Partypizza, Nudelgerichte und Gnocchi, Schnitzel sowie Currys und Masala-Gerichte der indischen und pakistanischen Küche – dazu vegetarische Gerichte, Desserts und Getränke.</p>
           <p>Sie können bei uns im Restaurant essen, Ihre Bestellung abholen oder sich beliefern lassen. Unsere Karte sagt dazu: <em>„Bitte bedenken Sie, wir bereiten alle Speisen frisch für Sie zu.“</em></p>
           ${halalBadge(root)}
         </div>
@@ -616,7 +616,7 @@ built.push(page({
       <h2>Registereintrag</h2><p>${ph("Registergericht und Registernummer – nur falls vorhanden, sonst Abschnitt entfernen")}</p>
       <h2>Zuständige Aufsichtsbehörde</h2><p>${ph("falls erforderlich – sonst Abschnitt entfernen")}</p>
       <h2>Verbraucherstreitbeilegung</h2><p>${ph("Hinweis zur (Nicht-)Teilnahme an Streitbeilegungsverfahren – vom Betreiber festzulegen")}</p>
-      <h2>Webdesign</h2><p>BRÄUER.DIGITAL</p>
+      <h2>Webdesign</h2><p>Bräuer.Digital</p>
     </div></section>`
 }));
 built.push(page({

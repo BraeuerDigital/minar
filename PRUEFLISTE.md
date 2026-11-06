@@ -58,6 +58,8 @@ Keine Kennzeichnung ist mehr als „auf Anfrage“ markiert.
 
 Coctail → Cocktail · Quattro Formaggie → Quattro Formaggi · Chesse-Garnelen → Cheese-Garnelen · Vegetarische Burger → Vegetarischer Burger · Hähnschenbrust → Hähnchenbrust · Hotcoctailsoße → Hot-Cocktailsoße · Rost Zwiebel → Röstzwiebeln · Rosti → Rösti · Hawai (Schnitzel) → Hawaii · Coockie → Cookie · Ben & Jerry → Ben & Jerry’s · Schwäbische Teller → Schwäbischer Teller · Uludag → Uludağ · Schwefeloxide/Sulfide → Schwefeldioxid/Sulfite. Gerichtsnamen wie „Arrabiata“, „Diabolo“ und „Kebap“ wurden wie gedruckt belassen.
 
+Rechtschreibprüfung 07.11.2026: Cheddar Käse → Cheddarkäse · Pattie → Patty · Kässpätzle → Käsespätzle (Extra) · Arrabiata → Arrabbiata · Salamone → Salmone (Salat 14) · Gambaretti → Gamberetti · Choko → Schoko · Majo → Mayo · B.B.Q → BBQ · Party Platten/Party Pizza → Partyplatten/Partypizza. Bewusst wie auf der Karte belassen: Diabolo (Schnitzel), Kebap, Hamburgerle usw., Chicken Vegetables Nudel.
+
 ## F. Stammdaten
 
 | # | Angabe | Status |
