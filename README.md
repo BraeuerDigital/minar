@@ -11,7 +11,7 @@ Alle Seiten sind mit `noindex` gekennzeichnet (unveröffentlichte Demo).
 | URL | Inhalt |
 |-----|--------|
 | `index.html` | Startseite (Hero mit Logo, Vorstellung, Kategorien, Lieferservice, Öffnungszeiten, CTA) |
-| `speisekarte/index.html` | Übersicht aller 18 Kategorien + Gerichtesuche (`?q=` möglich) |
+| `speisekarte/index.html` | komplette Speisekarte mit allen Gerichten, Kategorie-Sprungleiste und Suche (`?q=` möglich) |
 | `speisekarte/<kategorie>.html` | 18 Kategorieseiten, z. B. `pizza.html`, `burger.html`, `doener.html` |
 | `bestellen.html` | Warenkorb & Bestellvorbereitung per WhatsApp |
 | `lieferservice.html` | Liefergebiete, Mindestbestellwerte, Lieferkosten, Zeiten |
@@ -61,21 +61,19 @@ Aufbau eines Gerichts:
 
 `codesCheck: true` blendet unsichere Kennzeichnungen aus („auf Anfrage“).
 
-## Designgrundlage („Future Edition“)
+## Designgrundlage (Rot/Grün-Edition)
 
-Farbvariablen in `assets/css/styles.css` – Flyer-Farbwelt, leicht geschärft:
+Die Oberfläche nutzt ausschließlich die Markenfarben **Rot** und **Grün** plus Neutraltöne. Das Logo bleibt im Original.
 
 | Variable | Wert | Einsatz |
 |----------|------|---------|
-| `--minar-green` | `#5F7A1F` | Buttons, Navigation, Markenakzente |
-| `--lime` | `#9BC13A` | helles Markengrün: Leuchtakzente, Hover-Glow, aktive Zustände |
-| `--minar-yellow-light` | `#E3C33A` | Flyer-Band, Footer, Aktionsbuttons |
-| `--minar-red` | `#A23B2A` | Kategorieüberschriften, Artikelnummern |
-| `--minar-orange` | `#F07A1A` | Sonnen-Emblem, Verläufe |
-| `--minar-cream` | `#EADFCB` | Flächen |
-| `--night` | `#151A0E` | dunkle Bühnen (Topbar, Liefer-Bereich, Öffnungszeiten) |
+| `--minar-green` | `#4E7A16` | Buttons, Navigation, Markenakzente |
+| `--lime` | `#A6D23A` | helles Markengrün: Leuchtakzente, Hover, Versatz-Schatten |
+| `--green-deep` / `--night` | `#2F4A0C` / `#10160A` | dunkle Bühnen, Footer |
+| `--minar-red` | `#B41E27` | Überschriften, Artikelnummern, Laufband |
+| `--red-hot` / `--red-deep` | `#E0483F` / `#7E1A1F` | Verläufe, Hover |
 
-Gestaltungselemente: Blattform-Ecken (`--r-leaf`), die beim Hover umklappen · Licht-Spot, Lichtstreif und Roll-Label auf Buttons · magnetische Buttons · 3D-Tilt und rotierender Verlaufsrand auf Kategorie-Karten · Spotlight auf Gerichten · gleitender Navigations-Indikator · Aurora-Hintergrund und Sonnen-Halo im Hero · Perspektiv-Raster im Liefer-Bereich · Scroll-Fortschritt in Flyer-Farben · geschwungenes Grün-Rot-Gelb-Band aus dem Flyer.
+Gestaltungselemente: Blattform-Ecken, die beim Hover umklappen · Buttons mit Farbwechsel Grün ↔ Rot, Licht-Spot, Lichtstreif, Roll-Label und Magnet · sich kreuzende Laufbänder im Hero · Outline-Schriftzug „MINAR“ im Hintergrund · Kategorie-Karten mit 3D-Tilt und Farb-Flip · Gerichte mit rotierendem Rot-Grün-Rand · Blob-Bilder · gleitender Navigations-Indikator · Scroll-Fortschritt · Scrollspy in der Speisekarte.
 
 Effekte stecken in `assets/js/fx.js` und werden bei „Bewegung reduzieren“ sowie auf Touch-Geräten automatisch reduziert.
 

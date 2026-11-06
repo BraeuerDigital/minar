@@ -248,6 +248,8 @@ const ctaBand = (root) => `
       </div>
     </section>`;
 
+const tape = (words, n) => { const one = Array(n).fill(words).flat().map((w) => `<span>${esc(w)}</span><i>✦</i>`).join(""); return one + one; };
+
 const built = [];
 
 /* ===================== Startseite ===================== */
@@ -280,10 +282,11 @@ built.push(page({
           ${halalBadge(root)}
         </div>
       </div>
-      <div class="hero-band">
-        ${swoosh("swoosh-hero")}
-        <p class="hero-band-text"><span>Restaurant</span><i>•</i><span>Lieferservice</span><i>•</i><span>Abholung</span></p>
+      <div class="tapes" aria-hidden="true">
+        <div class="tape tape-red"><div class="tape-track">${tape(["Restaurant", "Lieferservice", "Abholung", "Bad Buchau"], 6)}</div></div>
+        <div class="tape tape-green"><div class="tape-track">${tape(CATS.map((c) => c.name), 2)}</div></div>
       </div>
+      <p class="visually-hidden">Restaurant · Lieferservice · Abholung</p>
     </section>
 
     <section class="section intro">
@@ -359,24 +362,42 @@ built.push(page({
 ${ctaBand(root)}`
 }));
 
-/* ===================== Speisekarte Übersicht ===================== */
+/* ===================== Speisekarte (komplett) ===================== */
 built.push(page({
-  file: "speisekarte/index.html", active: "speisekarte", dialog: true, bodyClass: "page-menu",
+  file: "speisekarte/index.html", active: "speisekarte", dialog: true, bodyClass: "page-menu page-fullmenu",
   title: "Speisekarte · MINAR Küche Bad Buchau",
   desc: "Die komplette Speisekarte von MINAR Küche: Salate, Burger, Pizza, Döner, Nudeln, indische und pakistanische Gerichte, Desserts und Getränke.",
-  body: (root) => `${pageHead("Speisekarte", "Unsere Speisekarte", `${CATS.length} Kategorien – wählen Sie eine Kategorie oder suchen Sie direkt nach Gericht, Zutat oder Nummer.`, halalBadge(root, "halal-badge-sm"))}
-    <section class="section section-tight">
+  body: (root) => `
+    <section class="page-head page-head-cat">
       <div class="container">
+        <h1 class="h-red">Speisekarte</h1>
+        ${halalBadge(root, "halal-badge-sm")}
         <form class="search" role="search" data-search-form>
           <label class="visually-hidden" for="q">Speisekarte durchsuchen</label>
           ${I.search}
           <input id="q" name="q" type="search" placeholder="z. B. Margherita, Lachs oder 96a" autocomplete="off" data-menu-search>
           <button type="button" class="search-clear" data-search-clear aria-label="Suche leeren" hidden>×</button>
         </form>
-        <div class="search-results" data-search-results aria-live="polite" hidden></div>
+      </div>
+      <nav class="cat-nav" aria-label="Kategorien">
+        <div class="container"><ul class="chips" data-scrollspy>
+          ${CATS.map((x) => `<li><a class="chip" href="#${x.slug}">${esc(x.name)}</a></li>`).join("")}
+        </ul></div>
+      </nav>
+    </section>
+    <section class="section section-tight">
+      <div class="container">
         ${noscript}
-        <div class="cat-grid cat-grid-all" data-cat-overview>
-          ${CATS.map((c, i) => `<a class="cat-card" href="${c.slug}.html" data-cat-card="${c.id}"><span class="cat-card-num">${String(i + 1).padStart(2, "0")}</span><span class="cat-card-name">${esc(c.name)}</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go">${I.arrow}</span></a>`).join("\n          ")}
+        <div class="search-results" data-search-results aria-live="polite" hidden></div>
+        <div class="full-menu" data-cat-overview>
+          ${CATS.map((c, i) => `<section class="menu-cat" id="${c.slug}" aria-labelledby="h-${c.slug}">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">${String(i + 1).padStart(2, "0")}</span>
+              <div><h2 class="h-red" id="h-${c.slug}">${esc(c.name)}</h2>${c.desc ? `<p class="fine">${esc(c.desc)}</p>` : ""}</div>
+              ${c.img ? `<img class="menu-cat-img" src="../assets/images/${c.img}-sm.jpg" alt="${esc(c.imgAlt || c.name)}" loading="lazy" decoding="async">` : ""}
+            </header>
+            <div class="menu-items" data-menu-list="${c.id}"></div>
+          </section>`).join("\n          ")}
         </div>
         <div data-legend-slot></div>
       </div>

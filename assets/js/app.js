@@ -173,6 +173,23 @@
     if (cur && cur.scrollIntoView) { var chips = cur.closest(".chips"); chips.scrollLeft = cur.offsetLeft - chips.clientWidth / 2 + cur.clientWidth / 2; }
   });
 
+  // Scrollspy: aktive Kategorie in der Chip-Leiste der Gesamtkarte
+  var spy = $("[data-scrollspy]");
+  if (spy && "IntersectionObserver" in window) {
+    var chipFor = {};
+    $$("a", spy).forEach(function (a) { chipFor[a.getAttribute("href").slice(1)] = a; });
+    var setActive = function (id) {
+      $$("a", spy).forEach(function (a) { a.removeAttribute("aria-current"); });
+      var a = chipFor[id]; if (!a) return;
+      a.setAttribute("aria-current", "true");
+      spy.scrollTo({ left: a.offsetLeft - spy.clientWidth / 2 + a.clientWidth / 2, behavior: "smooth" });
+    };
+    var spyIo = new IntersectionObserver(function (en) {
+      en.forEach(function (e) { if (e.isIntersecting) setActive(e.target.id); });
+    }, { rootMargin: "-35% 0px -60% 0px" });
+    $$(".menu-cat[id]").forEach(function (sec) { spyIo.observe(sec); });
+  }
+
   // Suche (Übersichtsseite)
   var searchEl = $("[data-menu-search]");
   if (searchEl) {

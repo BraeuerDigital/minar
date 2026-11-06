@@ -10,9 +10,9 @@
   <link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="../assets/logo/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="../assets/logo/apple-touch-icon.png">
-  <link rel="stylesheet" href="../assets/css/styles.css?v=mw5cxez7">
+  <link rel="stylesheet" href="../assets/css/styles.css?v=mw5dgrpa">
 </head>
-<body class="page-menu" data-page="speisekarte">
+<body class="page-menu page-fullmenu" data-page="speisekarte">
   <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
   <header class="site-header">
     <div class="topbar">
@@ -49,43 +49,172 @@
   </header>
   <main id="inhalt">
 
-    <section class="page-head">
+    <section class="page-head page-head-cat">
       <div class="container">
-        <p class="eyebrow">Speisekarte</p>
-        <h1>Unsere Speisekarte</h1>
-        <p class="lead">18 Kategorien – wählen Sie eine Kategorie oder suchen Sie direkt nach Gericht, Zutat oder Nummer.</p>
+        <h1 class="h-red">Speisekarte</h1>
         <p class="halal-badge halal-badge-sm"><img src="../assets/logo/halal-siegel.svg" alt="" width="44" height="42"><span>Halal – wie auf unserer gedruckten Speisekarte gekennzeichnet.</span></p>
-      </div>
-    </section>
-    <section class="section section-tight">
-      <div class="container">
         <form class="search" role="search" data-search-form>
           <label class="visually-hidden" for="q">Speisekarte durchsuchen</label>
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-4.2-4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
           <input id="q" name="q" type="search" placeholder="z. B. Margherita, Lachs oder 96a" autocomplete="off" data-menu-search>
           <button type="button" class="search-clear" data-search-clear aria-label="Suche leeren" hidden>×</button>
         </form>
-        <div class="search-results" data-search-results aria-live="polite" hidden></div>
+      </div>
+      <nav class="cat-nav" aria-label="Kategorien">
+        <div class="container"><ul class="chips" data-scrollspy>
+          <li><a class="chip" href="#salate">Salate</a></li><li><a class="chip" href="#burger">Burger</a></li><li><a class="chip" href="#potatoes">Potatoes</a></li><li><a class="chip" href="#fingerfood">Fingerfood</a></li><li><a class="chip" href="#partyplatten">Party Platten</a></li><li><a class="chip" href="#dips">Dips</a></li><li><a class="chip" href="#doener">Döner</a></li><li><a class="chip" href="#ueberbacken">Überbacken</a></li><li><a class="chip" href="#pizza">Pizza</a></li><li><a class="chip" href="#party-pizza">Party Pizza</a></li><li><a class="chip" href="#nudelgerichte">Nudelgerichte</a></li><li><a class="chip" href="#chinesische-nudeln">Chinesische Nudeln</a></li><li><a class="chip" href="#gnocchi">Gnocchi</a></li><li><a class="chip" href="#indisch-pakistanisch">Indisch &amp; Pakistanisch</a></li><li><a class="chip" href="#vegetarische-gerichte">Vegetarische Gerichte</a></li><li><a class="chip" href="#schnitzel-steak">Schnitzel und Steak</a></li><li><a class="chip" href="#desserts">Dessert</a></li><li><a class="chip" href="#getraenke">Getränke</a></li>
+        </ul></div>
+      </nav>
+    </section>
+    <section class="section section-tight">
+      <div class="container">
         <noscript><p class="notice">Die Speisekarte benötigt JavaScript. Gerne nehmen wir Ihre Bestellung auch telefonisch unter <a href="tel:+4975829346944">07582 934 69 44</a> entgegen.</p></noscript>
-        <div class="cat-grid cat-grid-all" data-cat-overview>
-          <a class="cat-card" href="salate.html" data-cat-card="salate"><span class="cat-card-num">01</span><span class="cat-card-name">Salate</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="burger.html" data-cat-card="burger"><span class="cat-card-num">02</span><span class="cat-card-name">Burger</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="potatoes.html" data-cat-card="potatoes"><span class="cat-card-num">03</span><span class="cat-card-name">Potatoes</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="fingerfood.html" data-cat-card="fingerfood"><span class="cat-card-num">04</span><span class="cat-card-name">Fingerfood</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="partyplatten.html" data-cat-card="partyplatten"><span class="cat-card-num">05</span><span class="cat-card-name">Party Platten</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="dips.html" data-cat-card="dips"><span class="cat-card-num">06</span><span class="cat-card-name">Dips</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="doener.html" data-cat-card="doener"><span class="cat-card-num">07</span><span class="cat-card-name">Döner</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="ueberbacken.html" data-cat-card="ueberbacken"><span class="cat-card-num">08</span><span class="cat-card-name">Überbacken</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="pizza.html" data-cat-card="pizza"><span class="cat-card-num">09</span><span class="cat-card-name">Pizza</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="party-pizza.html" data-cat-card="partypizza"><span class="cat-card-num">10</span><span class="cat-card-name">Party Pizza</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="nudelgerichte.html" data-cat-card="nudeln"><span class="cat-card-num">11</span><span class="cat-card-name">Nudelgerichte</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="chinesische-nudeln.html" data-cat-card="chinanudeln"><span class="cat-card-num">12</span><span class="cat-card-name">Chinesische Nudeln</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="gnocchi.html" data-cat-card="gnocchi"><span class="cat-card-num">13</span><span class="cat-card-name">Gnocchi</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="indisch-pakistanisch.html" data-cat-card="indisch"><span class="cat-card-num">14</span><span class="cat-card-name">Indisch &amp; Pakistanisch</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="vegetarische-gerichte.html" data-cat-card="vegetarisch"><span class="cat-card-num">15</span><span class="cat-card-name">Vegetarische Gerichte</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="schnitzel-steak.html" data-cat-card="schnitzel"><span class="cat-card-num">16</span><span class="cat-card-name">Schnitzel und Steak</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="desserts.html" data-cat-card="dessert"><span class="cat-card-num">17</span><span class="cat-card-name">Dessert</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-          <a class="cat-card" href="getraenke.html" data-cat-card="getraenke"><span class="cat-card-num">18</span><span class="cat-card-name">Getränke</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <div class="search-results" data-search-results aria-live="polite" hidden></div>
+        <div class="full-menu" data-cat-overview>
+          <section class="menu-cat" id="salate" aria-labelledby="h-salate">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">01</span>
+              <div><h2 class="h-red" id="h-salate">Salate</h2><p class="fine">Wahlweise mit Essig und Öl oder Joghurtsoße (C, G).</p></div>
+              <img class="menu-cat-img" src="../assets/images/salat-sm.jpg" alt="Bunter Salat mit Tomaten, Karotten, Gurke und Rotkohl" loading="lazy" decoding="async">
+            </header>
+            <div class="menu-items" data-menu-list="salate"></div>
+          </section>
+          <section class="menu-cat" id="burger" aria-labelledby="h-burger">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">02</span>
+              <div><h2 class="h-red" id="h-burger">Burger</h2><p class="fine">Alle mit grünem Salat, Tomaten, Gurken und Zwiebeln.</p></div>
+              <img class="menu-cat-img" src="../assets/images/burger-sm.jpg" alt="Burger mit Rindfleisch-Pattie, Cheddar, Salat, Tomate und Zwiebeln" loading="lazy" decoding="async">
+            </header>
+            <div class="menu-items" data-menu-list="burger"></div>
+          </section>
+          <section class="menu-cat" id="potatoes" aria-labelledby="h-potatoes">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">03</span>
+              <div><h2 class="h-red" id="h-potatoes">Potatoes</h2></div>
+              
+            </header>
+            <div class="menu-items" data-menu-list="potatoes"></div>
+          </section>
+          <section class="menu-cat" id="fingerfood" aria-labelledby="h-fingerfood">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">04</span>
+              <div><h2 class="h-red" id="h-fingerfood">Fingerfood</h2></div>
+              
+            </header>
+            <div class="menu-items" data-menu-list="fingerfood"></div>
+          </section>
+          <section class="menu-cat" id="partyplatten" aria-labelledby="h-partyplatten">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">05</span>
+              <div><h2 class="h-red" id="h-partyplatten">Party Platten</h2></div>
+              
+            </header>
+            <div class="menu-items" data-menu-list="partyplatten"></div>
+          </section>
+          <section class="menu-cat" id="dips" aria-labelledby="h-dips">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">06</span>
+              <div><h2 class="h-red" id="h-dips">Dips</h2></div>
+              
+            </header>
+            <div class="menu-items" data-menu-list="dips"></div>
+          </section>
+          <section class="menu-cat" id="doener" aria-labelledby="h-doener">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">07</span>
+              <div><h2 class="h-red" id="h-doener">Döner</h2></div>
+              <img class="menu-cat-img" src="../assets/images/doenerteller-sm.jpg" alt="Dönerteller mit Wedges, Salat und Soße" loading="lazy" decoding="async">
+            </header>
+            <div class="menu-items" data-menu-list="doener"></div>
+          </section>
+          <section class="menu-cat" id="ueberbacken" aria-labelledby="h-ueberbacken">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">08</span>
+              <div><h2 class="h-red" id="h-ueberbacken">Überbacken</h2></div>
+              
+            </header>
+            <div class="menu-items" data-menu-list="ueberbacken"></div>
+          </section>
+          <section class="menu-cat" id="pizza" aria-labelledby="h-pizza">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">09</span>
+              <div><h2 class="h-red" id="h-pizza">Pizza</h2><p class="fine">30 cm. Alle Pizzas mit Tomatensoße und Käse.</p></div>
+              
+            </header>
+            <div class="menu-items" data-menu-list="pizza"></div>
+          </section>
+          <section class="menu-cat" id="party-pizza" aria-labelledby="h-party-pizza">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">10</span>
+              <div><h2 class="h-red" id="h-party-pizza">Party Pizza</h2><p class="fine">40 × 60 cm.</p></div>
+              
+            </header>
+            <div class="menu-items" data-menu-list="partypizza"></div>
+          </section>
+          <section class="menu-cat" id="nudelgerichte" aria-labelledby="h-nudelgerichte">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">11</span>
+              <div><h2 class="h-red" id="h-nudelgerichte">Nudelgerichte</h2><p class="fine">Spaghetti oder Penne. Alle Gerichte gibt es auch überbacken (+2,50 €).</p></div>
+              
+            </header>
+            <div class="menu-items" data-menu-list="nudeln"></div>
+          </section>
+          <section class="menu-cat" id="chinesische-nudeln" aria-labelledby="h-chinesische-nudeln">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">12</span>
+              <div><h2 class="h-red" id="h-chinesische-nudeln">Chinesische Nudeln</h2></div>
+              
+            </header>
+            <div class="menu-items" data-menu-list="chinanudeln"></div>
+          </section>
+          <section class="menu-cat" id="gnocchi" aria-labelledby="h-gnocchi">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">13</span>
+              <div><h2 class="h-red" id="h-gnocchi">Gnocchi</h2><p class="fine">Alle Gnocchi-Gerichte gibt es auch überbacken (+2,50 €).</p></div>
+              
+            </header>
+            <div class="menu-items" data-menu-list="gnocchi"></div>
+          </section>
+          <section class="menu-cat" id="indisch-pakistanisch" aria-labelledby="h-indisch-pakistanisch">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">14</span>
+              <div><h2 class="h-red" id="h-indisch-pakistanisch">Indisch &amp; Pakistanisch</h2><p class="fine">Alle Gerichte mit Reis.</p></div>
+              <img class="menu-cat-img" src="../assets/images/curry-reis-sm.jpg" alt="Curry mit Reis" loading="lazy" decoding="async">
+            </header>
+            <div class="menu-items" data-menu-list="indisch"></div>
+          </section>
+          <section class="menu-cat" id="vegetarische-gerichte" aria-labelledby="h-vegetarische-gerichte">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">15</span>
+              <div><h2 class="h-red" id="h-vegetarische-gerichte">Vegetarische Gerichte</h2></div>
+              
+            </header>
+            <div class="menu-items" data-menu-list="vegetarisch"></div>
+          </section>
+          <section class="menu-cat" id="schnitzel-steak" aria-labelledby="h-schnitzel-steak">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">16</span>
+              <div><h2 class="h-red" id="h-schnitzel-steak">Schnitzel und Steak</h2><p class="fine">Alle Schnitzel vom Putenfleisch mit Pommes.</p></div>
+              <img class="menu-cat-img" src="../assets/images/schnitzel-kaesespaetzle-sm.jpg" alt="Paniertes Schnitzel mit Käsespätzle und Salat" loading="lazy" decoding="async">
+            </header>
+            <div class="menu-items" data-menu-list="schnitzel"></div>
+          </section>
+          <section class="menu-cat" id="desserts" aria-labelledby="h-desserts">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">17</span>
+              <div><h2 class="h-red" id="h-desserts">Dessert</h2></div>
+              
+            </header>
+            <div class="menu-items" data-menu-list="dessert"></div>
+          </section>
+          <section class="menu-cat" id="getraenke" aria-labelledby="h-getraenke">
+            <header class="menu-cat-head">
+              <span class="menu-cat-num">18</span>
+              <div><h2 class="h-red" id="h-getraenke">Getränke</h2></div>
+              
+            </header>
+            <div class="menu-items" data-menu-list="getraenke"></div>
+          </section>
         </div>
         <div data-legend-slot></div>
       </div>
@@ -166,8 +295,8 @@
       </div>
     </form>
   </dialog>
-  <script src="../assets/js/menu-data.js?v=mw5cxez7"></script>
-  <script src="../assets/js/app.js?v=mw5cxez7"></script>
-  <script src="../assets/js/fx.js?v=mw5cxez7"></script>
+  <script src="../assets/js/menu-data.js?v=mw5dgrpa"></script>
+  <script src="../assets/js/app.js?v=mw5dgrpa"></script>
+  <script src="../assets/js/fx.js?v=mw5dgrpa"></script>
 </body>
 </html>
