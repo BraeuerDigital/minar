@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>MINAR Küche · Bad Buchau – Restaurant, Abholung & Lieferservice</title>
+  <meta name="description" content="MINAR Küche in Bad Buchau: Pizza, Pasta, Döner, Burger, Salate, indische und pakistanische Gerichte und mehr – im Restaurant, zur Abholung oder per Lieferservice.">
+  <meta name="theme-color" content="#1f2321">
+  <meta property="og:title" content="MINAR Küche · Bad Buchau">
+  <meta property="og:description" content="Restaurant, Abholung & Lieferservice in der Schussenrieder Straße 21, Bad Buchau.">
+  <meta property="og:type" content="restaurant">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#speisekarte">Zur Speisekarte springen</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="wordmark" href="#start" aria-label="MINAR Küche – zur Startseite">
+        <svg class="wordmark-arch" viewBox="0 0 40 52" aria-hidden="true"><path d="M2 50V24C2 12 12 5 20 2c8 3 18 10 18 22v26" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M11 50V27c0-6 4-10 9-12.5 5 2.5 9 6.5 9 12.5v23" fill="none" stroke="currentColor" stroke-width="2.5" opacity=".55"/></svg>
+        <span class="wordmark-text"><strong>MINAR</strong><em>Küche</em></span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="#start">Startseite</a></li>
+          <li><a href="#speisekarte">Speisekarte</a></li>
+          <li><a href="#lieferservice">Lieferservice</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+        <div class="mobile-nav-extra">
+          <a class="btn btn-ghost-light" href="tel:+4975829346944">Anrufen · 07582 934 69 44</a>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn cart-btn" type="button" data-open-cart aria-label="Warenkorb öffnen">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9L5 7Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.5V6a3 3 0 0 1 6 0v3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <span class="cart-count" data-cart-count hidden>0</span>
+        </button>
+        <button class="btn btn-accent header-order" type="button" data-open-order>Jetzt bestellen</button>
+        <button class="icon-btn nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="start">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span class="status-dot" data-open-dot></span><span data-open-status>Bad Buchau · Schussenrieder Straße 21</span></p>
+          <h1>Viele Küchen.<br><span>Ein Tisch.</span></h1>
+          <p class="hero-lead">Von Pizza und Pasta über Döner und Burger bis zu indischen und pakistanischen Gerichten: Bei MINAR Küche bestellen Sie quer durch die Karte – im Restaurant, zur Abholung oder mit Lieferservice.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#speisekarte">Speisekarte entdecken</a>
+            <button class="btn btn-accent btn-lg" type="button" data-open-order>Jetzt bestellen</button>
+          </div>
+          <ul class="hero-facts" aria-label="Auf einen Blick">
+            <li><strong>11:30–21:30</strong><span>Öffnungszeiten</span></li>
+            <li><strong>Dienstag</strong><span>Ruhetag</span></li>
+            <li><strong>bis 21:15</strong><span>Bestellannahme</span></li>
+          </ul>
+        </div>
+
+        <div class="hero-visual reveal" aria-hidden="true">
+          <svg class="arch-art" viewBox="0 0 400 520" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <pattern id="star" width="56" height="56" patternUnits="userSpaceOnUse">
+                <g fill="none" stroke="currentColor" stroke-width="1.1">
+                  <rect x="16" y="16" width="24" height="24"/>
+                  <rect x="16" y="16" width="24" height="24" transform="rotate(45 28 28)"/>
+                  <circle cx="28" cy="28" r="4"/>
+                  <path d="M0 0l10 10M56 0L46 10M0 56l10-10M56 56L46 46"/>
+                </g>
+              </pattern>
+              <clipPath id="archClip"><path d="M20 520V230C20 118 120 52 200 14c80 38 180 104 180 216v290Z"/></clipPath>
+            </defs>
+            <path class="arch-bg" d="M20 520V230C20 118 120 52 200 14c80 38 180 104 180 216v290Z"/>
+            <g clip-path="url(#archClip)" class="arch-pattern"><rect width="400" height="520" fill="url(#star)"/></g>
+            <path class="arch-inner" d="M84 520V262c0-72 60-118 116-146 56 28 116 74 116 146v258Z"/>
+            <path class="arch-line" d="M20 520V230C20 118 120 52 200 14c80 38 180 104 180 216v290"/>
+          </svg>
+          <div class="hero-badge hero-badge-a"><span>Restaurant</span></div>
+          <div class="hero-badge hero-badge-b"><span>Abholung</span></div>
+          <div class="hero-badge hero-badge-c"><span>Lieferservice</span></div>
+          <p class="arch-caption">MINAR</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VORSTELLUNG ================= -->
+    <section class="intro section" id="ueber-uns" aria-labelledby="intro-title">
+      <div class="container intro-grid">
+        <div class="intro-text reveal">
+          <p class="eyebrow">Willkommen</p>
+          <h2 id="intro-title">Eine Karte für jeden Geschmack</h2>
+          <p>MINAR Küche liegt mitten in Bad Buchau. Unsere Speisekarte reicht von Salaten, Pizza, Nudel- und Gnocchigerichten über Döner, Burger und Fingerfood bis zu Schnitzel, Steak sowie Gerichten der indischen und pakistanischen Küche. Auch vegetarische Gerichte, Desserts und Getränke stehen auf der Karte.</p>
+          <p>Ob Mittagspause, Abendessen mit der Familie oder Partyplatte für viele Gäste: Kommen Sie vorbei, holen Sie Ihre Bestellung ab oder lassen Sie sich beliefern.</p>
+        </div>
+        <ul class="service-list reveal" aria-label="Unser Angebot">
+          <li>
+            <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V10l8-6 8 6v11M9 21v-6h6v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+            <div><h3>Im Restaurant</h3><p>Täglich außer dienstags von 11:30 bis 21:30 Uhr.</p></div>
+          </li>
+          <li>
+            <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
+            <div><h3>Zur Abholung</h3><p>Telefonisch oder per WhatsApp bestellen und abholen.</p></div>
+          </li>
+          <li>
+            <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="17" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="17" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 17h7M3 12h9l2-5h3l3 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
+            <div><h3>Lieferservice</h3><p>Wir bringen Ihre Bestellung zu Ihnen nach Hause.</p></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="container" data-tiles-home>
+        <div class="category-tiles reveal" data-category-tiles aria-label="Kategorien der Speisekarte"></div>
+      </div>
+    </section>
+
+    <!-- ================= SPEISEKARTE ================= -->
+    <section class="menu section" id="speisekarte" aria-labelledby="menu-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Speisekarte</p>
+          <h2 id="menu-title">Was darf’s heute sein?</h2>
+          <p class="section-lead">Suchen Sie nach Gericht, Zutat oder Artikelnummer – oder springen Sie direkt in eine Kategorie.</p>
+        </header>
+      </div>
+
+      <div class="menu-toolbar" data-menu-toolbar>
+        <div class="container">
+          <label class="search">
+            <span class="visually-hidden">Speisekarte durchsuchen</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-4.2-4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <input type="search" placeholder="Gericht, Zutat oder Nr. suchen …" autocomplete="off" data-menu-search>
+            <button type="button" class="search-clear" data-search-clear aria-label="Suche leeren" hidden>×</button>
+          </label>
+          <div class="chips" role="tablist" aria-label="Kategorien filtern" data-menu-chips></div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="menu-notice" data-menu-notice hidden></div>
+        <div class="menu-overview" data-menu-overview hidden></div>
+        <div class="menu-list" data-menu-list aria-live="polite"></div>
+        <p class="menu-legend-note" data-legend-note hidden></p>
+        <details class="legend" data-legend hidden>
+          <summary>Allergene &amp; Zusatzstoffe – Legende</summary>
+          <div class="legend-grid" data-legend-content></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ================= LIEFERSERVICE ================= -->
+    <section class="delivery section" id="lieferservice" aria-labelledby="delivery-title">
+      <div class="container">
+        <header class="section-head section-head-light">
+          <p class="eyebrow">Lieferservice &amp; Abholung</p>
+          <h2 id="delivery-title">So kommt Ihr Essen zu Ihnen</h2>
+        </header>
+
+        <div class="delivery-grid">
+          <article class="info-card reveal">
+            <span class="info-num">01</span>
+            <h3>Bestellen</h3>
+            <p>Telefonisch unter <a href="tel:+4975829346944">07582 934 69 44</a> oder per <a href="https://wa.me/491633590188" target="_blank" rel="noopener">WhatsApp</a>. Bestellannahme täglich außer dienstags bis 21:15 Uhr.</p>
+          </article>
+          <article class="info-card reveal">
+            <span class="info-num">02</span>
+            <h3>Abholen</h3>
+            <p>Holen Sie Ihre Bestellung direkt bei uns in der Schussenrieder Straße 21 in Bad Buchau ab.</p>
+          </article>
+          <article class="info-card reveal">
+            <span class="info-num">03</span>
+            <h3>Liefern lassen</h3>
+            <p>Unser Lieferservice bringt Ihre Bestellung zu Ihnen. Liefergebiete und Konditionen finden Sie unten.</p>
+          </article>
+        </div>
+
+        <div class="delivery-table-wrap reveal" data-delivery>
+          <h3>Liefergebiete &amp; Konditionen</h3>
+          <div data-delivery-content></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= KONTAKT ================= -->
+    <section class="contact section" id="kontakt" aria-labelledby="contact-title">
+      <div class="container contact-grid">
+        <div class="contact-main reveal">
+          <p class="eyebrow">Kontakt &amp; Anfahrt</p>
+          <h2 id="contact-title">Besuchen Sie uns</h2>
+          <address class="contact-address">
+            <strong>MINAR Küche</strong><br>
+            Schussenrieder Straße 21<br>
+            88422 Bad Buchau
+          </address>
+          <div class="contact-actions">
+            <a class="contact-link" href="tel:+4975829346944">
+              <span class="contact-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 3.5 9 3l1.6 4.2-2 1.4a11 11 0 0 0 6.8 6.8l1.4-2L21 15l-.5 2.4a2 2 0 0 1-2 1.6A15.5 15.5 0 0 1 5 5.5a2 2 0 0 1 1.6-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+              <span><small>Telefon</small>07582 934 69 44</span>
+            </a>
+            <a class="contact-link" href="https://wa.me/491633590188" target="_blank" rel="noopener">
+              <span class="contact-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19l-4 1Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 9.2c.3 2.5 2.3 4.6 4.8 5l1.2-1.2 1.6.8c-.2 1-1 1.7-2 1.7-3.4 0-6.1-2.8-6.1-6.1 0-1 .7-1.8 1.7-2l.8 1.6L9 9.2Z" fill="currentColor"/></svg></span>
+              <span><small>WhatsApp</small>0163 359 01 88</span>
+            </a>
+            <a class="contact-link" href="https://www.google.com/maps/search/?api=1&amp;query=MINAR+K%C3%BCche%2C+Schussenrieder+Stra%C3%9Fe+21%2C+88422+Bad+Buchau" target="_blank" rel="noopener">
+              <span class="contact-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
+              <span><small>Route planen</small>In Google Maps öffnen</span>
+            </a>
+          </div>
+          <p class="fine">Der Link öffnet Google Maps in einem neuen Fenster. Beim Aufruf werden Daten an Google übermittelt.</p>
+        </div>
+
+        <div class="hours-card reveal">
+          <h3>Öffnungszeiten</h3>
+          <ul class="hours-list" data-hours-list></ul>
+          <p class="hours-note">Bestellannahme bis 21:15 Uhr</p>
+          <p class="hours-live"><span class="status-dot" data-open-dot></span><span data-open-status-long></span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <p class="footer-brand"><strong>MINAR</strong> Küche</p>
+        <p>Schussenrieder Straße 21<br>88422 Bad Buchau</p>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <p><a href="tel:+4975829346944">07582 934 69 44</a><br>
+        <a href="https://wa.me/491633590188" target="_blank" rel="noopener">WhatsApp: 0163 359 01 88</a></p>
+      </div>
+      <div>
+        <h4>Öffnungszeiten</h4>
+        <p>Mo, Mi–So: 11:30–21:30 Uhr<br>Dienstag: Ruhetag<br>Bestellannahme bis 21:15 Uhr</p>
+      </div>
+      <nav aria-label="Footer-Navigation">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#start">Startseite</a></li>
+          <li><a href="#speisekarte">Speisekarte</a></li>
+          <li><a href="#lieferservice">Lieferservice</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <p>© <span data-year></span> MINAR Küche</p>
+      <p><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></p>
+    </div>
+  </footer>
+
+  <!-- Floating Warenkorb (mobil) -->
+  <button class="cart-fab" type="button" data-open-cart hidden>
+    <span>Warenkorb</span>
+    <span class="cart-fab-count" data-cart-count>0</span>
+    <span class="cart-fab-total" data-cart-total></span>
+  </button>
+
+  <!-- ================= DIALOG: Bestellwege ================= -->
+  <dialog class="sheet" id="order-dialog" aria-labelledby="order-dialog-title">
+    <div class="sheet-inner">
+      <div class="sheet-head">
+        <h2 id="order-dialog-title">Jetzt bestellen</h2>
+        <button class="icon-btn sheet-close" type="button" data-close aria-label="Schließen">×</button>
+      </div>
+      <p class="sheet-status"><span class="status-dot" data-open-dot></span><span data-open-status-long></span></p>
+      <div class="order-ways">
+        <a class="order-way" href="#speisekarte" data-order-menu data-close>
+          <strong>Online zusammenstellen</strong>
+          <span>Gerichte in den Warenkorb legen und als WhatsApp-Nachricht senden</span>
+        </a>
+        <a class="order-way" href="tel:+4975829346944">
+          <strong>Anrufen</strong>
+          <span>07582 934 69 44</span>
+        </a>
+        <a class="order-way" href="https://wa.me/491633590188" target="_blank" rel="noopener">
+          <strong>WhatsApp schreiben</strong>
+          <span>0163 359 01 88</span>
+        </a>
+      </div>
+      <p class="fine">Bestellungen sind erst nach Bestätigung durch das Restaurant verbindlich.</p>
+    </div>
+  </dialog>
+
+  <!-- ================= DIALOG: Gericht ================= -->
+  <dialog class="sheet" id="item-dialog" aria-labelledby="item-dialog-title">
+    <form class="sheet-inner" method="dialog" data-item-form>
+      <div class="sheet-head">
+        <div>
+          <p class="item-dialog-nr" data-item-nr></p>
+          <h2 id="item-dialog-title" data-item-title></h2>
+        </div>
+        <button class="icon-btn sheet-close" type="button" data-close aria-label="Schließen">×</button>
+      </div>
+      <p class="item-dialog-desc" data-item-desc></p>
+      <fieldset class="opt-group" data-item-variants hidden>
+        <legend>Größe wählen</legend>
+        <div class="opt-list" data-variant-list></div>
+      </fieldset>
+      <fieldset class="opt-group" data-item-extras hidden>
+        <legend data-extras-label>Extras</legend>
+        <div class="opt-list" data-extras-list></div>
+      </fieldset>
+      <label class="field">
+        <span>Hinweis zu diesem Gericht <small>(optional)</small></span>
+        <input type="text" maxlength="120" placeholder="z. B. ohne Zwiebeln" data-item-note>
+      </label>
+      <div class="sheet-foot">
+        <div class="qty" aria-label="Menge">
+          <button type="button" data-qty-minus aria-label="Weniger">−</button>
+          <output data-qty>1</output>
+          <button type="button" data-qty-plus aria-label="Mehr">+</button>
+        </div>
+        <button class="btn btn-primary btn-grow" type="submit" data-item-add>Hinzufügen</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ================= DIALOG: Warenkorb ================= -->
+  <dialog class="sheet sheet-cart" id="cart-dialog" aria-labelledby="cart-title">
+    <div class="sheet-inner">
+      <div class="sheet-head">
+        <h2 id="cart-title">Ihr Warenkorb</h2>
+        <button class="icon-btn sheet-close" type="button" data-close aria-label="Schließen">×</button>
+      </div>
+
+      <div class="cart-empty" data-cart-empty>
+        <p>Ihr Warenkorb ist noch leer.</p>
+        <a class="btn btn-primary" href="#speisekarte" data-close>Zur Speisekarte</a>
+      </div>
+
+      <div class="cart-body" data-cart-body hidden>
+        <ul class="cart-lines" data-cart-lines></ul>
+
+        <div class="cart-sum">
+          <span>Zwischensumme</span>
+          <strong data-cart-subtotal></strong>
+        </div>
+        <p class="fine" data-cart-fee-note>Zzgl. eventueller Lieferkosten. Alle Preise laut Speisekarte, ohne Gewähr.</p>
+
+        <fieldset class="opt-group">
+          <legend>Abholung oder Lieferung?</legend>
+          <div class="seg">
+            <label><input type="radio" name="mode" value="Abholung" checked data-mode><span>Abholung</span></label>
+            <label><input type="radio" name="mode" value="Lieferung" data-mode><span>Lieferung</span></label>
+          </div>
+        </fieldset>
+        <p class="cart-min" data-cart-min hidden></p>
+
+        <div class="field-grid">
+          <label class="field"><span>Name</span><input type="text" autocomplete="name" data-f-name></label>
+          <label class="field"><span>Telefon <small>(für Rückfragen)</small></span><input type="tel" autocomplete="tel" data-f-phone></label>
+          <label class="field field-wide" data-address-field hidden><span>Lieferadresse</span><input type="text" autocomplete="street-address" placeholder="Straße, Hausnummer, Ort" data-f-address></label>
+          <label class="field"><span>Wunschzeit <small>(optional)</small></span><input type="text" placeholder="z. B. 18:30 Uhr" data-f-time></label>
+          <label class="field field-wide"><span>Anmerkungen <small>(optional)</small></span><textarea rows="2" maxlength="300" data-f-note></textarea></label>
+        </div>
+
+        <div class="cart-warning" role="note">
+          <strong>Hinweis:</strong> Mit dem Button wird WhatsApp mit einer vorbereiteten Nachricht geöffnet. Das ist <u>noch keine verbindliche Bestellung</u>. Ihre Bestellung gilt erst als angenommen, wenn das Restaurant sie bestätigt hat. Bezahlt wird nicht online.
+        </div>
+        <p class="cart-closed" data-cart-closed hidden></p>
+
+        <div class="cart-actions">
+          <a class="btn btn-whatsapp btn-lg btn-grow" href="#" target="_blank" rel="noopener" data-wa-send>Bestellung per WhatsApp vorbereiten</a>
+          <button class="btn btn-link" type="button" data-cart-clear>Warenkorb leeren</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+
+  <script src="menu-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
