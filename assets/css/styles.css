@@ -1286,3 +1286,55 @@ main:has(> .cta-band:last-child) + .swoosh-footer .sw-yellow { fill: #0d1307; }
 }
 @media (max-width: 640px) { .cat-pager { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } .cat-pager a { min-width: 0; overflow-wrap: anywhere; } }
 @media (max-width: 560px) { .footer-grid { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } .footer-grid > * { min-width: 0; } }
+
+/* =====================================================================
+   FOOTER ohne Adresse/Öffnungszeiten
+   ===================================================================== */
+.footer-grid { grid-template-columns: 1.1fr 1fr .8fr; }
+@media (max-width: 1000px) and (min-width: 561px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-brand { grid-column: 1 / -1; } }
+@media (max-width: 560px) {
+  .footer-grid { grid-template-columns: minmax(0,1fr) minmax(0,1fr); grid-template-areas: "brand brand" "contact contact" "nav nav"; }
+}
+
+/* =====================================================================
+   CTA unten fixiert (links), Warenkorb rechts
+   ===================================================================== */
+.side-cta {
+  top: auto; right: auto; left: clamp(.75rem, 2vw, 1.5rem); bottom: calc(1rem + env(safe-area-inset-bottom));
+  flex-direction: column-reverse; align-items: flex-start;
+  transform: translateY(160%); transition: transform .7s var(--spring);
+}
+.side-cta.is-visible { transform: none; }
+.nav-open .side-cta { transform: translateY(160%); }
+.side-cta-tab {
+  flex-direction: row; gap: .6rem; min-height: 56px; padding: .55rem 1.25rem .55rem 1rem;
+  border-radius: 20px 6px 20px 6px; font-size: .9rem;
+  background: linear-gradient(110deg, var(--minar-orange), var(--orange-deep) 50%, var(--minar-green)); background-size: 220% 100%; background-position: 0 0;
+}
+.side-cta-label { writing-mode: horizontal-tb; transform: none; }
+.side-cta-tab:hover, .side-cta.is-open .side-cta-tab { background-position: 100% 0; border-radius: 6px 20px 6px 20px; padding-right: 1.25rem; }
+.side-cta-panel {
+  margin: 0 0 .7rem 0; transform-origin: left bottom; transform: translateY(18px) scale(.96);
+}
+@media (hover: hover) and (pointer: fine) and (max-width: 960px) {
+  .side-cta:hover .side-cta-panel { transform: translateY(18px) scale(.96); }
+}
+/* Warenkorb-Button nach rechts unten (auch mobil) */
+.cart-fab { left: auto; right: clamp(.75rem, 2vw, 1.5rem); transform: none; animation-name: fabInR; }
+@keyframes fabInR { from { transform: translateY(140%); } }
+@media (max-width: 600px) {
+  .side-cta-tab { min-height: 52px; padding: .5rem 1rem .5rem .85rem; font-size: .8rem; }
+  .side-cta-panel { width: min(290px, calc(100vw - 1.5rem)); }
+  .cart-fab { min-height: 52px; gap: .45rem; padding: .45rem .5rem .45rem .8rem; }
+  .cart-fab > span:first-of-type { display: none; }            /* Text „Warenkorb“ ausblenden, Symbol bleibt */
+  .cart-fab-total { padding: .4rem .65rem; }
+  .footer-bottom { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
+}
+@media (min-width: 601px) { .footer-bottom { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom)); } }
+@media (max-width: 370px) {
+  .sc-long { display: none; }
+  .side-cta-tab { padding: .5rem .8rem .5rem .7rem; gap: .45rem; }
+  .cart-fab { padding: .45rem .45rem .45rem .7rem; gap: .35rem; }
+  .cart-fab-total { padding: .35rem .5rem; font-size: .85rem; }
+}
+@media (min-width: 1000px) { .footer-credit { top: calc(1.05rem + .75em); } }

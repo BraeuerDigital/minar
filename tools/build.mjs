@@ -103,21 +103,12 @@ function footer(root) {
       <div class="footer-brand">
         <img src="${root}assets/logo/minar-logo.svg" alt="MINAR Küche – Logo" width="200" height="154" loading="lazy">
       </div>
-      <div class="f-addr">
-        <h2 class="footer-h">Adresse</h2>
-        <p>${esc(R.name)}<br>${esc(R.street)}<br>${esc(R.zip)} ${esc(R.city)}</p>
-        <p><a class="footer-link" href="${MAPS}" target="_blank" rel="noopener">${I.pin}Route planen</a></p>
-      </div>
       <div class="f-col">
         <div class="f-contact">
           <h2 class="footer-h">Kontakt</h2>
           <p class="f-contact-list"><a class="footer-link" href="${TEL}">${I.phone}<span>${esc(R.phoneDisplay)}</span></a><br>
           <a class="footer-link" href="${WA}" target="_blank" rel="noopener">${I.wa}<span>${esc(R.whatsappDisplay)}</span></a><br>
           <a class="footer-link f-mail" href="mailto:${esc(R.email)}">${I.mail}<span>${esc(R.email)}</span></a></p>
-        </div>
-        <div class="f-hours">
-          <h2 class="footer-h">Öffnungszeiten</h2>
-          <p>Täglich ${D.hours.open}–${D.hours.close} Uhr<br>Dienstag Ruhetag<br>Bestellannahme bis ${D.hours.orderUntil} Uhr</p>
         </div>
       </div>
       <nav class="f-nav" aria-label="Footer-Navigation">
@@ -138,7 +129,7 @@ function footer(root) {
   </footer>
   <aside class="side-cta" data-side-cta aria-label="Schnell bestellen">
     <button class="side-cta-tab" type="button" aria-expanded="false" aria-controls="side-cta-panel">
-      <span class="status-dot" data-open-dot></span><span class="side-cta-label">Jetzt bestellen</span>
+      <span class="status-dot" data-open-dot></span><span class="side-cta-label"><span class="sc-long">Jetzt </span>bestellen</span>
     </button>
     <div class="side-cta-panel" id="side-cta-panel">
       <p class="side-cta-title">Hunger?</p>
@@ -148,7 +139,7 @@ function footer(root) {
       <a class="side-cta-item" href="${WA}" target="_blank" rel="noopener">${I.wa}<span><small>WhatsApp</small>${esc(R.whatsappDisplay)}</span></a>
     </div>
   </aside>
-  <a class="cart-fab" href="${root}bestellen.html" data-cart-fab hidden>
+  <a class="cart-fab" href="${root}bestellen.html" data-cart-fab aria-label="Zum Warenkorb" hidden>
     ${I.bag}<span>Warenkorb</span><span class="cart-fab-count" data-cart-count>0</span><span class="cart-fab-total" data-cart-total></span>
   </a>
   <div class="toast" role="status" aria-live="polite" data-toast></div>`;
