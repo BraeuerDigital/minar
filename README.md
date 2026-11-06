@@ -61,17 +61,17 @@ Aufbau eines Gerichts:
 
 `codesCheck: true` blendet unsichere Kennzeichnungen aus („auf Anfrage“).
 
-## Designgrundlage (Rot/Grün-Edition)
+## Designgrundlage (Orange/Grün-Edition)
 
-Die Oberfläche nutzt ausschließlich die Markenfarben **Rot** und **Grün** plus Neutraltöne. Das Logo bleibt im Original.
+Die Oberfläche nutzt ausschließlich **Logo-Orange** und **Grün** plus Neutraltöne. Das Logo (inkl. Halal-Siegel) bleibt im Original.
 
 | Variable | Wert | Einsatz |
 |----------|------|---------|
 | `--minar-green` | `#4E7A16` | Buttons, Navigation, Markenakzente |
 | `--lime` | `#A6D23A` | helles Markengrün: Leuchtakzente, Hover, Versatz-Schatten |
 | `--green-deep` / `--night` | `#2F4A0C` / `#10160A` | dunkle Bühnen, Footer |
-| `--minar-red` | `#B41E27` | Überschriften, Artikelnummern, Laufband |
-| `--red-hot` / `--red-deep` | `#E0483F` / `#7E1A1F` | Verläufe, Hover |
+| `--minar-red` (= Logo-Orange) | `#F87012` | Überschriften, Laufband, Akzente |
+| `--red-hot` / `--orange-deep` | `#FF9A3D` / `#B5500A` | Verläufe, Hover / kleine Schrift, Artikelnummern |
 
 Gestaltungselemente: Blattform-Ecken, die beim Hover umklappen · Buttons mit Farbwechsel Grün ↔ Rot, Licht-Spot, Lichtstreif, Roll-Label und Magnet · sich kreuzende Laufbänder im Hero · Outline-Schriftzug „MINAR“ im Hintergrund · Kategorie-Karten mit 3D-Tilt und Farb-Flip · Gerichte mit rotierendem Rot-Grün-Rand · Blob-Bilder · gleitender Navigations-Indikator · Scroll-Fortschritt · Scrollspy in der Speisekarte.
 
