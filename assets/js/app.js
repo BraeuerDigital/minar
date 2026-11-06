@@ -294,17 +294,30 @@
     }).join("");
     $("[data-item-opts]", itemForm).innerHTML = it.opts.map(function (gid) {
       var g = GROUPS[gid], one = g.type === "one";
-      return '<fieldset class="opt-group" data-group="' + gid + '"><legend>' + esc(g.label) + (one ? "" : " (optional)") + '</legend><div class="opt-list">' +
+      return '<fieldset class="opt-group" data-group="' + gid + '"><legend>' + esc(g.label) + (one ? "" : " (optional)") +
+        (g.max ? ' <span class="opt-max" data-max-hint="' + gid + '">0 von ' + g.max + " gewählt</span>" : "") + '</legend><div class="opt-list">' +
         g.options.map(function (o, i) {
           return '<label class="opt"><input type="' + (one ? "radio" : "checkbox") + '" name="g-' + gid + '" data-g="' + gid + '" value="' + i + '"' + (one && i === 0 ? " checked" : "") +
             "><span>" + esc(o.name) + '</span><span class="opt-price" data-opt-price="' + gid + ":" + i + '"></span></label>';
         }).join("") + "</div></fieldset>";
     }).join("");
+    enforceMax();
     updateItemPrice();
     openDialog(itemDialog);
   }
+  function enforceMax() {
+    if (!cur) return;
+    cur.opts.forEach(function (gid) {
+      var max = GROUPS[gid].max; if (!max) return;
+      var boxes = $$('input[data-g="' + gid + '"]', itemForm);
+      var n = boxes.filter(function (b) { return b.checked; }).length;
+      boxes.forEach(function (b) { b.disabled = !b.checked && n >= max; b.closest(".opt").classList.toggle("is-disabled", b.disabled); });
+      var hint = $('[data-max-hint="' + gid + '"]', itemForm);
+      if (hint) hint.textContent = n + " von " + max + " gewählt";
+    });
+  }
   if (itemForm) {
-    itemForm.addEventListener("change", updateItemPrice);
+    itemForm.addEventListener("change", function () { enforceMax(); updateItemPrice(); });
     $("[data-qty-minus]", itemForm).addEventListener("click", function () { curQty = Math.max(1, curQty - 1); updateItemPrice(); });
     $("[data-qty-plus]", itemForm).addEventListener("click", function () { curQty = Math.min(50, curQty + 1); updateItemPrice(); });
     itemForm.addEventListener("submit", function (e) {
@@ -451,8 +464,54 @@
     $("[data-cart-clear]").addEventListener("click", function () { cart = []; saveCart(); renderBadge(); renderCartPage(); toast("Warenkorb geleert"); });
     $("[data-wa-send]").addEventListener("click", function (e) {
       if (this.getAttribute("aria-disabled") === "true") { e.preventDefault(); (mode() === "Lieferung" && !F.place.value ? F.place : F.address).focus(); return; }
+      if (!drinksAsked && !hasDrink()) { e.preventDefault(); openDrinks(); return; }
       toast("WhatsApp wird geöffnet – bitte Nachricht dort absenden");
     });
+  }
+
+  /* ---------------- Getränke-Abfrage vor dem Checkout ---------------- */
+  var drinksAsked = false, drinkDialog = null;
+  var DRINK_CAT = "getraenke";
+  function hasDrink() { return cart.some(function (l) { return itemById[l._id].category === DRINK_CAT; }); }
+  function openDrinks() {
+    var drinks = items.filter(function (i) { return i.category === DRINK_CAT; });
+    if (!drinks.length) { drinksAsked = true; $("[data-wa-send]").click(); return; }
+    if (!drinkDialog) {
+      drinkDialog = document.createElement("dialog");
+      drinkDialog.className = "sheet sheet-drinks"; drinkDialog.setAttribute("aria-labelledby", "drinks-title");
+      drinkDialog.innerHTML = '<div class="sheet-inner"><div class="sheet-head"><div><p class="eyebrow">Fast geschafft</p><h2 id="drinks-title">Noch etwas zu trinken?</h2></div>' +
+        '<button class="icon-btn sheet-close" type="button" data-close aria-label="Schließen">×</button></div>' +
+        '<ul class="drink-list">' + drinks.map(function (d) {
+          return '<li class="drink" data-drink="' + d._id + '"><div class="drink-name">' + esc(d.name) + '<span class="drink-added" data-added hidden></span></div>' +
+            '<div class="drink-sizes">' + d.prices.map(function (p, i) {
+              return '<button type="button" class="drink-size" data-v="' + i + '">' + (p.label ? esc(p.label) + " · " : "") + money(p.price) + "</button>";
+            }).join("") + "</div></li>";
+        }).join("") + "</ul>" +
+        '<div class="sheet-foot drink-foot"><button type="button" class="btn btn-link" data-drinks-skip>Ohne Getränk weiter</button>' +
+        '<button type="button" class="btn btn-primary btn-grow" data-drinks-go>Weiter zu WhatsApp</button></div></div>';
+      document.body.appendChild(drinkDialog);
+      drinkDialog.addEventListener("click", function (e) {
+        if (e.target === drinkDialog || e.target.closest("[data-close]")) { closeDialog(drinkDialog); return; }
+        var b = e.target.closest(".drink-size");
+        if (b) {
+          var li = b.closest("[data-drink]"), it = itemById[li.getAttribute("data-drink")];
+          addToCart(it, +b.getAttribute("data-v"), {}, 1, "");
+          var tag = $("[data-added]", li), n = (+tag.getAttribute("data-n") || 0) + 1;
+          tag.setAttribute("data-n", n); tag.textContent = n + "× hinzugefügt"; tag.hidden = false;
+          b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop");
+          return;
+        }
+        if (e.target.closest("[data-drinks-skip]") || e.target.closest("[data-drinks-go]")) {
+          drinksAsked = true; closeDialog(drinkDialog);
+          var send = $("[data-wa-send]");
+          updateCheckout();
+          if (send.getAttribute("aria-disabled") !== "true") { window.open(send.href, "_blank", "noopener"); toast("WhatsApp wird geöffnet – bitte Nachricht dort absenden"); }
+        }
+      });
+      drinkDialog.addEventListener("close", function () { if (!$("dialog[open]")) document.body.style.overflow = ""; });
+    }
+    $$("[data-added]", drinkDialog).forEach(function (t) { t.hidden = true; t.setAttribute("data-n", 0); });
+    openDialog(drinkDialog);
   }
 
   renderBadge();

@@ -28,11 +28,13 @@ Alle Seiten sind mit `noindex` gekennzeichnet (unveröffentlichte Demo).
 │   ├── js/menu-data.js          ALLE Inhalte: Stammdaten, Zeiten, Lieferzonen, Kategorien, Gerichte
 │   ├── js/app.js                Navigation, Öffnungsstatus, Speisekarte, Suche, Warenkorb, WhatsApp
 │   ├── js/fx.js                 Interaktions-Effekte (Hover, Tilt, Magnet, Scroll-Fortschritt)
+│   ├── js/logo-anim.js          Logo-Animation der Startseite (einmalig, ca. 2,8 s)
 │   ├── logo/                    Logo als SVG/PNG, Header-Variante, Halal-Siegel, Favicons, Referenz
 │   └── images/                  Platz für spätere Originalfotos
 ├── tools/
 │   ├── build.mjs                Seitengenerator (Header, Footer, Navigation zentral)
 │   ├── trace.py, compose.py     Logo-Vektorisierung aus assets/logo/logo-referenz.png
+│   ├── logo_anim.py             erzeugt assets/logo/minar-logo-anim.svg (Gelenk-Rig der Tierfigur)
 ├── PRUEFLISTE.md                Prüfprotokoll: unsichere und zu bestätigende Angaben
 └── .nojekyll
 ```

@@ -269,8 +269,9 @@ built.push(page({
   body: (root) => `
     <section class="hero">
       <div class="container hero-grid">
-        <div class="hero-logo reveal">
-          <img src="${root}assets/logo/minar-logo.svg" alt="MINAR Küche – Logo mit Halal-Siegel sowie Halbmond und Stern" width="560" height="431">
+        <div class="hero-logo">
+          ${fs.readFileSync(path.join(ROOT, "assets/logo/minar-logo-anim.svg"), "utf8").trim()}
+          <script src="${root}assets/js/logo-anim.js?v=${CSS_VERSION}"></script>
         </div>
         <div class="hero-copy reveal">
           <p class="eyebrow"><span class="status-dot" data-open-dot></span><span data-open-status>Bad Buchau · ${esc(R.street)}</span></p>

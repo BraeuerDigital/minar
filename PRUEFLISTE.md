@@ -47,6 +47,8 @@ Keine Kennzeichnung ist mehr als „auf Anfrage“ markiert.
 | D11 | Gerichte ohne Kennzeichnung (z. B. 99, 116, 131–134a) – Legende weist darauf hin, dass fehlende Kennzeichnung nicht „allergenfrei“ bedeutet | | offen (optional) |
 | D12 | Napoli (140) 9,00 € | Preise insgesamt bestätigt | bestätigt |
 | D13 | Dip-/Soßen-Abfrage beim Hinzufügen (Preise laut Nr. 80–88: Dips 1,20 €, Ketchup/Majo/Remoulade 0,50 €) | bei allen Burgern, Potatoes, Fingerfood, Party Platten inkl. Menü 73, Schnitzel sowie 95, 96a, 97, 98, 98a, 98b – je Dip eine Portion pro Gericht | auf Kundenwunsch umgesetzt |
+| D14 | Döner (90–96a): bis zu 2 Soßen inklusive, Auswahl aus den Soßen der Karte (Dönersoße, Cocktail, Hot Cocktail, Sour Cream, Minar Spezial, BBQ, Sweet Chili) + optional „scharf“ | bitte bestätigen, welche Soßen für Döner angeboten werden | auf Kundenwunsch umgesetzt |
+| D15 | Getränke-Abfrage beim Absenden per WhatsApp, wenn noch kein Getränk im Warenkorb ist (einmal pro Besuch, überspringbar) | | auf Kundenwunsch umgesetzt |
 
 ## E. Korrigierte Schreibweisen
 
@@ -93,6 +95,7 @@ Coctail → Cocktail · Quattro Formaggie → Quattro Formaggi · Chesse-Garnele
 | I4 | Palettenwerte sind aus Fotos abgeleitet – ohne Druckdaten nicht farbverbindlich. | offen |
 | I5 | Arabischer Schriftzug im Siegel wurde als Grafik übernommen, nicht neu gesetzt. | erledigt |
 | I6 | Fotos vom Kunden geliefert (06.11.2026): Burger, Burger mit Pommes, Dönerteller, Curry, Salat, Schnitzel, Gastraum, Theke – eingebunden auf Startseite, 5 Kategorieseiten und „Über uns“; Hinweis „Fotos sind Beispiele“ wie auf dem Flyer. Nutzungsrechte liegen laut Kunde vor. | erledigt |
+| I8 | Logo-Animation (Startseite): Original-Silhouette über Gelenk-Rig animiert (`tools/logo_anim.py`, `assets/js/logo-anim.js`), Endbild pixelgleich mit dem statischen Logo geprüft; bei „Bewegung reduzieren“ sofort statisch | erledigt |
 | I7 | Schriften: Systemschriften (Bookman/Georgia für Überschriften), keine externen Font-Server. | erledigt |
 
 ## J. Durchgeführte Tests (06.11.2026, Chrome headless)
