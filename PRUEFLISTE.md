@@ -8,7 +8,7 @@ Punkte mit **PRÜFEN** sind auf der Website nicht als gesichert dargestellt oder
 
 | # | Punkt | Status |
 |---|-------|--------|
-| A1 | Die Karte trägt den Vermerk **„(04/2023) – Karte ist gültig bis zur Neuerscheinung“**. Alle Preise vom Restaurant auf Aktualität bestätigen lassen. Die Website zeigt den Hinweis „Preise laut gedruckter Speisekarte, Stand 04/2023“. | PRÜFEN |
+| A1 | Die Karte trägt den Vermerk **„(04/2023) – Karte ist gültig bis zur Neuerscheinung“**. Alle Preise vom Restaurant auf Aktualität bestätigen lassen. Die Website zeigt den Hinweis „Preise laut gedruckter Speisekarte, Stand 04/2023“. | **bestätigt 06.11.2026** – Preise aktuell |
 
 ## B. Übernommene Daten
 
@@ -62,7 +62,7 @@ Coctail → Cocktail · Quattro Formaggie → Quattro Formaggi · Chesse-Garnele
 | F2 | Täglich 11:30–21:30 Uhr, Dienstag Ruhetag, Bestellannahme bis 21:15 Uhr | laut Karte, PRÜFEN (Feiertage/Urlaub) |
 | F3 | Ist die WhatsApp-Nummer für Bestellungen freigegeben? | PRÜFEN |
 | F4 | Domain `www.minar-buchau.de` – **bewusst nicht verknüpft** (kein CNAME) | offen |
-| F5 | Halal-Kennzeichnung: auf Wunsch aus dem Flyer übernommen (Logo, Header, Startseite, Speisekarte, Über uns). Formulierung: „Halal – wie auf unserer gedruckten Speisekarte gekennzeichnet.“ Keine Zertifizierung oder Zertifizierungsstelle genannt. Vor Livegang vom Restaurant bestätigen lassen. | PRÜFEN |
+| F5 | Halal-Kennzeichnung: auf Wunsch aus dem Flyer übernommen (Logo, Header, Startseite, Speisekarte, Über uns). Formulierung: „Halal – wie auf unserer gedruckten Speisekarte gekennzeichnet.“ Keine Zertifizierung oder Zertifizierungsstelle genannt. Vom Kunden bestätigt (06.11.2026). | erledigt |
 
 ## G. Rechtliches
 
@@ -86,7 +86,7 @@ Coctail → Cocktail · Quattro Formaggie → Quattro Formaggi · Chesse-Garnele
 
 | # | Punkt | Status |
 |---|-------|--------|
-| I1 | Logo wurde aus dem gelieferten, freigestellten Logobereich (`assets/logo/logo-referenz.png`) **vektorisiert** (Konturverfolgung, keine Neuinterpretation): Sonnen-Emblem, springende Ziege, rote Zierlinien, Schriftzug „MINAR Küche“, Halal-Siegel, Halbmond mit Stern. Die Referenz wirkt bereits digital aufbereitet – bitte bestätigen, dass sie dem Originallogo entspricht. | PRÜFEN |
+| I1 | Logo wurde aus dem gelieferten, freigestellten Logobereich (`assets/logo/logo-referenz.png`) **vektorisiert** (Konturverfolgung, keine Neuinterpretation): Sonnen-Emblem, springende Ziege, rote Zierlinien, Schriftzug „MINAR Küche“, Halal-Siegel, Halbmond mit Stern. Die Referenz wirkt bereits digital aufbereitet – bitte bestätigen, dass sie dem Originallogo entspricht. | **bestätigt 06.11.2026** |
 | I2 | Für eine exakte Wiedergabe (Druckqualität, Originalschrift) die **Original-Logodatei** (AI/EPS/PDF/SVG) beim Restaurant oder der Druckerei anfragen. Feine Details (Hornspitzen, Schriftkonturen, Schattenwirkung) sind aus der Bildvorlage nachgezogen. | offen |
 | I3 | Logo-Grün aus der Vorlage (`#476A0B`) weicht von der Palette (`#646C3E`) ab. Logo bleibt originalgetreu, die Oberfläche nutzt die Palette. | bestätigen |
 | I4 | Palettenwerte sind aus Fotos abgeleitet – ohne Druckdaten nicht farbverbindlich. | offen |
