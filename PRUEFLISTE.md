@@ -6,7 +6,6 @@ Punkte mit **PRÜFEN** sind auf der Website nicht als gesichert dargestellt oder
 
 ## A. Wichtigster Punkt
 
-> **TESTMODUS AKTIV** (`assets/js/menu-data.js` → `testMode: true`): Bestellungen gehen an die Testnummer 0176 47830274, Öffnungszeiten werden ignoriert. **Vor dem Livegang `testMode: false` setzen.**
 
 | # | Punkt | Status |
 |---|-------|--------|

@@ -402,10 +402,7 @@
   /* Bestellarten nach Uhrzeit:
      Lieferung: bis zur Bestellannahme (21:15) · Abholung: bis Ladenschluss (21:30)
      Am Ruhetag beides aus. Ausgegraut und durchgestrichen, wenn nicht verfügbar. */
-  var TEST = !!R.testMode;
-  var ORDER_WA = TEST && R.testWhatsappNumber ? R.testWhatsappNumber : R.whatsappNumber;
   function modeAvailable(m) {
-    if (TEST) return true;
     var n = berlinNow(); if (H.closedDays.indexOf(n.day) > -1) return false;
     return n.min < toMin(m === "Lieferung" ? H.orderUntil : H.close);
   }
@@ -444,20 +441,18 @@
       else { minEl.classList.add("is-ok"); minEl.textContent = "Mindestbestellwert für " + F.place.value + " (" + money(z.minOrder) + ") erreicht."; }
     }
     var s = status(), closedEl = $("[data-cart-closed]");
-    if (TEST) s.ordering = true;
     closedEl.hidden = s.ordering;
     if (!s.ordering) closedEl.textContent = "Derzeit ist laut Öffnungszeiten keine Bestellannahme (" + s.text + "). Ihre Nachricht wird möglicherweise erst später gelesen.";
     var send = $("[data-wa-send]");
     var missing = !anyModeAvailable() ? "Derzeit geschlossen" : requiredMissing()[0] ? requiredMissing()[0].msg : "";
     var ok = cart.length && !missing;
     send.setAttribute("aria-disabled", ok ? "false" : "true");
-    send.href = ok ? "https://wa.me/" + ORDER_WA + "?text=" + encodeURIComponent(buildMessage()) : "#";
+    send.href = ok ? "https://wa.me/" + R.whatsappNumber + "?text=" + encodeURIComponent(buildMessage()) : "#";
     send.lastChild.textContent = missing || "Bestellung per WhatsApp vorbereiten";
   }
 
   function buildMessage() {
     var m = mode(), L = [], sum = subtotal(), z = m === "Lieferung" ? currentZone() : null;
-    if (TEST) L.push("*** TESTBESTELLUNG – bitte nicht zubereiten ***", "");
     L.push("Hallo " + R.name + ",", "ich möchte folgende Bestellung anfragen (" + m + "):", "");
     cart.forEach(function (l) {
       var c = lineCalc(l);
@@ -504,7 +499,6 @@
   function fillTimes() {
     var sel = F.time; if (!sel) return;
     var keep = sel.value, n = berlinNow(), closedToday = H.closedDays.indexOf(n.day) > -1;
-    if (TEST) { closedToday = false; n = { day: n.day, min: toMin(H.open) - 30 }; }
     var open = toMin(H.open), lead = 30;
     var close = mode() === "Lieferung" ? toMin(H.orderUntil) : toMin(H.close);   // Lieferung nur bis 21:15
     var start = Math.max(open, Math.ceil((n.min + lead) / 15) * 15);
@@ -523,11 +517,6 @@
     if (keep && sel.querySelector('option[value="' + keep + '"]:not([disabled])')) sel.value = keep; else sel.value = "asap";
   }
 
-  if (linesEl && TEST) {
-    var tb = document.createElement("p"); tb.className = "test-banner";
-    tb.innerHTML = "<strong>Testmodus aktiv:</strong> Bestellungen gehen an +" + esc(ORDER_WA) + " und sind unabhängig von den Öffnungszeiten möglich.";
-    $(".order-main").insertBefore(tb, $(".order-main").firstChild);
-  }
   if (linesEl) {
     F = { name: $("[data-f-name]"), phone: $("[data-f-phone]"), address: $("[data-f-address]"), time: $("[data-f-time]"), note: $("[data-f-note]"), place: $("[data-f-place]") };
     F.place.innerHTML = '<option value="">Bitte wählen …</option>' + places.slice().sort(function (a, b) { return a.name.localeCompare(b.name, "de"); }).map(function (p) {
