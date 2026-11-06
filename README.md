@@ -98,9 +98,9 @@ Vor dem Livegang: `noindex` in `tools/build.mjs` entfernen, Seiten neu erzeugen 
 
 ## Logo-Intro (Startseite)
 
-Ablauf: Logo-Aufbau (Sonne → Linien → Siegel → Halbmond → MINAR → Küche → Unterzeile) · ruhiger Stand · zweimaliges Scharren mit dem Vorderlauf · Ducken und Absprung in die Original-Pose · danach völlig still. Gesamt ca. 5,3 s, keine Schleife.
+Ablauf: Logo-Aufbau (Sonne → Linien → Siegel → Halbmond → MINAR → Küche → Unterzeile) · ruhiger Stand · Aufbäumen mit dreimaligem, abwechselndem Strampeln beider Vorderläufe · Sammeln und Absprung in die Original-Pose · danach völlig still. Gesamt ca. 5,5 s, keine Schleife.
 
-- **Technik:** Vanilla JS + SVG (ein `requestAnimationFrame`-Loop, keine Bibliothek). Die Tierfigur ist die Original-Silhouette, zerlegt in ein Gelenk-Rig (Huf → Hüfte → Schulter → Ellbogen); Winkel 0 = Original-Pose. Am Ende wird auf die unzerlegte Silhouette umgeschaltet – Endbild pixelgleich zum statischen Logo (geprüft).
+- **Technik:** Vanilla JS + SVG (ein `requestAnimationFrame`-Loop, keine Bibliothek). Die Tierfigur ist die Original-Silhouette, zerlegt in ein Gelenk-Rig (Huf → Hüfte → Schulter → Ellbogen; der entfernte Vorderlauf nutzt dieselben Originalformen, leicht versetzt hinter dem Körper); Winkel 0 = Original-Pose. Am Ende wird auf die unzerlegte Silhouette umgeschaltet – Endbild pixelgleich zum statischen Logo (geprüft).
 - **Fallbacks:** `prefers-reduced-motion` oder erneuter Aufruf in derselben Sitzung → sofort statisches Logo. Ohne JavaScript ebenfalls statisch.
 - **Dateien:** `assets/logo/minar-logo-anim.svg` (wird von `tools/build.mjs` inline eingesetzt), `assets/js/logo-anim.js` (direkt hinter dem SVG laden).
 - **Einbau in andere Seiten:** `logo-intro/index.html` enthält SVG, CSS und JS zusammenhängend zum Kopieren.

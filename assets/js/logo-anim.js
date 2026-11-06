@@ -4,13 +4,14 @@
    Phase A  Logo-Aufbau       0,0 – 2,2 s  Sonne → Linien → Siegel → Halbmond
                                            → MINAR (Buchstaben gestaffelt) → Küche
                                            → Unterzeile; Tier erscheint im Stand
-   Phase B  Ruhiger Stand     2,2 – 2,9 s  minimale Atmung / Haltungskorrektur
-   Phase C  Scharren          2,9 – 4,0 s  Vorderlauf: anheben – vorstrecken – zurückziehen (2×)
-   Phase D  Sprung            4,0 – 5,3 s  Gewicht verlagern, ducken, Abdruck, Aufrichten
-   Phase E  Endpose           ab 5,3 s     exakt Original-Logo, danach völlig still
+   Phase B  Ruhiger Stand     2,2 – 2,8 s  auf allen vier Beinen, minimale Atmung
+   Phase C  Aufbäumen         2,8 – 4,35 s Gewicht auf die Hinterhand, Oberkörper hebt sich,
+                                           beide Vorderläufe strampeln abwechselnd (3×, gegenphasig)
+   Phase D  Sprung            4,35 – 5,5 s kurz sammeln, kraftvoller Abdruck, Aufrichten in die Logo-Pose
+   Phase E  Endpose           ab 5,5 s     exakt Original-Logo, danach völlig still
 
    Technik: Vanilla JS + SVG, ein requestAnimationFrame-Loop, keine Bibliothek.
-   Rig: tools/logo_anim.py (Original-Silhouette, Gelenkkette Huf → Hüfte → Schulter → Ellbogen,
+   Rig: tools/logo_anim.py (Original-Silhouette, Gelenkkette Huf → Hüfte → Schulter → Ellbogen, zwei Vorderläufe,
    Winkel 0 = Original-Pose). Am Ende Umschalten auf die unzerlegte Original-Silhouette.
    Fallbacks: prefers-reduced-motion oder bereits in dieser Sitzung gesehen → sofort statisch.
    ===================================================================== */
@@ -81,36 +82,48 @@
   Array.prototype.forEach.call(rig.querySelectorAll("[data-joint]"), function (g) {
     J[g.getAttribute("data-joint")] = { el: g, x: g.getAttribute("data-cx"), y: g.getAttribute("data-cy") };
   });
-  // Stand: Hinterbein steil, Rumpf leicht gesenkt, Vorderlauf senkrecht am Boden
-  var S = { hind: 16, body: -22, arm: -80, fore: 104 };
-  // Scharren: Knie anheben (Huf eingeklappt) → Lauf vorstrecken → zurückziehen
-  var LIFT = { arm: -45, fore: 60 }, REACH = { arm: -58, fore: 122 };
-  var LIFT2 = { arm: -55, fore: 72 }, REACH2 = { arm: -64, fore: 116 };
-  // Ducken vor dem Absprung: Gewicht nach hinten, Rumpf tiefer, Vorderlauf gebeugt
-  var C = { hind: 17, body: -28, arm: -47, fore: 57 };
+  /* Posen (Grad, relativ zum übergeordneten Gelenk; 0 = Original-Logo)
+     vorne = sichtbarer Vorderlauf (arm/fore), hinten = entfernter Vorderlauf (armB/foreB) */
+  var S  = { hind: 16, body: -22, arm: -80, fore: 104, armB: -74, foreB: 98 };   // Stand auf allen vier Beinen
+  var RE = { hind: 13, body: -9 };                                                // aufgebäumt: Gewicht auf der Hinterhand
+  var UP = { arm: -36, fore: 42 },  DN = { arm: -68, fore: 114 };                 // vorne: Knie hoch / Lauf vorgestreckt
+  var UPb = { armB: -32, foreB: 40 }, DNb = { armB: -66, foreB: 110 };            // hinten: gleiche Bewegung, gegenphasig
+  var G  = { hind: 17, body: -13, arm: -30, fore: 40, armB: -20, foreB: 45 };    // sammeln vor dem Abdruck
+  var FAR_END = { armB: 10, foreB: 10 };                                          // entfernter Lauf hinter dem vorderen eingeklappt
 
   var T = {
-    hind: [[0, S.hind], [3950, S.hind], [4300, C.hind, "inOut"], [4380, C.hind, "lin"], [5300, 0, "out4"]],
-    body: [[0, S.body], [2250, S.body],
-           [2600, S.body + 0.9, "sine"], [2900, S.body, "sine"],                 // Atmung / Haltungskorrektur
-           [3150, S.body - 0.8, "sine"], [3500, S.body + 0.4, "sine"], [3850, S.body, "sine"],  // Mitschwingen beim Scharren
-           [4300, C.body, "inOut"], [4380, C.body, "lin"], [5200, 0, "out4"]],
-    arm:  [[0, S.arm], [2900, S.arm],
-           [3120, LIFT.arm, "inOut"], [3320, REACH.arm, "inOut"], [3500, S.arm, "in2"],      // 1. Scharren
-           [3680, LIFT2.arm, "inOut"], [3850, REACH2.arm, "inOut"], [4000, S.arm, "in2"],    // 2. Scharren (kleiner)
-           [4300, C.arm, "inOut"], [4340, C.arm, "lin"], [5050, 0, "out4"]],
-    fore: [[0, S.fore], [2900, S.fore],
-           [3120, LIFT.fore, "inOut"], [3320, REACH.fore, "inOut"], [3500, S.fore, "in2"],
-           [3680, LIFT2.fore, "inOut"], [3850, REACH2.fore, "inOut"], [4000, S.fore, "in2"],
-           [4300, C.fore, "inOut"], [4320, C.fore, "lin"], [4980, 0, "out4"]]
+    // Hinterhand: Gewicht übernehmen, beim Sammeln laden, kraftvoll strecken
+    hind: [[0, S.hind], [2800, S.hind], [3350, RE.hind, "inOut"], [4350, RE.hind, "lin"],
+           [4600, G.hind, "inOut"], [5500, 0, "out4"]],
+    // Rumpf: atmen, aufrichten, beim Strampeln ruhig halten (kein Galopp), kurz absenken, Sprung
+    body: [[0, S.body], [2250, S.body], [2550, S.body + 0.8, "sine"], [2800, S.body, "sine"],
+           [3350, RE.body, "inOut"], [3850, RE.body - 0.8, "sine"], [4350, RE.body, "sine"],
+           [4600, G.body, "inOut"], [5400, 0, "out4"]],
+    // Vorderer Lauf: abheben, drei Strampler (Knie hoch → vorstrecken), einziehen, Endpose
+    arm:  [[0, S.arm], [2800, S.arm], [3350, UP.arm, "inOut"],
+           [3600, DN.arm], [3850, UP.arm], [4100, DN.arm], [4350, UP.arm],
+           [4600, G.arm, "inOut"], [5250, 0, "out4"]],
+    fore: [[0, S.fore], [2800, S.fore], [3350, UP.fore, "inOut"],
+           [3600, DN.fore], [3850, UP.fore], [4100, DN.fore], [4350, UP.fore],
+           [4600, G.fore, "inOut"], [5180, 0, "out4"]],
+    // Hinterer Lauf: hebt etwas später ab und strampelt gegenphasig
+    armB: [[0, S.armB], [2880, S.armB], [3420, DNb.armB, "inOut"],
+           [3725, UPb.armB], [3975, DNb.armB], [4225, UPb.armB], [4400, DNb.armB + 10],
+           [4600, G.armB, "inOut"], [5200, FAR_END.armB, "out4"]],
+    foreB: [[0, S.foreB], [2880, S.foreB], [3420, DNb.foreB, "inOut"],
+           [3725, UPb.foreB], [3975, DNb.foreB], [4225, UPb.foreB], [4400, DNb.foreB - 20],
+           [4600, G.foreB, "inOut"], [5200, FAR_END.foreB, "out4"]]
   };
-  var END = 5300;
+  var END = 5500;
+  var farEl = svg.querySelector(".mg-far");
+  var FAR_FADE = [5050, 5450];                                                    // entfernten Lauf ausblenden, sobald verdeckt
 
   function applyRig(t) {
     for (var k in T) {
       var j = J[k]; if (!j) continue;
       j.el.setAttribute("transform", "rotate(" + at(T[k], t).toFixed(3) + " " + j.x + " " + j.y + ")");
     }
+    if (farEl) farEl.setAttribute("opacity", (1 - E.sine(clamp01((t - FAR_FADE[0]) / (FAR_FADE[1] - FAR_FADE[0])))).toFixed(3));
   }
 
   /* ---------------- Start ---------------- */

@@ -17,7 +17,7 @@ Aufbau (jede Ebene einzeln animierbar, IDs/Klassen mit Präfix „lg-“):
 Alle Formen stammen aus der Logovorlage assets/logo/logo-referenz.png (vektorisiert,
 siehe tools/trace.py → tools/paths.json). Nichts ist neu gezeichnet.
 
-Gelenk-Rig der Tierfigur:
+Gelenk-Rig der Tierfigur (zwei Vorderläufe):
   Die Original-Silhouette wird per Clip-Bereich in Hinterbein, Körper, Oberarm und
   Unterarm geteilt. Kette: Huf (H) → Hüfte (HIP) → Schulter (SH) → Ellbogen (EL).
   Winkel 0 an allen Gelenken = exakte Original-Pose. Gelenkfüllungen (Kreise) schließen
@@ -45,6 +45,8 @@ CLIP = {
     "fore": [(540, 286), (606, 286), (656, 406), (540, 406)],
 }
 INK, GREEN, RED = "#17120a", "#476a0b", "#a50d14"
+FAR_INK = "#3a3024"        # entfernter Vorderlauf: minimal heller für räumliche Tiefe
+FAR_OFFSET = (16, 6)       # Versatz des entfernten Laufs (nach hinten/unten)
 
 
 def poly(pts):
@@ -59,9 +61,15 @@ def build():
     fill = lambda k: f'<circle cx="{FILL[k][0][0]}" cy="{FILL[k][0][1]}" r="{FILL[k][1]}"/>'
     joint = lambda name, j: f'<g data-joint="{name}" data-cx="{J[j][0]}" data-cy="{J[j][1]}">'
 
+    # Hinterer (entfernter) Vorderlauf: gleiche Originalformen wie der vordere Lauf,
+    # leicht nach hinten versetzt und HINTER dem Körper gezeichnet. In der Endpose
+    # liegt er hinter dem vorderen Lauf und wird ausgeblendet.
+    far = (f'<g class="mg-far" fill="{FAR_INK}" transform="translate({FAR_OFFSET[0]} {FAR_OFFSET[1]})">'
+           f'{joint("armB", "SH")}{part("arm")}{fill("EL")}'
+           f'{joint("foreB", "EL")}{part("fore")}</g></g></g>')
     rig = (f'<g class="mg-rig" style="display:none">'
            f'{joint("hind", "H")}{part("hind")}{fill("HIP")}'
-           f'{joint("body", "HIP")}{part("body")}'
+           f'{joint("body", "HIP")}{far}{part("body")}'
            f'{joint("arm", "SH")}{part("arm")}{fill("EL")}'
            f'{joint("fore", "EL")}{part("fore")}</g>'
            f'</g>{fill("SH")}'
