@@ -39,6 +39,10 @@ window.MINAR_DATA = {
     phoneLink: "+4975829346944",
     whatsappDisplay: "0163 359 01 88",
     whatsappNumber: "491633590188", // internationales Format ohne + und ohne führende 0
+    fax: "0800 202 07 702",
+    email: "minarbuchau@gmail.com",
+    owner: "Rehan Naveed Raja",
+    vatId: "DE 364887498",
     offer: ["Restaurant", "Abholung", "Lieferservice"]
   },
 
@@ -132,24 +136,25 @@ window.MINAR_DATA = {
 
   /* --- Kategorien (Reihenfolge wie auf der Karte) ---
      slug = Dateiname der Unterseite: speisekarte/<slug>.html
+     img  = optionales Foto aus assets/images/<img>.jpg (+ <img>-sm.jpg)
      Neue Kategorie → danach `node tools/build.mjs` ausführen.        */
   categories: [
-    { id: "salate", slug: "salate",      name: "Salate", desc: "Wahlweise mit Essig und Öl oder Joghurtsoße (C, G)." },
-    { id: "burger", slug: "burger",      name: "Burger", desc: "Alle mit grünem Salat, Tomaten, Gurken und Zwiebeln." },
+    { id: "salate", slug: "salate",      name: "Salate", desc: "Wahlweise mit Essig und Öl oder Joghurtsoße (C, G).", img: "salat", imgAlt: "Bunter Salat mit Tomaten, Karotten, Gurke und Rotkohl" },
+    { id: "burger", slug: "burger",      name: "Burger", desc: "Alle mit grünem Salat, Tomaten, Gurken und Zwiebeln.", img: "burger", imgAlt: "Burger mit Rindfleisch-Pattie, Cheddar, Salat, Tomate und Zwiebeln" },
     { id: "potatoes", slug: "potatoes",    name: "Potatoes" },
     { id: "fingerfood", slug: "fingerfood",  name: "Fingerfood" },
     { id: "partyplatten", slug: "partyplatten",name: "Party Platten" },
     { id: "dips", slug: "dips",        name: "Dips" },
-    { id: "doener", slug: "doener",      name: "Döner" },
+    { id: "doener", slug: "doener",      name: "Döner", img: "doenerteller", imgAlt: "Dönerteller mit Wedges, Salat und Soße" },
     { id: "ueberbacken", slug: "ueberbacken", name: "Überbacken" },
     { id: "pizza", slug: "pizza",       name: "Pizza", desc: "30 cm. Alle Pizzas mit Tomatensoße und Käse." },
     { id: "partypizza", slug: "party-pizza",  name: "Party Pizza", desc: "40 × 60 cm." },
     { id: "nudeln", slug: "nudelgerichte",      name: "Nudelgerichte", desc: "Spaghetti oder Penne. Alle Gerichte gibt es auch überbacken (+2,50 €)." },
     { id: "chinanudeln", slug: "chinesische-nudeln", name: "Chinesische Nudeln" },
-    { id: "gnocchi", slug: "gnocchi",     name: "Gnocchi" },
-    { id: "indisch", slug: "indisch-pakistanisch",     name: "Indisch & Pakistanisch", desc: "Alle Gerichte mit Reis." },
+    { id: "gnocchi", slug: "gnocchi",     name: "Gnocchi", desc: "Alle Gnocchi-Gerichte gibt es auch überbacken (+2,50 €)." },
+    { id: "indisch", slug: "indisch-pakistanisch",     name: "Indisch & Pakistanisch", desc: "Alle Gerichte mit Reis.", img: "curry-reis", imgAlt: "Curry mit Reis" },
     { id: "vegetarisch", slug: "vegetarische-gerichte", name: "Vegetarische Gerichte" },
-    { id: "schnitzel", slug: "schnitzel-steak",   name: "Schnitzel und Steak", desc: "Alle Schnitzel vom Putenfleisch mit Pommes." },
+    { id: "schnitzel", slug: "schnitzel-steak",   name: "Schnitzel und Steak", desc: "Alle Schnitzel vom Putenfleisch mit Pommes.", img: "schnitzel-kaesespaetzle", imgAlt: "Paniertes Schnitzel mit Käsespätzle und Salat" },
     { id: "dessert", slug: "desserts",     name: "Dessert" },
     { id: "getraenke", slug: "getraenke",   name: "Getränke" }
   ],
@@ -161,8 +166,8 @@ window.MINAR_DATA = {
     { nr: "02", cat: "salate", name: "Gurkensalat", prices: [5.9], opts: ["dressing"] },
     { nr: "03", cat: "salate", name: "Tomatensalat", desc: "frische Tomaten und Zwiebeln", prices: [5.9], opts: ["dressing"] },
     { nr: "04", cat: "salate", name: "Gemischter Salat", desc: "grüner Salat, Kraut, Tomaten, Gurken und Karotten", prices: [8.5], opts: ["dressing"] },
-    { nr: "05", cat: "salate", name: "Thunfischsalat", desc: "grüner Salat, Tomaten, Gurken, Thunfisch und Zwiebeln", prices: [9.5], codesCheck: true, opts: ["dressing"] },
-    { nr: "06", cat: "salate", name: "Casa Nova", desc: "grüner Salat, Tomaten, Gurken, Mozzarella, Oliven, Paprika", prices: [10.5], codesCheck: true, opts: ["dressing"] },
+    { nr: "05", cat: "salate", name: "Thunfischsalat", desc: "grüner Salat, Tomaten, Gurken, Thunfisch und Zwiebeln", prices: [9.5], codes: "D,F", opts: ["dressing"] },
+    { nr: "06", cat: "salate", name: "Casa Nova", desc: "grüner Salat, Tomaten, Gurken, Mozzarella, Oliven, Paprika", prices: [10.5], codes: "9", opts: ["dressing"] },
     { nr: "07", cat: "salate", name: "Griechischer", desc: "grüner Salat, Tomaten, Gurken, Peperoni, Paprika, Oliven, Zwiebeln und Weichkäse", prices: [10.9], codes: "G,9", opts: ["dressing"] },
     { nr: "08", cat: "salate", name: "Nizza Salat", desc: "grüner Salat, Tomaten, Gurken, Oliven, Thunfisch", prices: [10.5], codes: "D,G,9", opts: ["dressing"] },
     { nr: "09", cat: "salate", name: "Schwäbischer Teller", desc: "Salat, Tomaten, Gurken, Kraut, Karotten, Ei, Schinken, Käse", prices: [10.9], codes: "F,J,6,7,8,2", opts: ["dressing"] },
@@ -199,7 +204,7 @@ window.MINAR_DATA = {
 
     /* FINGERFOOD */
     { nr: "50", cat: "fingerfood", name: "Onion Rings", desc: "10 Stück", prices: [7.9], codes: "A,C" },
-    { nr: "51", cat: "fingerfood", name: "Frühlingsrollen", desc: "10 Stück", prices: [7.9], codesCheck: true },
+    { nr: "51", cat: "fingerfood", name: "Frühlingsrollen", desc: "10 Stück", prices: [7.9], codes: "A,C" },
     { nr: "52", cat: "fingerfood", name: "Mozzarella Sticks", desc: "10 Stück", prices: [7.9], codes: "A,C,G" },
     { nr: "53", cat: "fingerfood", name: "Fischstäbchen", desc: "10 Stück", prices: [7.9], codes: "A,C,D,G,F" },
     { nr: "54", cat: "fingerfood", name: "Chicken Nuggets", desc: "10 Stück", prices: [7.9], codes: "A,7" },
@@ -287,11 +292,11 @@ window.MINAR_DATA = {
     { nr: "136", cat: "partypizza", name: "Party Pizza", desc: "mit vier Belägen nach Wahl – bitte im Hinweisfeld angeben", prices: [34.0], codes: "A,C,G,F,J,6,7,8" },
 
     /* NUDELGERICHTE */
-    { nr: "139", cat: "nudeln", name: "Aglio Spaghetti", desc: "mit Knoblauch, Oliven, Peperoni", prices: [8.9], codesCheck: true, opts: ["nudel-sorte", "nudel-ueberb"] },
+    { nr: "139", cat: "nudeln", name: "Aglio Spaghetti", desc: "mit Knoblauch, Oliven, Peperoni", prices: [8.9], codes: "A,C,F,6,9", opts: ["nudel-sorte", "nudel-ueberb"] },
     { nr: "140", cat: "nudeln", name: "Napoli", desc: "mit Tomatensoße", prices: [9.0], codes: "A,C,F,6", opts: ["nudel-sorte", "nudel-ueberb"] },
     { nr: "141", cat: "nudeln", name: "Arrabiata", desc: "Tomatensoße, Peperoni, scharf", prices: [9.9], codes: "A,C,F,6", opts: ["nudel-sorte", "nudel-ueberb"], tags: ["scharf"] },
     { nr: "142", cat: "nudeln", name: "Bolognese", desc: "mit Tomaten-Hackfleischsoße", prices: [10.9], codes: "A,C,G,F,J,6,7,8", opts: ["nudel-sorte", "nudel-ueberb"] },
-    { nr: "143", cat: "nudeln", name: "Brokkoli", desc: "Pilze und Sahnesoße", prices: [10.9], codesCheck: true, opts: ["nudel-sorte", "nudel-ueberb"] },
+    { nr: "143", cat: "nudeln", name: "Brokkoli", desc: "Pilze und Sahnesoße", prices: [10.9], codes: "A,C,F,6", opts: ["nudel-sorte", "nudel-ueberb"] },
     { nr: "144", cat: "nudeln", name: "Carbonara", desc: "mit Schinken, Erbsen, Ei und Sahnesoße", prices: [10.9], codes: "A,C,G,F,J,6,7,8", opts: ["nudel-sorte", "nudel-ueberb"] },
     { nr: "145", cat: "nudeln", name: "Vegetarisch", desc: "Pilze, Erbsen, Brokkoli, Tomatensahnesoße", prices: [10.9], codes: "A,C", opts: ["nudel-sorte", "nudel-ueberb"], tags: ["vegetarisch"] },
     { nr: "146", cat: "nudeln", name: "Emiliani", desc: "mit Schinken, Champignons, Erbsen und Tomatensahnesoße", prices: [10.9], codes: "A,C,G,F,J,6,7,8", opts: ["nudel-sorte", "nudel-ueberb"] },
@@ -307,10 +312,10 @@ window.MINAR_DATA = {
     { nr: "206", cat: "chinanudeln", name: "Vegetables Nudel", prices: [8.9] },
 
     /* GNOCCHI */
-    { nr: "210", cat: "gnocchi", name: "Napoli", desc: "mit Tomatensoße", prices: [8.9], codes: "A,C,F,6" },
-    { nr: "211", cat: "gnocchi", name: "Bolognese", desc: "mit Tomaten-Hackfleischsoße", prices: [10.9], codes: "A,C,F,6" },
-    { nr: "212", cat: "gnocchi", name: "Vegetarisch", desc: "Pilze, Erbsen, Brokkoli, Tomatensoße", prices: [10.9], codes: "A,C", tags: ["vegetarisch"] },
-    { nr: "213", cat: "gnocchi", name: "Quattro Formaggi", desc: "vier Käsesorten, Sahnesoße", prices: [10.9], codes: "A,C,G" },
+    { nr: "210", cat: "gnocchi", name: "Napoli", desc: "mit Tomatensoße", prices: [8.9], codes: "A,C,F,6", opts: ["nudel-ueberb"] },
+    { nr: "211", cat: "gnocchi", name: "Bolognese", desc: "mit Tomaten-Hackfleischsoße", prices: [10.9], codes: "A,C,F,6", opts: ["nudel-ueberb"] },
+    { nr: "212", cat: "gnocchi", name: "Vegetarisch", desc: "Pilze, Erbsen, Brokkoli, Tomatensoße", prices: [10.9], codes: "A,C", tags: ["vegetarisch"], opts: ["nudel-ueberb"] },
+    { nr: "213", cat: "gnocchi", name: "Quattro Formaggi", desc: "vier Käsesorten, Sahnesoße", prices: [10.9], codes: "A,C,G", opts: ["nudel-ueberb"] },
 
     /* INDISCH, PAKISTANISCH */
     { nr: "155", cat: "indisch", name: "Naan", prices: [4.0], codes: "A,C,G" },

@@ -17,38 +17,35 @@ Punkte mit **PRÜFEN** sind auf der Website nicht als gesichert dargestellt oder
 - Allergen- und Zusatzstoff-Legende vollständig übernommen (A–H, J, K, L, N, O; 1–9) inkl. Hinweisen zu Käse, Hackfleisch und Schinken.
 - Liefergebiete, Mindestbestellwerte und Lieferkosten (5 Zonen) vollständig übernommen.
 
-## C. Nicht sicher lesbare Kennzeichnungen
+## C. Allergen-Kennzeichnungen – vom Kunden bestätigt (06.11.2026)
 
-Bei diesen Gerichten zeigt die Website **„Allergene & Zusatzstoffe auf Anfrage“** (`codesCheck: true`):
+| Nr. | Gericht | Kennzeichnung |
+|-----|---------|---------------|
+| 05 | Thunfischsalat | D, F |
+| 06 | Casa Nova | 9 |
+| 51 | Frühlingsrollen | A, C |
+| 54 | Chicken Nuggets | A, 7 |
+| 139 | Aglio Spaghetti | A, C, F, 6, 9 |
+| 143 | Brokkoli (Nudeln) | A, C, F, 6 |
 
-| Nr. | Gericht | Gelesen (unsicher) | Status |
-|-----|---------|--------------------|--------|
-| 05 | Thunfischsalat | „D, 9“? | PRÜFEN |
-| 06 | Casa Nova | „9“? | PRÜFEN |
-| 51 | Frühlingsrollen | „A, 6“ / „A, G“ / „A, B“? | PRÜFEN |
-| 139 | Aglio Spaghetti | „A, C, F, 8, 9“? | PRÜFEN |
-| 143 | Brokkoli (Nudeln) | „A, C, F, 8“? | PRÜFEN |
+Keine Kennzeichnung ist mehr als „auf Anfrage“ markiert.
 
-Nach Bestätigung in `menu-data.js` `codes: "…"` eintragen und `codesCheck` entfernen.
+## D. Interpretationen – Stand nach Kundenrückmeldung (06.11.2026)
 
-Ebenfalls kurz bestätigen: **54 Chicken Nuggets** gelesen als „A, 7“.
-
-## D. Interpretationen (bitte bestätigen)
-
-| # | Punkt | Umsetzung auf der Website | Status |
-|---|-------|---------------------------|--------|
-| D1 | Burger „Extra Zusatz“ | mit Pommes **oder** Wedges +3,50 · Jalapeños / Röstzwiebeln je +0,50 · Spiegelei / Käse je +1,00 · Fleisch-Pattie +5,00 · Kässpätzle +7,00 – gilt für alle Burger | PRÜFEN |
-| D2 | „Extra Weichkäse 1,00“ im Abschnitt Überbacken | als Extra für alle überbackenen Gerichte | PRÜFEN |
-| D3 | Nudeln „überbacken +2,50 €“ | als Extra für alle Nudelgerichte (139–153), nicht für Gnocchi | PRÜFEN |
-| D4 | Softdrinks | Coca-Cola, Cola Zero, Fanta, Mezzo Mix, Uludağ, Sprite jeweils 0,33 l 2,25 · 0,5 l 2,50 · 1,0 l 3,50 | PRÜFEN |
-| D5 | Red Bull 3,50 | ohne Größenangabe (Karte nennt keine) | PRÜFEN |
-| D6 | Salat-Dressing | Auswahl Essig & Öl / Joghurtsoße bei allen Salaten, ohne Aufpreis | PRÜFEN |
-| D7 | 24 / 25 Hamburger XXL, Cheeseburger XXL | Karte zeigt ein Sternchen „*“ ohne Erklärung – nicht übernommen | PRÜFEN |
-| D8 | Party Pizza 136 „vier Beläge nach Wahl“ | Beläge über das Hinweisfeld | offen |
-| D9 | 96a | heißt auf der Karte ebenfalls „Dönerteller“; zur Unterscheidung „Dönerteller mit Beilage“ | PRÜFEN |
-| D10 | Kategorie „Schnitzel und Steak“ | Karte enthält nur Schnitzel (180–184), kein Steak | PRÜFEN |
-| D11 | 99, 99a, 116, 131–134a, 39, 66, 205, 206 u. a. | Karte zeigt keine Kennzeichnung → keine angezeigt. Legende weist darauf hin, dass fehlende Kennzeichnung nicht „allergenfrei“ bedeutet | PRÜFEN |
-| D12 | Napoli (140) 9,00 € | so gedruckt (andere Preise enden auf ,90) | PRÜFEN |
+| # | Punkt | Umsetzung | Status |
+|---|-------|-----------|--------|
+| D1 | Burger-Extras (Pommes/Wedges +3,50 · Jalapeños/Röstzwiebeln je +0,50 · Spiegelei/Käse je +1,00 · Fleisch-Pattie +5,00 · Kässpätzle +7,00) für alle Burger | wie umgesetzt | bestätigt |
+| D2 | Extra Weichkäse +1,00 € | als Extra bei allen überbackenen Gerichten (97–99a). Kundenaussage: „kostet bei allem 1 Euro extra“ – falls das für **alle** Gerichte gelten soll, bitte Bescheid geben | bestätigt (Umfang ggf. erweitern) |
+| D3 | „Überbacken +2,50 €“ | bei allen Nudelgerichten **und** Gnocchi | bestätigt |
+| D4 | Softdrinks 0,33 l 2,25 · 0,5 l 2,50 · 1,0 l 3,50 (Coca-Cola, Cola Zero, Fanta, Mezzo Mix, Uludağ, Sprite); Ayran 0,25 l 1,50; Mineralwasser 0,5 l 2,00; Multivitamin 0,5 l 2,50 | wie umgesetzt | bestätigt |
+| D5 | Red Bull 3,50 ohne Größe | wie umgesetzt | bestätigt |
+| D6 | Dressing bei allen Salaten kostenlos | wie umgesetzt | bestätigt |
+| D7 | Sternchen bei 24/25 | bezieht sich laut Kunde auf die Hinweise zu Käse und Hackfleisch (Legende) – nicht separat angezeigt | geklärt |
+| D8 | Party Pizza 136 „vier Beläge nach Wahl“ | Beläge über das Hinweisfeld | offen (optional) |
+| D9 | 96a „Dönerteller mit Beilage“ zur Unterscheidung von 96 | | offen (optional) |
+| D10 | Kategorie „Schnitzel und Steak“ bleibt so | | bestätigt |
+| D11 | Gerichte ohne Kennzeichnung (z. B. 99, 116, 131–134a) – Legende weist darauf hin, dass fehlende Kennzeichnung nicht „allergenfrei“ bedeutet | | offen (optional) |
+| D12 | Napoli (140) 9,00 € | Preise insgesamt bestätigt | bestätigt |
 
 ## E. Korrigierte Schreibweisen
 
@@ -58,20 +55,23 @@ Coctail → Cocktail · Quattro Formaggie → Quattro Formaggi · Chesse-Garnele
 
 | # | Angabe | Status |
 |---|--------|--------|
-| F1 | Schussenrieder Straße 21, 88422 Bad Buchau · Tel. 07582 934 69 44 · WhatsApp 0163 359 01 88 | laut Karte, Aktualität PRÜFEN |
-| F2 | Täglich 11:30–21:30 Uhr, Dienstag Ruhetag, Bestellannahme bis 21:15 Uhr | laut Karte, PRÜFEN (Feiertage/Urlaub) |
-| F3 | Ist die WhatsApp-Nummer für Bestellungen freigegeben? | PRÜFEN |
+| F1 | Schussenrieder Straße 21, 88422 Bad Buchau · Tel. 07582 934 69 44 · WhatsApp 0163 359 01 88 | bestätigt (Impressumsangaben des Kunden) |
+| F2 | Täglich 11:30–21:30 Uhr, Dienstag Ruhetag, Bestellannahme bis 21:15 Uhr | bestätigt, wie auf dem Flyer |
+| F3 | WhatsApp-Nummer für Bestellungen | bestätigt – wird genutzt |
 | F4 | Domain `www.minar-buchau.de` – **bewusst nicht verknüpft** (kein CNAME) | offen |
+| F6 | Hinweis „Preise laut gedruckter Speisekarte, Stand 04/2023“ unter der Speisekarte – Preise sind bestätigt; Text beibehalten, ändern oder entfernen? | offen |
+| F7 | `noindex` auf allen Seiten – vor dem Livegang entfernen? | offen |
 | F5 | Halal-Kennzeichnung: auf Wunsch aus dem Flyer übernommen (Logo, Header, Startseite, Speisekarte, Über uns). Formulierung: „Halal – wie auf unserer gedruckten Speisekarte gekennzeichnet.“ Keine Zertifizierung oder Zertifizierungsstelle genannt. Vom Kunden bestätigt (06.11.2026). | erledigt |
 
 ## G. Rechtliches
 
 | # | Punkt | Status |
 |---|-------|--------|
-| G1 | Impressum: Inhaber/Firma, Rechtsform, Vertretungsberechtigte, E-Mail, ggf. Register, USt-IdNr., Verbraucherstreitbeilegung | Platzhalter |
-| G2 | Datenschutzerklärung: Verantwortlicher, Rechtsgrundlagen, Hosting (GitHub Pages/USA), WhatsApp, Betroffenenrechte | Platzhalter |
-| G3 | Rechtliche Prüfung beider Texte vor Livegang | offen |
-| G4 | LMIV: Allergeninformation online – Vollständigkeit vom Restaurant bestätigen lassen | PRÜFEN |
+| G1 | Impressum eingetragen: Minar Küche, Schussenrieder Straße 21, 88422 Bad Buchau · vertretungsberechtigt: Rehan Naveed Raja · Tel., Fax 0800 202 07 702, WhatsApp, E-Mail minarbuchau@gmail.com · USt-IdNr. DE 364887498 | erledigt |
+| G2 | Impressum offen: Rechtsform (falls vorhanden), Registereintrag (nur falls vorhanden), Aufsichtsbehörde (falls erforderlich), Hinweis zur Verbraucherstreitbeilegung | offen – Platzhalter sichtbar |
+| G3 | Datenschutz: Verantwortlicher eingetragen. Offen: Rechtsgrundlagen, Hosting/Drittland, WhatsApp-Verarbeitung, telefonische Bestellung, Betroffenenrechte, Datum | offen – Platzhalter sichtbar |
+| G4 | Rechtliche Prüfung beider Texte vor Livegang | offen |
+| G5 | LMIV: Allergeninformation online – vom Kunden bestätigt | erledigt |
 
 ## H. WhatsApp-Warenkorb
 
@@ -91,7 +91,7 @@ Coctail → Cocktail · Quattro Formaggie → Quattro Formaggi · Chesse-Garnele
 | I3 | Logo-Grün aus der Vorlage (`#476A0B`) weicht von der Palette (`#646C3E`) ab. Logo bleibt originalgetreu, die Oberfläche nutzt die Palette. | bestätigen |
 | I4 | Palettenwerte sind aus Fotos abgeleitet – ohne Druckdaten nicht farbverbindlich. | offen |
 | I5 | Arabischer Schriftzug im Siegel wurde als Grafik übernommen, nicht neu gesetzt. | erledigt |
-| I6 | Keine Food- oder Restaurantfotos verwendet (keine Nutzungsrechte). Platzhalter auf „Über uns“ (`data-image-slot`), Fotos später in `assets/images/`. | offen |
+| I6 | Fotos vom Kunden geliefert (06.11.2026): Burger, Burger mit Pommes, Dönerteller, Curry, Salat, Schnitzel, Gastraum, Theke – eingebunden auf Startseite, 5 Kategorieseiten und „Über uns“; Hinweis „Fotos sind Beispiele“ wie auf dem Flyer. Nutzungsrechte liegen laut Kunde vor. | erledigt |
 | I7 | Schriften: Systemschriften (Bookman/Georgia für Überschriften), keine externen Font-Server. | erledigt |
 
 ## J. Durchgeführte Tests (06.11.2026, Chrome headless)

@@ -40,6 +40,7 @@ const I = {
   bike: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="17" r="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="18" cy="17" r="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8.5 17h7M3 12h9l2-5h3l3 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></svg>',
   house: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V10l8-6 8 6v11M9 21v-6h6v6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>',
   search: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-4.2-4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  mail: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>',
   arrow: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   back: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 };
@@ -111,7 +112,8 @@ function footer(root) {
       <div>
         <h2 class="footer-h">Kontakt</h2>
         <p><a class="footer-link" href="${TEL}">${I.phone}${esc(R.phoneDisplay)}</a><br>
-        <a class="footer-link" href="${WA}" target="_blank" rel="noopener">${I.wa}${esc(R.whatsappDisplay)}</a></p>
+        <a class="footer-link" href="${WA}" target="_blank" rel="noopener">${I.wa}${esc(R.whatsappDisplay)}</a><br>
+        <a class="footer-link" href="mailto:${esc(R.email)}">${I.mail}${esc(R.email)}</a></p>
         <h2 class="footer-h">Öffnungszeiten</h2>
         <p>Täglich ${D.hours.open}–${D.hours.close} Uhr<br>Dienstag Ruhetag<br>Bestellannahme bis ${D.hours.orderUntil} Uhr</p>
       </div>
@@ -248,6 +250,13 @@ const ctaBand = (root) => `
 const built = [];
 
 /* ===================== Startseite ===================== */
+const GALLERY = [
+  ["burger-pommes", "Burger mit Pommes", "burger"],
+  ["doenerteller", "Dönerteller mit Wedges, Salat und Soße", "doener"],
+  ["curry-reis", "Curry mit Reis", "indisch"],
+  ["salat", "Bunter Salat mit Tomaten, Karotten, Gurke und Rotkohl", "salate"],
+  ["schnitzel-kaesespaetzle", "Paniertes Schnitzel mit Käsespätzle und Salat", "schnitzel"]
+];
 const TEASER = ["pizza", "doener", "burger", "indisch", "salate", "nudeln", "fingerfood", "partyplatten"];
 built.push(page({
   file: "index.html", active: "start", bodyClass: "page-home",
@@ -290,6 +299,21 @@ built.push(page({
           <li><span class="service-ico">${I.bag}</span><div><h3>Zur Abholung</h3><p>Telefonisch, per WhatsApp oder über den Online-Warenkorb bestellen.</p></div></li>
           <li><span class="service-ico">${I.bike}</span><div><h3>Lieferservice</h3><p>Bad Buchau und ${D.delivery.zones.reduce((n, z) => n + z.places.length, 0) - 1} weitere Orte in der Umgebung.</p></div></li>
         </ul>
+      </div>
+    </section>
+
+    <section class="section gallery-section">
+      <div class="container">
+        <div class="section-head-row">
+          <div>
+            <p class="eyebrow">Aus unserer Küche</p>
+            <h2 class="h-red">Frisch auf den Teller</h2>
+          </div>
+          <p class="fine gallery-note">Alle Fotos sind Beispiele.</p>
+        </div>
+        <div class="gallery">
+          ${GALLERY.map(([img, alt, cat], i) => { const c = CATS.find((x) => x.id === cat); return `<a class="gallery-item${i === 0 ? " gallery-item-lg" : ""} reveal" href="${root}speisekarte/${c.slug}.html"><img src="${root}assets/images/${img}${i === 0 ? "" : "-sm"}.jpg" alt="${esc(alt)}" loading="lazy" decoding="async"><span class="gallery-cap">${esc(c.name)}${I.arrow}</span></a>`; }).join("\n          ")}
+        </div>
       </div>
     </section>
 
@@ -369,12 +393,17 @@ CATS.forEach((c, i) => {
     <section class="page-head page-head-cat">
       <div class="container">
         <nav class="breadcrumb" aria-label="Brotkrümelnavigation"><a href="index.html">${I.back}Speisekarte</a><span aria-hidden="true">/</span><span aria-current="page">${esc(c.name)}</span></nav>
-        <h1 class="h-red">${esc(c.name)}</h1>
-        ${c.desc ? `<p class="lead">${esc(c.desc)}</p>` : ""}
-        <form class="search search-sm" role="search" action="index.html" method="get">
+        <div class="cat-head${c.img ? " has-img" : ""}">
+          <div>
+            <h1 class="h-red">${esc(c.name)}</h1>
+            ${c.desc ? `<p class="lead">${esc(c.desc)}</p>` : ""}
+            <form class="search search-sm" role="search" action="index.html" method="get">
           <label class="visually-hidden" for="q">Ganze Speisekarte durchsuchen</label>
           ${I.search}<input id="q" name="q" type="search" placeholder="Ganze Speisekarte durchsuchen …" autocomplete="off">
-        </form>
+            </form>
+          </div>
+          ${c.img ? `<figure class="cat-head-img"><img src="../assets/images/${c.img}-sm.jpg" alt="${esc(c.imgAlt || c.name)}" width="720" height="540" decoding="async"><figcaption>Foto ist ein Beispiel.</figcaption></figure>` : ""}
+        </div>
       </div>
       <nav class="cat-nav" aria-label="Kategorien">
         <div class="container"><ul class="chips">
@@ -515,13 +544,10 @@ built.push(page({
           ${halalBadge(root)}
           <p class="fine">Die Halal-Kennzeichnung entspricht der Angabe auf unserer gedruckten Speisekarte.</p>
         </div>
-        <figure class="img-slot reveal" data-image-slot="gastraum">
-          <div class="img-slot-inner">
-            <img src="${root}assets/logo/minar-emblem.svg" alt="" width="160" height="150">
-            <span>Platz für ein Originalfoto<br>(z. B. Gastraum oder Küche)</span>
-          </div>
-          <figcaption class="visually-hidden">Bildplatzhalter</figcaption>
-        </figure>
+        <div class="about-photos reveal">
+          <figure><img src="${root}assets/images/gastraum-sm.jpg" alt="Gastraum von MINAR Küche mit Holztischen und Stühlen" loading="lazy" decoding="async"><figcaption>Unser Gastraum</figcaption></figure>
+          <figure><img src="${root}assets/images/theke-sm.jpg" alt="Theke von MINAR Küche mit Getränkekühlschrank und Speisekartentafel" loading="lazy" decoding="async"><figcaption>Theke &amp; Abholung</figcaption></figure>
+        </div>
       </div>
     </section>
     <section class="section offer">
@@ -546,6 +572,7 @@ built.push(page({
         <div>
           <address class="address address-lg"><strong>${esc(R.name)}</strong><br>${esc(R.street)}<br>${esc(R.zip)} ${esc(R.city)}</address>
           ${contactCards()}
+          <p>E-Mail: <a href="mailto:${esc(R.email)}">${esc(R.email)}</a> · Fax: ${esc(R.fax)}</p>
           <p>Bestellungen nehmen wir bis ${D.hours.orderUntil} Uhr an – telefonisch, per WhatsApp oder über unseren <a href="${root}bestellen.html">Online-Warenkorb</a>.</p>
         </div>
         <div>${hoursCard()}</div>
@@ -561,13 +588,13 @@ built.push(page({
   title: "Impressum · MINAR Küche Bad Buchau", desc: "Impressum von MINAR Küche Bad Buchau.",
   body: () => `${pageHead("Rechtliches", "Impressum")}
     <section class="section section-tight"><div class="container prose legal">
-      <p class="legal-warning"><strong>Entwurf – vor Veröffentlichung ergänzen.</strong> Alle markierten Platzhalter müssen vom Betreiber mit korrekten Angaben ersetzt und rechtlich geprüft werden.</p>
+      <p class="legal-warning"><strong>Bitte noch ergänzen bzw. prüfen:</strong> Die markierten Stellen müssen vom Betreiber vervollständigt und das Impressum rechtlich geprüft werden.</p>
       <h2>Angaben gemäß § 5 DDG</h2>
-      <p>${ph("Name des Inhabers / Firmenname und Rechtsform")}<br>${esc(R.name)}<br>${esc(R.street)}<br>${esc(R.zip)} ${esc(R.city)}</p>
-      <h2>Vertreten durch</h2><p>${ph("Vor- und Nachname der vertretungsberechtigten Person")}</p>
-      <h2>Kontakt</h2><p>Telefon: ${esc(R.phoneDisplay)}<br>WhatsApp: ${esc(R.whatsappDisplay)}<br>E-Mail: ${ph("E-Mail-Adresse")}</p>
-      <h2>Registereintrag</h2><p>${ph("Registergericht und Registernummer – falls vorhanden, sonst Abschnitt entfernen")}</p>
-      <h2>Umsatzsteuer-ID</h2><p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG:<br>${ph("USt-IdNr. – falls vorhanden, sonst Abschnitt entfernen")}</p>
+      <p>${esc(R.name)}<br>${esc(R.street)}<br>${esc(R.zip)} ${esc(R.city)}</p>
+      <h2>Vertretungsberechtigt</h2><p>${esc(R.owner)}</p>
+      <h2>Kontakt</h2><p>Telefon: ${esc(R.phoneDisplay)}<br>Fax: ${esc(R.fax)}<br>WhatsApp: ${esc(R.whatsappDisplay)}<br>E-Mail: <a href="mailto:${esc(R.email)}">${esc(R.email)}</a></p>
+      <h2>Umsatzsteuer-ID</h2><p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG:<br>${esc(R.vatId)}</p>
+      <h2>Registereintrag</h2><p>${ph("Registergericht und Registernummer – nur falls vorhanden, sonst Abschnitt entfernen")}</p>
       <h2>Zuständige Aufsichtsbehörde</h2><p>${ph("falls erforderlich – sonst Abschnitt entfernen")}</p>
       <h2>Verbraucherstreitbeilegung</h2><p>${ph("Hinweis zur (Nicht-)Teilnahme an Streitbeilegungsverfahren – vom Betreiber festzulegen")}</p>
       <h2>Webdesign</h2><p>BRÄUER.DIGITAL</p>
@@ -579,7 +606,7 @@ built.push(page({
   body: () => `${pageHead("Rechtliches", "Datenschutzerklärung")}
     <section class="section section-tight"><div class="container prose legal">
       <p class="legal-warning"><strong>Entwurf – vor Veröffentlichung ergänzen.</strong> Diese Gliederung beschreibt die technischen Gegebenheiten der Website. Sie ersetzt keine Rechtsberatung.</p>
-      <h2>1. Verantwortlicher</h2><p>${ph("Name des Inhabers / Firmenname")}<br>${esc(R.name)}, ${esc(R.street)}, ${esc(R.zip)} ${esc(R.city)}<br>Telefon: ${esc(R.phoneDisplay)}<br>E-Mail: ${ph("E-Mail-Adresse")}</p>
+      <h2>1. Verantwortlicher</h2><p>${esc(R.name)}, vertreten durch ${esc(R.owner)}<br>${esc(R.street)}, ${esc(R.zip)} ${esc(R.city)}<br>Telefon: ${esc(R.phoneDisplay)}<br>E-Mail: <a href="mailto:${esc(R.email)}">${esc(R.email)}</a></p>
       <h2>2. Hosting</h2><p>Diese Website wird als statische Website über GitHub Pages (GitHub Inc., USA) bereitgestellt. Beim Aufruf verarbeitet der Hoster technisch notwendige Daten wie IP-Adresse, Datum und Uhrzeit sowie die aufgerufene Seite. ${ph("Rechtsgrundlage, Drittlandübermittlung und Speicherdauer ergänzen und prüfen")}</p>
       <h2>3. Keine Cookies, kein Tracking, keine externen Schriften</h2><p>Die Website setzt keine Cookies, verwendet keine Analyse- oder Trackingdienste und lädt weder Schriften noch Karten von externen Servern.</p>
       <h2>4. Lokale Speicherung im Browser (Warenkorb)</h2><p>Damit der Warenkorb beim Seitenwechsel erhalten bleibt, werden die ausgewählten Gerichte sowie – falls eingegeben – Name, Telefonnummer, Lieferort, Lieferadresse und Bestellart ausschließlich lokal im Browser gespeichert (localStorage). Diese Daten werden nicht an den Betreiber oder Dritte übertragen und können über „Warenkorb leeren“ bzw. die Browsereinstellungen gelöscht werden. ${ph("rechtliche Bewertung ergänzen")}</p>
