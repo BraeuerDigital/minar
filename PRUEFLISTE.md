@@ -51,7 +51,7 @@ Keine Kennzeichnung ist mehr als „auf Anfrage“ markiert.
 | D15 | Getränke-Abfrage beim Absenden per WhatsApp, wenn noch kein Getränk im Warenkorb ist (einmal pro Besuch, überspringbar) | | auf Kundenwunsch umgesetzt |
 | D16 | Pflichtfelder: Abholung → Name, Telefon · Lieferung → Name, Telefon, Lieferort, Adresse. Wunschzeit: „So schnell wie möglich“ oder heute in 15-Min.-Schritten (frühestens 30 Min. ab jetzt, bis 21:30 Uhr) | Vorlaufzeit 30 Min. und Endzeit bitte bestätigen | auf Kundenwunsch umgesetzt |
 | D17 | Warenkorb: Gerichte mit Auswahl (Größe, Dressing, Soßen, Dips, Extras) über „Anpassen“ nachträglich änderbar | | auf Kundenwunsch umgesetzt |
-| D18 | Lieferung nur bis 21:15 Uhr wählbar, danach und dienstags nur Abholung; Liefer-Wunschzeiten bis 21:15, Abholung bis 21:30, jeweils 15-Min.-Schritte | | auf Kundenwunsch umgesetzt |
+| D18 | Lieferung nur bis 21:15 Uhr wählbar, Abholung bis 21:30 Uhr; danach und dienstags beides ausgegraut/durchgestrichen und Absenden gesperrt; Liefer-Wunschzeiten bis 21:15, Abholung bis 21:30, jeweils 15-Min.-Schritte | | auf Kundenwunsch umgesetzt |
 
 ## E. Korrigierte Schreibweisen
 

@@ -399,15 +399,32 @@
     updateCheckout();
   }
 
-  /* Lieferungen werden nur bis zur Bestellannahme (21:15) angenommen – danach und am Ruhetag aus */
-  function deliveryAvailable() { var n = berlinNow(); return H.closedDays.indexOf(n.day) < 0 && n.min < toMin(H.orderUntil); }
-  function applyDeliveryCutoff() {
-    var radio = $('[data-mode][value="Lieferung"]'), info = $("[data-delivery-off]"); if (!radio) return;
-    var on = deliveryAvailable();
-    radio.disabled = !on; radio.closest("label").classList.toggle("is-off", !on);
-    if (!on && radio.checked) { radio.checked = false; $('[data-mode][value="Abholung"]').checked = true; }
-    if (info) { info.hidden = on; info.textContent = "Lieferungen nehmen wir bis " + H.orderUntil + " Uhr an (Dienstag Ruhetag). Jetzt ist nur Abholung möglich."; }
+  /* Bestellarten nach Uhrzeit:
+     Lieferung: bis zur Bestellannahme (21:15) · Abholung: bis Ladenschluss (21:30)
+     Am Ruhetag beides aus. Ausgegraut und durchgestrichen, wenn nicht verfügbar. */
+  function modeAvailable(m) {
+    var n = berlinNow(); if (H.closedDays.indexOf(n.day) > -1) return false;
+    return n.min < toMin(m === "Lieferung" ? H.orderUntil : H.close);
   }
+  function applyDeliveryCutoff() {
+    var info = $("[data-delivery-off]"), radios = $$("[data-mode]"); if (!radios.length) return;
+    var avail = {};
+    radios.forEach(function (r) {
+      var on = modeAvailable(r.value); avail[r.value] = on;
+      r.disabled = !on; r.closest("label").classList.toggle("is-off", !on);
+    });
+    var checked = $("[data-mode]:checked");
+    if (checked && !avail[checked.value]) {
+      checked.checked = false;
+      var alt = radios.filter(function (r) { return avail[r.value]; })[0]; if (alt) alt.checked = true;
+    }
+    if (!info) return;
+    var msg = "";
+    if (!avail.Abholung && !avail.Lieferung) msg = "Wir haben gerade geschlossen – Bestellungen sind wieder ab " + H.open + " Uhr möglich (Dienstag Ruhetag).";
+    else if (!avail.Lieferung) msg = "Lieferungen nehmen wir bis " + H.orderUntil + " Uhr an (Dienstag Ruhetag). Jetzt ist nur Abholung möglich.";
+    info.hidden = !msg; info.textContent = msg;
+  }
+  function anyModeAvailable() { return modeAvailable("Abholung") || modeAvailable("Lieferung"); }
   function updateCheckout() {
     applyDeliveryCutoff();
     var delivery = mode() === "Lieferung", sum = subtotal(), z = delivery ? currentZone() : null;
@@ -427,7 +444,7 @@
     closedEl.hidden = s.ordering;
     if (!s.ordering) closedEl.textContent = "Derzeit ist laut Öffnungszeiten keine Bestellannahme (" + s.text + "). Ihre Nachricht wird möglicherweise erst später gelesen.";
     var send = $("[data-wa-send]");
-    var missing = requiredMissing()[0] ? requiredMissing()[0].msg : "";
+    var missing = !anyModeAvailable() ? "Derzeit geschlossen" : requiredMissing()[0] ? requiredMissing()[0].msg : "";
     var ok = cart.length && !missing;
     send.setAttribute("aria-disabled", ok ? "false" : "true");
     send.href = ok ? "https://wa.me/" + R.whatsappNumber + "?text=" + encodeURIComponent(buildMessage()) : "#";
