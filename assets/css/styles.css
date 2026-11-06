@@ -1338,3 +1338,11 @@ main:has(> .cta-band:last-child) + .swoosh-footer .sw-yellow { fill: #0d1307; }
   .cart-fab-total { padding: .35rem .5rem; font-size: .85rem; }
 }
 @media (min-width: 1000px) { .footer-credit { top: calc(1.05rem + .75em); } }
+
+/* ---------- Footer-Navigation zentriert ---------- */
+.f-nav { text-align: center; }
+.f-nav .footer-nav { display: inline-grid; justify-items: center; }
+@media (max-width: 560px) {
+  .f-nav .footer-nav { display: grid; grid-template-columns: 1fr 1fr; justify-items: center; width: 100%; }
+}
+@media (max-width: 560px) { .footer-grid > .f-nav { grid-column: 1 / -1; } .footer-grid > .f-col { grid-column: 1 / -1; } }
