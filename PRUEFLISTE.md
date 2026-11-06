@@ -61,7 +61,7 @@ Coctail → Cocktail · Quattro Formaggie → Quattro Formaggi · Chesse-Garnele
 | F4 | Domain `www.minar-buchau.de` – **bewusst nicht verknüpft** (kein CNAME) | offen |
 | F6 | Hinweis „Preise laut gedruckter Speisekarte, Stand 04/2023“ unter der Speisekarte – Preise sind bestätigt; Text beibehalten, ändern oder entfernen? | offen |
 | F7 | `noindex` auf allen Seiten – vor dem Livegang entfernen? | offen |
-| F5 | Halal-Kennzeichnung: auf Wunsch aus dem Flyer übernommen (Logo, Header, Startseite, Speisekarte, Über uns). Formulierung: „Halal – wie auf unserer gedruckten Speisekarte gekennzeichnet.“ Keine Zertifizierung oder Zertifizierungsstelle genannt. Vom Kunden bestätigt (06.11.2026). | erledigt |
+| F5 | Halal-Kennzeichnung: auf Wunsch aus dem Flyer übernommen (Logo, Header, Startseite, Speisekarte, Über uns). Formulierung auf Wunsch des Kunden: „Halal“. Keine Zertifizierung oder Zertifizierungsstelle genannt. Vom Kunden bestätigt (06.11.2026). | erledigt |
 
 ## G. Rechtliches
 

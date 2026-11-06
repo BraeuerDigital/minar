@@ -87,7 +87,7 @@ function header(root, active) {
         </div>
       </nav>
       <div class="header-actions">
-        <img class="header-halal" src="${root}assets/logo/halal-siegel.svg" alt="Halal" title="Halal – wie auf unserer Speisekarte gekennzeichnet" width="40" height="38">
+        <img class="header-halal" src="${root}assets/logo/halal-siegel.svg" alt="Halal" title="Halal" width="40" height="38">
         <a class="icon-btn cart-link${active === "bestellen" ? " is-active" : ""}" href="${root}bestellen.html" aria-label="Warenkorb">${I.bag}<span class="cart-count" data-cart-count hidden>0</span></a>
         <a class="btn btn-primary header-order${active === "bestellen" ? " is-current" : ""}" href="${root}bestellen.html"${active === "bestellen" ? ' aria-current="page"' : ""}>Jetzt bestellen</a>
         <button class="icon-btn nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
@@ -132,6 +132,7 @@ function footer(root) {
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
         <p>© <span data-year>2026</span> ${esc(R.name)} · ${esc(R.city)}</p>
+        <p class="footer-credit"><span>Webauftritt von</span> <a class="credit-link" href="https://braeuer.digital" target="_blank" rel="noopener">BRÄUER.DIGITAL</a></p>
         <p><a href="${root}impressum.html">Impressum</a> · <a href="${root}datenschutz.html">Datenschutz</a></p>
       </div>
     </div>
@@ -392,7 +393,6 @@ built.push(page({
         <div class="full-menu" data-cat-overview>
           ${CATS.map((c, i) => `<section class="menu-cat" id="${c.slug}" aria-labelledby="h-${c.slug}">
             <header class="menu-cat-head">
-              <span class="menu-cat-num">${String(i + 1).padStart(2, "0")}</span>
               <div><h2 class="h-red" id="h-${c.slug}">${esc(c.name)}</h2>${c.desc ? `<p class="fine">${esc(c.desc)}</p>` : ""}</div>
               ${c.img ? `<img class="menu-cat-img" src="../assets/images/${c.img}-sm.jpg" alt="${esc(c.imgAlt || c.name)}" loading="lazy" decoding="async">` : ""}
             </header>
@@ -564,7 +564,6 @@ built.push(page({
           <p>MINAR Küche verbindet auf einer Karte, was viele gern essen: Salate, Burger und Fingerfood, Döner und überbackene Teller, Pizza und Party Pizza, Nudelgerichte und Gnocchi, Schnitzel sowie Currys und Masala-Gerichte der indischen und pakistanischen Küche – dazu vegetarische Gerichte, Desserts und Getränke.</p>
           <p>Sie können bei uns im Restaurant essen, Ihre Bestellung abholen oder sich beliefern lassen. Unsere Karte sagt dazu: <em>„Bitte bedenken Sie, wir bereiten alle Speisen frisch für Sie zu.“</em></p>
           ${halalBadge(root)}
-          <p class="fine">Die Halal-Kennzeichnung entspricht der Angabe auf unserer gedruckten Speisekarte.</p>
         </div>
         <div class="about-photos reveal">
           <figure><img src="${root}assets/images/gastraum-sm.jpg" alt="Gastraum von MINAR Küche mit Holztischen und Stühlen" loading="lazy" decoding="async"><figcaption>Unser Gastraum</figcaption></figure>

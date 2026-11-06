@@ -46,7 +46,7 @@ window.MINAR_DATA = {
     offer: ["Restaurant", "Abholung", "Lieferservice"]
   },
 
-  halalNote: "Halal – wie auf unserer gedruckten Speisekarte gekennzeichnet.",
+  halalNote: "Halal",
 
   menuSource: "Preise laut gedruckter Speisekarte, Stand 04/2023. Für Druckfehler keine Haftung.",
 
