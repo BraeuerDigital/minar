@@ -453,11 +453,12 @@ p { margin: 0 0 1em; }
 .opt .opt-price { font-weight: 600; font-variant-numeric: tabular-nums; }
 .field { display: flex; flex-direction: column; gap: .3rem; margin-bottom: 1rem; font-size: .92rem; font-weight: 600; }
 .field small { font-weight: 400; color: var(--muted); }
-.field input, .field textarea {
+.field input, .field textarea, .field select {
   min-height: 50px; padding: .7rem .9rem; border: 1.5px solid var(--sand); border-radius: var(--radius-sm);
   background: #fff; font-weight: 400; font-size: 1rem; resize: vertical;
 }
-.field input:focus, .field textarea:focus { outline: none; border-color: var(--olive); box-shadow: 0 0 0 4px rgba(95,107,72,.15); }
+.field select { appearance: auto; }
+.field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--olive); box-shadow: 0 0 0 4px rgba(95,107,72,.15); }
 .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 .8rem; }
 .field-wide { grid-column: 1 / -1; }
 .field[hidden] { display: none; }
@@ -518,3 +519,18 @@ p { margin: 0 0 1em; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
   .js .reveal { opacity: 1; transform: none; }
 }
+
+/* ---------- Ergänzungen Speisekarte/Warenkorb ---------- */
+.cart-total { border-top: 1px solid var(--sand); padding: .6rem 0 .2rem; margin-bottom: .6rem; font-variant-numeric: tabular-nums; }
+.cart-total div { display: flex; justify-content: space-between; padding: .15rem 0; }
+.cart-total-sum { font-size: 1.15rem; }
+.cart-total-sum strong { font-size: 1.4rem; }
+.cart-min.is-ok { background: var(--olive-soft); color: var(--olive-dark); }
+.allergens-check { font-style: italic; }
+.legend-notes { grid-column: 1 / -1; margin-top: .8rem; color: var(--muted); }
+.legend-notes p { margin: 0 0 .3rem; }
+.delivery-notes { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; gap: .45rem; }
+.delivery-notes li { padding-left: 1.3rem; position: relative; color: var(--ink-2); font-size: .95rem; }
+.delivery-notes li::before { content: ""; position: absolute; left: 0; top: .6em; width: 7px; height: 7px; border-radius: 50%; background: var(--saffron); }
+.delivery-table td:first-child { line-height: 1.45; }
+.menu-source { font-size: .85rem; color: var(--muted); margin: 1.5rem 0 0; }

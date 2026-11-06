@@ -25,9 +25,35 @@
   };
 
   var R = D.restaurant;
-  var items = (D.items || []).map(function (it, i) {
-    it._id = "i" + i;
-    it.prices = it.prices && it.prices.length ? it.prices : [{ label: "", price: 0 }];
+  var GROUPS = D.optionGroups || D.extraGroups || {};
+  var LEG = D.legend || { allergens: {}, additives: {} };
+
+  /* ---------------- Daten normalisieren ---------------- */
+  var items = (D.items || []).map(function (src, i) {
+    var it = {
+      _id: "i" + i,
+      nr: src.nr || "",
+      name: src.name,
+      category: src.cat || src.category,
+      description: src.desc || src.description || "",
+      tags: src.tags || [],
+      codesCheck: !!src.codesCheck,
+      allergens: [], additives: [],
+      opts: (src.opts || (src.extras ? [src.extras] : [])).filter(function (g) { return GROUPS[g]; })
+    };
+    var pr = src.prices && src.prices.length ? src.prices : [0];
+    it.prices = pr.map(function (p) {
+      if (Array.isArray(p)) return { label: p[0], price: p[1] };
+      if (typeof p === "number") return { label: "", price: p };
+      return p;
+    });
+    if (src.codes && !it.codesCheck) {
+      src.codes.split(",").map(function (c) { return c.trim(); }).filter(Boolean).forEach(function (c) {
+        (/^\d+$/.test(c) ? it.additives : it.allergens).push(c);
+      });
+    }
+    if (src.allergens) it.allergens = it.allergens.concat(src.allergens);
+    if (src.additives) it.additives = it.additives.concat(src.additives);
     return it;
   });
   var itemById = {};
@@ -35,6 +61,12 @@
   var catById = {};
   D.categories.forEach(function (c) { catById[c.id] = c; });
   var hasItems = items.length > 0;
+
+  var zones = (D.delivery && D.delivery.zones) || [];
+  var places = [];
+  zones.forEach(function (z, zi) {
+    (z.places || (z.area ? [z.area] : [])).forEach(function (p) { places.push({ name: p, zone: zi }); });
+  });
 
   /* ---------------- Header / Navigation ---------------- */
   var header = $(".site-header");
@@ -52,7 +84,6 @@
   $$(".main-nav a").forEach(function (a) { a.addEventListener("click", function () { setNav(false); }); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") setNav(false); });
 
-  // aktiver Navigationspunkt
   var navLinks = $$(".main-nav ul a");
   if ("IntersectionObserver" in window) {
     var sectionIo = new IntersectionObserver(function (entries) {
@@ -65,7 +96,6 @@
     ["start", "ueber-uns", "speisekarte", "lieferservice", "kontakt"].forEach(function (id) {
       var el = document.getElementById(id); if (el) sectionIo.observe(el);
     });
-
     var revealIo = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("is-in"); revealIo.unobserve(en.target); } });
     }, { rootMargin: "0px 0px -8% 0px" });
@@ -96,16 +126,16 @@
     var o = toMin(H.open), c = toMin(H.close), ou = toMin(H.orderUntil);
     var open = !closedToday && n.min >= o && n.min < c;
     var ordering = !closedToday && n.min >= o && n.min < ou;
-    var nextText;
+    var text;
     if (open) {
-      nextText = ordering ? "Jetzt geöffnet · Bestellannahme bis " + H.orderUntil + " Uhr" : "Geöffnet bis " + H.close + " Uhr · Bestellannahme beendet";
+      text = ordering ? "Jetzt geöffnet · Bestellannahme bis " + H.orderUntil + " Uhr" : "Geöffnet bis " + H.close + " Uhr · Bestellannahme beendet";
     } else {
       var d = n.day, add = 0;
       if (closedToday || n.min >= o) { do { d = (d + 1) % 7; add++; } while (H.closedDays.indexOf(d) > -1); }
       var when = add === 0 ? "heute" : add === 1 ? "morgen" : DAY_NAMES[d];
-      nextText = (closedToday ? "Heute Ruhetag" : "Geschlossen") + " · öffnet " + when + " um " + H.open + " Uhr";
+      text = (closedToday ? "Heute Ruhetag" : "Geschlossen") + " · öffnet " + when + " um " + H.open + " Uhr";
     }
-    return { open: open, ordering: ordering, day: n.day, text: nextText, short: open ? "Jetzt geöffnet" : (closedToday ? "Heute Ruhetag" : "Derzeit geschlossen") };
+    return { open: open, ordering: ordering, day: n.day, text: text, short: open ? "Jetzt geöffnet" : (closedToday ? "Heute Ruhetag" : "Derzeit geschlossen") };
   }
 
   function renderStatus() {
@@ -151,12 +181,14 @@
     }).join("");
   }
 
-  var norm = function (s) { return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/ß/g, "ss"); };
+  var norm = function (s) { return String(s || "").toLowerCase().replace(/ß/g, "ss").normalize("NFD").replace(/[̀-ͯ]/g, ""); };
 
   function matches(it) {
     if (!query) return true;
-    var hay = norm([it.nr, it.name, it.description, (it.tags || []).join(" "), (catById[it.category] || {}).name].join(" "));
-    return norm(query).split(/\s+/).every(function (w) { return hay.indexOf(w) > -1; });
+    var q = norm(query).trim();
+    if (/^\d+[a-z]?$/.test(q) && norm(it.nr) === q) return true;
+    var hay = norm([it.nr, it.name, it.description, it.tags.join(" "), (catById[it.category] || {}).name].join(" "));
+    return q.split(/\s+/).every(function (w) { return hay.indexOf(w) > -1; });
   }
 
   function priceHtml(it) {
@@ -165,27 +197,28 @@
     return "<small>ab</small>" + money(min);
   }
 
+  function codeList(codes, legend) {
+    return codes.map(function (c) { var t = legend[c]; return t ? '<abbr title="' + esc(t) + '">' + esc(c) + "</abbr>" : esc(c); }).join(", ");
+  }
   function allergenHtml(it) {
-    var a = it.allergens || [], z = it.additives || [];
-    if (!a.length && !z.length) return "";
-    var mk = function (codes, legend) {
-      return codes.map(function (c) { var t = legend[c]; return t ? '<abbr title="' + esc(t) + '">' + esc(c) + "</abbr>" : esc(c); }).join(", ");
-    };
+    if (it.codesCheck) return '<span class="allergens allergens-check">Allergene &amp; Zusatzstoffe auf Anfrage</span>';
     var parts = [];
-    if (a.length) parts.push("Allergene: " + mk(a, D.legend.allergens));
-    if (z.length) parts.push("Zusatzstoffe: " + mk(z, D.legend.additives));
-    return '<span class="allergens">' + parts.join(" · ") + "</span>";
+    if (it.allergens.length) parts.push("Allergene: " + codeList(it.allergens, LEG.allergens || {}));
+    if (it.additives.length) parts.push("Zusatzstoffe: " + codeList(it.additives, LEG.additives || {}));
+    return parts.length ? '<span class="allergens">' + parts.join(" · ") + "</span>" : "";
   }
 
   function dishHtml(it) {
-    var tags = (it.tags || []).map(function (t) {
+    var tags = it.tags.map(function (t) {
       var cls = /veg/.test(t) ? "tag tag-veg" : /scharf/.test(t) ? "tag tag-hot" : "tag";
       return '<span class="' + cls + '">' + esc(t) + "</span>";
     }).join("");
     var al = allergenHtml(it);
-    var variants = it.prices.length > 1 ? '<span class="variants-line">' + it.prices.map(function (p) { return esc(p.label) + " " + money(p.price); }).join(" · ") + "</span>" : "<span></span>";
+    var variants = it.prices.length > 1
+      ? '<span class="variants-line">' + it.prices.map(function (p) { return esc(p.label) + " " + money(p.price); }).join(" · ") + "</span>"
+      : "<span></span>";
     return '<article class="dish">' +
-      '<h4 class="dish-title">' + (it.nr ? '<span class="dish-nr">Nr. ' + esc(it.nr) + "</span>" : "") + esc(it.name) + "</h4>" +
+      '<h4 class="dish-title">' + (it.nr ? '<span class="dish-nr">' + esc(it.nr) + "</span>" : "") + esc(it.name) + "</h4>" +
       '<div class="dish-price">' + priceHtml(it) + "</div>" +
       (it.description ? '<p class="dish-desc">' + esc(it.description) + "</p>" : "") +
       ((tags || al) ? '<div class="dish-meta">' + tags + al + "</div>" : "") +
@@ -201,8 +234,8 @@
       total += list.length;
       if (query && !list.length) return;
       html += '<section class="menu-cat" id="kat-' + esc(c.id) + '"><div class="menu-cat-head"><h3>' + esc(c.name) + "</h3>" +
-        (list.length ? "<span>" + list.length + (list.length === 1 ? " Gericht" : " Gerichte") + "</span>" : "") + "</div>" +
-        (c.description ? '<p class="fine">' + esc(c.description) + "</p>" : "") +
+        (list.length ? "<span>" + list.length + (list.length === 1 ? " Gericht" : " Gerichte") + "</span>" : "") +
+        ((c.desc || c.description) ? '<p class="fine">' + esc(c.desc || c.description) + "</p>" : "") + "</div>" +
         (list.length ? '<div class="menu-items">' + list.map(dishHtml).join("") + "</div>"
           : '<div class="menu-empty-cat">Für diese Kategorie sind online noch keine Gerichte hinterlegt – fragen Sie gerne telefonisch nach: <a href="tel:' + R.phoneLink + '">' + esc(R.phoneDisplay) + "</a>.</div>") +
         "</section>";
@@ -213,10 +246,17 @@
     listEl.innerHTML = html;
   }
 
+  function scrollToMenuTop() {
+    var t = $("[data-menu-toolbar]");
+    if (!t) return;
+    var y = listEl.getBoundingClientRect().top + window.scrollY - header.offsetHeight - t.offsetHeight - 8;
+    if (window.scrollY > y + 4) window.scrollTo({ top: y, behavior: "smooth" });
+  }
+
   chipsEl.addEventListener("click", function (e) {
     var b = e.target.closest("[data-cat]"); if (!b) return;
     activeCat = b.getAttribute("data-cat");
-    renderChips(); renderMenu();
+    renderChips(); renderMenu(); scrollToMenuTop();
     b = chipsEl.querySelector('[data-cat="' + activeCat + '"]');
     if (b && b.scrollIntoView) b.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
   });
@@ -236,11 +276,16 @@
   listEl.addEventListener("click", function (e) {
     if (e.target.closest("[data-reset-search]")) resetSearch();
     var add = e.target.closest("[data-add]");
-    if (add) openItem(itemById[add.getAttribute("data-add")]);
+    if (add) {
+      var it = itemById[add.getAttribute("data-add")];
+      // einfache Artikel direkt hinzufügen, sonst Auswahl-Dialog
+      if (it.prices.length === 1 && !it.opts.length) addToCart(it, 0, {}, 1, "");
+      else openItem(it);
+    }
   });
 
   tiles.addEventListener("click", function (e) {
-    var t = e.target.closest("[data-goto-cat]"); if (!t) return;
+    var t = e.target.closest("[data-goto-cat]"); if (!t || !hasItems) return;
     activeCat = t.getAttribute("data-goto-cat");
     searchEl.value = ""; query = ""; clearEl.hidden = true;
     renderChips(); renderMenu();
@@ -253,7 +298,6 @@
     notice.innerHTML = '<div><p><strong>Unsere Online-Speisekarte wird gerade eingepflegt.</strong><br>Bis dahin nehmen wir Ihre Bestellung gerne telefonisch oder per WhatsApp entgegen.</p>' +
       '<div class="notice-actions"><a class="btn btn-primary" href="tel:' + R.phoneLink + '">Anrufen</a>' +
       '<a class="btn btn-whatsapp" href="https://wa.me/' + R.whatsappNumber + '" target="_blank" rel="noopener">WhatsApp</a></div></div>';
-    // Ohne Gerichte: Toolbar und leere Liste ausblenden, Kategorien als Überblick zeigen
     $("[data-menu-toolbar]").hidden = true;
     listEl.hidden = true;
     var ov = $("[data-menu-overview]");
@@ -268,15 +312,16 @@
 
   // Legende
   (function () {
-    var a = D.legend.allergens, z = D.legend.additives;
+    var a = LEG.allergens || {}, z = LEG.additives || {};
     var ka = Object.keys(a), kz = Object.keys(z);
-    if (!ka.length && !kz.length) {
-      if (hasItems) { var n = $("[data-legend-note]"); n.hidden = false; n.textContent = "Informationen zu Allergenen und Zusatzstoffen erhalten Sie auf Nachfrage bei unserem Personal."; }
-      return;
-    }
+    var srcNote = $("[data-legend-note]");
+    if (hasItems && D.menuSource) { srcNote.hidden = false; srcNote.className = "menu-source"; srcNote.textContent = D.menuSource; }
+    if (!ka.length && !kz.length) return;
     var html = "";
     if (ka.length) html += "<h4>Allergene</h4>" + ka.map(function (k) { return "<div><strong>" + esc(k) + "</strong> – " + esc(a[k]) + "</div>"; }).join("");
     if (kz.length) html += "<h4>Zusatzstoffe</h4>" + kz.map(function (k) { return "<div><strong>" + esc(k) + "</strong> – " + esc(z[k]) + "</div>"; }).join("");
+    var notes = (LEG.notes || []).concat(["Fehlt bei einem Gericht eine Kennzeichnung, bedeutet das nicht, dass es frei von Allergenen ist. Bitte fragen Sie bei Unverträglichkeiten nach."]);
+    html += '<div class="legend-notes">' + notes.map(function (n) { return "<p>" + esc(n) + "</p>"; }).join("") + "</div>";
     $("[data-legend-content]").innerHTML = html;
     $("[data-legend]").hidden = false;
   })();
@@ -287,17 +332,19 @@
   /* ---------------- Lieferkonditionen ---------------- */
   (function () {
     var box = $("[data-delivery-content]");
-    var zones = D.delivery.zones || [];
     if (!zones.length) {
       box.innerHTML = '<div class="delivery-pending"><p>Liefergebiete, Mindestbestellwerte und Lieferkosten nennen wir Ihnen gerne bei Ihrer Bestellung – telefonisch unter <a href="tel:' +
         R.phoneLink + '">' + esc(R.phoneDisplay) + '</a> oder per <a href="https://wa.me/' + R.whatsappNumber + '" target="_blank" rel="noopener">WhatsApp</a>.</p></div>';
       return;
     }
+    var notes = D.delivery.notes || (D.delivery.note ? [D.delivery.note] : []);
     box.innerHTML = '<table class="delivery-table"><thead><tr><th scope="col">Liefergebiet</th><th scope="col">Mindestbestellwert</th><th scope="col">Lieferkosten</th></tr></thead><tbody>' +
       zones.map(function (z) {
-        return "<tr><td>" + esc(z.area) + (z.note ? '<br><span class="fine">' + esc(z.note) + "</span>" : "") + '</td><td data-label="Mindestbestellwert">' +
-          (z.minOrder != null ? money(z.minOrder) : "–") + '</td><td data-label="Lieferkosten">' + (z.fee != null ? (z.fee === 0 ? "kostenlos" : money(z.fee)) : "–") + "</td></tr>";
-      }).join("") + "</tbody></table>" + (D.delivery.note ? '<p class="fine" style="margin-top:1rem">' + esc(D.delivery.note) + "</p>" : "");
+        var area = (z.places || [z.area]).join(", ");
+        return "<tr><td>" + esc(area) + '</td><td data-label="Mindestbestellwert">ab ' + money(z.minOrder) +
+          '</td><td data-label="Lieferkosten">' + (z.fee === 0 ? "kostenlos" : money(z.fee)) + "</td></tr>";
+      }).join("") + "</tbody></table>" +
+      (notes.length ? '<ul class="delivery-notes">' + notes.map(function (n) { return "<li>" + esc(n) + "</li>"; }).join("") + "</ul>" : "");
   })();
 
   /* ---------------- Dialoge ---------------- */
@@ -312,7 +359,7 @@
   $$("dialog").forEach(function (d) {
     d.addEventListener("close", function () { if (!$("dialog[open]")) document.body.style.overflow = ""; });
     d.addEventListener("click", function (e) {
-      if (e.target === d) closeDialog(d); // Klick auf Hintergrund
+      if (e.target === d) closeDialog(d);
       if (e.target.closest("[data-close]")) closeDialog(d);
     });
   });
@@ -330,26 +377,41 @@
   /* ---------------- Gericht-Dialog ---------------- */
   var itemDialog = $("#item-dialog");
   var itemForm = $("[data-item-form]");
+  var optsBox = $("[data-item-opts]", itemForm);
   var cur = null, curQty = 1;
 
-  function extraGroupFor(it) { return it.extras && D.extraGroups[it.extras] ? D.extraGroups[it.extras] : null; }
-  function extraPrice(opt, variantIdx) {
-    if (Array.isArray(opt.prices)) return opt.prices[variantIdx] != null ? opt.prices[variantIdx] : opt.prices[opt.prices.length - 1];
-    return opt.price || 0;
+  function optPrice(o, v) {
+    if (Array.isArray(o.prices)) return o.prices[v] != null ? o.prices[v] : o.prices[o.prices.length - 1];
+    return o.price || 0;
+  }
+  function readSelection() {
+    var sel = {};
+    cur.opts.forEach(function (gid) {
+      sel[gid] = $$('input[data-g="' + gid + '"]:checked', itemForm).map(function (x) { return +x.value; });
+    });
+    return sel;
+  }
+  function selectionExtra(it, sel, v) {
+    var sum = 0, names = [];
+    it.opts.forEach(function (gid) {
+      var g = GROUPS[gid];
+      (sel[gid] || []).forEach(function (i) {
+        var o = g.options[i]; if (!o) return;
+        sum += optPrice(o, v); names.push(o.name);
+      });
+    });
+    return { sum: sum, names: names };
   }
 
   function updateItemPrice() {
     if (!cur) return;
     var v = +((itemForm.querySelector("input[name=variant]:checked") || {}).value || 0);
-    var sum = cur.prices[v].price;
-    var g = extraGroupFor(cur);
-    if (g) {
-      $$("input[name=extra]:checked", itemForm).forEach(function (x) { sum += extraPrice(g.options[+x.value], v); });
-      $$("[data-extra-price]", itemForm).forEach(function (el) {
-        var p = extraPrice(g.options[+el.getAttribute("data-extra-price")], v);
-        el.textContent = p ? "+ " + money(p) : "";
-      });
-    }
+    var sum = cur.prices[v].price + selectionExtra(cur, readSelection(), v).sum;
+    $$("[data-opt-price]", itemForm).forEach(function (el) {
+      var p = el.getAttribute("data-opt-price").split(":");
+      var pr = optPrice(GROUPS[p[0]].options[+p[1]], v);
+      el.textContent = pr ? "+ " + money(pr) : "";
+    });
     $("[data-qty]", itemForm).textContent = curQty;
     $("[data-item-add]", itemForm).textContent = "Hinzufügen · " + money(sum * curQty);
   }
@@ -357,23 +419,22 @@
   function openItem(it) {
     if (!it) return;
     cur = it; curQty = 1;
-    $("[data-item-nr]", itemForm).textContent = it.nr ? "Nr. " + it.nr : "";
+    $("[data-item-nr]", itemForm).textContent = it.nr ? "Nr. " + it.nr : (catById[it.category] || {}).name || "";
     $("[data-item-title]", itemForm).textContent = it.name;
     $("[data-item-desc]", itemForm).textContent = it.description || "";
     $("[data-item-note]", itemForm).value = "";
-    var vWrap = $("[data-item-variants]", itemForm);
-    vWrap.hidden = it.prices.length < 2;
+    $("[data-item-variants]", itemForm).hidden = it.prices.length < 2;
     $("[data-variant-list]", itemForm).innerHTML = it.prices.map(function (p, i) {
       return '<label class="opt"><input type="radio" name="variant" value="' + i + '"' + (i === 0 ? " checked" : "") + "><span>" + esc(p.label || "Standard") + '</span><span class="opt-price">' + money(p.price) + "</span></label>";
     }).join("");
-    var g = extraGroupFor(it), eWrap = $("[data-item-extras]", itemForm);
-    eWrap.hidden = !g;
-    if (g) {
-      $("[data-extras-label]", itemForm).textContent = g.label || "Extras";
-      $("[data-extras-list]", itemForm).innerHTML = g.options.map(function (o, i) {
-        return '<label class="opt"><input type="' + (g.multiple === false ? "radio" : "checkbox") + '" name="extra" value="' + i + '"><span>' + esc(o.name) + '</span><span class="opt-price" data-extra-price="' + i + '"></span></label>';
-      }).join("");
-    }
+    optsBox.innerHTML = it.opts.map(function (gid) {
+      var g = GROUPS[gid], one = g.type === "one";
+      return '<fieldset class="opt-group"><legend>' + esc(g.label || "Auswahl") + (one ? "" : ' <small class="fine">(optional)</small>') + '</legend><div class="opt-list">' +
+        g.options.map(function (o, i) {
+          return '<label class="opt"><input type="' + (one ? "radio" : "checkbox") + '" name="g-' + gid + '" data-g="' + gid + '" value="' + i + '"' + (one && i === 0 ? " checked" : "") +
+            "><span>" + esc(o.name) + '</span><span class="opt-price" data-opt-price="' + gid + ":" + i + '"></span></label>';
+        }).join("") + "</div></fieldset>";
+    }).join("");
     updateItemPrice();
     openDialog(itemDialog);
   }
@@ -385,42 +446,40 @@
     e.preventDefault();
     if (!cur) return;
     var v = +((itemForm.querySelector("input[name=variant]:checked") || {}).value || 0);
-    var ex = $$("input[name=extra]:checked", itemForm).map(function (x) { return +x.value; });
-    addToCart(cur, v, ex, curQty, $("[data-item-note]", itemForm).value.trim());
+    addToCart(cur, v, readSelection(), curQty, $("[data-item-note]", itemForm).value.trim());
     closeDialog(itemDialog);
   });
 
   /* ---------------- Warenkorb ---------------- */
-  var CART_KEY = "minar-cart-v1", FORM_KEY = "minar-form-v1";
+  var CART_KEY = "minar-cart-v2", FORM_KEY = "minar-form-v2";
   var cart = (store.get(CART_KEY) || []).filter(function (l) {
-    // nur Positionen behalten, deren Gericht noch existiert und unverändert ist
     var it = items.filter(function (i) { return i.nr === l.nr && i.name === l.name; })[0];
-    if (!it) return false;
-    l._id = it._id; return true;
+    if (!it || !it.prices[l.v]) return false;
+    l._id = it._id; l.sel = l.sel || {}; return true;
   });
   var cartDialog = $("#cart-dialog");
 
   function lineCalc(l) {
     var it = itemById[l._id];
-    var unit = it.prices[l.v] ? it.prices[l.v].price : it.prices[0].price;
-    var g = extraGroupFor(it);
-    var exNames = [];
-    if (g) l.ex.forEach(function (i) { var o = g.options[i]; if (o) { unit += extraPrice(o, l.v); exNames.push(o.name); } });
-    return { it: it, unit: unit, total: unit * l.qty, variant: it.prices.length > 1 ? it.prices[l.v].label : "", extras: exNames };
+    var ex = selectionExtra(it, l.sel, l.v);
+    var unit = it.prices[l.v].price + ex.sum;
+    return { it: it, unit: unit, total: unit * l.qty, variant: it.prices.length > 1 || it.prices[0].label ? it.prices[l.v].label : "", extras: ex.names };
   }
   function subtotal() { return cart.reduce(function (s, l) { return s + lineCalc(l).total; }, 0); }
   function count() { return cart.reduce(function (s, l) { return s + l.qty; }, 0); }
 
-  function addToCart(it, v, ex, qty, note) {
-    var key = it._id + "|" + v + "|" + ex.slice().sort().join(",") + "|" + note;
+  function addToCart(it, v, sel, qty, note) {
+    var key = it._id + "|" + v + "|" + JSON.stringify(sel) + "|" + note;
     var ex0 = cart.filter(function (l) { return l.key === key; })[0];
-    if (ex0) ex0.qty += qty;
-    else cart.push({ key: key, _id: it._id, nr: it.nr, name: it.name, v: v, ex: ex, qty: qty, note: note });
+    if (ex0) ex0.qty = Math.min(50, ex0.qty + qty);
+    else cart.push({ key: key, _id: it._id, nr: it.nr, name: it.name, v: v, sel: sel, qty: qty, note: note });
     saveCart(); renderCart();
     toast(qty + "× " + it.name + " im Warenkorb");
     $$(".cart-count").forEach(function (el) { el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); });
   }
-  function saveCart() { store.set(CART_KEY, cart.map(function (l) { return { key: l.key, nr: l.nr, name: l.name, v: l.v, ex: l.ex, qty: l.qty, note: l.note }; })); }
+  function saveCart() {
+    store.set(CART_KEY, cart.map(function (l) { return { key: l.key, nr: l.nr, name: l.name, v: l.v, sel: l.sel, qty: l.qty, note: l.note }; }));
+  }
 
   function renderCart() {
     var n = count(), sum = subtotal();
@@ -432,9 +491,9 @@
     $("[data-cart-subtotal]").textContent = money(sum);
     $("[data-cart-lines]").innerHTML = cart.map(function (l, idx) {
       var c = lineCalc(l);
-      var sub = [c.variant, c.extras.length ? "+ " + c.extras.join(", ") : ""].filter(Boolean).join(" · ");
+      var sub = [c.variant, c.extras.join(", ")].filter(Boolean).join(" · ");
       return '<li class="cart-line" data-line="' + idx + '"><div class="cart-line-name">' + (l.nr ? "Nr. " + esc(l.nr) + " · " : "") + esc(c.it.name) +
-        (sub ? "<small>" + esc(sub) + "</small>" : "") + '<small>' + money(c.unit) + ' pro Stück</small></div><div class="cart-line-price">' + money(c.total) + "</div>" +
+        (sub ? "<small>" + esc(sub) + "</small>" : "") + "<small>" + money(c.unit) + ' pro Stück</small></div><div class="cart-line-price">' + money(c.total) + "</div>" +
         '<div class="cart-line-ctrl"><div class="qty qty-sm"><button type="button" data-l-minus aria-label="Weniger">−</button><output>' + l.qty +
         '</output><button type="button" data-l-plus aria-label="Mehr">+</button></div>' +
         '<input class="cart-line-note" type="text" maxlength="120" placeholder="Hinweis (optional)" value="' + esc(l.note) + '" data-l-note aria-label="Hinweis zu ' + esc(c.it.name) + '">' +
@@ -465,44 +524,73 @@
   // Formularfelder
   var F = {
     name: $("[data-f-name]"), phone: $("[data-f-phone]"), address: $("[data-f-address]"),
-    time: $("[data-f-time]"), note: $("[data-f-note]")
+    time: $("[data-f-time]"), note: $("[data-f-note]"), place: $("[data-f-place]")
   };
+  if (places.length) {
+    var sorted = places.slice().sort(function (a, b) { return a.name.localeCompare(b.name, "de"); });
+    F.place.innerHTML = '<option value="">Bitte wählen …</option>' + sorted.map(function (p) {
+      var z = zones[p.zone];
+      return '<option value="' + esc(p.name) + '">' + esc(p.name) + " (ab " + money(z.minOrder) + ")</option>";
+    }).join("") + '<option value="__other">Anderer Ort (auf Anfrage)</option>';
+  }
   var savedForm = store.get(FORM_KEY) || {};
-  ["name", "phone", "address"].forEach(function (k) { if (savedForm[k]) F[k].value = savedForm[k]; });
+  ["name", "phone", "address", "place"].forEach(function (k) { if (savedForm[k]) F[k].value = savedForm[k]; });
   if (savedForm.mode) $$("[data-mode]").forEach(function (r) { r.checked = r.value === savedForm.mode; });
   function mode() { return ($("[data-mode]:checked") || {}).value || "Abholung"; }
+  function currentZone() {
+    var p = places.filter(function (x) { return x.name === F.place.value; })[0];
+    return p ? zones[p.zone] : null;
+  }
+  function saveForm() {
+    store.set(FORM_KEY, { name: F.name.value, phone: F.phone.value, address: F.address.value, place: F.place.value, mode: mode() });
+  }
 
   function updateCheckout() {
-    var m = mode();
-    $("[data-address-field]").hidden = m !== "Lieferung";
-    $("[data-cart-fee-note]").textContent = m === "Lieferung"
-      ? "Zzgl. eventueller Lieferkosten. Alle Preise laut Speisekarte, ohne Gewähr."
-      : "Alle Preise laut Speisekarte, ohne Gewähr.";
+    var m = mode(), delivery = m === "Lieferung", sum = subtotal();
+    $("[data-address-field]").hidden = !delivery;
+    $("[data-place-field]").hidden = !delivery || !places.length;
 
-    // Mindestbestellwert nur, wenn hinterlegt
-    var minEl = $("[data-cart-min]"), zones = D.delivery.zones || [];
-    var mins = zones.map(function (z) { return z.minOrder; }).filter(function (x) { return typeof x === "number"; });
-    if (m === "Lieferung" && mins.length && subtotal() < Math.min.apply(null, mins)) {
-      minEl.hidden = false;
-      minEl.textContent = "Hinweis: Der Mindestbestellwert für Lieferungen beginnt je nach Liefergebiet bei " + money(Math.min.apply(null, mins)) + ".";
-    } else if (m === "Lieferung" && !zones.length) {
-      minEl.hidden = false;
+    var z = delivery ? currentZone() : null;
+    var minEl = $("[data-cart-min]"), totalRow = $("[data-cart-total-row]");
+    minEl.classList.remove("is-ok");
+    if (!delivery) { minEl.hidden = true; totalRow.hidden = true; }
+    else if (!places.length) {
+      minEl.hidden = false; totalRow.hidden = true;
       minEl.textContent = "Liefergebiet, Mindestbestellwert und Lieferkosten bestätigt Ihnen das Restaurant bei der Rückmeldung.";
-    } else minEl.hidden = true;
+    } else if (F.place.value === "__other") {
+      minEl.hidden = false; totalRow.hidden = true;
+      minEl.textContent = "Lieferung in weitere Orte auf Anfrage – Konditionen bestätigt Ihnen das Restaurant.";
+    } else if (!z) {
+      minEl.hidden = true; totalRow.hidden = true;
+    } else {
+      totalRow.hidden = false;
+      $("[data-cart-fee]").textContent = money(z.fee);
+      $("[data-cart-grand]").textContent = money(sum + z.fee);
+      minEl.hidden = false;
+      if (sum < z.minOrder) {
+        minEl.textContent = "Mindestbestellwert für " + F.place.value + ": " + money(z.minOrder) + " (noch " + money(z.minOrder - sum) +
+          "). Wird er nicht erreicht, sprechen Sie uns gerne per Telefon oder WhatsApp an.";
+      } else {
+        minEl.classList.add("is-ok");
+        minEl.textContent = "Mindestbestellwert für " + F.place.value + " (" + money(z.minOrder) + ") erreicht.";
+      }
+    }
 
     var s = status(), closedEl = $("[data-cart-closed]");
     closedEl.hidden = s.ordering;
     if (!s.ordering) closedEl.textContent = "Derzeit ist laut Öffnungszeiten keine Bestellannahme (" + s.text + "). Ihre Nachricht wird möglicherweise erst später gelesen.";
 
     var send = $("[data-wa-send]");
-    var ok = cart.length && (m !== "Lieferung" || F.address.value.trim());
+    var missing = !cart.length ? "" : delivery && places.length && !F.place.value ? "Bitte Lieferort wählen"
+      : delivery && !F.address.value.trim() ? "Bitte Lieferadresse angeben" : "";
+    var ok = cart.length && !missing;
     send.setAttribute("aria-disabled", ok ? "false" : "true");
     send.href = ok ? "https://wa.me/" + R.whatsappNumber + "?text=" + encodeURIComponent(buildMessage()) : "#";
-    send.textContent = ok ? "Bestellung per WhatsApp vorbereiten" : (cart.length ? "Bitte Lieferadresse angeben" : "Bestellung per WhatsApp vorbereiten");
+    send.textContent = missing || "Bestellung per WhatsApp vorbereiten";
   }
 
   function buildMessage() {
-    var m = mode(), L = [];
+    var m = mode(), L = [], sum = subtotal(), z = m === "Lieferung" ? currentZone() : null;
     L.push("Hallo " + R.name + ",");
     L.push("ich möchte folgende Bestellung anfragen (" + m + "):");
     L.push("");
@@ -510,15 +598,19 @@
       var c = lineCalc(l);
       var title = l.qty + "× " + (l.nr ? "Nr. " + l.nr + " " : "") + c.it.name + (c.variant ? " (" + c.variant + ")" : "");
       L.push("• " + title + " – " + money(c.total));
-      if (c.extras.length) L.push("   + " + c.extras.join(", "));
+      if (c.extras.length) L.push("   " + c.extras.join(", "));
       if (l.note && l.note.trim()) L.push("   Hinweis: " + l.note.trim());
     });
     L.push("");
-    L.push("Zwischensumme laut Website: " + money(subtotal()) + (m === "Lieferung" ? " (zzgl. evtl. Lieferkosten)" : ""));
+    L.push("Zwischensumme laut Website: " + money(sum));
+    if (z) { L.push("Lieferkosten laut Karte: " + money(z.fee)); L.push("Gesamt: " + money(sum + z.fee)); }
     L.push("");
     if (F.name.value.trim()) L.push("Name: " + F.name.value.trim());
     if (F.phone.value.trim()) L.push("Telefon: " + F.phone.value.trim());
-    if (m === "Lieferung" && F.address.value.trim()) L.push("Lieferadresse: " + F.address.value.trim());
+    if (m === "Lieferung") {
+      if (F.place.value) L.push("Lieferort: " + (F.place.value === "__other" ? "anderer Ort (auf Anfrage)" : F.place.value));
+      if (F.address.value.trim()) L.push("Lieferadresse: " + F.address.value.trim());
+    }
     if (F.time.value.trim()) L.push("Wunschzeit: " + F.time.value.trim());
     if (F.note.value.trim()) L.push("Anmerkung: " + F.note.value.trim());
     L.push("");
@@ -526,15 +618,19 @@
     return L.join("\n");
   }
 
-  cartDialog.addEventListener("input", function (e) {
-    if (e.target.matches("[data-f-name],[data-f-phone],[data-f-address],[data-f-time],[data-f-note],[data-mode]")) {
-      store.set(FORM_KEY, { name: F.name.value, phone: F.phone.value, address: F.address.value, mode: mode() });
-      updateCheckout();
-    }
+  ["input", "change"].forEach(function (ev) {
+    cartDialog.addEventListener(ev, function (e) {
+      if (e.target.matches("[data-f-name],[data-f-phone],[data-f-address],[data-f-time],[data-f-note],[data-f-place],[data-mode]")) {
+        saveForm(); updateCheckout();
+      }
+    });
   });
-  cartDialog.addEventListener("change", function (e) { if (e.target.matches("[data-mode]")) { store.set(FORM_KEY, { name: F.name.value, phone: F.phone.value, address: F.address.value, mode: mode() }); updateCheckout(); } });
   $("[data-wa-send]").addEventListener("click", function (e) {
-    if (this.getAttribute("aria-disabled") === "true") { e.preventDefault(); if (mode() === "Lieferung") F.address.focus(); return; }
+    if (this.getAttribute("aria-disabled") === "true") {
+      e.preventDefault();
+      if (mode() === "Lieferung") (places.length && !F.place.value ? F.place : F.address).focus();
+      return;
+    }
     toast("WhatsApp wird geöffnet – bitte Nachricht dort absenden");
   });
 

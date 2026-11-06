@@ -24,25 +24,24 @@ Lauffähig auf GitHub Pages.
 
 ## Gerichte und Preise pflegen
 
-Nur `menu-data.js` bearbeiten. Der Aufbau eines Gerichts ist oben in der Datei dokumentiert:
+Nur `menu-data.js` bearbeiten. Der Aufbau ist oben in der Datei dokumentiert:
 
 ```js
 {
-  nr: "12",
-  category: "pizza",
-  name: "…",
-  description: "…",
-  prices: [{ label: "Ø 26 cm", price: 8.5 }, { label: "Ø 32 cm", price: 10.5 }],
-  extras: "pizza-belag",          // optional, verweist auf extraGroups
-  allergens: ["A", "G"],
-  additives: ["1"],
-  tags: ["vegetarisch"]
+  nr: "28",
+  cat: "burger",
+  name: "Minar Spezial Burger XXL",
+  desc: "200 g Rindfleisch-Pattie, Cheddar Käse, Rösti und Smoky Cocktailsoße",
+  prices: [13.5],                          // oder [["klein", 4.9], ["groß", 6.9]]
+  codes: "A,C,G,F,J,6,7,8,2",              // Buchstaben = Allergene, Zahlen = Zusatzstoffe
+  opts: ["burger-extra"]                   // Auswahl/Extras aus optionGroups
 }
 ```
 
-- Sobald `items` Einträge enthält, erscheinen automatisch Suche, Zähler, „Hinzufügen“-Buttons und der Online-Bestellweg.
-- Sobald `delivery.zones` Einträge enthält, erscheint die Tabelle mit Liefergebieten, Mindestbestellwerten und Lieferkosten.
-- Sobald `legend` gefüllt ist, erscheint die Allergen-/Zusatzstoff-Legende.
+- `codesCheck: true` blendet unsichere Kennzeichnungen aus („auf Anfrage“).
+- `optionGroups`: `type: "one"` = Pflichtauswahl (Sorte, Beilage), `type: "many"` = Extras mit Aufpreis.
+- `delivery.zones`: Mindestbestellwert, Lieferkosten und Orte – erscheinen als Tabelle und als Lieferort-Auswahl im Warenkorb.
+- Quelle der aktuellen Daten: gedruckte Speisekarte, Stand 04/2023 (siehe `PRUEFLISTE.md`).
 
 ## Warenkorb & WhatsApp
 

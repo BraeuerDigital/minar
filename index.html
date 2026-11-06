@@ -99,7 +99,7 @@
         <div class="intro-text reveal">
           <p class="eyebrow">Willkommen</p>
           <h2 id="intro-title">Eine Karte für jeden Geschmack</h2>
-          <p>MINAR Küche liegt mitten in Bad Buchau. Unsere Speisekarte reicht von Salaten, Pizza, Nudel- und Gnocchigerichten über Döner, Burger und Fingerfood bis zu Schnitzel, Steak sowie Gerichten der indischen und pakistanischen Küche. Auch vegetarische Gerichte, Desserts und Getränke stehen auf der Karte.</p>
+          <p>MINAR Küche liegt mitten in Bad Buchau. Unsere Speisekarte reicht von Salaten, Pizza, Nudel- und Gnocchigerichten über Döner, Burger und Fingerfood bis zu Schnitzel sowie Gerichten der indischen und pakistanischen Küche. Auch vegetarische Gerichte, Desserts und Getränke stehen auf der Karte.</p>
           <p>Ob Mittagspause, Abendessen mit der Familie oder Partyplatte für viele Gäste: Kommen Sie vorbei, holen Sie Ihre Bestellung ab oder lassen Sie sich beliefern.</p>
         </div>
         <ul class="service-list reveal" aria-label="Unser Angebot">
@@ -308,10 +308,7 @@
         <legend>Größe wählen</legend>
         <div class="opt-list" data-variant-list></div>
       </fieldset>
-      <fieldset class="opt-group" data-item-extras hidden>
-        <legend data-extras-label>Extras</legend>
-        <div class="opt-list" data-extras-list></div>
-      </fieldset>
+      <div data-item-opts></div>
       <label class="field">
         <span>Hinweis zu diesem Gericht <small>(optional)</small></span>
         <input type="text" maxlength="120" placeholder="z. B. ohne Zwiebeln" data-item-note>
@@ -347,7 +344,7 @@
           <span>Zwischensumme</span>
           <strong data-cart-subtotal></strong>
         </div>
-        <p class="fine" data-cart-fee-note>Zzgl. eventueller Lieferkosten. Alle Preise laut Speisekarte, ohne Gewähr.</p>
+        <p class="fine" data-cart-fee-note>Alle Preise laut Speisekarte, ohne Gewähr.</p>
 
         <fieldset class="opt-group">
           <legend>Abholung oder Lieferung?</legend>
@@ -356,7 +353,15 @@
             <label><input type="radio" name="mode" value="Lieferung" data-mode><span>Lieferung</span></label>
           </div>
         </fieldset>
+        <label class="field" data-place-field hidden>
+          <span>Lieferort</span>
+          <select data-f-place></select>
+        </label>
         <p class="cart-min" data-cart-min hidden></p>
+        <div class="cart-total" data-cart-total-row hidden>
+          <div><span>Lieferkosten</span><span data-cart-fee></span></div>
+          <div class="cart-total-sum"><span>Gesamt</span><strong data-cart-grand></strong></div>
+        </div>
 
         <div class="field-grid">
           <label class="field"><span>Name</span><input type="text" autocomplete="name" data-f-name></label>
