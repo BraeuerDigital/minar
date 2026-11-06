@@ -3,390 +3,212 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>MINAR Küche · Bad Buchau – Restaurant, Abholung & Lieferservice</title>
-  <meta name="description" content="MINAR Küche in Bad Buchau: Pizza, Pasta, Döner, Burger, Salate, indische und pakistanische Gerichte und mehr – im Restaurant, zur Abholung oder per Lieferservice.">
-  <meta name="theme-color" content="#1f2321">
-  <meta property="og:title" content="MINAR Küche · Bad Buchau">
-  <meta property="og:description" content="Restaurant, Abholung & Lieferservice in der Schussenrieder Straße 21, Bad Buchau.">
-  <meta property="og:type" content="restaurant">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
+  <title>MINAR Küche · Bad Buchau – Restaurant, Lieferservice &amp; Abholung</title>
+  <meta name="description" content="MINAR Küche in Bad Buchau: Pizza, Döner, Burger, Salate, Nudeln sowie indische und pakistanische Gerichte – im Restaurant, zur Abholung oder per Lieferservice.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#646C3E">
+  <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/logo/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/styles.css?v=mw59qumo">
 </head>
-<body>
-  <a class="skip-link" href="#speisekarte">Zur Speisekarte springen</a>
-
-  <!-- ================= HEADER ================= -->
-  <header class="site-header" id="top">
+<body class="page-home" data-page="start">
+  <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+  <header class="site-header">
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <span class="topbar-claim">Restaurant · Lieferservice · Abholung</span>
+        <span class="topbar-status"><span class="status-dot" data-open-dot></span><span data-open-status-long>Öffnungszeiten: täglich 11:30–21:30 Uhr, Dienstag Ruhetag</span></span>
+        <a class="topbar-tel" href="tel:+4975829346944"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5 9 3l1.6 4.2-2 1.4a11 11 0 0 0 6.8 6.8l1.4-2L21 15l-.5 2.4a2 2 0 0 1-2 1.6A15.5 15.5 0 0 1 5 5.5a2 2 0 0 1 1.6-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span>07582 934 69 44</span></a>
+      </div>
+    </div>
     <div class="container header-inner">
-      <a class="wordmark" href="#start" aria-label="MINAR Küche – zur Startseite">
-        <svg class="wordmark-arch" viewBox="0 0 40 52" aria-hidden="true"><path d="M2 50V24C2 12 12 5 20 2c8 3 18 10 18 22v26" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M11 50V27c0-6 4-10 9-12.5 5 2.5 9 6.5 9 12.5v23" fill="none" stroke="currentColor" stroke-width="2.5" opacity=".55"/></svg>
-        <span class="wordmark-text"><strong>MINAR</strong><em>Küche</em></span>
+      <a class="brand" href="index.html" aria-label="MINAR Küche – zur Startseite">
+        <img src="assets/logo/minar-logo-horizontal.svg" alt="MINAR Küche" width="236" height="56">
       </a>
-
       <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
         <ul>
-          <li><a href="#start">Startseite</a></li>
-          <li><a href="#speisekarte">Speisekarte</a></li>
-          <li><a href="#lieferservice">Lieferservice</a></li>
-          <li><a href="#kontakt">Kontakt</a></li>
+          <li><a href="index.html" aria-current="page" class="is-active">Startseite</a></li>
+          <li><a href="speisekarte/index.html">Speisekarte</a></li>
+          <li><a href="lieferservice.html">Lieferservice</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
         </ul>
         <div class="mobile-nav-extra">
-          <a class="btn btn-ghost-light" href="tel:+4975829346944">Anrufen · 07582 934 69 44</a>
+          <a class="btn btn-primary btn-block" href="bestellen.html">Jetzt bestellen</a>
+          <a class="btn btn-ghost btn-block" href="tel:+4975829346944"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5 9 3l1.6 4.2-2 1.4a11 11 0 0 0 6.8 6.8l1.4-2L21 15l-.5 2.4a2 2 0 0 1-2 1.6A15.5 15.5 0 0 1 5 5.5a2 2 0 0 1 1.6-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Anrufen · 07582 934 69 44</a>
         </div>
       </nav>
-
       <div class="header-actions">
-        <button class="icon-btn cart-btn" type="button" data-open-cart aria-label="Warenkorb öffnen">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9L5 7Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.5V6a3 3 0 0 1 6 0v3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-          <span class="cart-count" data-cart-count hidden>0</span>
-        </button>
-        <button class="btn btn-accent header-order" type="button" data-open-order>Jetzt bestellen</button>
-        <button class="icon-btn nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen">
-          <span></span><span></span><span></span>
-        </button>
+        <img class="header-halal" src="assets/logo/halal-siegel.svg" alt="Halal" title="Halal – wie auf unserer Speisekarte gekennzeichnet" width="40" height="38">
+        <a class="icon-btn cart-link" href="bestellen.html" aria-label="Warenkorb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9L5 7Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.5V6a3 3 0 0 1 6 0v3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="cart-count" data-cart-count hidden>0</span></a>
+        <a class="btn btn-primary header-order" href="bestellen.html">Jetzt bestellen</a>
+        <button class="icon-btn nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>
+  <main id="inhalt">
 
-  <main>
-    <!-- ================= HERO ================= -->
-    <section class="hero" id="start">
+    <section class="hero">
       <div class="container hero-grid">
+        <div class="hero-logo reveal">
+          <img src="assets/logo/minar-logo.svg" alt="MINAR Küche – Logo mit Halal-Siegel sowie Halbmond und Stern" width="560" height="431">
+        </div>
         <div class="hero-copy reveal">
           <p class="eyebrow"><span class="status-dot" data-open-dot></span><span data-open-status>Bad Buchau · Schussenrieder Straße 21</span></p>
-          <h1>Viele Küchen.<br><span>Ein Tisch.</span></h1>
-          <p class="hero-lead">Von Pizza und Pasta über Döner und Burger bis zu indischen und pakistanischen Gerichten: Bei MINAR Küche bestellen Sie quer durch die Karte – im Restaurant, zur Abholung oder mit Lieferservice.</p>
+          <h1>Von Pizza bis Curry –<br><span>alles aus einer Küche.</span></h1>
+          <p class="lead">Pizza, Döner, Burger, Salate, Nudeln sowie indische und pakistanische Gerichte: Bei MINAR Küche in Bad Buchau essen Sie im Restaurant, holen ab oder lassen sich beliefern.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary btn-lg" href="#speisekarte">Speisekarte entdecken</a>
-            <button class="btn btn-accent btn-lg" type="button" data-open-order>Jetzt bestellen</button>
+            <a class="btn btn-primary btn-lg" href="speisekarte/index.html">Speisekarte entdecken</a>
+            <a class="btn btn-accent btn-lg" href="bestellen.html">Jetzt bestellen</a>
           </div>
-          <ul class="hero-facts" aria-label="Auf einen Blick">
-            <li><strong>11:30–21:30</strong><span>Öffnungszeiten</span></li>
-            <li><strong>Dienstag</strong><span>Ruhetag</span></li>
-            <li><strong>bis 21:15</strong><span>Bestellannahme</span></li>
-          </ul>
+          <p class="halal-badge "><img src="assets/logo/halal-siegel.svg" alt="" width="44" height="42"><span>Halal – wie auf unserer gedruckten Speisekarte gekennzeichnet.</span></p>
         </div>
-
-        <div class="hero-visual reveal" aria-hidden="true">
-          <svg class="arch-art" viewBox="0 0 400 520" preserveAspectRatio="xMidYMid meet">
-            <defs>
-              <pattern id="star" width="56" height="56" patternUnits="userSpaceOnUse">
-                <g fill="none" stroke="currentColor" stroke-width="1.1">
-                  <rect x="16" y="16" width="24" height="24"/>
-                  <rect x="16" y="16" width="24" height="24" transform="rotate(45 28 28)"/>
-                  <circle cx="28" cy="28" r="4"/>
-                  <path d="M0 0l10 10M56 0L46 10M0 56l10-10M56 56L46 46"/>
-                </g>
-              </pattern>
-              <clipPath id="archClip"><path d="M20 520V230C20 118 120 52 200 14c80 38 180 104 180 216v290Z"/></clipPath>
-            </defs>
-            <path class="arch-bg" d="M20 520V230C20 118 120 52 200 14c80 38 180 104 180 216v290Z"/>
-            <g clip-path="url(#archClip)" class="arch-pattern"><rect width="400" height="520" fill="url(#star)"/></g>
-            <path class="arch-inner" d="M84 520V262c0-72 60-118 116-146 56 28 116 74 116 146v258Z"/>
-            <path class="arch-line" d="M20 520V230C20 118 120 52 200 14c80 38 180 104 180 216v290"/>
-          </svg>
-          <div class="hero-badge hero-badge-a"><span>Restaurant</span></div>
-          <div class="hero-badge hero-badge-b"><span>Abholung</span></div>
-          <div class="hero-badge hero-badge-c"><span>Lieferservice</span></div>
-          <p class="arch-caption">MINAR</p>
-        </div>
+      </div>
+      <div class="hero-band">
+        <div class="swoosh swoosh-hero" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+  <path class="sw-yellow" d="M0 40 Q720 150 1440 40 V120 H0Z"/>
+  <path class="sw-red" d="M0 30 Q720 140 1440 30 V44 Q720 154 0 44Z"/>
+  <path class="sw-green" d="M0 6 Q720 112 1440 6 V20 Q720 126 0 20Z"/>
+</svg></div>
+        <p class="hero-band-text"><span>Restaurant</span><i>•</i><span>Lieferservice</span><i>•</i><span>Abholung</span></p>
       </div>
     </section>
 
-    <!-- ================= VORSTELLUNG ================= -->
-    <section class="intro section" id="ueber-uns" aria-labelledby="intro-title">
+    <section class="section intro">
       <div class="container intro-grid">
-        <div class="intro-text reveal">
-          <p class="eyebrow">Willkommen</p>
-          <h2 id="intro-title">Eine Karte für jeden Geschmack</h2>
-          <p>MINAR Küche liegt mitten in Bad Buchau. Unsere Speisekarte reicht von Salaten, Pizza, Nudel- und Gnocchigerichten über Döner, Burger und Fingerfood bis zu Schnitzel sowie Gerichten der indischen und pakistanischen Küche. Auch vegetarische Gerichte, Desserts und Getränke stehen auf der Karte.</p>
-          <p>Ob Mittagspause, Abendessen mit der Familie oder Partyplatte für viele Gäste: Kommen Sie vorbei, holen Sie Ihre Bestellung ab oder lassen Sie sich beliefern.</p>
+        <div class="reveal">
+          <p class="eyebrow">Willkommen bei MINAR Küche</p>
+          <h2 class="h-red">Eine Karte, viele Lieblingsgerichte</h2>
+          <p>Unsere Speisekarte umfasst 162 Positionen in 18 Kategorien – von Salaten, Pizza und Pasta über Döner, Burger und Fingerfood bis zu Currys und Masala-Gerichten der indischen und pakistanischen Küche.</p>
+          <p>Laut unserer Karte bereiten wir alle Speisen frisch für Sie zu.</p>
+          <a class="text-link" href="ueber-uns.html">Mehr über uns <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-        <ul class="service-list reveal" aria-label="Unser Angebot">
-          <li>
-            <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V10l8-6 8 6v11M9 21v-6h6v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
-            <div><h3>Im Restaurant</h3><p>Täglich außer dienstags von 11:30 bis 21:30 Uhr.</p></div>
-          </li>
-          <li>
-            <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
-            <div><h3>Zur Abholung</h3><p>Telefonisch oder per WhatsApp bestellen und abholen.</p></div>
-          </li>
-          <li>
-            <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="17" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="17" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 17h7M3 12h9l2-5h3l3 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
-            <div><h3>Lieferservice</h3><p>Wir bringen Ihre Bestellung zu Ihnen nach Hause.</p></div>
-          </li>
+        <ul class="service-list reveal">
+          <li><span class="service-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V10l8-6 8 6v11M9 21v-6h6v6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><div><h3>Im Restaurant</h3><p>Täglich 11:30–21:30 Uhr, dienstags Ruhetag.</p></div></li>
+          <li><span class="service-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9L5 7Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.5V6a3 3 0 0 1 6 0v3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><div><h3>Zur Abholung</h3><p>Telefonisch, per WhatsApp oder über den Online-Warenkorb bestellen.</p></div></li>
+          <li><span class="service-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="17" r="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="18" cy="17" r="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8.5 17h7M3 12h9l2-5h3l3 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></svg></span><div><h3>Lieferservice</h3><p>Bad Buchau und 18 weitere Orte in der Umgebung.</p></div></li>
         </ul>
       </div>
-
-      <div class="container" data-tiles-home>
-        <div class="category-tiles reveal" data-category-tiles aria-label="Kategorien der Speisekarte"></div>
-      </div>
     </section>
 
-    <!-- ================= SPEISEKARTE ================= -->
-    <section class="menu section" id="speisekarte" aria-labelledby="menu-title">
+    <section class="section teaser">
       <div class="container">
-        <header class="section-head">
-          <p class="eyebrow">Speisekarte</p>
-          <h2 id="menu-title">Was darf’s heute sein?</h2>
-          <p class="section-lead">Suchen Sie nach Gericht, Zutat oder Artikelnummer – oder springen Sie direkt in eine Kategorie.</p>
-        </header>
-      </div>
-
-      <div class="menu-toolbar" data-menu-toolbar>
-        <div class="container">
-          <label class="search">
-            <span class="visually-hidden">Speisekarte durchsuchen</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-4.2-4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            <input type="search" placeholder="Gericht, Zutat oder Nr. suchen …" autocomplete="off" data-menu-search>
-            <button type="button" class="search-clear" data-search-clear aria-label="Suche leeren" hidden>×</button>
-          </label>
-          <div class="chips" role="tablist" aria-label="Kategorien filtern" data-menu-chips></div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="menu-notice" data-menu-notice hidden></div>
-        <div class="menu-overview" data-menu-overview hidden></div>
-        <div class="menu-list" data-menu-list aria-live="polite"></div>
-        <p class="menu-legend-note" data-legend-note hidden></p>
-        <details class="legend" data-legend hidden>
-          <summary>Allergene &amp; Zusatzstoffe – Legende</summary>
-          <div class="legend-grid" data-legend-content></div>
-        </details>
-      </div>
-    </section>
-
-    <!-- ================= LIEFERSERVICE ================= -->
-    <section class="delivery section" id="lieferservice" aria-labelledby="delivery-title">
-      <div class="container">
-        <header class="section-head section-head-light">
-          <p class="eyebrow">Lieferservice &amp; Abholung</p>
-          <h2 id="delivery-title">So kommt Ihr Essen zu Ihnen</h2>
-        </header>
-
-        <div class="delivery-grid">
-          <article class="info-card reveal">
-            <span class="info-num">01</span>
-            <h3>Bestellen</h3>
-            <p>Telefonisch unter <a href="tel:+4975829346944">07582 934 69 44</a> oder per <a href="https://wa.me/491633590188" target="_blank" rel="noopener">WhatsApp</a>. Bestellannahme täglich außer dienstags bis 21:15 Uhr.</p>
-          </article>
-          <article class="info-card reveal">
-            <span class="info-num">02</span>
-            <h3>Abholen</h3>
-            <p>Holen Sie Ihre Bestellung direkt bei uns in der Schussenrieder Straße 21 in Bad Buchau ab.</p>
-          </article>
-          <article class="info-card reveal">
-            <span class="info-num">03</span>
-            <h3>Liefern lassen</h3>
-            <p>Unser Lieferservice bringt Ihre Bestellung zu Ihnen. Liefergebiete und Konditionen finden Sie unten.</p>
-          </article>
-        </div>
-
-        <div class="delivery-table-wrap reveal" data-delivery>
-          <h3>Liefergebiete &amp; Konditionen</h3>
-          <div data-delivery-content></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= KONTAKT ================= -->
-    <section class="contact section" id="kontakt" aria-labelledby="contact-title">
-      <div class="container contact-grid">
-        <div class="contact-main reveal">
-          <p class="eyebrow">Kontakt &amp; Anfahrt</p>
-          <h2 id="contact-title">Besuchen Sie uns</h2>
-          <address class="contact-address">
-            <strong>MINAR Küche</strong><br>
-            Schussenrieder Straße 21<br>
-            88422 Bad Buchau
-          </address>
-          <div class="contact-actions">
-            <a class="contact-link" href="tel:+4975829346944">
-              <span class="contact-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 3.5 9 3l1.6 4.2-2 1.4a11 11 0 0 0 6.8 6.8l1.4-2L21 15l-.5 2.4a2 2 0 0 1-2 1.6A15.5 15.5 0 0 1 5 5.5a2 2 0 0 1 1.6-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
-              <span><small>Telefon</small>07582 934 69 44</span>
-            </a>
-            <a class="contact-link" href="https://wa.me/491633590188" target="_blank" rel="noopener">
-              <span class="contact-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19l-4 1Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 9.2c.3 2.5 2.3 4.6 4.8 5l1.2-1.2 1.6.8c-.2 1-1 1.7-2 1.7-3.4 0-6.1-2.8-6.1-6.1 0-1 .7-1.8 1.7-2l.8 1.6L9 9.2Z" fill="currentColor"/></svg></span>
-              <span><small>WhatsApp</small>0163 359 01 88</span>
-            </a>
-            <a class="contact-link" href="https://www.google.com/maps/search/?api=1&amp;query=MINAR+K%C3%BCche%2C+Schussenrieder+Stra%C3%9Fe+21%2C+88422+Bad+Buchau" target="_blank" rel="noopener">
-              <span class="contact-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
-              <span><small>Route planen</small>In Google Maps öffnen</span>
-            </a>
+        <div class="section-head-row">
+          <div>
+            <p class="eyebrow">Aus unserer Speisekarte</p>
+            <h2 class="h-red">Beliebte Kategorien</h2>
           </div>
-          <p class="fine">Der Link öffnet Google Maps in einem neuen Fenster. Beim Aufruf werden Daten an Google übermittelt.</p>
+          <a class="btn btn-outline" href="speisekarte/index.html">Alle 18 Kategorien</a>
         </div>
+        <div class="cat-grid">
+          <a class="cat-card reveal" href="speisekarte/pizza.html" data-cat-card="pizza"><span class="cat-card-name">Pizza</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <a class="cat-card reveal" href="speisekarte/doener.html" data-cat-card="doener"><span class="cat-card-name">Döner</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <a class="cat-card reveal" href="speisekarte/burger.html" data-cat-card="burger"><span class="cat-card-name">Burger</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <a class="cat-card reveal" href="speisekarte/indisch-pakistanisch.html" data-cat-card="indisch"><span class="cat-card-name">Indisch &amp; Pakistanisch</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <a class="cat-card reveal" href="speisekarte/salate.html" data-cat-card="salate"><span class="cat-card-name">Salate</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <a class="cat-card reveal" href="speisekarte/nudelgerichte.html" data-cat-card="nudeln"><span class="cat-card-name">Nudelgerichte</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <a class="cat-card reveal" href="speisekarte/fingerfood.html" data-cat-card="fingerfood"><span class="cat-card-name">Fingerfood</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <a class="cat-card reveal" href="speisekarte/partyplatten.html" data-cat-card="partyplatten"><span class="cat-card-name">Party Platten</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        </div>
+      </div>
+    </section>
 
-        <div class="hours-card reveal">
-          <h3>Öffnungszeiten</h3>
+    <section class="section delivery-teaser">
+      <div class="container delivery-teaser-grid">
+        <div class="reveal">
+          <p class="eyebrow eyebrow-light">Lieferservice &amp; Abholung</p>
+          <h2>Wir liefern in Bad Buchau und Umgebung</h2>
+          <p>Lieferzeit je nach Entfernung 20–90 Minuten. Mindestbestellwert und Lieferkosten richten sich nach Ihrem Ort.</p>
+          <a class="btn btn-accent" href="lieferservice.html">Liefergebiete ansehen</a>
+        </div>
+        <ul class="zone-pills reveal" data-zone-pills></ul>
+      </div>
+    </section>
+
+    <section class="section visit">
+      <div class="container visit-grid">
+        <div class="reveal">
+          <p class="eyebrow">Öffnungszeiten &amp; Standort</p>
+          <h2 class="h-red">Besuchen Sie uns</h2>
+          <address class="address">MINAR Küche<br>Schussenrieder Straße 21<br>88422 Bad Buchau</address>
+          
+        <div class="contact-cards">
+          <a class="contact-card" href="tel:+4975829346944"><span class="contact-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5 9 3l1.6 4.2-2 1.4a11 11 0 0 0 6.8 6.8l1.4-2L21 15l-.5 2.4a2 2 0 0 1-2 1.6A15.5 15.5 0 0 1 5 5.5a2 2 0 0 1 1.6-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span><small>Telefon</small>07582 934 69 44</span></a>
+          <a class="contact-card" href="https://wa.me/491633590188" target="_blank" rel="noopener"><span class="contact-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19l-4 1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.2c.3 2.5 2.3 4.6 4.8 5l1.2-1.2 1.6.8c-.2 1-1 1.7-2 1.7-3.4 0-6.1-2.8-6.1-6.1 0-1 .7-1.8 1.7-2l.8 1.6L9 9.2Z" fill="currentColor"/></svg></span><span><small>WhatsApp</small>0163 359 01 88</span></a>
+          <a class="contact-card" href="https://www.google.com/maps/search/?api=1&amp;query=MINAR%20K%C3%BCche%2C%20Schussenrieder%20Stra%C3%9Fe%2021%2C%2088422%20Bad%20Buchau" target="_blank" rel="noopener"><span class="contact-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg></span><span><small>Route planen</small>In Google Maps öffnen</span></a>
+        </div>
+        <p class="fine">Der Kartenlink öffnet Google Maps in einem neuen Fenster; erst dann werden Daten an Google übermittelt.</p>
+        </div>
+        <div class="reveal">
+        <div class="hours-card">
+          <h2 class="hours-title"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Öffnungszeiten</h2>
           <ul class="hours-list" data-hours-list></ul>
-          <p class="hours-note">Bestellannahme bis 21:15 Uhr</p>
+          <p class="hours-note">Bestellannahme bis 21:15 Uhr · Dienstag Ruhetag</p>
           <p class="hours-live"><span class="status-dot" data-open-dot></span><span data-open-status-long></span></p>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container cta-inner">
+        <div>
+          <h2>Hunger bekommen?</h2>
+          <p>Gerichte online auswählen und als WhatsApp-Nachricht senden – oder einfach anrufen.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-accent btn-lg" href="speisekarte/index.html">Speisekarte entdecken</a>
+          <a class="btn btn-light btn-lg" href="tel:+4975829346944"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5 9 3l1.6 4.2-2 1.4a11 11 0 0 0 6.8 6.8l1.4-2L21 15l-.5 2.4a2 2 0 0 1-2 1.6A15.5 15.5 0 0 1 5 5.5a2 2 0 0 1 1.6-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Anrufen</a>
         </div>
       </div>
     </section>
   </main>
-
-  <!-- ================= FOOTER ================= -->
+  <div class="swoosh swoosh-footer" aria-hidden="true"><svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+  <path class="sw-yellow" d="M0 40 Q720 150 1440 40 V120 H0Z"/>
+  <path class="sw-red" d="M0 30 Q720 140 1440 30 V44 Q720 154 0 44Z"/>
+  <path class="sw-green" d="M0 6 Q720 112 1440 6 V20 Q720 126 0 20Z"/>
+</svg></div>
   <footer class="site-footer">
     <div class="container footer-grid">
-      <div>
-        <p class="footer-brand"><strong>MINAR</strong> Küche</p>
-        <p>Schussenrieder Straße 21<br>88422 Bad Buchau</p>
+      <div class="footer-brand">
+        <img src="assets/logo/minar-logo.svg" alt="MINAR Küche – Logo" width="200" height="154" loading="lazy">
       </div>
       <div>
-        <h4>Kontakt</h4>
-        <p><a href="tel:+4975829346944">07582 934 69 44</a><br>
-        <a href="https://wa.me/491633590188" target="_blank" rel="noopener">WhatsApp: 0163 359 01 88</a></p>
+        <h2 class="footer-h">Adresse</h2>
+        <p>MINAR Küche<br>Schussenrieder Straße 21<br>88422 Bad Buchau</p>
+        <p><a class="footer-link" href="https://www.google.com/maps/search/?api=1&amp;query=MINAR%20K%C3%BCche%2C%20Schussenrieder%20Stra%C3%9Fe%2021%2C%2088422%20Bad%20Buchau" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>Route planen</a></p>
       </div>
       <div>
-        <h4>Öffnungszeiten</h4>
-        <p>Mo, Mi–So: 11:30–21:30 Uhr<br>Dienstag: Ruhetag<br>Bestellannahme bis 21:15 Uhr</p>
+        <h2 class="footer-h">Kontakt</h2>
+        <p><a class="footer-link" href="tel:+4975829346944"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5 9 3l1.6 4.2-2 1.4a11 11 0 0 0 6.8 6.8l1.4-2L21 15l-.5 2.4a2 2 0 0 1-2 1.6A15.5 15.5 0 0 1 5 5.5a2 2 0 0 1 1.6-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>07582 934 69 44</a><br>
+        <a class="footer-link" href="https://wa.me/491633590188" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19l-4 1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.2c.3 2.5 2.3 4.6 4.8 5l1.2-1.2 1.6.8c-.2 1-1 1.7-2 1.7-3.4 0-6.1-2.8-6.1-6.1 0-1 .7-1.8 1.7-2l.8 1.6L9 9.2Z" fill="currentColor"/></svg>0163 359 01 88</a></p>
+        <h2 class="footer-h">Öffnungszeiten</h2>
+        <p>Täglich 11:30–21:30 Uhr<br>Dienstag Ruhetag<br>Bestellannahme bis 21:15 Uhr</p>
       </div>
       <nav aria-label="Footer-Navigation">
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="#start">Startseite</a></li>
-          <li><a href="#speisekarte">Speisekarte</a></li>
-          <li><a href="#lieferservice">Lieferservice</a></li>
-          <li><a href="#kontakt">Kontakt</a></li>
+        <h2 class="footer-h">Navigation</h2>
+        <ul class="footer-nav">
+          <li><a href="index.html">Startseite</a></li><li><a href="speisekarte/index.html">Speisekarte</a></li><li><a href="lieferservice.html">Lieferservice</a></li><li><a href="ueber-uns.html">Über uns</a></li><li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="bestellen.html">Bestellen</a></li>
         </ul>
       </nav>
+      <nav aria-label="Speisekarte">
+        <h2 class="footer-h">Speisekarte</h2>
+        <ul class="footer-nav"><li><a href="speisekarte/salate.html">Salate</a></li><li><a href="speisekarte/burger.html">Burger</a></li><li><a href="speisekarte/potatoes.html">Potatoes</a></li><li><a href="speisekarte/fingerfood.html">Fingerfood</a></li><li><a href="speisekarte/partyplatten.html">Party Platten</a></li><li><a href="speisekarte/dips.html">Dips</a></li><li><a href="speisekarte/doener.html">Döner</a></li><li><a href="speisekarte/ueberbacken.html">Überbacken</a></li><li><a href="speisekarte/pizza.html">Pizza</a></li><li><a href="speisekarte/index.html">Alle Kategorien …</a></li></ul>
+      </nav>
     </div>
-    <div class="container footer-bottom">
-      <p>© <span data-year></span> MINAR Küche</p>
-      <p><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></p>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>© <span data-year>2026</span> MINAR Küche · Bad Buchau</p>
+        <p><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></p>
+      </div>
     </div>
   </footer>
-
-  <!-- Floating Warenkorb (mobil) -->
-  <button class="cart-fab" type="button" data-open-cart hidden>
-    <span>Warenkorb</span>
-    <span class="cart-fab-count" data-cart-count>0</span>
-    <span class="cart-fab-total" data-cart-total></span>
-  </button>
-
-  <!-- ================= DIALOG: Bestellwege ================= -->
-  <dialog class="sheet" id="order-dialog" aria-labelledby="order-dialog-title">
-    <div class="sheet-inner">
-      <div class="sheet-head">
-        <h2 id="order-dialog-title">Jetzt bestellen</h2>
-        <button class="icon-btn sheet-close" type="button" data-close aria-label="Schließen">×</button>
-      </div>
-      <p class="sheet-status"><span class="status-dot" data-open-dot></span><span data-open-status-long></span></p>
-      <div class="order-ways">
-        <a class="order-way" href="#speisekarte" data-order-menu data-close>
-          <strong>Online zusammenstellen</strong>
-          <span>Gerichte in den Warenkorb legen und als WhatsApp-Nachricht senden</span>
-        </a>
-        <a class="order-way" href="tel:+4975829346944">
-          <strong>Anrufen</strong>
-          <span>07582 934 69 44</span>
-        </a>
-        <a class="order-way" href="https://wa.me/491633590188" target="_blank" rel="noopener">
-          <strong>WhatsApp schreiben</strong>
-          <span>0163 359 01 88</span>
-        </a>
-      </div>
-      <p class="fine">Bestellungen sind erst nach Bestätigung durch das Restaurant verbindlich.</p>
-    </div>
-  </dialog>
-
-  <!-- ================= DIALOG: Gericht ================= -->
-  <dialog class="sheet" id="item-dialog" aria-labelledby="item-dialog-title">
-    <form class="sheet-inner" method="dialog" data-item-form>
-      <div class="sheet-head">
-        <div>
-          <p class="item-dialog-nr" data-item-nr></p>
-          <h2 id="item-dialog-title" data-item-title></h2>
-        </div>
-        <button class="icon-btn sheet-close" type="button" data-close aria-label="Schließen">×</button>
-      </div>
-      <p class="item-dialog-desc" data-item-desc></p>
-      <fieldset class="opt-group" data-item-variants hidden>
-        <legend>Größe wählen</legend>
-        <div class="opt-list" data-variant-list></div>
-      </fieldset>
-      <div data-item-opts></div>
-      <label class="field">
-        <span>Hinweis zu diesem Gericht <small>(optional)</small></span>
-        <input type="text" maxlength="120" placeholder="z. B. ohne Zwiebeln" data-item-note>
-      </label>
-      <div class="sheet-foot">
-        <div class="qty" aria-label="Menge">
-          <button type="button" data-qty-minus aria-label="Weniger">−</button>
-          <output data-qty>1</output>
-          <button type="button" data-qty-plus aria-label="Mehr">+</button>
-        </div>
-        <button class="btn btn-primary btn-grow" type="submit" data-item-add>Hinzufügen</button>
-      </div>
-    </form>
-  </dialog>
-
-  <!-- ================= DIALOG: Warenkorb ================= -->
-  <dialog class="sheet sheet-cart" id="cart-dialog" aria-labelledby="cart-title">
-    <div class="sheet-inner">
-      <div class="sheet-head">
-        <h2 id="cart-title">Ihr Warenkorb</h2>
-        <button class="icon-btn sheet-close" type="button" data-close aria-label="Schließen">×</button>
-      </div>
-
-      <div class="cart-empty" data-cart-empty>
-        <p>Ihr Warenkorb ist noch leer.</p>
-        <a class="btn btn-primary" href="#speisekarte" data-close>Zur Speisekarte</a>
-      </div>
-
-      <div class="cart-body" data-cart-body hidden>
-        <ul class="cart-lines" data-cart-lines></ul>
-
-        <div class="cart-sum">
-          <span>Zwischensumme</span>
-          <strong data-cart-subtotal></strong>
-        </div>
-        <p class="fine" data-cart-fee-note>Alle Preise laut Speisekarte, ohne Gewähr.</p>
-
-        <fieldset class="opt-group">
-          <legend>Abholung oder Lieferung?</legend>
-          <div class="seg">
-            <label><input type="radio" name="mode" value="Abholung" checked data-mode><span>Abholung</span></label>
-            <label><input type="radio" name="mode" value="Lieferung" data-mode><span>Lieferung</span></label>
-          </div>
-        </fieldset>
-        <label class="field" data-place-field hidden>
-          <span>Lieferort</span>
-          <select data-f-place></select>
-        </label>
-        <p class="cart-min" data-cart-min hidden></p>
-        <div class="cart-total" data-cart-total-row hidden>
-          <div><span>Lieferkosten</span><span data-cart-fee></span></div>
-          <div class="cart-total-sum"><span>Gesamt</span><strong data-cart-grand></strong></div>
-        </div>
-
-        <div class="field-grid">
-          <label class="field"><span>Name</span><input type="text" autocomplete="name" data-f-name></label>
-          <label class="field"><span>Telefon <small>(für Rückfragen)</small></span><input type="tel" autocomplete="tel" data-f-phone></label>
-          <label class="field field-wide" data-address-field hidden><span>Lieferadresse</span><input type="text" autocomplete="street-address" placeholder="Straße, Hausnummer, Ort" data-f-address></label>
-          <label class="field"><span>Wunschzeit <small>(optional)</small></span><input type="text" placeholder="z. B. 18:30 Uhr" data-f-time></label>
-          <label class="field field-wide"><span>Anmerkungen <small>(optional)</small></span><textarea rows="2" maxlength="300" data-f-note></textarea></label>
-        </div>
-
-        <div class="cart-warning" role="note">
-          <strong>Hinweis:</strong> Mit dem Button wird WhatsApp mit einer vorbereiteten Nachricht geöffnet. Das ist <u>noch keine verbindliche Bestellung</u>. Ihre Bestellung gilt erst als angenommen, wenn das Restaurant sie bestätigt hat. Bezahlt wird nicht online.
-        </div>
-        <p class="cart-closed" data-cart-closed hidden></p>
-
-        <div class="cart-actions">
-          <a class="btn btn-whatsapp btn-lg btn-grow" href="#" target="_blank" rel="noopener" data-wa-send>Bestellung per WhatsApp vorbereiten</a>
-          <button class="btn btn-link" type="button" data-cart-clear>Warenkorb leeren</button>
-        </div>
-      </div>
-    </div>
-  </dialog>
-
+  <a class="cart-fab" href="bestellen.html" data-cart-fab hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9L5 7Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.5V6a3 3 0 0 1 6 0v3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span>Warenkorb</span><span class="cart-fab-count" data-cart-count>0</span><span class="cart-fab-total" data-cart-total></span>
+  </a>
   <div class="toast" role="status" aria-live="polite" data-toast></div>
-
-  <script src="menu-data.js"></script>
-  <script src="script.js"></script>
+  <script src="assets/js/menu-data.js?v=mw59qumo"></script>
+  <script src="assets/js/app.js?v=mw59qumo"></script>
 </body>
 </html>

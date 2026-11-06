@@ -42,6 +42,8 @@ window.MINAR_DATA = {
     offer: ["Restaurant", "Abholung", "Lieferservice"]
   },
 
+  halalNote: "Halal – wie auf unserer gedruckten Speisekarte gekennzeichnet.",
+
   menuSource: "Preise laut gedruckter Speisekarte, Stand 04/2023. Für Druckfehler keine Haftung.",
 
   /* --- Öffnungszeiten (laut Karte) ---
@@ -128,26 +130,28 @@ window.MINAR_DATA = {
     "eis-sorte":      { label: "Sorte", type: "one", options: [{ name: "Cookie" }, { name: "Choko" }] }
   },
 
-  /* --- Kategorien (Reihenfolge wie auf der Karte) --- */
+  /* --- Kategorien (Reihenfolge wie auf der Karte) ---
+     slug = Dateiname der Unterseite: speisekarte/<slug>.html
+     Neue Kategorie → danach `node tools/build.mjs` ausführen.        */
   categories: [
-    { id: "salate",      name: "Salate", desc: "Wahlweise mit Essig und Öl oder Joghurtsoße (C, G)." },
-    { id: "burger",      name: "Burger", desc: "Alle mit grünem Salat, Tomaten, Gurken und Zwiebeln." },
-    { id: "potatoes",    name: "Potatoes" },
-    { id: "fingerfood",  name: "Fingerfood" },
-    { id: "partyplatten",name: "Party Platten" },
-    { id: "dips",        name: "Dips" },
-    { id: "doener",      name: "Döner" },
-    { id: "ueberbacken", name: "Überbacken" },
-    { id: "pizza",       name: "Pizza", desc: "30 cm. Alle Pizzas mit Tomatensoße und Käse." },
-    { id: "partypizza",  name: "Party Pizza", desc: "40 × 60 cm." },
-    { id: "nudeln",      name: "Nudelgerichte", desc: "Spaghetti oder Penne. Alle Gerichte gibt es auch überbacken (+2,50 €)." },
-    { id: "chinanudeln", name: "Chinesische Nudeln" },
-    { id: "gnocchi",     name: "Gnocchi" },
-    { id: "indisch",     name: "Indisch & Pakistanisch", desc: "Alle Gerichte mit Reis." },
-    { id: "vegetarisch", name: "Vegetarische Gerichte" },
-    { id: "schnitzel",   name: "Schnitzel und Steak", desc: "Alle Schnitzel vom Putenfleisch mit Pommes." },
-    { id: "dessert",     name: "Dessert" },
-    { id: "getraenke",   name: "Getränke" }
+    { id: "salate", slug: "salate",      name: "Salate", desc: "Wahlweise mit Essig und Öl oder Joghurtsoße (C, G)." },
+    { id: "burger", slug: "burger",      name: "Burger", desc: "Alle mit grünem Salat, Tomaten, Gurken und Zwiebeln." },
+    { id: "potatoes", slug: "potatoes",    name: "Potatoes" },
+    { id: "fingerfood", slug: "fingerfood",  name: "Fingerfood" },
+    { id: "partyplatten", slug: "partyplatten",name: "Party Platten" },
+    { id: "dips", slug: "dips",        name: "Dips" },
+    { id: "doener", slug: "doener",      name: "Döner" },
+    { id: "ueberbacken", slug: "ueberbacken", name: "Überbacken" },
+    { id: "pizza", slug: "pizza",       name: "Pizza", desc: "30 cm. Alle Pizzas mit Tomatensoße und Käse." },
+    { id: "partypizza", slug: "party-pizza",  name: "Party Pizza", desc: "40 × 60 cm." },
+    { id: "nudeln", slug: "nudelgerichte",      name: "Nudelgerichte", desc: "Spaghetti oder Penne. Alle Gerichte gibt es auch überbacken (+2,50 €)." },
+    { id: "chinanudeln", slug: "chinesische-nudeln", name: "Chinesische Nudeln" },
+    { id: "gnocchi", slug: "gnocchi",     name: "Gnocchi" },
+    { id: "indisch", slug: "indisch-pakistanisch",     name: "Indisch & Pakistanisch", desc: "Alle Gerichte mit Reis." },
+    { id: "vegetarisch", slug: "vegetarische-gerichte", name: "Vegetarische Gerichte" },
+    { id: "schnitzel", slug: "schnitzel-steak",   name: "Schnitzel und Steak", desc: "Alle Schnitzel vom Putenfleisch mit Pommes." },
+    { id: "dessert", slug: "desserts",     name: "Dessert" },
+    { id: "getraenke", slug: "getraenke",   name: "Getränke" }
   ],
 
   /* --- Gerichte --- */
