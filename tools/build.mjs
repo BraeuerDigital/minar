@@ -493,7 +493,7 @@ built.push(page({
               <label class="field"><span>Name <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="name" required aria-required="true" data-f-name></label>
               <label class="field"><span>Telefon <b class="req" aria-hidden="true">*</b> <small>(für Rückfragen)</small></span><input type="tel" autocomplete="tel" required aria-required="true" data-f-phone></label>
               <label class="field field-wide" data-address-field hidden><span>Lieferadresse <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="street-address" placeholder="Straße, Hausnummer" aria-required="true" data-f-address></label>
-              <label class="field"><span>Wunschzeit</span><select data-f-time></select></label>
+              <label class="field"><span>Wunschzeit</span><select data-f-time aria-describedby="time-hint"></select><small class="field-hint" id="time-hint">Wunschzeit unverbindlich – wir bestätigen die Uhrzeit per WhatsApp.</small></label>
               <label class="field field-wide"><span>Anmerkungen <small>(optional)</small></span><textarea rows="3" maxlength="300" data-f-note></textarea></label>
             </div>
             <p class="fine req-note"><b class="req">*</b> Pflichtfeld</p>

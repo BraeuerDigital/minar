@@ -469,9 +469,9 @@
       if (F.place.value) L.push("Lieferort: " + (F.place.value === "__other" ? "anderer Ort (auf Anfrage)" : F.place.value));
       if (F.address.value.trim()) L.push("Lieferadresse: " + F.address.value.trim());
     }
-    L.push("Wunschzeit: " + (F.time.value && F.time.value !== "asap" ? "heute, " + F.time.value + " Uhr" : "so schnell wie möglich"));
+    L.push("Wunschzeit (unverbindlich): " + (F.time.value && F.time.value !== "asap" ? "heute, " + F.time.value + " Uhr" : "so schnell wie möglich"));
     if (F.note.value.trim()) L.push("Anmerkung: " + F.note.value.trim());
-    L.push("", "Bitte bestätigen Sie mir die Bestellung. Vielen Dank!");
+    L.push("", "Bitte bestätigen Sie mir die Bestellung und die Uhrzeit. Vielen Dank!");
     return L.join("\n");
   }
 

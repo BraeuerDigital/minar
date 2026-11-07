@@ -1372,3 +1372,4 @@ main:has(> .cta-band:last-child) + .swoosh-footer .sw-yellow { fill: #0d1307; }
   .variants-line { flex: 1 1 100%; }
   .add-btn { flex: 1 1 100%; margin-left: 0; justify-content: center; min-height: 48px; font-size: .95rem; }
 }
+.field .field-hint { font-weight: 400; font-size: .8rem; color: var(--muted); line-height: 1.4; margin-top: .15rem; }
