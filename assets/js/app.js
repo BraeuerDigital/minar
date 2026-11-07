@@ -400,10 +400,11 @@
   }
 
   /* Bestellarten nach Uhrzeit:
-     Lieferung: bis zur Bestellannahme (21:15) · Abholung: bis Ladenschluss (21:30)
-     Am Ruhetag beides aus. Ausgegraut und durchgestrichen, wenn nicht verfügbar. */
+     nur während der Öffnungszeiten: Lieferung 11:30–21:15 · Abholung 11:30–21:30
+     Vor Öffnung, nach Schluss und am Ruhetag beides aus. Ausgegraut und durchgestrichen, wenn nicht verfügbar. */
   function modeAvailable(m) {
     var n = berlinNow(); if (H.closedDays.indexOf(n.day) > -1) return false;
+    if (n.min < toMin(H.open)) return false;                    // vor Öffnung: keine Bestellungen
     return n.min < toMin(m === "Lieferung" ? H.orderUntil : H.close);
   }
   function applyDeliveryCutoff() {
@@ -420,7 +421,7 @@
     }
     if (!info) return;
     var msg = "";
-    if (!avail.Abholung && !avail.Lieferung) msg = "Wir haben gerade geschlossen – Bestellungen sind wieder ab " + H.open + " Uhr möglich (Dienstag Ruhetag).";
+    if (!avail.Abholung && !avail.Lieferung) msg = "Wir haben gerade geschlossen – " + status().text.replace(/^(Geschlossen|Heute Ruhetag) · /, "").replace(/^öffnet/, "wir öffnen") + ". Dann können Sie wieder bestellen.";
     else if (!avail.Lieferung) msg = "Lieferungen nehmen wir bis " + H.orderUntil + " Uhr an (Dienstag Ruhetag). Jetzt ist nur Abholung möglich.";
     info.hidden = !msg; info.textContent = msg;
   }
