@@ -576,14 +576,6 @@ built.push(page({
         </div>
       </div>
     </section>
-    <section class="section offer">
-      <div class="container">
-        <h2 class="h-red">Unser Angebot im Überblick</h2>
-        <div class="cat-grid cat-grid-all">
-          ${CATS.map((c) => `<a class="cat-card" href="${root}speisekarte/${c.slug}.html" data-cat-card="${c.id}"><span class="cat-card-name">${esc(c.name)}</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go">${I.arrow}</span></a>`).join("\n          ")}
-        </div>
-      </div>
-    </section>
 ${ctaBand(root)}`
 }));
 
