@@ -1385,3 +1385,11 @@ main:has(> .cta-band:last-child) + .swoosh-footer .sw-yellow { fill: #0d1307; }
   .footer-bottom-inner > p:nth-child(2) { margin-right: 0; }
   .footer-credit { position: static; transform: none; top: auto; right: auto; margin-left: 0; order: 3; white-space: nowrap; }
 }
+
+/* ---------- Fixierte Buttons: höher, weichen der Footer-Leiste aus ---------- */
+:root { --fab-lift: 0px; }
+.side-cta, .cart-fab { bottom: calc(1.6rem + env(safe-area-inset-bottom) + var(--fab-lift)); transition: transform .7s var(--spring), bottom .25s var(--ease); }
+@media (max-width: 600px) { .side-cta, .cart-fab { bottom: calc(1.25rem + env(safe-area-inset-bottom) + var(--fab-lift)); } }
+.footer-bottom { padding-bottom: env(safe-area-inset-bottom) !important; }
+.footer-grid { padding-bottom: calc(3rem + 72px); }
+@media (max-width: 600px) { .footer-grid { padding-bottom: calc(1.5rem + 76px); } }

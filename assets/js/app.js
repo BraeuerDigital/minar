@@ -608,6 +608,21 @@
     openDialog(drinkDialog);
   }
 
+  /* ---------------- Fixierte Buttons über der Footer-Leiste halten ---------------- */
+  (function () {
+    var bar = $(".footer-bottom"); if (!bar) return;
+    var root = document.documentElement, raf = 0;
+    var lift = function () {
+      raf = 0;
+      var visible = Math.max(0, window.innerHeight - bar.getBoundingClientRect().top);
+      root.style.setProperty("--fab-lift", Math.round(visible) + "px");
+    };
+    var req = function () { if (!raf) raf = requestAnimationFrame(lift); };
+    window.addEventListener("scroll", req, { passive: true });
+    window.addEventListener("resize", req);
+    lift();
+  })();
+
   /* ---------------- Seiten-CTA (rechts fixiert) ---------------- */
   var cta = $("[data-side-cta]");
   if (cta) {
