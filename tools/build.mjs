@@ -606,16 +606,10 @@ built.push(page({
   title: "Impressum · MINAR Küche Bad Buchau", desc: "Impressum von MINAR Küche Bad Buchau.",
   body: () => `${pageHead("Rechtliches", "Impressum")}
     <section class="section section-tight"><div class="container prose legal">
-      <p class="legal-warning"><strong>Bitte noch ergänzen bzw. prüfen:</strong> Die markierten Stellen müssen vom Betreiber vervollständigt und das Impressum rechtlich geprüft werden.</p>
       <h2>Angaben gemäß § 5 DDG</h2>
-      <p>${esc(R.name)}<br>${esc(R.street)}<br>${esc(R.zip)} ${esc(R.city)}</p>
-      <h2>Vertretungsberechtigt</h2><p>${esc(R.owner)}</p>
-      <h2>Kontakt</h2><p>Telefon: ${esc(R.phoneDisplay)}<br>Fax: ${esc(R.fax)}<br>WhatsApp: ${esc(R.whatsappDisplay)}<br>E-Mail: <a href="mailto:${esc(R.email)}">${esc(R.email)}</a></p>
-      <h2>Umsatzsteuer-ID</h2><p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG:<br>${esc(R.vatId)}</p>
-      <h2>Registereintrag</h2><p>${ph("Registergericht und Registernummer – nur falls vorhanden, sonst Abschnitt entfernen")}</p>
-      <h2>Zuständige Aufsichtsbehörde</h2><p>${ph("falls erforderlich – sonst Abschnitt entfernen")}</p>
-      <h2>Verbraucherstreitbeilegung</h2><p>${ph("Hinweis zur (Nicht-)Teilnahme an Streitbeilegungsverfahren – vom Betreiber festzulegen")}</p>
-      <h2>Webdesign</h2><p>Bräuer.Digital</p>
+      <p>${esc(R.owner)}<br>Einzelunternehmer, handelnd unter ${esc(R.name)}<br>${esc(R.street)}<br>${esc(R.zip)} ${esc(R.city)}<br>Deutschland</p>
+      <h2>Kontakt</h2><p>Telefon: <a href="${TEL}">${esc(R.phoneDisplay)}</a><br>E-Mail: <a href="mailto:${esc(R.email)}">${esc(R.email)}</a></p>
+      <h2>Umsatzsteuer-Identifikationsnummer</h2><p>${esc(R.vatId)}</p>
     </div></section>`
 }));
 built.push(page({

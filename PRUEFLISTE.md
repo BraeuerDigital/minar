@@ -76,8 +76,7 @@ Rechtschreibprüfung 07.11.2026: Cheddar Käse → Cheddarkäse · Pattie → Pa
 
 | # | Punkt | Status |
 |---|-------|--------|
-| G1 | Impressum eingetragen: Minar Küche, Schussenrieder Straße 21, 88422 Bad Buchau · vertretungsberechtigt: Rehan Naveed Raja · Tel., Fax 0800 202 07 702, WhatsApp, E-Mail minarbuchau@gmail.com · USt-IdNr. DE 364887498 | erledigt |
-| G2 | Impressum offen: Rechtsform (falls vorhanden), Registereintrag (nur falls vorhanden), Aufsichtsbehörde (falls erforderlich), Hinweis zur Verbraucherstreitbeilegung | offen – Platzhalter sichtbar |
+| G1 | Impressum laut Kundenvorgabe (10.11.2026): Rehan Naveed Raja, Einzelunternehmer, handelnd unter MINAR Küche, Schussenrieder Straße 21, 88422 Bad Buchau, Deutschland · Tel. · E-Mail · USt-IdNr. DE 364887498 | erledigt |
 | G3 | Datenschutz: Verantwortlicher eingetragen. Offen: Rechtsgrundlagen, Hosting/Drittland, WhatsApp-Verarbeitung, telefonische Bestellung, Betroffenenrechte, Datum | offen – Platzhalter sichtbar |
 | G4 | Rechtliche Prüfung beider Texte vor Livegang | offen |
 | G5 | LMIV: Allergeninformation online – vom Kunden bestätigt | erledigt |
