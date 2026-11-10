@@ -1373,3 +1373,15 @@ main:has(> .cta-band:last-child) + .swoosh-footer .sw-yellow { fill: #0d1307; }
   .add-btn { flex: 1 1 100%; margin-left: 0; justify-content: center; min-height: 48px; font-size: .95rem; }
 }
 .field .field-hint { font-weight: 400; font-size: .8rem; color: var(--muted); line-height: 1.4; margin-top: .15rem; }
+
+/* ---------- Footer-Leiste: Credit ohne Überlappung (alle Fensterbreiten) ---------- */
+@media (min-width: 601px) {
+  .footer-bottom-inner {
+    width: auto; margin: 0; display: flex; flex-wrap: wrap; align-items: center; column-gap: 2rem; row-gap: .4rem;
+    padding-left: max(1.25rem, calc((100vw - 1240px) / 2));
+    padding-right: calc(clamp(.9rem, 1.6vw, 1.4rem) + 0.7cm);
+  }
+  .footer-bottom-inner > p:first-child { margin-right: auto; }
+  .footer-bottom-inner > p:nth-child(2) { margin-right: 0; }
+  .footer-credit { position: static; transform: none; top: auto; right: auto; margin-left: 0; order: 3; white-space: nowrap; }
+}
