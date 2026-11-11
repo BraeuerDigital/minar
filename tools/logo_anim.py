@@ -96,7 +96,7 @@ def build():
 <g class="lg-tagline"><path fill="{RED}" d="{P["tagline"]}"/></g>
 </svg>
 '''
-    out = os.path.join(ROOT, "assets", "logo", "minar-logo-anim.svg")
+    out = os.path.join(ROOT, "public", "assets", "logo", "minar-logo-anim.svg")
     open(out, "w").write(svg)
     print("geschrieben:", os.path.relpath(out, ROOT), f"({len(svg) // 1024} KB)")
 

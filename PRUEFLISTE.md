@@ -1,6 +1,6 @@
-# Prüfprotokoll – MINAR Küche (Multi-Page-Demo)
+# Prüfprotokoll – MINAR Küche
 
-Stand: 06.11.2026 · Quellen: zwei Fotos der gedruckten Speisekarte (Kartenstand **04/2023**), freigestellter Logobereich, Farbpalette.
+Stand: 11.11.2026 (Finalisierung V3.0) · Offene Inhaberpunkte gesammelt in `docs/ABSCHLUSSBERICHT.md`, Liste B · Quellen: zwei Fotos der gedruckten Speisekarte (Kartenstand **04/2023**), freigestellter Logobereich, Farbpalette.
 
 Punkte mit **PRÜFEN** sind auf der Website nicht als gesichert dargestellt oder sollten vor dem Livegang vom Restaurant bestätigt werden.
 
@@ -9,7 +9,7 @@ Punkte mit **PRÜFEN** sind auf der Website nicht als gesichert dargestellt oder
 
 | # | Punkt | Status |
 |---|-------|--------|
-| A1 | Die Karte trägt den Vermerk **„(04/2023) – Karte ist gültig bis zur Neuerscheinung“**. Alle Preise vom Restaurant auf Aktualität bestätigen lassen. Die Website zeigt den Hinweis „Preise laut gedruckter Speisekarte, Stand 04/2023“. | **bestätigt 06.11.2026** – Preise aktuell |
+| A1 | Die Karte trägt den Vermerk **„(04/2023) – Karte ist gültig bis zur Neuerscheinung“**. Alle Preise vom Restaurant auf Aktualität bestätigen lassen. Der frühere Hinweis „Stand 04/2023, ohne Gewähr“ wurde am 11.11.2026 entfernt; stattdessen: Preise inkl. USt., Pfand separat, Barzahlung. | **bestätigt 06.11.2026** – Preise aktuell |
 
 ## B. Übernommene Daten
 
@@ -49,9 +49,9 @@ Keine Kennzeichnung ist mehr als „auf Anfrage“ markiert.
 | D12 | Napoli (140) 9,00 € | Preise insgesamt bestätigt | bestätigt |
 | D13 | Dip-/Soßen-Abfrage beim Hinzufügen (Preise laut Nr. 80–88: Dips 1,20 €, Ketchup/Majo/Remoulade 0,50 €) | bei allen Burgern, Potatoes, Fingerfood, Party Platten inkl. Menü 73, Schnitzel sowie 95, 96a, 97, 98, 98a, 98b – je Dip eine Portion pro Gericht | auf Kundenwunsch umgesetzt |
 | D14 | Döner (90–96a): bis zu 2 Soßen inklusive, Auswahl aus den Soßen der Karte (Dönersoße, Cocktail, Hot Cocktail, Sour Cream, Minar Spezial, BBQ, Sweet Chili) + optional „scharf“ | bitte bestätigen, welche Soßen für Döner angeboten werden | auf Kundenwunsch umgesetzt |
-| D15 | Getränke-Abfrage beim Absenden per WhatsApp, wenn noch kein Getränk im Warenkorb ist (einmal pro Besuch, überspringbar) | | auf Kundenwunsch umgesetzt |
+| D15 | Getränke-Abfrage vor der Bestellübersicht, wenn noch kein Getränk im Warenkorb ist (einmal pro Besuch, überspringbar) | | auf Kundenwunsch umgesetzt |
 | D16 | Pflichtfelder: Abholung → Name, Telefon · Lieferung → Name, Telefon, Lieferort, Adresse. Wunschzeit: „So schnell wie möglich“ oder heute in 15-Min.-Schritten (frühestens 30 Min. ab jetzt, bis 21:30 Uhr) | Vorlaufzeit 30 Min. und Endzeit bitte bestätigen | auf Kundenwunsch umgesetzt |
-| D17 | Warenkorb: Gerichte mit Auswahl (Größe, Dressing, Soßen, Dips, Extras) über „Anpassen“ nachträglich änderbar | | auf Kundenwunsch umgesetzt |
+| D17 | Warenkorb: jede Position über „Ändern“ nachträglich änderbar (Größe, Dressing, Soßen, Dips, Extras, Hinweis) – vorhandene Auswahl bleibt erhalten; identische Positionen werden zusammengeführt | | umgesetzt (V3.0) |
 | D18 | Bestellen nur während der Öffnungszeiten: Lieferung 11:30–21:15, Abholung 11:30–21:30; vor Öffnung, danach und dienstags beides ausgegraut/durchgestrichen und Absenden gesperrt; Liefer-Wunschzeiten bis 21:15, Abholung bis 21:30, jeweils 15-Min.-Schritte | | auf Kundenwunsch umgesetzt |
 
 ## E. Korrigierte Schreibweisen
@@ -65,10 +65,10 @@ Rechtschreibprüfung 07.11.2026: Cheddar Käse → Cheddarkäse · Pattie → Pa
 | # | Angabe | Status |
 |---|--------|--------|
 | F1 | Schussenrieder Straße 21, 88422 Bad Buchau · Tel. 07582 934 69 44 · WhatsApp 0163 359 01 88 | bestätigt (Impressumsangaben des Kunden) |
-| F2 | Täglich 11:30–21:30 Uhr, Dienstag Ruhetag, Bestellannahme bis 21:15 Uhr | bestätigt, wie auf dem Flyer |
+| F2 | Täglich 11:30–21:30 Uhr, Dienstag Ruhetag; Lieferung bis 21:15 Uhr, Abholung bis 21:30 Uhr (Texte auf allen Seiten vereinheitlicht) | bestätigt |
 | F3 | WhatsApp-Nummer für Bestellungen | bestätigt – wird genutzt |
-| F4 | Domain `www.minar-buchau.de` – **bewusst nicht verknüpft** (kein CNAME) | offen |
-| F6 | Hinweis „Preise laut gedruckter Speisekarte, Stand 04/2023“ unter der Speisekarte – Preise sind bestätigt; Text beibehalten, ändern oder entfernen? | offen |
+| F4 | Domain – Registrierung über Namecheap geplant, **bewusst nicht verknüpft** (kein CNAME, keine DNS-Änderung) | offen (Liste B) |
+| F6 | Hinweis „Stand 04/2023“ | entfernt (V3.0) |
 | F7 | `noindex` auf allen Seiten – vor dem Livegang entfernen? | offen |
 | F5 | Halal-Kennzeichnung: auf Wunsch aus dem Flyer übernommen (Logo, Header, Startseite, Speisekarte, Über uns). Formulierung auf Wunsch des Kunden: „Halal“. Keine Zertifizierung oder Zertifizierungsstelle genannt. Vom Kunden bestätigt (06.11.2026). | erledigt |
 
@@ -76,19 +76,25 @@ Rechtschreibprüfung 07.11.2026: Cheddar Käse → Cheddarkäse · Pattie → Pa
 
 | # | Punkt | Status |
 |---|-------|--------|
-| G1 | Impressum laut Kundenvorgabe (10.11.2026): Rehan Naveed Raja, Einzelunternehmer, handelnd unter MINAR Küche, Schussenrieder Straße 21, 88422 Bad Buchau, Deutschland · Tel. · E-Mail · USt-IdNr. DE 364887498 | erledigt |
-| G3 | Datenschutz: Verantwortlicher eingetragen. Offen: Rechtsgrundlagen, Hosting/Drittland, WhatsApp-Verarbeitung, telefonische Bestellung, Betroffenenrechte, Datum | offen – Platzhalter sichtbar |
-| G4 | Rechtliche Prüfung beider Texte vor Livegang | offen |
+| G1 | Impressum laut Kundenvorgabe (10.11.2026): Rehan Naveed Raja, Einzelunternehmer, handelnd unter MINAR Küche, Schussenrieder Straße 21, 88422 Bad Buchau, Deutschland · Tel. · E-Mail · USt-IdNr. DE 364887498 · Webdesign: Bräuer.Digital. Keine Platzhalter, kein Register, kein OS-Plattform-Link. | erledigt – Bestätigung Inhaber (Liste B) |
+| G2 | Verbraucherstreitbeilegung (§ 36 VSBG): Angabe hängt von Unternehmensgröße/Teilnahmebereitschaft ab – derzeit nicht im Impressum | offen (Liste B) |
+| G3 | Datenschutzerklärung (11.11.2026) auf Basis des Entwurfs vom 10.11.2026, angepasst an Cloudflare Pages (DPF-zertifiziert), Browser-Speicherung, WhatsApp (Übergabe schon beim Öffnen des Links), Telefon, E-Mail (Gmail), Google Maps, Google-Bewertung (nur bei aktivem Link), Rechte, LfDI BW. Ohne GitHub, Namecheap, Lexware. Keine sichtbaren Platzhalter. | erledigt – fachliche Prüfung offen (G4) |
+| G4 | Rechtliche Prüfung beider Texte sowie der Bestellstrecke (§§ 312i, 312j BGB, vorvertragliche Informationen, Widerrufsbelehrung/Ausnahmen) vor Livegang | offen (Liste B) |
 | G5 | LMIV: Allergeninformation online – vom Kunden bestätigt | erledigt |
 
 ## H. WhatsApp-Warenkorb
 
 | # | Punkt | Status |
 |---|-------|--------|
-| H1 | Konzeptdemo – produktive Nutzung mit dem Restaurant abstimmen | offen |
+| H1 | Echte WhatsApp-Bestellstrecke (kein Demo-Modus): Warenkorb → Bon-Übersicht → WhatsApp an 0163 359 01 88; Annahmeprozess im Restaurant abstimmen | technisch fertig – Inhaber (Liste B) |
 | H2 | Hinweis „keine verbindliche Bestellung bis zur Bestätigung“ sichtbar | erledigt |
 | H3 | Keine Onlinezahlung, keine automatische Annahme | erledigt |
-| H4 | Mindestbestellwert wird angezeigt, blockiert aber nicht (Karte: „kontaktieren Sie uns …“) | erledigt |
+| H4 | Mindestbestellwert (nur Warenwert, ohne Pfand/Lieferkosten) wird angezeigt, blockiert aber nicht (Karte: „kontaktieren Sie uns …“) | erledigt |
+| H5 | Getränkepfand 0,25 € je Getränk, Ayran vorläufig ohne Pfand – zentral in `menu-data.js` (`pfand`), separat in Karte, Warenkorb, Bon und Nachricht | umgesetzt – Ayran-Verpackung bestätigen (Liste B) |
+| H6 | Barzahlung: „Zahlung ausschließlich bar bei Abholung oder Lieferung.“ im Warenkorb, im Bon und in der Nachricht | erledigt |
+| H7 | Keine Bestellnummer, keine Erfolgsmeldung nach dem Öffnen von WhatsApp; Bon trägt nur Erstellungszeitpunkt mit Hinweis „keine Bestellnummer, keine Bestätigung“ | erledigt |
+| H8 | Datensparsamkeit: Formulardaten nur im sessionStorage, Warenkorb läuft nach 12 h ab, alter Schlüssel `minar-form-v3` wird gelöscht | erledigt |
+| H9 | Google-Bewertung: Link nicht eindeutig verifizierbar → Konfiguration `googleReviewUrl` (leer = ausgeblendet). Link aus Google-Unternehmensprofil → „Um Rezensionen bitten“ | vorbereitet (Liste B) |
 
 ## I. Logo, Marke & Bilder
 
@@ -103,19 +109,20 @@ Rechtschreibprüfung 07.11.2026: Cheddar Käse → Cheddarkäse · Pattie → Pa
 | I8 | Logo-Intro (Startseite): Aufbau aller Logo-Elemente inkl. Unterzeile (aus Vorlage vektorisiert), Stand, Scharren, Sprung; Original-Silhouette über Gelenk-Rig, Endbild pixelgleich geprüft; reduced motion / gleiche Sitzung → statisch | erledigt |
 | I7 | Schriften: Systemschriften (Bookman/Georgia für Überschriften), keine externen Font-Server. | erledigt |
 
-## J. Durchgeführte Tests (06.11.2026, Chrome headless)
+## J. Durchgeführte Tests (11.11.2026, Chrome headless, lokaler Server mit `public/` als Stamm, `_headers` inkl. CSP und 404-Verhalten wie Cloudflare)
 
 | Test | Ergebnis |
 |------|----------|
-| Alle 26 Seiten über lokalen Server unter Projektpfad `/minar/` (wie GitHub Pages) geladen | keine JS-Fehler, keine 404 |
-| Alle internen Links und Dateipfade | 0 defekte Links |
-| Seitliches Scrollen bei 390 px Breite | auf keiner Seite |
-| Aktive Navigation | korrekt auf allen Hauptseiten |
-| Gerichte je Kategorieseite | Summe 162 = Datenbestand |
-| Warenkorb über mehrere Seiten (Burger mit Extra, Dönerteller mit Beilage, Getränk) | Summen korrekt (z. B. 2 × (18,90 + 7,00) = 51,80 €) |
-| Lieferort-Auswahl mit Mindestbestellwert und Lieferkosten | korrekt |
-| WhatsApp-Link | `wa.me/491633590188` mit vollständiger Nachricht |
-| Suche (Name, Zutat, Nummer `96a`) | funktioniert |
-| Mobile Navigation | öffnet/schließt, echte Seitenwechsel |
+| 27 Seiten bei 320/375/390/768/1024/1440 px | keine JS-/CSP-Fehler, kein horizontales Scrollen (Fix: langer Gerichtname bei 320 px) |
+| Alle internen Links, Skripte, Stylesheets, Bilder | 0 Fehler; unbekannter Pfad → 404-Seite mit Status 404 |
+| Döner: 2 Soßen inklusive, 3. Soße gesperrt; Hinweis „ohne Zwiebeln“ | korrekt in Warenkorb, Bon, Nachricht |
+| Pfand: Cola 2 × 0,25 €, Ayran 0 €, Menge +/−, Sortenwechsel über „Ändern“ (0,5 l → 1,0 l), Red Bull 1 × 0,25 € | Summen korrekt (z. B. 16,40 + 0,50 Pfand + 1,00 Lieferung = 17,90 €) |
+| Mindestbestellwert Kanzach 25 € bei 16,40 € Warenwert | Hinweis „noch 8,60 €“, Pfand/Lieferkosten nicht eingerechnet |
+| Pflichtfelder, Telefon „abc“ | blockiert mit Hinweis |
+| WhatsApp-Link | `wa.me/491633590188`, Nachricht im vorgegebenen Format, korrekte Kodierung, keine geschützten Leerzeichen; nichts wurde an das Restaurant gesendet |
+| Öffnungszeiten: Mi 10:00, 11:30, 18:00, 21:10, 21:20, 21:31; Mo 22:00 (→ „Mittwoch“); Di Ruhetag; Sommerzeit; Rechner in UTC | Freigaben/Sperren und Hinweise korrekt, Zeiten ab +30 Min. in 15-Min.-Schritten |
+| Veralteter Tab: Bon offen, Uhr springt vor | Wunschzeit ungültig → Übersicht wird aktualisiert statt gesendet; Lieferung nach 21:15 gesperrt; Abholung bis 21:30 möglich |
+| Speicher | localStorage nur `minar-cart-v4` (ohne Name/Telefon), sessionStorage `minar-form-v4` |
+| Logo-Intro | Dateien unverändert (nur verschoben), Seite ohne Fehler |
 
-Nicht getestet: echte Mobilgeräte (iOS Safari/Android), Screenreader, Veröffentlichung auf GitHub Pages selbst.
+Nicht getestet: echte Mobilgeräte (iOS Safari/Android), Screenreader, Cloudflare-Deployment selbst (Verbindung erfordert Anmeldung im Cloudflare-Konto, siehe `docs/CLOUDFLARE.md`).

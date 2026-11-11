@@ -1,0 +1,5 @@
+# Vorschau-/Vorabversion: bitte nicht indexieren.
+# Nach Freigabe und Domain-Anbindung: „Disallow: /“ entfernen, X-Robots-Tag in _headers
+# und <meta name="robots"> in tools/build.mjs anpassen, Sitemap ergänzen.
+User-agent: *
+Disallow: /

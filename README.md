@@ -1,10 +1,11 @@
-# MINAR Küche – Website (Multi-Page-Demo)
+# MINAR Küche – Website
 
 Statische Multi-Page-Website für **MINAR Küche**, Schussenrieder Straße 21, 88422 Bad Buchau.
 Restaurant · Lieferservice · Abholung.
 
 HTML, CSS und Vanilla JavaScript – keine Frameworks, keine Datenbank, kein Backend, keine externen Dienste oder Schriften.
-Alle Seiten sind mit `noindex` gekennzeichnet (unveröffentlichte Demo).
+Hosting: **Cloudflare Pages** (Projekt `minar-kueche`, Output-Ordner `public/`) – Einrichtung siehe [`docs/CLOUDFLARE.md`](docs/CLOUDFLARE.md).
+Alle Seiten sind bis zur Freigabe mit `noindex` gekennzeichnet. Stand der Umsetzung: [`docs/ABSCHLUSSBERICHT.md`](docs/ABSCHLUSSBERICHT.md).
 
 ## Seiten
 
@@ -13,35 +14,42 @@ Alle Seiten sind mit `noindex` gekennzeichnet (unveröffentlichte Demo).
 | `index.html` | Startseite (Hero mit Logo, Vorstellung, Kategorien, Lieferservice, Öffnungszeiten, CTA) |
 | `speisekarte/index.html` | komplette Speisekarte mit allen Gerichten, Kategorie-Sprungleiste und Suche (`?q=` möglich) |
 | `speisekarte/<kategorie>.html` | 18 Kategorieseiten, z. B. `pizza.html`, `burger.html`, `doener.html` |
-| `bestellen.html` | Warenkorb & Bestellvorbereitung per WhatsApp |
+| `bestellen.html` | Warenkorb „Deine Bestellung“, Angaben, Bestellübersicht im Bon-Stil, Versand der Anfrage per WhatsApp |
 | `lieferservice.html` | Liefergebiete, Mindestbestellwerte, Lieferkosten, Zeiten |
 | `ueber-uns.html` | Restaurantvorstellung |
-| `kontakt.html` | Adresse, Telefon, WhatsApp, Öffnungszeiten, Google-Maps-Link |
-| `impressum.html`, `datenschutz.html` | Entwürfe mit markierten Platzhaltern |
+| `kontakt.html` | Adresse, Telefon, WhatsApp, Öffnungszeiten, Google-Maps-Link, Google-Bewertung (sobald Link hinterlegt) |
+| `impressum.html`, `datenschutz.html` | Impressum und Datenschutzerklärung (Cloudflare Pages) |
+| `404.html` | Fehlerseite für Cloudflare Pages |
 
 ## Struktur
 
 ```text
-├── *.html, speisekarte/*.html   erzeugte Seiten (nicht von Hand bearbeiten)
-├── assets/
-│   ├── css/styles.css           Designsystem (Farbvariablen, Komponenten)
-│   ├── js/menu-data.js          ALLE Inhalte: Stammdaten, Zeiten, Lieferzonen, Kategorien, Gerichte
-│   ├── js/app.js                Navigation, Öffnungsstatus, Speisekarte, Suche, Warenkorb, WhatsApp
-│   ├── js/fx.js                 Interaktions-Effekte (Hover, Tilt, Magnet, Scroll-Fortschritt)
-│   ├── js/logo-anim.js          Logo-Intro der Startseite (Aufbau, Stand, Scharren, Sprung – ca. 5,3 s)
-│   ├── logo/                    Logo als SVG/PNG, Header-Variante, Halal-Siegel, Favicons, Referenz
-│   └── images/                  Platz für spätere Originalfotos
+├── public/                       ← wird veröffentlicht (Cloudflare-Output)
+│   ├── *.html, speisekarte/*.html  erzeugte Seiten (nicht von Hand bearbeiten)
+│   ├── 404.html, _headers, robots.txt
+│   └── assets/
+│       ├── css/styles.css        Designsystem (Farbvariablen, Komponenten)
+│       ├── js/menu-data.js       ALLE Inhalte: Stammdaten, Zeiten, Lieferzonen, Kategorien, Gerichte, Pfand, Google-Link
+│       ├── js/app.js             Navigation, Öffnungsstatus, Speisekarte, Suche, Warenkorb, Bon, WhatsApp
+│       ├── js/fx.js              Interaktions-Effekte (Hover, Tilt, Magnet, Scroll-Fortschritt)
+│       ├── js/logo-anim.js       Logo-Intro der Startseite
+│       ├── logo/                 Logo als SVG/PNG, Halal-Siegel, Favicons, Referenz
+│       └── images/               Fotos des Restaurants
 ├── tools/
-│   ├── build.mjs                Seitengenerator (Header, Footer, Navigation zentral)
-│   ├── trace.py, compose.py     Logo-Vektorisierung aus assets/logo/logo-referenz.png
-│   ├── logo_anim.py             erzeugt assets/logo/minar-logo-anim.svg (zerlegtes Logo + Gelenk-Rig)
-├── PRUEFLISTE.md                Prüfprotokoll: unsichere und zu bestätigende Angaben
-└── .nojekyll
+│   ├── build.mjs                 Seitengenerator (Header, Footer, Navigation, Rechtstexte zentral)
+│   ├── trace.py, compose.py      Logo-Vektorisierung aus public/assets/logo/logo-referenz.png
+│   └── logo_anim.py              erzeugt public/assets/logo/minar-logo-anim.svg
+├── docs/
+│   ├── CLOUDFLARE.md             Hosting-Einrichtung (Vorlage für weitere Kundenprojekte)
+│   ├── ABSCHLUSSBERICHT.md       Listen A (technisch erledigt) und B (vom Inhaber zu bestätigen)
+│   └── logo-intro/               Logo-Intro als Kopiervorlage
+├── PRUEFLISTE.md                 Prüfprotokoll
+└── index.html, .nojekyll         Übergangsweiterleitung nur für GitHub Pages (nach Migration löschen)
 ```
 
 ## Inhalte pflegen
 
-**Preise und Gerichte:** nur `assets/js/menu-data.js` bearbeiten – die Seiten lesen die Daten beim Aufruf. Kein Build nötig.
+**Preise und Gerichte:** nur `public/assets/js/menu-data.js` bearbeiten – die Seiten lesen die Daten beim Aufruf. Kein Build nötig.
 
 **Header, Footer, Seitentexte oder neue Kategorie:** `tools/build.mjs` bzw. `menu-data.js` anpassen und neu erzeugen:
 
@@ -59,7 +67,22 @@ Aufbau eines Gerichts:
   prices: [13.5],                 // oder [["klein", 4.9], ["groß", 6.9]]
   codes: "A,C,G,F,J,6,7,8,2",     // Buchstaben = Allergene, Zahlen = Zusatzstoffe
   opts: ["burger-extra"] }        // Auswahl/Extras aus optionGroups
+// Getränke zusätzlich: pfand: 0.25 (je Stück, separat ausgewiesen; 0 = kein Pfand, z. B. Ayran)
 ```
+
+**Google-Bewertungslink:** `restaurant.googleReviewUrl` in `menu-data.js` eintragen (Link aus dem Google-Unternehmensprofil über „Um Rezensionen bitten“, z. B. `https://g.page/r/…/review`) und `node tools/build.mjs` ausführen. Ist das Feld leer, bleiben Button (Kontakt), Footer-Link und der zugehörige Datenschutzabschnitt ausgeblendet.
+
+## Bestellablauf (WhatsApp, Barzahlung)
+
+1. Gerichte in der Speisekarte wählen und konfigurieren (Größe, Soßen, Dips, Extras, Hinweis).
+2. Warenkorb „Deine Bestellung“: Menge (− / +, bei 1 entfernt „−“ die Position), „Ändern“ öffnet die Auswahl mit allen bisherigen Werten, „Entfernen“.
+3. Abholung oder Lieferung, Angaben, Wunschzeit („so schnell wie möglich“ oder heute in 15-Min.-Schritten, mind. 30 Min. Vorlauf).
+4. „Weiter zur Übersicht“ (ggf. vorher Getränke-Abfrage) → Bestellübersicht im Bon-Stil.
+5. „Per WhatsApp senden“ öffnet WhatsApp mit der Nachricht an 0163 359 01 88; der Kunde sendet selbst. Keine Bestellnummer, keine Erfolgsmeldung – das Restaurant bestätigt individuell.
+
+Berechnung zentral in `app.js` (`lineCalc`, `totals`): Warenwert, Getränkepfand (0,25 €/Getränk, Ayran 0 €), Lieferkosten je Ort; Mindestbestellwert zählt nur den Warenwert. Bestellannahme Europe/Berlin: Lieferung 11:30–21:15, Abholung 11:30–21:30, Dienstag Ruhetag; außerhalb ist alles gesperrt. Vor „Per WhatsApp senden“ wird mit aktueller Uhrzeit erneut geprüft (auch bei lange offenem Tab).
+
+Datensparsamkeit: localStorage `minar-cart-v4` enthält nur die Gerichtsauswahl (Ablauf 12 h), sessionStorage `minar-form-v4` Name/Telefon/Adresse/Anmerkung (endet mit dem Tab). „Warenkorb und Angaben löschen“ entfernt beides.
 
 `codesCheck: true` blendet unsichere Kennzeichnungen aus („auf Anfrage“).
 
@@ -81,20 +104,15 @@ Effekte stecken in `assets/js/fx.js` und werden bei „Bewegung reduzieren“ so
 
 ## Lokal ansehen
 
-Doppelklick auf `index.html` genügt. Oder mit lokalem Server:
-
 ```bash
-python3 -m http.server 8000   # → http://localhost:8000
+cd public && python3 -m http.server 8000   # → http://localhost:8000 (wie Cloudflare: public/ als Stamm)
 ```
 
-## Veröffentlichen (GitHub Pages) – erst nach Freigabe
+## Veröffentlichen
 
-1. Branch `multipage` nach `main` mergen (oder in *Settings → Pages* den Branch `multipage` wählen).
-2. *Settings → Pages → Deploy from a branch → (Branch) / (root)*.
-3. Die Seite läuft dann unter `https://<konto>.github.io/minar/`. Alle Links sind relativ und funktionieren unter diesem Projektpfad.
+**Cloudflare Pages** (Ziel-Hosting): Repository `BraeuerDigital/minar`, Branch `main`, Preset *None*, kein Build-Befehl, Output `public`. Schritt-für-Schritt inkl. Domain (Namecheap) und Abschalten von GitHub Pages: [`docs/CLOUDFLARE.md`](docs/CLOUDFLARE.md).
 
-Es ist bewusst **keine eigene Domain** hinterlegt (keine `CNAME`-Datei).
-Vor dem Livegang: `noindex` in `tools/build.mjs` entfernen, Seiten neu erzeugen und `PRUEFLISTE.md` abarbeiten.
+Es ist bewusst **keine eigene Domain** hinterlegt (keine `CNAME`-Datei, keine DNS-Änderung). Vor dem Livegang: `noindex` entfernen (`tools/build.mjs`, `public/_headers`, `public/robots.txt`), Seiten neu erzeugen und `docs/ABSCHLUSSBERICHT.md` Liste B abarbeiten.
 
 ## Logo-Intro (Startseite)
 
@@ -102,6 +120,6 @@ Ablauf: Logo-Aufbau (Sonne → Linien → Siegel → Halbmond → MINAR → Küc
 
 - **Technik:** Vanilla JS + SVG (ein `requestAnimationFrame`-Loop, keine Bibliothek). Die Tierfigur ist die Original-Silhouette, zerlegt in ein Gelenk-Rig (Huf → Hüfte → Schulter → Ellbogen; der entfernte Vorderlauf nutzt dieselben Originalformen, leicht versetzt hinter dem Körper); Winkel 0 = Original-Pose. Am Ende wird auf die unzerlegte Silhouette umgeschaltet – Endbild pixelgleich zum statischen Logo (geprüft).
 - **Abspielen:** bei jedem Aufruf und Neuladen von vorne. `prefers-reduced-motion` oder ohne JavaScript → sofort statisches Logo.
-- **Dateien:** `assets/logo/minar-logo-anim.svg` (wird von `tools/build.mjs` inline eingesetzt), `assets/js/logo-anim.js` (direkt hinter dem SVG laden).
-- **Einbau in andere Seiten:** `logo-intro/index.html` enthält SVG, CSS und JS zusammenhängend zum Kopieren.
-- **Anpassen:** Zeiten und Posen stehen kommentiert oben in `assets/js/logo-anim.js` (Phasen A–E). Nach Änderungen am Rig: `python3 tools/logo_anim.py && node tools/build.mjs`.
+- **Dateien:** `public/assets/logo/minar-logo-anim.svg` (wird von `tools/build.mjs` inline eingesetzt), `public/assets/js/logo-anim.js` (direkt hinter dem SVG laden).
+- **Einbau in andere Seiten:** `docs/logo-intro/index.html` enthält SVG, CSS und JS zusammenhängend zum Kopieren.
+- **Anpassen:** Zeiten und Posen stehen kommentiert oben in `public/assets/js/logo-anim.js` (Phasen A–E). Nach Änderungen am Rig: `python3 tools/logo_anim.py && node tools/build.mjs`.

@@ -1,6 +1,6 @@
 import numpy as np, cv2, sys
 from PIL import Image
-src=np.array(Image.open('../assets/logo/logo-referenz.png')).astype(np.float32)
+src=np.array(Image.open('../public/assets/logo/logo-referenz.png')).astype(np.float32)
 R,G,B,A=[src[:,:,i] for i in range(4)]
 H,W=A.shape
 op=A>128

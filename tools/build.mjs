@@ -2,7 +2,7 @@
 /* =====================================================================
    MINAR Küche – Seitengenerator
    ---------------------------------------------------------------------
-   Erzeugt alle statischen HTML-Seiten mit einheitlichem Header, Footer
+   Erzeugt alle statischen HTML-Seiten in public/ mit einheitlichem Header, Footer
    und Navigation aus EINER Quelle (dieser Datei + assets/js/menu-data.js).
 
    Ausführen (Node.js ≥ 16, keine Pakete nötig):
@@ -17,7 +17,7 @@ import path from "node:path";
 import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "public");   // veröffentlichte Website
 const ctx = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(ROOT, "assets/js/menu-data.js"), "utf8"), ctx);
 const D = ctx.window.MINAR_DATA;
@@ -122,7 +122,7 @@ function footer(root) {
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
         <p>© <span data-year>2026</span> ${esc(R.name)} · ${esc(R.city)}</p>
-        <p><a href="${root}impressum.html">Impressum</a> · <a href="${root}datenschutz.html">Datenschutz</a></p>
+        <p><a href="${root}impressum.html">Impressum</a> · <a href="${root}datenschutz.html">Datenschutz</a>${reviewOk ? ` · <a class="footer-review" href="${esc(REVIEW)}" target="_blank" rel="noopener noreferrer">Auf Google bewerten</a>` : ""}</p>
         <p class="footer-credit"><span>Webauftritt von</span> <a class="credit-link" href="https://braeuer.digital" target="_blank" rel="noopener">Bräuer.Digital</a></p>
       </div>
     </div>
@@ -234,7 +234,7 @@ const hoursCard = () => `
         <div class="hours-card">
           <h2 class="hours-title">${I.clock}Öffnungszeiten</h2>
           <ul class="hours-list" data-hours-list></ul>
-          <p class="hours-note">Bestellannahme bis ${D.hours.orderUntil} Uhr · Dienstag Ruhetag</p>
+          <p class="hours-note">Lieferung bis ${D.hours.orderUntil} Uhr · Abholung bis ${D.hours.close} Uhr · Dienstag Ruhetag</p>
           <p class="hours-live"><span class="status-dot" data-open-dot></span><span data-open-status-long></span></p>
         </div>`;
 const ctaBand = (root) => `
@@ -253,6 +253,8 @@ const ctaBand = (root) => `
 
 const tape = (words, n) => { const one = Array(n).fill(words).flat().map((w) => `<span>${esc(w)}</span><i>✦</i>`).join(""); return one + one; };
 
+const REVIEW = (R.googleReviewUrl || "").trim();
+const reviewOk = /^https:\/\/(g\.page\/r\/|search\.google\.com\/local\/writereview\?placeid=|www\.google\.[a-z.]+\/maps\/)/.test(REVIEW);
 const built = [];
 
 /* ===================== Startseite ===================== */
@@ -469,11 +471,17 @@ built.push(page({
           </div>
 
           <div class="cart-body" data-cart-body hidden>
-            <h2 class="h-red h-sm">Warenkorb</h2>
-            <ul class="cart-lines" data-cart-lines></ul>
-            <div class="cart-sum"><span>Zwischensumme</span><strong data-cart-subtotal></strong></div>
-            <p class="fine">Alle Preise laut Speisekarte (Stand 04/2023), ohne Gewähr.</p>
-            <p><a class="text-link" href="${root}speisekarte/index.html">${I.back} Weitere Gerichte hinzufügen</a></p>
+            <section class="cart-card" aria-labelledby="cart-title">
+              <header class="cart-card-head">
+                <h2 id="cart-title">Deine Bestellung</h2>
+                <span class="cart-card-count" data-cart-count-label>0 Artikel</span>
+              </header>
+              <ul class="cart-lines" data-cart-lines></ul>
+              <a class="cart-more" href="${root}speisekarte/index.html">${I.back} Weitere Gerichte hinzufügen</a>
+              <dl class="cart-sums" data-cart-sums></dl>
+              <p class="cart-cash">Zahlung ausschließlich bar bei Abholung oder Lieferung.</p>
+              <p class="cart-fine">Alle Preise in Euro inkl. gesetzlicher Umsatzsteuer. Getränkepfand (0,25 € je Getränk, Ayran ohne Pfand) und Lieferkosten werden separat ausgewiesen.</p>
+            </section>
 
             <h2 class="h-red h-sm">Abholung oder Lieferung</h2>
             <div class="seg" role="radiogroup" aria-label="Abholung oder Lieferung">
@@ -481,28 +489,37 @@ built.push(page({
               <label><input type="radio" name="mode" value="Lieferung" data-mode><span>Lieferung</span></label>
             </div>
             <p class="cart-min" data-delivery-off hidden></p>
-            <label class="field" data-place-field hidden><span>Lieferort</span><select data-f-place></select></label>
+            <label class="field" data-place-field hidden><span>Lieferort <b class="req" aria-hidden="true">*</b></span><select data-f-place aria-required="true"></select></label>
             <p class="cart-min" data-cart-min hidden></p>
-            <div class="cart-total" data-cart-total-row hidden>
-              <div><span>Lieferkosten laut Karte</span><span data-cart-fee></span></div>
-              <div class="cart-total-sum"><span>Gesamt</span><strong data-cart-grand></strong></div>
-            </div>
 
             <h2 class="h-red h-sm">Ihre Angaben</h2>
             <div class="field-grid">
-              <label class="field"><span>Name <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="name" required aria-required="true" data-f-name></label>
-              <label class="field"><span>Telefon <b class="req" aria-hidden="true">*</b> <small>(für Rückfragen)</small></span><input type="tel" autocomplete="tel" required aria-required="true" data-f-phone></label>
-              <label class="field field-wide" data-address-field hidden><span>Lieferadresse <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="street-address" placeholder="Straße, Hausnummer" aria-required="true" data-f-address></label>
-              <label class="field"><span>Wunschzeit</span><select data-f-time aria-describedby="time-hint"></select><small class="field-hint" id="time-hint">Wunschzeit unverbindlich – wir bestätigen die Uhrzeit per WhatsApp.</small></label>
+              <label class="field"><span>Name <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="name" maxlength="80" required aria-required="true" data-f-name></label>
+              <label class="field"><span>Telefon <b class="req" aria-hidden="true">*</b> <small>(für Rückfragen)</small></span><input type="tel" autocomplete="tel" inputmode="tel" maxlength="24" required aria-required="true" data-f-phone></label>
+              <label class="field field-wide" data-address-field hidden><span>Lieferadresse <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="street-address" maxlength="140" placeholder="Straße, Hausnummer" aria-required="true" data-f-address></label>
+              <label class="field"><span>Wunschzeit</span><select data-f-time aria-describedby="time-hint"></select><small class="field-hint" id="time-hint">Frühestens 30 Minuten nach Bestellung, in 15-Minuten-Schritten. Die endgültige Uhrzeit bestätigen wir per WhatsApp.</small><small class="field-hint is-warn" data-time-lost hidden></small></label>
               <label class="field field-wide"><span>Anmerkungen <small>(optional)</small></span><textarea rows="3" maxlength="300" data-f-note></textarea></label>
             </div>
             <p class="fine req-note"><b class="req">*</b> Pflichtfeld</p>
+
+            <details class="order-info">
+              <summary>So läuft Ihre Bestellung ab</summary>
+              <ol>
+                <li><strong>Prüfen:</strong> In der Bestellübersicht sehen Sie alle Gerichte mit Mengen, Varianten und Extras sowie Warenwert, Getränkepfand, Lieferkosten und den Gesamtbetrag.</li>
+                <li><strong>Anfragen:</strong> Mit „Per WhatsApp senden“ öffnet sich WhatsApp mit Ihrer vorbereiteten Bestellanfrage an ${esc(R.whatsappDisplay)}. Gesendet wird sie erst, wenn Sie dort selbst auf Senden tippen.</li>
+                <li><strong>Bestätigung:</strong> Verbindlich wird die Bestellung erst, wenn wir sie und die Uhrzeit per WhatsApp bestätigen. Bis dahin ist nichts bestellt.</li>
+                <li><strong>Bezahlen:</strong> Ausschließlich bar bei Abholung oder Lieferung. Auf der Website findet keine Zahlung statt.</li>
+                <li><strong>Ändern:</strong> Vor dem Absenden direkt hier im Warenkorb; danach per Antwort im WhatsApp-Chat oder telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a>.</li>
+              </ol>
+            </details>
+
             <p class="cart-closed" data-cart-closed hidden></p>
-            <div class="cart-actions">
-              <a class="btn btn-whatsapp btn-lg btn-block" href="#" target="_blank" rel="noopener" data-wa-send>${I.wa}Bestellung per WhatsApp vorbereiten</a>
-              <p class="fine">WhatsApp öffnet sich mit einer vorbereiteten Nachricht. Sie wird erst gesendet, wenn Sie sie dort selbst abschicken. Die Bestellung wird erst nach Bestätigung durch das Restaurant angenommen.</p>
-              <button class="btn btn-link" type="button" data-cart-clear>Warenkorb leeren</button>
+            <div class="checkout-bar">
+              <div class="checkout-sum"><small>Insgesamt bar zu zahlen</small><strong data-grand></strong></div>
+              <button class="btn btn-go btn-lg" type="button" data-to-summary aria-describedby="checkout-hint">Weiter zur Übersicht <span aria-hidden="true">→</span></button>
+              <p class="checkout-hint" id="checkout-hint" data-checkout-hint aria-live="polite"></p>
             </div>
+            <p class="cart-actions"><button class="btn btn-link" type="button" data-cart-clear>Warenkorb und Angaben löschen</button></p>
           </div>
         </div>
         <aside class="order-side">
@@ -518,7 +535,33 @@ built.push(page({
           </div>
         </aside>
       </div>
-    </section>`
+    </section>
+    <dialog class="bon-dialog" id="bon-dialog" aria-labelledby="bon-title">
+      <div class="bon-wrap">
+        <button class="icon-btn bon-close" type="button" data-close aria-label="Übersicht schließen">×</button>
+        <article class="bon">
+          <header class="bon-head">
+            <img src="${root}assets/logo/minar-emblem.svg" alt="" width="56" height="56">
+            <p class="bon-brand">MINAR KÜCHE</p>
+            <p class="bon-addr">${esc(R.street)}<br>${esc(R.zip)} ${esc(R.city)}</p>
+          </header>
+          <h2 class="bon-title" id="bon-title">Ihre Bestellübersicht</h2>
+          <dl class="bon-meta" data-bon-meta></dl>
+          <ul class="bon-lines" data-bon-lines></ul>
+          <dl class="bon-sums" data-bon-sums></dl>
+          <p class="bon-cash">Zahlung ausschließlich bar bei Abholung oder Lieferung.</p>
+          <p class="bon-legal">Alle Preise inkl. gesetzlicher Umsatzsteuer. Dies ist eine Zusammenfassung Ihrer Anfrage – noch keine Bestellbestätigung. Verbindlich wird die Bestellung erst, wenn ${esc(R.name)} sie per WhatsApp bestätigt.</p>
+          <p class="bon-stamp" data-bon-stamp></p>
+        </article>
+        <div class="bon-actions">
+          <p class="bon-alert" data-bon-alert role="alert" hidden></p>
+          <a class="btn btn-whatsapp btn-lg btn-block" href="#" target="_blank" rel="noopener" data-bon-send>${I.wa}Per WhatsApp senden</a>
+          <p class="bon-opened" data-bon-opened role="status" hidden>WhatsApp wurde geöffnet. Bitte senden Sie die Nachricht dort ab – Ihre Bestellung gilt erst nach unserer Bestätigung.</p>
+          <p class="fine">Beim Tippen öffnet sich WhatsApp mit der vorbereiteten Nachricht an ${esc(R.whatsappDisplay)}; dabei werden die Angaben an WhatsApp übergeben. An uns gesendet wird erst, wenn Sie in WhatsApp selbst auf Senden tippen.</p>
+          <button class="btn btn-link" type="button" data-close>Zurück und ändern</button>
+        </div>
+      </div>
+    </dialog>`
 }));
 
 /* ===================== Lieferservice ===================== */
@@ -547,7 +590,7 @@ built.push(page({
       <div class="container visit-grid">
         <div>
           <h2 class="h-red">Bestell- und Abholzeiten</h2>
-          <p>Bestellungen nehmen wir täglich außer dienstags von ${D.hours.open} bis ${D.hours.orderUntil} Uhr entgegen. Die Lieferzeit beträgt je nach Entfernung 20–90 Minuten.</p>
+          <p>Bestellungen nehmen wir täglich außer dienstags ab ${D.hours.open} Uhr entgegen – für Lieferungen bis ${D.hours.orderUntil} Uhr, zur Abholung bis ${D.hours.close} Uhr. Die Lieferzeit beträgt je nach Entfernung 20–90 Minuten.</p>
           <p>Die Lieferung erfolgt ohne Teller, Besteck und Dekoration.</p>
           ${contactCards()}
         </div>
@@ -591,16 +634,26 @@ built.push(page({
           <address class="address address-lg"><strong>${esc(R.name)}</strong><br>${esc(R.street)}<br>${esc(R.zip)} ${esc(R.city)}</address>
           ${contactCards()}
           <p>E-Mail: <a href="mailto:${esc(R.email)}">${esc(R.email)}</a> · Fax: ${esc(R.fax)}</p>
-          <p>Bestellungen nehmen wir bis ${D.hours.orderUntil} Uhr an – telefonisch, per WhatsApp oder über unseren <a href="${root}bestellen.html">Online-Warenkorb</a>.</p>
+          <p>Bestellungen nehmen wir für Lieferungen bis ${D.hours.orderUntil} Uhr und zur Abholung bis ${D.hours.close} Uhr an – telefonisch, per WhatsApp oder über unseren <a href="${root}bestellen.html">Online-Warenkorb</a>.</p>
         </div>
         <div>${hoursCard()}</div>
       </div>
     </section>
+    ${reviewOk ? `<section class="section section-tight review-section">
+      <div class="container">
+        <div class="review-card reveal">
+          <div>
+            <h2>Wie hat es Ihnen bei MINAR gefallen?</h2>
+            <p>Wir freuen uns über Ihre ehrliche Bewertung auf Google.</p>
+          </div>
+          <a class="btn btn-accent btn-lg" href="${esc(REVIEW)}" target="_blank" rel="noopener noreferrer">Jetzt auf Google bewerten</a>
+        </div>
+      </div>
+    </section>` : `<!-- Google-Bewertung: ausgeblendet, bis restaurant.googleReviewUrl in assets/js/menu-data.js gesetzt ist -->`}
 ${ctaBand(root)}`
 }));
 
 /* ===================== Rechtliches ===================== */
-const ph = (t) => `<span class="placeholder">[${t}]</span>`;
 built.push(page({
   file: "impressum.html", active: "impressum", bodyClass: "page-legal",
   title: "Impressum · MINAR Küche Bad Buchau", desc: "Impressum von MINAR Küche Bad Buchau.",
@@ -610,24 +663,91 @@ built.push(page({
       <p>${esc(R.owner)}<br>Einzelunternehmer, handelnd unter ${esc(R.name)}<br>${esc(R.street)}<br>${esc(R.zip)} ${esc(R.city)}<br>Deutschland</p>
       <h2>Kontakt</h2><p>Telefon: <a href="${TEL}">${esc(R.phoneDisplay)}</a><br>E-Mail: <a href="mailto:${esc(R.email)}">${esc(R.email)}</a></p>
       <h2>Umsatzsteuer-Identifikationsnummer</h2><p>${esc(R.vatId)}</p>
+      <h2>Webdesign</h2><p><a href="https://braeuer.digital" target="_blank" rel="noopener">Bräuer.Digital</a></p>
     </div></section>`
 }));
 built.push(page({
   file: "datenschutz.html", active: "datenschutz", bodyClass: "page-legal",
   title: "Datenschutz · MINAR Küche Bad Buchau", desc: "Datenschutzerklärung von MINAR Küche Bad Buchau.",
-  body: () => `${pageHead("Rechtliches", "Datenschutzerklärung")}
+  body: () => {
+    let n = 0; const h = (t) => `<h2>${++n}. ${t}</h2>`;
+    return `${pageHead("Rechtliches", "Datenschutzerklärung")}
     <section class="section section-tight"><div class="container prose legal">
-      <p class="legal-warning"><strong>Entwurf – vor Veröffentlichung ergänzen.</strong> Diese Gliederung beschreibt die technischen Gegebenheiten der Website. Sie ersetzt keine Rechtsberatung.</p>
-      <h2>1. Verantwortlicher</h2><p>${esc(R.name)}, vertreten durch ${esc(R.owner)}<br>${esc(R.street)}, ${esc(R.zip)} ${esc(R.city)}<br>Telefon: ${esc(R.phoneDisplay)}<br>E-Mail: <a href="mailto:${esc(R.email)}">${esc(R.email)}</a></p>
-      <h2>2. Hosting</h2><p>Diese Website wird als statische Website über GitHub Pages (GitHub Inc., USA) bereitgestellt. Beim Aufruf verarbeitet der Hoster technisch notwendige Daten wie IP-Adresse, Datum und Uhrzeit sowie die aufgerufene Seite. ${ph("Rechtsgrundlage, Drittlandübermittlung und Speicherdauer ergänzen und prüfen")}</p>
-      <h2>3. Keine Cookies, kein Tracking, keine externen Schriften</h2><p>Die Website setzt keine Cookies, verwendet keine Analyse- oder Trackingdienste und lädt weder Schriften noch Karten von externen Servern.</p>
-      <h2>4. Lokale Speicherung im Browser (Warenkorb)</h2><p>Damit der Warenkorb beim Seitenwechsel erhalten bleibt, werden die ausgewählten Gerichte sowie – falls eingegeben – Name, Telefonnummer, Lieferort, Lieferadresse und Bestellart ausschließlich lokal im Browser gespeichert (localStorage). Diese Daten werden nicht an den Betreiber oder Dritte übertragen und können über „Warenkorb leeren“ bzw. die Browsereinstellungen gelöscht werden. ${ph("rechtliche Bewertung ergänzen")}</p>
-      <h2>5. Bestellung über WhatsApp</h2><p>Über „Bestellung per WhatsApp vorbereiten“ wird WhatsApp (WhatsApp Ireland Limited / Meta) mit einer vorformulierten Nachricht geöffnet. Erst wenn Sie die Nachricht in WhatsApp selbst absenden, werden die Daten an das Restaurant übermittelt. Es gelten die Datenschutzbestimmungen von WhatsApp. ${ph("Hinweise zu Rechtsgrundlage und Verarbeitung durch das Restaurant ergänzen")}</p>
-      <h2>6. Telefonische Kontaktaufnahme</h2><p>${ph("Verarbeitung von Daten bei telefonischen Bestellungen ergänzen")}</p>
-      <h2>7. Externer Link zu Google Maps</h2><p>Die Website bindet keine Karte ein. Erst beim Klick auf „In Google Maps öffnen“ wird Google Maps (Google Ireland Limited) in einem neuen Fenster aufgerufen.</p>
-      <h2>8. Rechte der betroffenen Personen</h2><p>${ph("Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch, Beschwerderecht – vom Betreiber zu ergänzen")}</p>
-      <p class="fine">Stand: ${ph("Datum")}</p>
-    </div></section>`
+      <p>Mit dieser Datenschutzerklärung informieren wir Sie darüber, welche personenbezogenen Daten beim Besuch dieser Website sowie bei einer Kontaktaufnahme oder Bestellanfrage verarbeitet werden. Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder identifizierbare Person beziehen.</p>
+
+      ${h("Verantwortlicher")}
+      <p>Verantwortlich im Sinne von Art. 4 Nr. 7 DSGVO ist:<br>${esc(R.owner)} (Einzelunternehmer, handelnd unter ${esc(R.name)})<br>${esc(R.street)}, ${esc(R.zip)} ${esc(R.city)}, Deutschland<br>Telefon: <a href="${TEL}">${esc(R.phoneDisplay)}</a><br>E-Mail: <a href="mailto:${esc(R.email)}">${esc(R.email)}</a></p>
+
+      ${h("Hosting über Cloudflare Pages und technische Zugriffsdaten")}
+      <p>Diese Website ist eine rein statische Website. Sie wird über den Dienst Cloudflare Pages der Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA, bereitgestellt. Beim Aufruf der Website verarbeitet Cloudflare technisch notwendige Daten, damit die Seiten ausgeliefert und vor Angriffen geschützt werden können. Dazu gehören insbesondere Ihre IP-Adresse, Datum und Uhrzeit des Zugriffs, die aufgerufene Seite oder Datei, die übertragene Datenmenge, der Browsertyp und das Betriebssystem, die zuvor besuchte Seite (Referrer) sowie technische Statusinformationen.</p>
+      <p>Zweck der Verarbeitung ist die sichere und stabile Bereitstellung der Website. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse liegt in einem technisch fehlerfreien und sicheren Betrieb. Cloudflare verarbeitet die Daten als Dienstleister in unserem Auftrag (Art. 28 DSGVO). Die Speicherdauer der Protokolldaten richtet sich nach den Vorgaben von Cloudflare; wir selbst werten diese Daten nicht zur Analyse oder zu Werbezwecken aus und führen sie nicht mit anderen Daten zusammen.</p>
+      <p>Cloudflare betreibt ein weltweites Servernetz; eine Verarbeitung von Daten in den USA oder anderen Drittländern ist daher möglich. Cloudflare, Inc. ist nach dem EU-U.S. Data Privacy Framework zertifiziert. Für die USA besteht damit ein Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO); ergänzend verwendet Cloudflare Standardvertragsklauseln der EU-Kommission (Art. 46 DSGVO). Weitere Informationen: <a href="https://www.cloudflare.com/de-de/privacypolicy/" target="_blank" rel="noopener">Datenschutzerklärung von Cloudflare</a>.</p>
+      <p>Die Verbindung zur Website ist per HTTPS verschlüsselt. Bitte beachten Sie, dass sich Sicherheitsrisiken bei der Datenübertragung im Internet nie vollständig ausschließen lassen.</p>
+
+      ${h("Keine Cookies, kein Tracking, keine externen Inhalte")}
+      <p>Diese Website setzt keine Cookies, verwendet keine Analyse-, Werbe- oder Trackingdienste und lädt keine Schriften, Karten, Videos oder Skripte von fremden Servern nach. Alle Inhalte werden direkt mit der Website ausgeliefert.</p>
+
+      ${h("Warenkorb – Speicherung in Ihrem Browser")}
+      <p>Damit Ihre Auswahl beim Wechsel zwischen den Seiten erhalten bleibt, speichert die Website Daten ausschließlich lokal in Ihrem Browser. Diese Daten werden nicht automatisch an uns oder an Dritte übertragen.</p>
+      <ul>
+        <li><strong>Warenkorb</strong> (localStorage, Schlüssel „minar-cart-v4“): ausgewählte Gerichte, Mengen, Varianten, Extras und Hinweise zum Gericht sowie der Zeitpunkt der letzten Änderung. Der Warenkorb wird spätestens 12 Stunden nach der letzten Änderung beim nächsten Seitenaufruf automatisch gelöscht, außerdem sofort, wenn Sie ihn leeren.</li>
+        <li><strong>Ihre Angaben im Bestellformular</strong> (sessionStorage, Schlüssel „minar-form-v4“): Name, Telefonnummer, Bestellart, Lieferort, Lieferadresse und Anmerkung. Diese Angaben bleiben nur in dem geöffneten Browser-Tab erhalten und werden gelöscht, sobald Sie den Tab bzw. Browser schließen oder „Warenkorb und Angaben löschen“ wählen.</li>
+      </ul>
+      <p>Die Speicherung ist für den von Ihnen gewünschten Warenkorb unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Soweit dabei personenbezogene Daten verarbeitet werden, ist Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO (Vorbereitung einer von Ihnen gewünschten Bestellung). Sie können die Daten zusätzlich jederzeit über die Einstellungen Ihres Browsers löschen.</p>
+
+      ${h("Bestellanfrage über WhatsApp")}
+      <p>Über den Warenkorb können Sie Gerichte auswählen, Abholung oder Lieferung wählen, eine Wunschzeit angeben und eine Bestellübersicht prüfen. Mit „Per WhatsApp senden“ öffnet sich WhatsApp bzw. WhatsApp Web mit einer vorbereiteten Nachricht an unsere WhatsApp-Nummer ${esc(R.whatsappDisplay)}. Die Bestell- und Kontaktangaben sind dabei im aufgerufenen Link enthalten und werden <strong>bereits beim Öffnen des Links</strong> an WhatsApp übergeben. An uns übermittelt wird die Nachricht erst, wenn Sie sie in WhatsApp selbst absenden.</p>
+      <p>Senden Sie uns die Nachricht, verarbeiten wir die darin enthaltenen Angaben (insbesondere Name, Telefonnummer, bestellte Gerichte, Bestellart, Lieferadresse, Wunschzeit und Anmerkungen), um Ihre Anfrage zu prüfen, die Bestellung individuell zu bestätigen oder abzulehnen und sie auszuführen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO; bei allgemeinen Anfragen Art. 6 Abs. 1 lit. f DSGVO (Interesse an der Beantwortung von Anfragen). Auf der Website findet keine Zahlung statt; bezahlt wird ausschließlich bar bei Abholung oder Lieferung.</p>
+      <p>Bei der Nutzung von WhatsApp werden Daten auch durch den Anbieter, die WhatsApp Ireland Limited (Irland), verarbeitet. Dabei kann eine Übermittlung in Drittländer, insbesondere in die USA, stattfinden. Die Muttergesellschaft Meta Platforms, Inc. ist nach dem EU-U.S. Data Privacy Framework zertifiziert. Einzelheiten finden Sie in der <a href="https://www.whatsapp.com/legal/privacy-policy-eea" target="_blank" rel="noopener">Datenschutzrichtlinie von WhatsApp</a>. Wenn Sie WhatsApp nicht nutzen möchten, können Sie uns gerne telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a> erreichen.</p>
+
+      ${h("Kontakt per Telefon und E-Mail")}
+      <p>Wenn Sie uns anrufen oder eine E-Mail schreiben, verarbeiten wir die von Ihnen mitgeteilten Daten (z. B. Name, Telefonnummer, E-Mail-Adresse, Inhalt Ihres Anliegens, Bestell- und Lieferangaben), soweit dies zur Bearbeitung erforderlich ist. Die Telefon- und E-Mail-Links auf der Website öffnen lediglich die entsprechende Anwendung auf Ihrem Gerät; die Website selbst betreibt kein Kontaktformular. Unser E-Mail-Postfach wird bei Google (Gmail, Google Ireland Limited, Irland) geführt; E-Mails werden daher auch von Google verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO bei Anfragen im Zusammenhang mit einer Bestellung, im Übrigen Art. 6 Abs. 1 lit. f DSGVO.</p>
+
+      ${h("Link zu Google Maps")}
+      <p>Die Website bindet keine Karte ein. Erst wenn Sie auf „In Google Maps öffnen“ klicken, wird Google Maps (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) in einem neuen Fenster aufgerufen. Ab dann gelten die <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener">Datenschutzhinweise von Google</a>.</p>
+${reviewOk ? `
+      ${h("Link zur Google-Bewertung")}
+      <p>Über „Jetzt auf Google bewerten“ gelangen Sie zum Google-Unternehmensprofil von ${esc(R.name)}. Der Link öffnet eine Seite von Google (Google Ireland Limited) in einem neuen Fenster; vorher werden keine Daten an Google übermittelt. Ob und wie Sie eine Bewertung abgeben, entscheiden Sie selbst. Für die Verarbeitung auf den Seiten von Google gelten die <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener">Datenschutzhinweise von Google</a>.</p>` : ""}
+
+      ${h("Empfänger der Daten")}
+      <p>Personenbezogene Daten geben wir nur weiter, soweit dies für den Betrieb der Website, die Kommunikation, die Bearbeitung und Ausführung Ihrer Bestellung oder zur Erfüllung gesetzlicher Pflichten erforderlich ist. Empfänger können insbesondere sein: der Hostinganbieter Cloudflare, die Kommunikationsdienste WhatsApp und Google (E-Mail), unsere Mitarbeitenden im Rahmen der Bestellbearbeitung und Lieferung, unsere Steuerberatung sowie – im gesetzlich vorgeschriebenen Umfang – Behörden. Eine Weitergabe zu Werbezwecken findet nicht statt.</p>
+
+      ${h("Speicherdauer")}
+      <p>Wir speichern personenbezogene Daten nur so lange, wie es für die genannten Zwecke erforderlich ist. Daten aus Bestellanfragen löschen wir, sobald sie für die Abwicklung und etwaige Rückfragen nicht mehr benötigt werden, es sei denn, gesetzliche Aufbewahrungspflichten (insbesondere nach Handels- und Steuerrecht für Buchungsbelege) stehen dem entgegen. Die im Browser gespeicherten Daten werden wie in Abschnitt 4 beschrieben gelöscht.</p>
+
+      ${h("Bereitstellung der Daten")}
+      <p>Für den bloßen Besuch der Website müssen Sie keine Angaben machen. Für eine Bestellanfrage benötigen wir Ihren Namen, eine Telefonnummer für Rückfragen und bei Lieferung die Lieferadresse; ohne diese Angaben können wir die Bestellung nicht bearbeiten. Eine automatisierte Entscheidungsfindung einschließlich Profiling (Art. 22 DSGVO) findet nicht statt.</p>
+
+      ${h("Ihre Rechte")}
+      <p>Sie haben im Rahmen der gesetzlichen Voraussetzungen das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO), Datenübertragbarkeit (Art. 20 DSGVO) sowie auf Widerspruch (Art. 21 DSGVO). Wenden Sie sich dazu einfach an die oben genannten Kontaktdaten.</p>
+      <p><strong>Widerspruchsrecht:</strong> Verarbeiten wir Daten auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO, können Sie dieser Verarbeitung aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit widersprechen (Art. 21 Abs. 1 DSGVO).</p>
+      <p>Sie haben außerdem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren (Art. 77 DSGVO). Für uns zuständig ist: Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg, Heilbronner Straße 35, 70191 Stuttgart, <a href="https://www.baden-wuerttemberg.datenschutz.de/" target="_blank" rel="noopener">www.baden-wuerttemberg.datenschutz.de</a>.</p>
+
+      ${h("Aktualität dieser Datenschutzerklärung")}
+      <p>Wir passen diese Datenschutzerklärung an, wenn sich die Funktionen der Website, eingesetzte Dienste oder rechtliche Vorgaben ändern.</p>
+      <p class="fine">Stand: 11. November 2026</p>
+    </div></section>`;
+  }
 }));
+
+/* ===================== 404 ===================== */
+/* Cloudflare Pages liefert /404.html bei unbekannten Pfaden aus. Absolute Pfade, weil die Seite
+   unter beliebiger Tiefe erscheinen kann – Domain-Stamm (Cloudflare) vorausgesetzt. */
+{
+  const f = page({
+    file: "404.html", active: "404", bodyClass: "page-404",
+    title: "Seite nicht gefunden · MINAR Küche Bad Buchau", desc: "Diese Seite gibt es nicht.",
+    body: (root) => `${pageHead("Fehler 404", "Diese Seite gibt es leider nicht", "Vielleicht hilft Ihnen einer dieser Wege weiter:")}
+    <section class="section section-tight"><div class="container">
+      <div class="cta-actions">
+        <a class="btn btn-primary btn-lg" href="${root}index.html">Zur Startseite</a>
+        <a class="btn btn-accent btn-lg" href="${root}speisekarte/index.html">Zur Speisekarte</a>
+      </div>
+    </div></section>`
+  });
+  const out = path.join(ROOT, f);
+  fs.writeFileSync(out, fs.readFileSync(out, "utf8").replace(/(href|src)="(?!https?:|mailto:|tel:|#|\/)/g, '$1="/'));
+  built.push(f);
+}
 
 console.log(`${built.length} Seiten erzeugt:\n  ` + built.join("\n  "));
