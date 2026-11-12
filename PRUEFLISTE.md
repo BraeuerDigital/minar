@@ -107,6 +107,7 @@ Rechtschreibprüfung 07.11.2026: Cheddar Käse → Cheddarkäse · Pattie → Pa
 | I4 | Palettenwerte sind aus Fotos abgeleitet – ohne Druckdaten nicht farbverbindlich. | offen |
 | I5 | Arabischer Schriftzug im Siegel wurde als Grafik übernommen, nicht neu gesetzt. | erledigt |
 | I6 | Fotos vom Kunden geliefert (06.11.2026): Burger, Burger mit Pommes, Dönerteller, Curry, Salat, Schnitzel, Gastraum, Theke – eingebunden auf Startseite, 5 Kategorieseiten und „Über uns“; Hinweis „Fotos sind Beispiele“ wie auf dem Flyer. Nutzungsrechte liegen laut Kunde vor. | erledigt |
+| I10 | Mobile Kopfzeile: Warenkorb und Menü rechts in der Ecke (Menü ganz außen) · fixierter „Jetzt bestellen“-Container lässt Klicks durch – nur Reiter und geöffnetes Panel sind klickbar, dadurch sind „Hinzufügen“ und alle Buttons auf dem Handy auf der ganzen Fläche tippbar (geprüft per Trefferprobe 320–1440 px) | erledigt (13.11.2026) |
 | I9 | Buttons auf Touch-Geräten: alle Hover-Effekte nur noch bei echter Maus (`@media (hover: hover) and (pointer: fine)`), `touch-action: manipulation` – ein Tippen genügt (vorher teils Doppeltipp auf iOS) | erledigt (12.11.2026) |
 | I8 | Logo-Intro (Startseite): Aufbau aller Logo-Elemente inkl. Unterzeile (aus Vorlage vektorisiert), Stand, Scharren, Sprung; Original-Silhouette über Gelenk-Rig, Endbild pixelgleich geprüft; reduced motion / gleiche Sitzung → statisch | erledigt |
 | I7 | Schriften: Systemschriften (Bookman/Georgia für Überschriften), keine externen Font-Server. | erledigt |

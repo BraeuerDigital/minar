@@ -1546,3 +1546,15 @@ a, button, label, summary, select, input, textarea, .btn, .add-btn, .chip, .icon
 .cart-ref-nr, .bon-ref strong { white-space: nowrap; overflow-wrap: normal; letter-spacing: 0; }
 .cart-ref-nr { font-size: clamp(.92rem, 4.2vw, 1.2rem); }
 .bon-ref strong { font-size: clamp(.92rem, 4.4vw, 1.25rem); }
+
+/* Fixierter Bestell-Button: Nur Reiter und geöffnetes Panel fangen Klicks ab –
+   der restliche (unsichtbare) Bereich des Containers blockiert keine Buttons darunter. */
+.side-cta, .side-cta.is-visible { pointer-events: none; }
+.side-cta.is-visible .side-cta-tab, .side-cta.is-visible.is-open .side-cta-panel { pointer-events: auto; }
+@media (hover: hover) and (pointer: fine) { .side-cta.is-visible:hover .side-cta-panel, .side-cta.is-visible:focus-within .side-cta-panel { pointer-events: auto; } }
+
+/* Mobile Kopfzeile: Warenkorb und Menü rechts in der Ecke (Menü ganz außen) */
+@media (max-width: 960px) {
+  .header-actions { margin-left: auto; gap: .25rem; }
+  .nav-toggle { margin-right: -8px; }
+}
