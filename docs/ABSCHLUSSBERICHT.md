@@ -1,6 +1,6 @@
 # MINAR Küche – Abschlussbericht Finalisierung V3.0
 
-Stand: 11.11.2026 · Repository `BraeuerDigital/minar`, Branch `main` · Sicherung des Ausgangszustands: Branch `sicherung/vor-finalisierung-2026-11-11`
+Stand: 13.11.2026 · Repository `BraeuerDigital/minar`, Branch `main` · Sicherung des Ausgangszustands: Branch `sicherung/vor-finalisierung-2026-11-11`
 
 ## A – Technisch abgeschlossen
 
@@ -24,22 +24,25 @@ Stand: 11.11.2026 · Repository `BraeuerDigital/minar`, Branch `main` · Sicheru
 | GitHub Pages abschalten | ausstehend – erst nach erfolgreichem Cloudflare-Deployment (Anleitung in `docs/CLOUDFLARE.md`, Abschnitt 6) |
 | Mobile Darstellung 320/375/390/768/1024/1440 px | geprüft, kein horizontales Scrollen |
 | Funktionstests (Seiten, Links, Warenkorb, Pfand, Bestellung, Zeiten) | durchgeführt, Ergebnisse in `PRUEFLISTE.md`, Abschnitt J |
-| Logo-Animation | unverändert |
+| Anfragenummer `MIN-A/L-YYYYMM-XXXXXXXX` (kryptografisch sicher, stabil pro Bestellentwurf, in Warenkorb, Bon und WhatsApp identisch, Kopieren-Button, „Neue Bestellung beginnen“) | erledigt, 16 Testfälle + Belastungstest 100.000 (0 Kollisionen in diesem Lauf) |
+| Mindestbestellwert sperrt die Bestellung bis zum Erreichen (Lieferung) | erledigt |
+| Halal-Zeichen überall entfernt (inkl. Siegel im Logo und Logo-Intro) | erledigt – Animation sonst unverändert |
+| Buttons auf dem Handy mit einem Tippen bedienbar (Hover nur bei Maus) | erledigt |
+| Logo-Animation | unverändert bis auf das entfernte Halal-Siegel |
 | Dokumentation (README, PRUEFLISTE, Cloudflare-Anleitung) | aktualisiert |
 
 ## B – Noch vom Inhaber zu bestätigen
 
+Erledigt am 12.11.2026: Verbraucherstreitbeilegung (nicht benötigt), Ayran ohne Pfand, Halal-Angaben (entfernt).
+
 1. **Rechtliche Unternehmensdaten:** Rehan Naveed Raja, Einzelunternehmer, handelnd unter MINAR Küche, Anschrift wie im Impressum.
 2. **Handelsregisterstatus:** keine Eintragung angegeben – bitte bestätigen (sonst Registergericht und -nummer nachreichen).
-3. **Verbraucherstreitbeilegung:** Teilnahmebereitschaft bzw. Pflicht nach Unternehmensgröße; derzeit keine Angabe im Impressum.
-4. **USt-ID und geschäftliche Kontaktangaben:** DE 364887498, Telefon 07582 934 69 44, E-Mail minarbuchau@gmail.com.
-5. **WhatsApp-Bestellannahme:** Wer nimmt Bestellungen an (WhatsApp Messenger oder Business, welches Gerät), Reaktionszeit, Bestätigung der Uhrzeit, Umgang mit nicht erreichtem Mindestbestellwert.
-6. **Interner Umgang mit Kundendaten:** Löschfristen für WhatsApp-Chats, Telefon- und E-Mail-Bestellungen; Zugriff durch Mitarbeitende.
-7. **Pfandpflicht des Ayran:** tatsächliche Verpackung (z. B. Einweg-Kunststoffflasche wäre pfandpflichtig).
-8. **Allergenangaben:** Vollständigkeit, insbesondere Nr. 99, 116 und 131–134a.
-9. **Sieben Soßen:** Verfügbarkeit von Dönersoße, Cocktail, Hot Cocktail, Sour Cream, Minar Spezial, BBQ, Sweet Chili.
-10. **Halal-Angaben:** Formulierung „Halal“ ohne Zertifizierungsangabe.
-11. **Medien- und Logonutzungsrechte:** Fotos und Logo (Originaldatei).
-12. **Google-Bewertungslink:** im Google-Unternehmensprofil „Um Rezensionen bitten“ → Link kopieren → in `menu-data.js` (`googleReviewUrl`) eintragen.
-13. **Finaler Domainname** (Registrierung bei Namecheap) – danach Datenschutz um Registrar/DNS ergänzen.
-14. **Rechtliche Freigabe für den Kundenbetrieb:** Impressum, Datenschutzerklärung, Bestellstrecke (§§ 312i, 312j BGB, vorvertragliche Informationen, Angaben zum Widerrufsrecht bzw. dessen gesetzlichen Ausnahmen); außerdem Inhaberschaft des Cloudflare-Kontos und Auftragsverarbeitung mit Cloudflare.
+3. **USt-ID und geschäftliche Kontaktangaben:** DE 364887498, Telefon 07582 934 69 44, E-Mail minarbuchau@gmail.com.
+4. **WhatsApp-Bestellannahme:** Wer nimmt Bestellungen an (WhatsApp Messenger oder Business, welches Gerät), Reaktionszeit, Bestätigung der Uhrzeit; Anfragenummer bei Rückfragen nutzen, gleiche Nummer zweimal = mögliche Doppelanfrage.
+5. **Interner Umgang mit Kundendaten:** Löschfristen für WhatsApp-Chats, Telefon- und E-Mail-Bestellungen; Zugriff durch Mitarbeitende.
+6. **Allergenangaben:** Vollständigkeit, insbesondere Nr. 99, 116 und 131–134a.
+7. **Sieben Soßen:** Verfügbarkeit von Dönersoße, Cocktail, Hot Cocktail, Sour Cream, Minar Spezial, BBQ, Sweet Chili.
+8. **Medien- und Logonutzungsrechte:** Fotos und Logo (Originaldatei).
+9. **Google-Bewertungslink:** im Google-Unternehmensprofil „Um Rezensionen bitten“ → Link kopieren → in `menu-data.js` (`googleReviewUrl`) eintragen.
+10. **Finaler Domainname** (Registrierung bei Namecheap) – danach Datenschutz um Registrar/DNS ergänzen.
+11. **Rechtliche Freigabe für den Kundenbetrieb:** Impressum, Datenschutzerklärung, Bestellstrecke (§§ 312i, 312j BGB, vorvertragliche Informationen, Angaben zum Widerrufsrecht bzw. dessen gesetzlichen Ausnahmen); außerdem Inhaberschaft des Cloudflare-Kontos und Auftragsverarbeitung mit Cloudflare.

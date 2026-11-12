@@ -10,7 +10,7 @@
   <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="assets/logo/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/css/styles.css?v=mwcq1anz">
+  <link rel="stylesheet" href="assets/css/styles.css?v=mwe5nhdu">
 </head>
 <body class="page-order" data-page="bestellen">
   <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
@@ -40,7 +40,6 @@
         </div>
       </nav>
       <div class="header-actions">
-        <img class="header-halal" src="assets/logo/halal-siegel.svg" alt="Halal" title="Halal" width="40" height="38">
         <a class="icon-btn cart-link is-active" href="bestellen.html" aria-label="Warenkorb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9L5 7Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.5V6a3 3 0 0 1 6 0v3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="cart-count" data-cart-count hidden>0</span></a>
         <a class="btn btn-primary header-order is-current" href="bestellen.html" aria-current="page">Jetzt bestellen</a>
         <button class="icon-btn nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
@@ -74,6 +73,15 @@
                 <h2 id="cart-title">Deine Bestellung</h2>
                 <span class="cart-card-count" data-cart-count-label>0 Artikel</span>
               </header>
+              <div class="cart-ref" data-ref-box>
+                <p class="cart-ref-label" id="ref-label">Deine Anfragenummer</p>
+                <div class="cart-ref-row">
+                  <code class="cart-ref-nr" data-ref-nr aria-labelledby="ref-label"></code>
+                  <button class="cart-ref-copy" type="button" data-ref-copy>Kopieren</button>
+                </div>
+                <p class="cart-ref-hint">Bitte bei Rückfragen angeben. Sie bleibt für diese Bestellung gleich – auch beim erneuten Öffnen von WhatsApp.</p>
+                <p class="cart-ref-error" data-ref-error role="alert" hidden>Ihr Browser kann keine sichere Anfragenummer erzeugen. Bitte nutzen Sie einen aktuellen Browser oder bestellen Sie telefonisch unter <a href="tel:+4975829346944">07582 934 69 44</a>.</p>
+              </div>
               <ul class="cart-lines" data-cart-lines></ul>
               <a class="cart-more" href="speisekarte/index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Weitere Gerichte hinzufügen</a>
               <dl class="cart-sums" data-cart-sums></dl>
@@ -143,6 +151,7 @@
             <p class="bon-brand">MINAR KÜCHE</p>
             <p class="bon-addr">Schussenrieder Straße 21<br>88422 Bad Buchau</p>
           </header>
+          <p class="bon-ref"><span>Anfrage-Nr.:</span><strong data-bon-ref></strong></p>
           <h2 class="bon-title" id="bon-title">Ihre Bestellübersicht</h2>
           <dl class="bon-meta" data-bon-meta></dl>
           <ul class="bon-lines" data-bon-lines></ul>
@@ -154,7 +163,8 @@
         <div class="bon-actions">
           <p class="bon-alert" data-bon-alert role="alert" hidden></p>
           <a class="btn btn-whatsapp btn-lg btn-block" href="#" target="_blank" rel="noopener" data-bon-send><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19l-4 1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.2c.3 2.5 2.3 4.6 4.8 5l1.2-1.2 1.6.8c-.2 1-1 1.7-2 1.7-3.4 0-6.1-2.8-6.1-6.1 0-1 .7-1.8 1.7-2l.8 1.6L9 9.2Z" fill="currentColor"/></svg>Per WhatsApp senden</a>
-          <p class="bon-opened" data-bon-opened role="status" hidden>WhatsApp wurde geöffnet. Bitte senden Sie die Nachricht dort ab – Ihre Bestellung gilt erst nach unserer Bestätigung.</p>
+          <p class="bon-opened" data-bon-opened role="status" hidden>WhatsApp wurde geöffnet. Bitte senden Sie die Nachricht dort ab – Ihre Bestellung gilt erst nach unserer Bestätigung. Ein erneutes Tippen auf „Per WhatsApp senden“ verwendet dieselbe Anfragenummer.</p>
+          <button class="btn btn-new-order btn-block" type="button" data-new-order hidden>Neue Bestellung beginnen</button>
           <p class="fine">Beim Tippen öffnet sich WhatsApp mit der vorbereiteten Nachricht an 0163 359 01 88; dabei werden die Angaben an WhatsApp übergeben. An uns gesendet wird erst, wenn Sie in WhatsApp selbst auf Senden tippen.</p>
           <button class="btn btn-link" type="button" data-close>Zurück und ändern</button>
         </div>
@@ -240,8 +250,8 @@
       </div>
     </form>
   </dialog>
-  <script src="assets/js/menu-data.js?v=mwcq1anz"></script>
-  <script src="assets/js/app.js?v=mwcq1anz"></script>
-  <script src="assets/js/fx.js?v=mwcq1anz"></script>
+  <script src="assets/js/menu-data.js?v=mwe5nhdu"></script>
+  <script src="assets/js/app.js?v=mwe5nhdu"></script>
+  <script src="assets/js/fx.js?v=mwe5nhdu"></script>
 </body>
 </html>

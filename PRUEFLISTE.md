@@ -1,6 +1,6 @@
 # Prüfprotokoll – MINAR Küche
 
-Stand: 11.11.2026 (Finalisierung V3.0) · Offene Inhaberpunkte gesammelt in `docs/ABSCHLUSSBERICHT.md`, Liste B · Quellen: zwei Fotos der gedruckten Speisekarte (Kartenstand **04/2023**), freigestellter Logobereich, Farbpalette.
+Stand: 13.11.2026 (V3.0 + Anfragenummer) · Offene Inhaberpunkte gesammelt in `docs/ABSCHLUSSBERICHT.md`, Liste B · Quellen: zwei Fotos der gedruckten Speisekarte (Kartenstand **04/2023**), freigestellter Logobereich, Farbpalette.
 
 Punkte mit **PRÜFEN** sind auf der Website nicht als gesichert dargestellt oder sollten vor dem Livegang vom Restaurant bestätigt werden.
 
@@ -70,14 +70,14 @@ Rechtschreibprüfung 07.11.2026: Cheddar Käse → Cheddarkäse · Pattie → Pa
 | F4 | Domain – Registrierung über Namecheap geplant, **bewusst nicht verknüpft** (kein CNAME, keine DNS-Änderung) | offen (Liste B) |
 | F6 | Hinweis „Stand 04/2023“ | entfernt (V3.0) |
 | F7 | `noindex` auf allen Seiten – vor dem Livegang entfernen? | offen |
-| F5 | Halal-Kennzeichnung: auf Wunsch aus dem Flyer übernommen (Logo, Header, Startseite, Speisekarte, Über uns). Formulierung auf Wunsch des Kunden: „Halal“. Keine Zertifizierung oder Zertifizierungsstelle genannt. Vom Kunden bestätigt (06.11.2026). | erledigt |
+| F5 | Halal-Kennzeichnung: auf Wunsch aus dem Flyer übernommen (Logo, Header, Startseite, Speisekarte, Über uns). Formulierung auf Wunsch des Kunden: „Halal“. **Am 12.11.2026 auf Kundenwunsch überall entfernt** (Header, Startseite, Speisekarte, Über uns, Halal-Siegel im Logo, im Logo-Intro und in `minar-logo.svg/.png`; Siegel-Dateien gelöscht). Halbmond mit Stern bleibt als Logobestandteil. | erledigt |
 
 ## G. Rechtliches
 
 | # | Punkt | Status |
 |---|-------|--------|
 | G1 | Impressum laut Kundenvorgabe (10.11.2026): Rehan Naveed Raja, Einzelunternehmer, handelnd unter MINAR Küche, Schussenrieder Straße 21, 88422 Bad Buchau, Deutschland · Tel. · E-Mail · USt-IdNr. DE 364887498 · Webdesign: Bräuer.Digital. Keine Platzhalter, kein Register, kein OS-Plattform-Link. | erledigt – Bestätigung Inhaber (Liste B) |
-| G2 | Verbraucherstreitbeilegung (§ 36 VSBG): Angabe hängt von Unternehmensgröße/Teilnahmebereitschaft ab – derzeit nicht im Impressum | offen (Liste B) |
+| G2 | Verbraucherstreitbeilegung: laut Inhaber nicht benötigt (12.11.2026) – keine Angabe im Impressum | erledigt |
 | G3 | Datenschutzerklärung (11.11.2026) auf Basis des Entwurfs vom 10.11.2026, angepasst an Cloudflare Pages (DPF-zertifiziert), Browser-Speicherung, WhatsApp (Übergabe schon beim Öffnen des Links), Telefon, E-Mail (Gmail), Google Maps, Google-Bewertung (nur bei aktivem Link), Rechte, LfDI BW. Ohne GitHub, Namecheap, Lexware. Keine sichtbaren Platzhalter. | erledigt – fachliche Prüfung offen (G4) |
 | G4 | Rechtliche Prüfung beider Texte sowie der Bestellstrecke (§§ 312i, 312j BGB, vorvertragliche Informationen, Widerrufsbelehrung/Ausnahmen) vor Livegang | offen (Liste B) |
 | G5 | LMIV: Allergeninformation online – vom Kunden bestätigt | erledigt |
@@ -89,11 +89,12 @@ Rechtschreibprüfung 07.11.2026: Cheddar Käse → Cheddarkäse · Pattie → Pa
 | H1 | Echte WhatsApp-Bestellstrecke (kein Demo-Modus): Warenkorb → Bon-Übersicht → WhatsApp an 0163 359 01 88; Annahmeprozess im Restaurant abstimmen | technisch fertig – Inhaber (Liste B) |
 | H2 | Hinweis „keine verbindliche Bestellung bis zur Bestätigung“ sichtbar | erledigt |
 | H3 | Keine Onlinezahlung, keine automatische Annahme | erledigt |
-| H4 | Mindestbestellwert (nur Warenwert, ohne Pfand/Lieferkosten) wird angezeigt, blockiert aber nicht (Karte: „kontaktieren Sie uns …“) | erledigt |
-| H5 | Getränkepfand 0,25 € je Getränk, Ayran vorläufig ohne Pfand – zentral in `menu-data.js` (`pfand`), separat in Karte, Warenkorb, Bon und Nachricht | umgesetzt – Ayran-Verpackung bestätigen (Liste B) |
+| H4 | Mindestbestellwert (nur Warenwert, ohne Pfand/Lieferkosten): Bestellung bei Lieferung gesperrt, bis er erreicht ist (Kundenwunsch 12.11.2026; „anderer Ort“ ohne festen Wert bleibt möglich) | erledigt |
+| H5 | Getränkepfand 0,25 € je Getränk, Ayran vorläufig ohne Pfand – zentral in `menu-data.js` (`pfand`), separat in Karte, Warenkorb, Bon und Nachricht | erledigt – Ayran ohne Pfand bestätigt (12.11.2026) |
 | H6 | Barzahlung: „Zahlung ausschließlich bar bei Abholung oder Lieferung.“ im Warenkorb, im Bon und in der Nachricht | erledigt |
 | H7 | Keine Bestellnummer, keine Erfolgsmeldung nach dem Öffnen von WhatsApp; Bon trägt nur Erstellungszeitpunkt mit Hinweis „keine Bestellnummer, keine Bestätigung“ | erledigt |
 | H8 | Datensparsamkeit: Formulardaten nur im sessionStorage, Warenkorb läuft nach 12 h ab, alter Schlüssel `minar-form-v3` wird gelöscht | erledigt |
+| H10 | Anfragenummer `MIN-A/L-YYYYMM-XXXXXXXX`: 8 Zeichen aus `23456789ABCDEFGHJKLMNPQRSTUVWXYZ` per `crypto.getRandomValues()` (kein Fallback), Jahr/Monat Europe/Berlin bei Erstellung, A/L folgt der Bestellart; gespeichert mit dem Warenkorb (localStorage `minar-cart-v4`, ohne Personendaten); stabil bis „Neue Bestellung beginnen“/„Warenkorb und Angaben löschen“, leerem Warenkorb oder 12 h Ablauf; in Warenkorb (mit Kopieren), Bon und WhatsApp identisch. Ohne zentrale Datenbank nicht garantiert einmalig – keine Bestellnummer des Restaurants. | erledigt |
 | H9 | Google-Bewertung: Link nicht eindeutig verifizierbar → Konfiguration `googleReviewUrl` (leer = ausgeblendet). Link aus Google-Unternehmensprofil → „Um Rezensionen bitten“ | vorbereitet (Liste B) |
 
 ## I. Logo, Marke & Bilder
@@ -106,6 +107,7 @@ Rechtschreibprüfung 07.11.2026: Cheddar Käse → Cheddarkäse · Pattie → Pa
 | I4 | Palettenwerte sind aus Fotos abgeleitet – ohne Druckdaten nicht farbverbindlich. | offen |
 | I5 | Arabischer Schriftzug im Siegel wurde als Grafik übernommen, nicht neu gesetzt. | erledigt |
 | I6 | Fotos vom Kunden geliefert (06.11.2026): Burger, Burger mit Pommes, Dönerteller, Curry, Salat, Schnitzel, Gastraum, Theke – eingebunden auf Startseite, 5 Kategorieseiten und „Über uns“; Hinweis „Fotos sind Beispiele“ wie auf dem Flyer. Nutzungsrechte liegen laut Kunde vor. | erledigt |
+| I9 | Buttons auf Touch-Geräten: alle Hover-Effekte nur noch bei echter Maus (`@media (hover: hover) and (pointer: fine)`), `touch-action: manipulation` – ein Tippen genügt (vorher teils Doppeltipp auf iOS) | erledigt (12.11.2026) |
 | I8 | Logo-Intro (Startseite): Aufbau aller Logo-Elemente inkl. Unterzeile (aus Vorlage vektorisiert), Stand, Scharren, Sprung; Original-Silhouette über Gelenk-Rig, Endbild pixelgleich geprüft; reduced motion / gleiche Sitzung → statisch | erledigt |
 | I7 | Schriften: Systemschriften (Bookman/Georgia für Überschriften), keine externen Font-Server. | erledigt |
 
@@ -124,5 +126,9 @@ Rechtschreibprüfung 07.11.2026: Cheddar Käse → Cheddarkäse · Pattie → Pa
 | Veralteter Tab: Bon offen, Uhr springt vor | Wunschzeit ungültig → Übersicht wird aktualisiert statt gesendet; Lieferung nach 21:15 gesperrt; Abholung bis 21:30 möglich |
 | Speicher | localStorage nur `minar-cart-v4` (ohne Name/Telefon), sessionStorage `minar-form-v4` |
 | Logo-Intro | Dateien unverändert (nur verschoben), Seite ohne Fehler |
+
+| Anfragenummer (13.11.2026) | 16 Fälle bestanden: MIN-A/MIN-L, 202611, 8 Zeichen, Zeichensatz, `getRandomValues`, Neuladen, Menge, Extras, Wunschzeit, Seitenwechsel, Monatswechsel nach Erstellung, Rechner in UTC (→ Berliner Monat), Kürzelwechsel, Warenkorb = Bon = WhatsApp, zweimal WhatsApp geöffnet → gleiche Nummer, zweiter Tab gleicher Entwurf, neue Bestellung → neue Kennung, ohne `crypto` → keine Ersatznummer und Sperre; mobil per Touch bedient |
+| Belastungstest 100.000 Kennungen (Browser, echte Funktion) | 0 Formatfehler, 0 Kollisionen in diesem Lauf, alle 32 Zeichen, je Zeichen 24.737–25.275 (erwartet 25.000), χ² = 17,76 bei 31 Freiheitsgraden (unauffällig). Hinweis: Kollisionsfreiheit in einem Lauf ist kein Beweis für Eindeutigkeit. |
+| Mindestbestellwert | Ingoldingen (40 €) bei 18 € Warenwert gesperrt mit „noch 22,00 €“, Bad Buchau (15 €) freigegeben |
 
 Nicht getestet: echte Mobilgeräte (iOS Safari/Android), Screenreader, Cloudflare-Deployment selbst (Verbindung erfordert Anmeldung im Cloudflare-Konto, siehe `docs/CLOUDFLARE.md`).

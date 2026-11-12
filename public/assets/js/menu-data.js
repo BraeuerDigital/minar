@@ -53,7 +53,6 @@ window.MINAR_DATA = {
     offer: ["Restaurant", "Abholung", "Lieferservice"]
   },
 
-  halalNote: "Halal",
 
   menuSource: "Alle Preise in Euro inkl. gesetzlicher Umsatzsteuer. Getränke zzgl. 0,25 € Pfand (Ayran ohne Pfand). Zahlung ausschließlich bar.",
 

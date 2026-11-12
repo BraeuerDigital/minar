@@ -355,9 +355,42 @@
   var lsDel = function (k) { try { localStorage.removeItem(k); } catch (e) { /* gesperrt */ } };
   lsDel("minar-form-v3");                                  // alte, dauerhaft gespeicherte Formulardaten entfernen
   var cents = function (n) { return Math.round(n * 100) / 100; };
+  /* ---------- Anfragenummer: MIN-A-YYYYMM-XXXXXXXX (Abholung) / MIN-L-… (Lieferung) ----------
+     Gehört zum aktiven Bestellentwurf (= Warenkorb) und wird mit ihm im localStorage gehalten:
+     bleibt bei Neuladen, Seitenwechsel, Mengen-/Extra-/Zeitänderung, Bon und erneutem WhatsApp-Öffnen gleich;
+     auch ein duplizierter Tab zeigt denselben Entwurf. Neu erzeugt wird sie erst für einen neuen Entwurf:
+     nach „Neue Bestellung beginnen“ bzw. „Warenkorb und Angaben löschen“, wenn der Warenkorb leer war
+     oder nach Ablauf (12 h ohne Änderung). Jahr/Monat werden bei der Erstellung festgelegt (Europe/Berlin),
+     das Kürzel A/L folgt der aktuellen Bestellart. Ohne zentrale Datenbank ist die Nummer sehr
+     wahrscheinlich, aber nicht garantiert einmalig – sie ist keine Bestellnummer des Restaurants. */
+  var REF_CHARS = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";       // 32 Zeichen, ohne 0/O/1/I
+  var REF_RE = /^[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$/;
+  function secureRefId() {
+    var c = window.crypto;
+    if (!c || typeof c.getRandomValues !== "function") throw new Error("Sichere Zufallserzeugung nicht verfügbar");
+    var b = c.getRandomValues(new Uint8Array(8)), out = "";
+    for (var i = 0; i < 8; i++) out += REF_CHARS.charAt(b[i] & 31);   // 256 = 8 × 32 → exakt gleichverteilt
+    return out;
+  }
+  function berlinYM(date) {
+    var p = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Berlin", year: "numeric", month: "2-digit" }).formatToParts(date || new Date());
+    var get = function (t) { return p.filter(function (x) { return x.type === t; })[0].value; };
+    return get("year") + get("month");
+  }
+  var ref = null, refError = false;
+  function newRef() {
+    try { ref = { id: secureRefId(), ym: berlinYM() }; refError = false; }
+    catch (e) { ref = null; refError = true; }                // keine unsichere Ersatznummer
+  }
+  function refFor(m) { return ref ? "MIN-" + (m === "Lieferung" ? "L" : "A") + "-" + ref.ym + "-" + ref.id : ""; }
+  window.MINAR_REF = { generate: secureRefId, ym: berlinYM, chars: REF_CHARS };   // für automatisierte Tests
+
   function loadCart() {
     var raw = store.get(CART_KEY), lines = [];
-    if (raw && raw.t && Date.now() - raw.t < CART_TTL) lines = raw.lines || [];
+    if (raw && raw.t && Date.now() - raw.t < CART_TTL) {
+      lines = raw.lines || [];
+      if (raw.ref && REF_RE.test(raw.ref.id) && /^\d{6}$/.test(raw.ref.ym)) ref = { id: raw.ref.id, ym: raw.ref.ym };
+    }
     else if (raw) lsDel(CART_KEY);
     else { var old = store.get("minar-cart-v3"); if (Array.isArray(old)) lines = old; }
     lsDel("minar-cart-v3");
@@ -370,6 +403,8 @@
   }
   function lineKey(it, v, sel, note) { return it._id + "|" + v + "|" + JSON.stringify(sel) + "|" + String(note || "").trim(); }
   var cart = loadCart();
+  if (!cart.length) ref = null;
+  else if (!ref) { newRef(); if (ref) store.set(CART_KEY, { t: Date.now(), lines: store.get(CART_KEY).lines, ref: ref }); }
 
   /* Zentrale Berechnung – gilt für Warenkorb, Bon und WhatsApp-Nachricht */
   function lineCalc(l) {
@@ -402,8 +437,9 @@
   function grandHtml(t) { return money(t.grand) + (t.feeOpen ? '<small class="sum-note">zzgl. Lieferkosten</small>' : ""); }
 
   function saveCart() {
-    if (!cart.length) { lsDel(CART_KEY); return; }
-    store.set(CART_KEY, { t: Date.now(), lines: cart.map(function (l) { return { nr: l.nr, name: l.name, v: l.v, sel: l.sel, qty: l.qty, note: l.note }; }) });
+    if (!cart.length) { lsDel(CART_KEY); ref = null; return; }   // leerer Warenkorb beendet den Entwurf
+    if (!ref) newRef();
+    store.set(CART_KEY, { t: Date.now(), ref: ref, lines: cart.map(function (l) { return { nr: l.nr, name: l.name, v: l.v, sel: l.sel, qty: l.qty, note: l.note }; }) });
   }
   function addToCart(it, v, sel, qty, note) {
     var key = lineKey(it, v, sel, note);
@@ -510,7 +546,9 @@
     if (!cart.length) out.push({ msg: "Der Warenkorb ist leer" });
     if (!anyModeAvailable()) { out.push({ msg: "Derzeit geschlossen", long: closedText() }); return out; }
     if (!modeAvailable(mode())) out.push({ msg: mode() + " ist gerade nicht möglich" });
-    // Mindestbestellwert wird angezeigt, sperrt aber nicht (Karte: „kontaktieren Sie uns“ – PRUEFLISTE H4)
+    if (refError) out.push({ msg: "Anfragenummer nicht verfügbar", long: "Ihr Browser kann keine sichere Anfragenummer erzeugen. Bitte nutzen Sie einen aktuellen Browser oder bestellen Sie telefonisch unter " + R.phoneDisplay + "." });
+    var t = totals();                                        // Mindestbestellwert sperrt die Bestellung (nur Warenwert)
+    if (t.zone && t.goods < t.zone.minOrder) out.push({ el: F.place, msg: "Mindestbestellwert " + money(t.zone.minOrder) + " – noch " + money(cents(t.zone.minOrder - t.goods)) });
     return out.concat(requiredMissing());
   }
   function markInvalid() {
@@ -540,9 +578,10 @@
     if (delivery && F.place.value === "__other") { minEl.hidden = false; minEl.textContent = "Weitere Orte auf Anfrage – Mindestbestellwert und Lieferkosten bestätigt Ihnen das Restaurant."; }
     else if (t.zone) {
       minEl.hidden = false;
-      if (t.goods < t.zone.minOrder) minEl.textContent = "Mindestbestellwert für " + F.place.value + ": " + money(t.zone.minOrder) + " Warenwert (noch " + money(cents(t.zone.minOrder - t.goods)) + "). Pfand und Lieferkosten zählen nicht dazu. Wird er nicht erreicht, sprechen Sie uns gerne per Telefon oder WhatsApp an.";
+      if (t.goods < t.zone.minOrder) minEl.textContent = "Mindestbestellwert für " + F.place.value + ": " + money(t.zone.minOrder) + " Warenwert (noch " + money(cents(t.zone.minOrder - t.goods)) + "). Pfand und Lieferkosten zählen nicht dazu. Die Bestellung ist möglich, sobald er erreicht ist.";
       else { minEl.classList.add("is-ok"); minEl.textContent = "Mindestbestellwert für " + F.place.value + " (" + money(t.zone.minOrder) + ") erreicht."; }
     }
+    renderRef();
     var closedEl = $("[data-cart-closed]"), open = anyModeAvailable();
     closedEl.hidden = open; if (!open) closedEl.textContent = closedText();
     var p = problems(), go = $("[data-to-summary]"), hint = $("[data-checkout-hint]");
@@ -550,6 +589,14 @@
     go.classList.toggle("is-closed", !open);
     hint.textContent = p.length ? (p[0].long || p[0].msg) : "Noch wird nichts gesendet – im nächsten Schritt prüfen Sie Ihre Bestellübersicht.";
     hint.classList.toggle("is-warn", !!p.length && (triedSend || !open));
+  }
+
+  function renderRef() {
+    var nr = refFor(mode());
+    $$("[data-ref-nr]").forEach(function (el) { el.textContent = nr; });
+    var box = $("[data-ref-box]"); if (box) box.classList.toggle("is-error", refError);
+    var err = $("[data-ref-error]"); if (err) err.hidden = !refError;
+    var cp = $("[data-ref-copy]"); if (cp) cp.hidden = !nr;
   }
 
   /* Wunschzeit: „so schnell wie möglich“ oder heute in 15-Minuten-Schritten, mind. 30 Minuten Vorlauf,
@@ -586,13 +633,13 @@
       address: del ? [F.address.value.trim(), place].filter(Boolean).join(", ") : "",
       otherPlace: del && F.place.value === "__other",
       when: F.time.value && F.time.value !== "asap" ? "heute, " + F.time.value + " Uhr" : "so schnell wie möglich",
-      note: F.note.value.trim(), lines: cart.map(lineCalc)
+      note: F.note.value.trim(), lines: cart.map(lineCalc), ref: refFor(m)
     };
   }
   var plain = function (s) { return String(s).replace(/[  ]/g, " "); };
   function buildMessage() {
     var o = orderData(), t = o.t, L = [];
-    L.push("MINAR KÜCHE – BESTELLANFRAGE", "", "Bestellart: " + o.mode, "Name: " + o.name, "Telefon: " + o.phone);
+    L.push("MINAR KÜCHE – BESTELLANFRAGE", "", "Anfrage-Nr.: " + o.ref, "", "Bestellart: " + o.mode, "Name: " + o.name, "Telefon: " + o.phone);
     if (o.delivery) L.push("Lieferadresse: " + o.address + (o.otherPlace ? " (anderer Ort, Konditionen auf Anfrage)" : ""));
     L.push("Wunschzeit: " + o.when, "", "BESTELLUNG", "");
     o.lines.forEach(function (c) {
@@ -602,7 +649,7 @@
       L.push("");
     });
     if (o.note) L.push("Anmerkung: " + o.note, "");
-    L.push("Warenwert: " + money(t.goods), "Lieferkosten: " + feeText(t), "Pfand: " + money(t.pfand), "INSGESAMT BAR: " + grandText(t), "");
+    L.push("Warenwert: " + money(t.goods), "Lieferkosten: " + feeText(t), "Getränkepfand: " + money(t.pfand), "INSGESAMT BAR: " + grandText(t), "");
     L.push("Zahlung bar bei " + (o.delivery ? "Lieferung" : "Abholung") + ".", "Bitte bestätigen Sie meine Bestellung sowie die gewünschte Uhrzeit.");
     return plain(L.join("\n"));
   }
@@ -614,6 +661,7 @@
     if (o.delivery) meta.push(["Lieferadresse", o.address + (o.otherPlace ? " (anderer Ort – Konditionen auf Anfrage)" : "")]);
     meta.push(["Wunschzeit", o.when]);
     if (o.note) meta.push(["Anmerkung", o.note]);
+    $("[data-bon-ref]", bonDialog).textContent = o.ref;
     $("[data-bon-meta]", bonDialog).innerHTML = meta.map(function (r) { return sumRow(esc(r[0]), esc(r[1])); }).join("");
     $("[data-bon-lines]", bonDialog).innerHTML = o.lines.map(function (c) {
       return '<li><div class="bon-line"><span class="bon-q">' + c.qty + ' ×</span><span class="bon-n">' + (c.it.nr ? "<small>Nr. " + esc(c.it.nr) + "</small> " : "") + esc(c.it.name) + '</span><span class="bon-p">' + money(c.total) + "</span></div>" +
@@ -623,12 +671,13 @@
     $("[data-bon-sums]", bonDialog).innerHTML = sumRow("Warenwert", money(t.goods)) + sumRow("Lieferkosten", feeText(t)) +
       sumRow("Getränkepfand", money(t.pfand)) + sumRow("Insgesamt bar zu zahlen", grandHtml(t), "is-grand");
     $("[data-bon-stamp]", bonDialog).textContent = "Übersicht erstellt am " + now.toLocaleDateString("de-DE", { timeZone: H.timezone }) + " um " +
-      now.toLocaleTimeString("de-DE", { timeZone: H.timezone, hour: "2-digit", minute: "2-digit" }) + " Uhr · keine Bestellnummer, keine Bestätigung";
+      now.toLocaleTimeString("de-DE", { timeZone: H.timezone, hour: "2-digit", minute: "2-digit" }) + " Uhr · Übersicht, keine Bestätigung";
     bonMsg = buildMessage();
     var send = $("[data-bon-send]", bonDialog);
     send.href = waUrl(bonMsg); send.setAttribute("aria-disabled", "false");
     var al = $("[data-bon-alert]", bonDialog); al.hidden = !alertMsg; al.textContent = alertMsg || "";
     $("[data-bon-opened]", bonDialog).hidden = true;
+    $("[data-new-order]", bonDialog).hidden = true;
   }
   function toSummary() {
     triedSend = true; refresh();
@@ -670,10 +719,25 @@
         saveForm(); updateCheckout(); markInvalid();
       });
     });
-    $("[data-cart-clear]").addEventListener("click", function () {
+    function newOrder() {
       cart = []; saveCart(); sess.del(FORM_KEY);
       ["name", "phone", "address", "note"].forEach(function (k) { F[k].value = ""; }); F.place.value = "";
-      triedSend = false; renderBadge(); renderCartPage(); markInvalid(); toast("Warenkorb und Angaben gelöscht");
+      triedSend = false; drinksAsked = false; renderBadge(); renderCartPage(); markInvalid();
+    }
+    $("[data-cart-clear]").addEventListener("click", function () { newOrder(); toast("Warenkorb und Angaben gelöscht"); });
+    $("[data-new-order]", bonDialog).addEventListener("click", function () {
+      closeDialog(bonDialog); newOrder(); toast("Neue Bestellung – die nächste Anfrage erhält eine neue Anfragenummer");
+      location.href = "speisekarte/index.html";
+    });
+    $("[data-ref-copy]").addEventListener("click", function () {
+      var nr = refFor(mode()); if (!nr) return;
+      var done = function () { toast("Anfragenummer " + nr + " kopiert"); };
+      var fallback = function () {
+        var r = document.createRange(), el = $("[data-ref-nr]"); r.selectNodeContents(el);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        try { document.execCommand("copy"); done(); } catch (e) { toast("Bitte Nummer markieren und kopieren"); }
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(nr).then(done, fallback); else fallback();
     });
     $("[data-to-summary]").addEventListener("click", toSummary);
 
@@ -693,6 +757,7 @@
       this.href = waUrl(now);
       $("[data-bon-alert]", bonDialog).hidden = true;
       $("[data-bon-opened]", bonDialog).hidden = false;     // neutraler Hinweis – keine Erfolgsmeldung
+      $("[data-new-order]", bonDialog).hidden = false;
     });
   }
 

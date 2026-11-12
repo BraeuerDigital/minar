@@ -33,11 +33,11 @@ Alle Seiten sind bis zur Freigabe mit `noindex` gekennzeichnet. Stand der Umsetz
 │       ├── js/app.js             Navigation, Öffnungsstatus, Speisekarte, Suche, Warenkorb, Bon, WhatsApp
 │       ├── js/fx.js              Interaktions-Effekte (Hover, Tilt, Magnet, Scroll-Fortschritt)
 │       ├── js/logo-anim.js       Logo-Intro der Startseite
-│       ├── logo/                 Logo als SVG/PNG, Halal-Siegel, Favicons, Referenz
+│       ├── logo/                 Logo als SVG/PNG, Favicons
 │       └── images/               Fotos des Restaurants
 ├── tools/
 │   ├── build.mjs                 Seitengenerator (Header, Footer, Navigation, Rechtstexte zentral)
-│   ├── trace.py, compose.py      Logo-Vektorisierung aus public/assets/logo/logo-referenz.png
+│   ├── trace.py, compose.py      Logo-Vektorisierung aus tools/logo-referenz.png (nicht öffentlich)
 │   └── logo_anim.py              erzeugt public/assets/logo/minar-logo-anim.svg
 ├── docs/
 │   ├── CLOUDFLARE.md             Hosting-Einrichtung (Vorlage für weitere Kundenprojekte)
@@ -82,13 +82,15 @@ Aufbau eines Gerichts:
 
 Berechnung zentral in `app.js` (`lineCalc`, `totals`): Warenwert, Getränkepfand (0,25 €/Getränk, Ayran 0 €), Lieferkosten je Ort; Mindestbestellwert zählt nur den Warenwert. Bestellannahme Europe/Berlin: Lieferung 11:30–21:15, Abholung 11:30–21:30, Dienstag Ruhetag; außerhalb ist alles gesperrt. Vor „Per WhatsApp senden“ wird mit aktueller Uhrzeit erneut geprüft (auch bei lange offenem Tab).
 
+Anfragenummer `MIN-A-YYYYMM-XXXXXXXX` (Abholung) bzw. `MIN-L-…` (Lieferung): 8 Zeichen aus `23456789ABCDEFGHJKLMNPQRSTUVWXYZ` via `crypto.getRandomValues()`, Jahr/Monat Europe/Berlin bei Erstellung. Sie gehört zum Warenkorb-Entwurf und bleibt bis „Neue Bestellung beginnen“ / „Warenkorb und Angaben löschen“, leerem Warenkorb oder Ablauf gleich; der Wechsel Abholung/Lieferung ändert nur A/L. Keine garantiert einmalige Bestell-ID (keine Datenbank). Ohne sichere Zufallserzeugung wird keine Nummer erzeugt und die Bestellung gesperrt. Mindestbestellwert sperrt bei Lieferung, bis er erreicht ist.
+
 Datensparsamkeit: localStorage `minar-cart-v4` enthält nur die Gerichtsauswahl (Ablauf 12 h), sessionStorage `minar-form-v4` Name/Telefon/Adresse/Anmerkung (endet mit dem Tab). „Warenkorb und Angaben löschen“ entfernt beides.
 
 `codesCheck: true` blendet unsichere Kennzeichnungen aus („auf Anfrage“).
 
 ## Designgrundlage (Orange/Grün-Edition)
 
-Die Oberfläche nutzt ausschließlich **Logo-Orange** und **Grün** plus Neutraltöne. Das Logo (inkl. Halal-Siegel) bleibt im Original.
+Die Oberfläche nutzt ausschließlich **Logo-Orange** und **Grün** plus Neutraltöne. Das Logo bleibt im Original (Halal-Siegel auf Kundenwunsch am 12.11.2026 entfernt).
 
 | Variable | Wert | Einsatz |
 |----------|------|---------|

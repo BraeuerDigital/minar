@@ -8,13 +8,12 @@ Aufbau (jede Ebene einzeln animierbar, IDs/Klassen mit Präfix „lg-“):
   lg-sun      Sonnen-Emblem (Kreis mit Verlauf und grünem Rand)
   lg-goat     Tierfigur: .mg-static (Original-Silhouette) + .mg-rig (Gelenk-Rig)
   lg-lines    rote Zierlinien
-  lg-seal     Halal-Siegel
   lg-moon     Halbmond mit Stern
   lg-minar    Schriftzug „MINAR“, je Buchstabe ein <g class="lg-letter">
   lg-kueche   Schriftzug „Küche“
   lg-tagline  Unterzeile „RESTAURANT • LIEFERSERVICE • ABHOLUNG“
 
-Alle Formen stammen aus der Logovorlage assets/logo/logo-referenz.png (vektorisiert,
+Alle Formen stammen aus der Logovorlage tools/logo-referenz.png (vektorisiert,
 siehe tools/trace.py → tools/paths.json). Nichts ist neu gezeichnet.
 
 Gelenk-Rig der Tierfigur (zwei Vorderläufe):
@@ -78,7 +77,7 @@ def build():
     letters = "".join(f'<g class="lg-letter" data-letter="{n}"><path d="{d}"/></g>' for n, d in P["word_letters"])
     word_style = f'fill="{GREEN}" stroke="#fff" stroke-width="7" stroke-linejoin="round" paint-order="stroke" fill-rule="evenodd"'
 
-    svg = f'''<svg class="minar-logo-anim" xmlns="http://www.w3.org/2000/svg" viewBox="80 10 1380 1000" role="img" aria-label="MINAR Küche – Logo mit Halal-Siegel, Halbmond und Stern">
+    svg = f'''<svg class="minar-logo-anim" xmlns="http://www.w3.org/2000/svg" viewBox="80 10 1380 1000" role="img" aria-label="MINAR Küche – Logo mit Halbmond und Stern">
 <defs>
   <linearGradient id="mk-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f86a0a"/><stop offset=".45" stop-color="#f7a24a"/><stop offset=".8" stop-color="#fbdcaa"/><stop offset="1" stop-color="#fcefd8"/></linearGradient>
   <clipPath id="mk-cut"><rect x="0" y="0" width="1600" height="463"/></clipPath>
@@ -89,7 +88,6 @@ def build():
 <g class="lg-sun"><g clip-path="url(#mk-cut)"><circle cx="{cx}" cy="{cy}" r="{r - 2}" fill="url(#mk-sun)" stroke="#3d5413" stroke-width="5"/></g><path fill="{INK}" d="{GROUND}"/></g>
 <g class="lg-goat" fill="{INK}"><use class="mg-static" href="#mg-goat"/>{rig}</g>
 <g class="lg-lines"><path fill="{RED}" d="{P["lines"]}"/></g>
-<g class="lg-seal"><path fill="{RED}" fill-rule="evenodd" d="{P["seal"]}"/></g>
 <g class="lg-moon"><path fill="{GREEN}" fill-rule="evenodd" d="{P["moon"]}"/></g>
 <g class="lg-minar" filter="url(#mk-shadow)" {word_style}>{letters}</g>
 <g class="lg-kueche" filter="url(#mk-shadow)" {word_style}><path d="{P["word_kueche"]}"/></g>

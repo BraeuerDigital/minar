@@ -87,7 +87,6 @@ function header(root, active) {
         </div>
       </nav>
       <div class="header-actions">
-        <img class="header-halal" src="${root}assets/logo/halal-siegel.svg" alt="Halal" title="Halal" width="40" height="38">
         <a class="icon-btn cart-link${active === "bestellen" ? " is-active" : ""}" href="${root}bestellen.html" aria-label="Warenkorb">${I.bag}<span class="cart-count" data-cart-count hidden>0</span></a>
         <a class="btn btn-primary header-order${active === "bestellen" ? " is-current" : ""}" href="${root}bestellen.html"${active === "bestellen" ? ' aria-current="page"' : ""}>Jetzt bestellen</a>
         <button class="icon-btn nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
@@ -212,7 +211,6 @@ ${body(root)}
 }
 
 /* ---------- Bausteine ---------- */
-const halalBadge = (root, cls = "") => `<p class="halal-badge ${cls}"><img src="${root}assets/logo/halal-siegel.svg" alt="" width="44" height="42"><span>${esc(D.halalNote)}</span></p>`;
 const noscript = `<noscript><p class="notice">Die Speisekarte benötigt JavaScript. Gerne nehmen wir Ihre Bestellung auch telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a> entgegen.</p></noscript>`;
 const pageHead = (eyebrow, h1, lead = "", extra = "") => `
     <section class="page-head">
@@ -285,7 +283,6 @@ built.push(page({
             <a class="btn btn-primary btn-lg" href="${root}speisekarte/index.html">Speisekarte entdecken</a>
             <a class="btn btn-accent btn-lg" href="${root}bestellen.html">Jetzt bestellen</a>
           </div>
-          ${halalBadge(root)}
         </div>
       </div>
       <div class="tapes" aria-hidden="true">
@@ -377,7 +374,6 @@ built.push(page({
     <section class="page-head page-head-cat">
       <div class="container">
         <h1 class="h-red">Speisekarte</h1>
-        ${halalBadge(root, "halal-badge-sm")}
         <form class="search" role="search" data-search-form>
           <label class="visually-hidden" for="q">Speisekarte durchsuchen</label>
           ${I.search}
@@ -476,6 +472,15 @@ built.push(page({
                 <h2 id="cart-title">Deine Bestellung</h2>
                 <span class="cart-card-count" data-cart-count-label>0 Artikel</span>
               </header>
+              <div class="cart-ref" data-ref-box>
+                <p class="cart-ref-label" id="ref-label">Deine Anfragenummer</p>
+                <div class="cart-ref-row">
+                  <code class="cart-ref-nr" data-ref-nr aria-labelledby="ref-label"></code>
+                  <button class="cart-ref-copy" type="button" data-ref-copy>Kopieren</button>
+                </div>
+                <p class="cart-ref-hint">Bitte bei Rückfragen angeben. Sie bleibt für diese Bestellung gleich – auch beim erneuten Öffnen von WhatsApp.</p>
+                <p class="cart-ref-error" data-ref-error role="alert" hidden>Ihr Browser kann keine sichere Anfragenummer erzeugen. Bitte nutzen Sie einen aktuellen Browser oder bestellen Sie telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a>.</p>
+              </div>
               <ul class="cart-lines" data-cart-lines></ul>
               <a class="cart-more" href="${root}speisekarte/index.html">${I.back} Weitere Gerichte hinzufügen</a>
               <dl class="cart-sums" data-cart-sums></dl>
@@ -545,6 +550,7 @@ built.push(page({
             <p class="bon-brand">MINAR KÜCHE</p>
             <p class="bon-addr">${esc(R.street)}<br>${esc(R.zip)} ${esc(R.city)}</p>
           </header>
+          <p class="bon-ref"><span>Anfrage-Nr.:</span><strong data-bon-ref></strong></p>
           <h2 class="bon-title" id="bon-title">Ihre Bestellübersicht</h2>
           <dl class="bon-meta" data-bon-meta></dl>
           <ul class="bon-lines" data-bon-lines></ul>
@@ -556,7 +562,8 @@ built.push(page({
         <div class="bon-actions">
           <p class="bon-alert" data-bon-alert role="alert" hidden></p>
           <a class="btn btn-whatsapp btn-lg btn-block" href="#" target="_blank" rel="noopener" data-bon-send>${I.wa}Per WhatsApp senden</a>
-          <p class="bon-opened" data-bon-opened role="status" hidden>WhatsApp wurde geöffnet. Bitte senden Sie die Nachricht dort ab – Ihre Bestellung gilt erst nach unserer Bestätigung.</p>
+          <p class="bon-opened" data-bon-opened role="status" hidden>WhatsApp wurde geöffnet. Bitte senden Sie die Nachricht dort ab – Ihre Bestellung gilt erst nach unserer Bestätigung. Ein erneutes Tippen auf „Per WhatsApp senden“ verwendet dieselbe Anfragenummer.</p>
+          <button class="btn btn-new-order btn-block" type="button" data-new-order hidden>Neue Bestellung beginnen</button>
           <p class="fine">Beim Tippen öffnet sich WhatsApp mit der vorbereiteten Nachricht an ${esc(R.whatsappDisplay)}; dabei werden die Angaben an WhatsApp übergeben. An uns gesendet wird erst, wenn Sie in WhatsApp selbst auf Senden tippen.</p>
           <button class="btn btn-link" type="button" data-close>Zurück und ändern</button>
         </div>
@@ -611,7 +618,6 @@ built.push(page({
         <div class="prose reveal">
           <p>MINAR Küche verbindet auf einer Karte, was viele gern essen: Salate, Burger und Fingerfood, Döner und überbackene Teller, Pizza und Partypizza, Nudelgerichte und Gnocchi, Schnitzel sowie Currys und Masala-Gerichte der indischen und pakistanischen Küche – dazu vegetarische Gerichte, Desserts und Getränke.</p>
           <p>Sie können bei uns im Restaurant essen, Ihre Bestellung abholen oder sich beliefern lassen. Unsere Karte sagt dazu: <em>„Bitte bedenken Sie, wir bereiten alle Speisen frisch für Sie zu.“</em></p>
-          ${halalBadge(root)}
         </div>
         <div class="about-photos reveal">
           <figure><img src="${root}assets/images/gastraum-sm.jpg" alt="Gastraum von MINAR Küche mit Holztischen und Stühlen" loading="lazy" decoding="async"><figcaption>Unser Gastraum</figcaption></figure>
@@ -690,7 +696,7 @@ built.push(page({
       ${h("Warenkorb – Speicherung in Ihrem Browser")}
       <p>Damit Ihre Auswahl beim Wechsel zwischen den Seiten erhalten bleibt, speichert die Website Daten ausschließlich lokal in Ihrem Browser. Diese Daten werden nicht automatisch an uns oder an Dritte übertragen.</p>
       <ul>
-        <li><strong>Warenkorb</strong> (localStorage, Schlüssel „minar-cart-v4“): ausgewählte Gerichte, Mengen, Varianten, Extras und Hinweise zum Gericht sowie der Zeitpunkt der letzten Änderung. Der Warenkorb wird spätestens 12 Stunden nach der letzten Änderung beim nächsten Seitenaufruf automatisch gelöscht, außerdem sofort, wenn Sie ihn leeren.</li>
+        <li><strong>Warenkorb</strong> (localStorage, Schlüssel „minar-cart-v4“): ausgewählte Gerichte, Mengen, Varianten, Extras und Hinweise zum Gericht, der Zeitpunkt der letzten Änderung sowie eine zufällig erzeugte Anfragenummer (Jahr, Monat und acht Zufallszeichen – ohne Bezug zu Name, Telefonnummer oder IP-Adresse), die Ihrer Bestellanfrage zur Zuordnung dient. Der Warenkorb wird spätestens 12 Stunden nach der letzten Änderung beim nächsten Seitenaufruf automatisch gelöscht, außerdem sofort, wenn Sie ihn leeren.</li>
         <li><strong>Ihre Angaben im Bestellformular</strong> (sessionStorage, Schlüssel „minar-form-v4“): Name, Telefonnummer, Bestellart, Lieferort, Lieferadresse und Anmerkung. Diese Angaben bleiben nur in dem geöffneten Browser-Tab erhalten und werden gelöscht, sobald Sie den Tab bzw. Browser schließen oder „Warenkorb und Angaben löschen“ wählen.</li>
       </ul>
       <p>Die Speicherung ist für den von Ihnen gewünschten Warenkorb unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Soweit dabei personenbezogene Daten verarbeitet werden, ist Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO (Vorbereitung einer von Ihnen gewünschten Bestellung). Sie können die Daten zusätzlich jederzeit über die Einstellungen Ihres Browsers löschen.</p>
