@@ -297,12 +297,14 @@
     }).join("");
     $("[data-item-opts]", itemForm).innerHTML = it.opts.map(function (gid) {
       var g = GROUPS[gid], one = g.type === "one";
-      return '<fieldset class="opt-group" data-group="' + gid + '"><legend>' + esc(g.label) + (one ? "" : " (optional)") +
-        (g.max ? ' <span class="opt-max" data-max-hint="' + gid + '">0 von ' + g.max + " gewählt</span>" : "") + '</legend><div class="opt-list">' +
+      // Zusatz-Kategorie als aufklappbarer Bereich; die Kopfzeile zeigt die aktuelle Auswahl
+      return '<details class="opt-group" data-group="' + gid + '"><summary><span class="opt-sum-head"><span class="opt-sum-title">' + esc(g.label) + (one ? "" : " (optional)") + "</span>" +
+        (g.max ? ' <span class="opt-max" data-max-hint="' + gid + '">0 von ' + g.max + " gewählt</span>" : "") +
+        '</span><span class="opt-sum-sel" data-sel-hint="' + gid + '"></span></summary><div class="opt-list" role="group" aria-label="' + esc(g.label) + '">' +
         g.options.map(function (o, i) {
           return '<label class="opt"><input type="' + (one ? "radio" : "checkbox") + '" name="g-' + gid + '" data-g="' + gid + '" value="' + i + '"' + (one && i === 0 ? " checked" : "") +
             "><span>" + esc(o.name) + '</span><span class="opt-price" data-opt-price="' + gid + ":" + i + '"></span></label>';
-        }).join("") + "</div></fieldset>";
+        }).join("") + "</div></details>";
     }).join("");
     if (line) {                                          // bisherige Auswahl vorbelegen
       var vr = itemForm.querySelector('input[name=variant][value="' + line.v + '"]'); if (vr) vr.checked = true;
@@ -325,6 +327,11 @@
       boxes.forEach(function (b) { b.disabled = !b.checked && n >= max; b.closest(".opt").classList.toggle("is-disabled", b.disabled); });
       var hint = $('[data-max-hint="' + gid + '"]', itemForm);
       if (hint) hint.textContent = n + " von " + max + " gewählt";
+    });
+    cur.opts.forEach(function (gid) {                    // Auswahl in der zugeklappten Kopfzeile anzeigen
+      var names = $$('input[data-g="' + gid + '"]:checked', itemForm).map(function (b) { return GROUPS[gid].options[+b.value].name; });
+      var el = $('[data-sel-hint="' + gid + '"]', itemForm);
+      if (el) { el.textContent = names.length ? names.join(", ") : "keine Auswahl"; el.classList.toggle("is-empty", !names.length); }
     });
   }
   if (itemForm) {

@@ -1558,3 +1558,23 @@ a, button, label, summary, select, input, textarea, .btn, .add-btn, .chip, .icon
   .header-actions { margin-left: auto; gap: .25rem; }
   .nav-toggle { margin-right: -8px; }
 }
+
+/* ---------- Zusätze im Gericht-Dialog: aufklappbare Kategorien ---------- */
+details.opt-group { margin: 0 0 .6rem; border-radius: 14px; background: #fff; box-shadow: inset 0 0 0 1.5px var(--minar-cream); }
+details.opt-group > summary {
+  list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: .8rem;
+  min-height: 56px; padding: .6rem 2.8rem .6rem 1rem; position: relative; border-radius: 14px;
+}
+details.opt-group > summary::-webkit-details-marker { display: none; }
+details.opt-group > summary::after {
+  content: ""; position: absolute; right: 1.1rem; top: 50%; width: 9px; height: 9px; margin-top: -6px;
+  border-right: 2px solid var(--minar-green); border-bottom: 2px solid var(--minar-green); transform: rotate(45deg); transition: transform .3s var(--ease);
+}
+details.opt-group[open] > summary::after { transform: rotate(225deg); margin-top: -2px; }
+details.opt-group > summary:focus-visible { outline: 2px solid var(--minar-green); outline-offset: 2px; }
+.opt-sum-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .6rem; min-width: 0; font-family: var(--mono); font-weight: 700; font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; color: var(--minar-green); }
+.opt-sum-sel { grid-column: 1 / -1; margin-top: .15rem; font-size: .88rem; font-weight: 600; color: var(--night); overflow-wrap: anywhere; }
+.opt-sum-sel.is-empty { color: var(--muted); font-weight: 400; }
+details.opt-group[open] > summary .opt-sum-sel { display: none; }
+details.opt-group > .opt-list { padding: 0 .6rem .7rem; }
+@media (hover: hover) and (pointer: fine) { details.opt-group > summary:hover { background: rgba(166,210,58,.1); } }
