@@ -44,7 +44,7 @@ window.MINAR_DATA = {
     /* ===== TESTMODUS – vor dem Livegang auf false stellen =====
        testMode: true → Bestellanfragen gehen per WhatsApp an testWhatsappNumber (nicht an das Restaurant),
        Öffnungszeiten/Bestellschluss werden im Bestellvorgang ignoriert, Nachricht und Bon sind als Test markiert. */
-    testMode: true,
+    testMode: false,
     testWhatsappNumber: "4917647830274",
 
     fax: "0800 202 07 702",
