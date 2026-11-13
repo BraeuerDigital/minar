@@ -28,6 +28,7 @@ Stand: 13.11.2026 · Repository `BraeuerDigital/minar`, Branch `main` · Sicheru
 | Mindestbestellwert sperrt die Bestellung bis zum Erreichen (Lieferung) | erledigt |
 | Halal-Zeichen überall entfernt (inkl. Siegel im Logo und Logo-Intro) | erledigt – Animation sonst unverändert |
 | Buttons auf dem Handy mit einem Tippen bedienbar (Hover nur bei Maus) | erledigt |
+| Partypizza mit Pflichtauswahl von 4 Belägen; weitere Döner-Soßen gegen Aufpreis | erledigt (13.11.2026) |
 | Logo-Animation | unverändert bis auf das entfernte Halal-Siegel |
 | Dokumentation (README, PRUEFLISTE, Cloudflare-Anleitung) | aktualisiert |
 
@@ -46,3 +47,5 @@ Erledigt am 12.11.2026: Verbraucherstreitbeilegung (nicht benötigt), Ayran ohne
 9. **Google-Bewertungslink:** im Google-Unternehmensprofil „Um Rezensionen bitten“ → Link kopieren → in `menu-data.js` (`googleReviewUrl`) eintragen.
 10. **Finaler Domainname** (Registrierung bei Namecheap) – danach Datenschutz um Registrar/DNS ergänzen.
 11. **Rechtliche Freigabe für den Kundenbetrieb:** Impressum, Datenschutzerklärung, Bestellstrecke (§§ 312i, 312j BGB, vorvertragliche Informationen, Angaben zum Widerrufsrecht bzw. dessen gesetzlichen Ausnahmen); außerdem Inhaberschaft des Cloudflare-Kontos und Auftragsverarbeitung mit Cloudflare.
+12. **Partypizza-Beläge:** Auswahl von 21 Belägen aus der Pizzakarte (Salami, Schinken, Sucuk, Hackfleischdrehspieß, Chicken, Champignons, Paprika, Peperoni, Jalapeños, Zwiebeln, Mais, Brokkoli, Spinat, Artischocken, Oliven, Ananas, Tomaten, Ei, Weichkäse, Mozzarella, Knoblauch) – Fisch/Meeresfrüchte bewusst ausgelassen; Allergen-/Zusatzstoffangaben für gewählte Beläge (z. B. Oliven „9“) prüfen.
+13. **Aufpreis weitere Döner-Soßen:** 1,20 € je Soße (wie Dips laut Karte) – bitte bestätigen.

@@ -42,7 +42,8 @@ Keine Kennzeichnung ist mehr als „auf Anfrage“ markiert.
 | D5 | Red Bull 3,50 ohne Größe | wie umgesetzt | bestätigt |
 | D6 | Dressing bei allen Salaten kostenlos | wie umgesetzt | bestätigt |
 | D7 | Sternchen bei 24/25 | bezieht sich laut Kunde auf die Hinweise zu Käse und Hackfleisch (Legende) – nicht separat angezeigt | geklärt |
-| D8 | Party Pizza 136 „vier Beläge nach Wahl“ | Beläge über das Hinweisfeld | offen (optional) |
+| D8 | Party Pizza 136 „vier Beläge nach Wahl“ | Pflichtauswahl genau 4 Beläge im Dialog (21 Beläge aus der Pizzakarte, ohne Fisch/Meeresfrüchte wegen fehlendem Allergen D) | umgesetzt 13.11.2026 – Belagliste bestätigen (Liste B) |
+| D19 | Döner/Dürüm/Dönerteller (90–94, 96): „Weitere Soßen gegen Aufpreis“ je 1,20 € zusätzlich zu den 2 inklusive (Preis wie Dips laut Karte); 95 und 96a haben bereits „Dips & Soßen dazu“ | | umgesetzt 13.11.2026 – Aufpreis bestätigen (Liste B) |
 | D9 | 96a „Dönerteller mit Beilage“ zur Unterscheidung von 96 | | offen (optional) |
 | D10 | Kategorie „Schnitzel und Steak“ bleibt so | | bestätigt |
 | D11 | Gerichte ohne Kennzeichnung (z. B. 99, 116, 131–134a) – Legende weist darauf hin, dass fehlende Kennzeichnung nicht „allergenfrei“ bedeutet | | offen (optional) |

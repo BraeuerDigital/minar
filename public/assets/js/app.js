@@ -281,7 +281,19 @@
       el.textContent = pr ? "+ " + money(pr) : "";
     });
     $("[data-qty]", itemForm).textContent = curQty;
-    $("[data-item-add]", itemForm).textContent = (editLine ? "Übernehmen · " : "Hinzufügen · ") + money(sum * curQty);
+    var miss = minMissing(), addBtn = $("[data-item-add]", itemForm);
+    addBtn.textContent = miss ? "Noch " + miss.n + " " + unitOf(miss) + " wählen" : (editLine ? "Übernehmen · " : "Hinzufügen · ") + money(sum * curQty);
+    addBtn.setAttribute("aria-disabled", miss ? "true" : "false");
+  }
+  function unitOf(m) { var g = GROUPS[m.gid]; return m.n === 1 ? (g.unitOne || g.unit || "Option") : (g.unit || "Optionen"); }
+  // Pflichtauswahl (min), z. B. 4 Beläge bei der Partypizza
+  function minMissing() {
+    for (var i = 0; i < cur.opts.length; i++) {
+      var gid = cur.opts[i], g = GROUPS[gid]; if (!g.min) continue;
+      var n = $$('input[data-g="' + gid + '"]:checked', itemForm).length;
+      if (n < g.min) return { gid: gid, n: g.min - n };
+    }
+    return null;
   }
   var editLine = null;                                   // Warenkorb-Zeile, die gerade angepasst wird
   function openItem(it, line) {
@@ -298,7 +310,7 @@
     $("[data-item-opts]", itemForm).innerHTML = it.opts.map(function (gid) {
       var g = GROUPS[gid], one = g.type === "one";
       // Zusatz-Kategorie als aufklappbarer Bereich; die Kopfzeile zeigt die aktuelle Auswahl
-      return '<details class="opt-group" data-group="' + gid + '"><summary><span class="opt-sum-head"><span class="opt-sum-title">' + esc(g.label) + (one ? "" : " (optional)") + "</span>" +
+      return '<details class="opt-group" data-group="' + gid + '"' + (g.min && !line ? " open" : "") + '><summary><span class="opt-sum-head"><span class="opt-sum-title">' + esc(g.label) + (one || g.min ? "" : " (optional)") + "</span>" +
         (g.max ? ' <span class="opt-max" data-max-hint="' + gid + '">0 von ' + g.max + " gewählt</span>" : "") +
         '</span><span class="opt-sum-sel" data-sel-hint="' + gid + '"></span></summary><div class="opt-list" role="group" aria-label="' + esc(g.label) + '">' +
         g.options.map(function (o, i) {
@@ -340,6 +352,13 @@
     $("[data-qty-plus]", itemForm).addEventListener("click", function () { curQty = Math.min(50, curQty + 1); updateItemPrice(); });
     itemForm.addEventListener("submit", function (e) {
       e.preventDefault();
+      var miss = minMissing();
+      if (miss) {                                        // Pflichtauswahl noch unvollständig
+        var grp = $('[data-group="' + miss.gid + '"]', itemForm); grp.open = true;
+        grp.scrollIntoView({ block: "nearest", behavior: "smooth" });
+        toast("Bitte noch " + miss.n + " " + unitOf(miss) + " wählen");
+        return;
+      }
       var note = $("[data-item-note]", itemForm).value.trim();
       if (editLine && cart.indexOf(editLine) > -1) {      // Zeile im Warenkorb ersetzen
         replaceLine(editLine, variantIdx(), readSelection(), curQty, note); toast("Änderung übernommen");

@@ -121,7 +121,7 @@ window.MINAR_DATA = {
 
   /* --- Auswahl- und Zusatzoptionen ---
      type "one"  = genau eine Auswahl (z. B. Sorte, Beilage)
-     type "many" = beliebig viele (Extras mit Aufpreis); max: n begrenzt die Anzahl              */
+     type "many" = beliebig viele (Extras mit Aufpreis); max: n begrenzt die Anzahl; min: n = Pflichtanzahl, unit = Bezeichnung im Hinweis */
   optionGroups: {
     "dressing":       { label: "Dressing", type: "one", options: [{ name: "Essig & Öl" }, { name: "Joghurtsoße" }] },
     "burger-extra":   { label: "Extra Zusatz", type: "many", options: [
@@ -140,7 +140,19 @@ window.MINAR_DATA = {
     "doener-sosse":   { label: "Soßen – bis zu 2 inklusive", short: "Soßen", type: "many", max: 2, options: [
                         { name: "Dönersoße" }, { name: "Cocktailsoße" }, { name: "Hot Cocktailsoße" },
                         { name: "Sour Cream" }, { name: "Minar Spezial Soße" }, { name: "BBQ Soße" }, { name: "Sweet Chili Soße" } ] },
+    "doener-sosse-extra": { label: "Weitere Soßen gegen Aufpreis", short: "Weitere Soßen", type: "many", options: [
+                        { name: "Dönersoße", price: 1.2 }, { name: "Cocktailsoße", price: 1.2 }, { name: "Hot Cocktailsoße", price: 1.2 },
+                        { name: "Sour Cream", price: 1.2 }, { name: "Minar Spezial Soße", price: 1.2 }, { name: "BBQ Soße", price: 1.2 },
+                        { name: "Sweet Chili Soße", price: 1.2 } ] },
     "schaerfe":       { label: "Schärfe", type: "many", options: [{ name: "scharf" }] },
+    /* Partypizza: genau 4 Beläge (min = max = 4) – Auswahl aus den Belägen der Pizzakarte, ohne Fisch/Meeresfrüchte
+       (Allergenkennzeichnung der Nr. 136 enthält kein D) */
+    "partypizza-belag": { label: "Beläge – 4 nach Wahl", short: "Beläge", unit: "Beläge", unitOne: "Belag", type: "many", min: 4, max: 4, options: [
+                        { name: "Salami" }, { name: "Schinken" }, { name: "Sucuk" }, { name: "Hackfleischdrehspieß" }, { name: "Chicken" },
+                        { name: "Champignons" }, { name: "Paprika" }, { name: "Peperoni" }, { name: "Jalapeños" }, { name: "Zwiebeln" },
+                        { name: "Mais" }, { name: "Brokkoli" }, { name: "Spinat" }, { name: "Artischocken" }, { name: "Oliven" },
+                        { name: "Ananas" }, { name: "Tomaten" }, { name: "Ei" }, { name: "Weichkäse" }, { name: "Mozzarella" },
+                        { name: "Knoblauch" } ] },
     "dips":           { label: "Dips & Soßen dazu", short: "Dips", type: "many", options: [
                         { name: "Cocktail Dip", price: 1.2 }, { name: "Hot Cocktail Dip", price: 1.2 },
                         { name: "Sour Cream", price: 1.2 }, { name: "Minar Spezial Dip", price: 1.2 },
@@ -250,13 +262,13 @@ window.MINAR_DATA = {
     { nr: "88", cat: "dips", name: "Ketchup / Mayo / Remoulade", prices: [0.5], codes: "A,C,G", opts: ["dip-sorte"] },
 
     /* DÖNER */
-    { nr: "90", cat: "doener", name: "Hackfleischdrehspieß", desc: "mit Salat und Soße im Fladenbrot", prices: [7.0], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "schaerfe"] },
-    { nr: "91", cat: "doener", name: "Hackfleischdrehspieß Minar", desc: "mit Salat, Spiegelei und Soße im Fladenbrot", prices: [7.9], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "schaerfe"] },
-    { nr: "92", cat: "doener", name: "Vegetarisch", desc: "mit Weichkäse, Salat und Soße im Fladenbrot", prices: [7.0], codes: "A,C,G,6,7,8", tags: ["vegetarisch"], opts: ["doener-sosse", "schaerfe"] },
-    { nr: "93", cat: "doener", name: "Dürüm", desc: "mit Hackfleischdrehspieß, Salat und Soße im Rollteig", prices: [8.5], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "schaerfe"] },
-    { nr: "94", cat: "doener", name: "Dürüm vegetarisch", desc: "mit Weichkäse, Salat und Soße im Rollteig", prices: [8.0], codes: "A,C,G,6,7,8", tags: ["vegetarisch"], opts: ["doener-sosse", "schaerfe"] },
+    { nr: "90", cat: "doener", name: "Hackfleischdrehspieß", desc: "mit Salat und Soße im Fladenbrot", prices: [7.0], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "doener-sosse-extra", "schaerfe"] },
+    { nr: "91", cat: "doener", name: "Hackfleischdrehspieß Minar", desc: "mit Salat, Spiegelei und Soße im Fladenbrot", prices: [7.9], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "doener-sosse-extra", "schaerfe"] },
+    { nr: "92", cat: "doener", name: "Vegetarisch", desc: "mit Weichkäse, Salat und Soße im Fladenbrot", prices: [7.0], codes: "A,C,G,6,7,8", tags: ["vegetarisch"], opts: ["doener-sosse", "doener-sosse-extra", "schaerfe"] },
+    { nr: "93", cat: "doener", name: "Dürüm", desc: "mit Hackfleischdrehspieß, Salat und Soße im Rollteig", prices: [8.5], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "doener-sosse-extra", "schaerfe"] },
+    { nr: "94", cat: "doener", name: "Dürüm vegetarisch", desc: "mit Weichkäse, Salat und Soße im Rollteig", prices: [8.0], codes: "A,C,G,6,7,8", tags: ["vegetarisch"], opts: ["doener-sosse", "doener-sosse-extra", "schaerfe"] },
     { nr: "95", cat: "doener", name: "Falafel Teller", desc: "mit Falafel, Salat, Soße und Pommes", prices: [10.9], codes: "A,C,G,6,7,8", opts: ["doener-sosse", "schaerfe", "dips"] },
-    { nr: "96", cat: "doener", name: "Dönerteller", desc: "mit Hackfleischdrehspieß, Salat und Soße", prices: [10.9], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "schaerfe"] },
+    { nr: "96", cat: "doener", name: "Dönerteller", desc: "mit Hackfleischdrehspieß, Salat und Soße", prices: [10.9], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "doener-sosse-extra", "schaerfe"] },
     { nr: "96a", cat: "doener", name: "Dönerteller mit Beilage", desc: "mit Hackfleischdrehspieß, Salat, Soße und wahlweise Pommes, Wedges oder Reis", prices: [11.9], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "schaerfe", "beilage-pwr", "dips"] },
 
     /* ÜBERBACKEN */
@@ -305,7 +317,7 @@ window.MINAR_DATA = {
 
     /* PARTY PIZZA (40 × 60 cm) */
     { nr: "135", cat: "partypizza", name: "Partypizza Margherita", prices: [28.0], codes: "A,G" },
-    { nr: "136", cat: "partypizza", name: "Partypizza", desc: "mit vier Belägen nach Wahl – bitte im Hinweisfeld angeben", prices: [34.0], codes: "A,C,G,F,J,6,7,8" },
+    { nr: "136", cat: "partypizza", name: "Partypizza", desc: "mit vier Belägen nach Wahl", prices: [34.0], codes: "A,C,G,F,J,6,7,8", opts: ["partypizza-belag"] },
 
     /* NUDELGERICHTE */
     { nr: "139", cat: "nudeln", name: "Aglio Spaghetti", desc: "mit Knoblauch, Oliven, Peperoni", prices: [8.9], codes: "A,C,F,6,9", opts: ["nudel-sorte", "nudel-ueberb"] },
