@@ -473,7 +473,9 @@
     if (ex) ex.qty = Math.min(50, ex.qty + qty);
     else cart.push({ key: key, _id: it._id, nr: it.nr, name: it.name, v: v, sel: sel, qty: qty, note: String(note || "").trim() });
     saveCart(); renderBadge(); renderCartPage();
-    toast(qty + " × " + it.name + " im Warenkorb");
+    var added = cart.filter(function (l) { return l.key === key; })[0];   // Auswahl auch in der Bestätigung zeigen
+    var info = added ? lineCalc(added).details.map(function (d) { return d.t; }).join(" · ") : "";
+    toast(qty + " × " + it.name + (info ? " (" + (info.length > 90 ? info.slice(0, 88) + " …" : info) + ")" : "") + " im Warenkorb");
     $$(".cart-count").forEach(function (el) { el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); });
   }
   function replaceLine(line, v, sel, qty, note) {
