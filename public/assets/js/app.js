@@ -801,6 +801,21 @@
     });
   }
 
+  /* ---------------- Warenkorb als Drawer von unten (Test, cartDrawer in menu-data.js) ---------------- */
+  var drawer = $("#cart-drawer");
+  if (drawer && R.cartDrawer) {
+    var openDrawer = function (e) {
+      if (e) e.preventDefault();
+      refresh(); openDialog(drawer);
+      var t = $(".drawer-inner", drawer); if (t) t.scrollTop = 0;
+    };
+    $$(".cart-link, [data-cart-fab]").forEach(function (a) {
+      a.addEventListener("click", openDrawer);
+      a.setAttribute("aria-haspopup", "dialog");
+    });
+    if (location.hash === "#warenkorb") openDrawer();
+  }
+
   /* ---------------- Getränke-Abfrage vor der Übersicht ---------------- */
   var drinksAsked = false, drinkDialog = null;
   var DRINK_CAT = "getraenke";

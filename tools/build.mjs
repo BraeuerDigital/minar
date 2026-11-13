@@ -175,6 +175,120 @@ const itemDialog = `
     </form>
   </dialog>`;
 
+/* ===================== Warenkorb-Inhalt (Bestellseite und Warenkorb-Drawer) ===================== */
+const orderMainHtml = (root) => `        <div class="order-main">
+          <div class="order-note" role="note"><strong>Wichtig:</strong> Die Bestellung wird erst nach Bestätigung durch das Restaurant angenommen. Es erfolgt keine Onlinezahlung und keine automatische Bestellannahme.</div>
+
+          <div class="cart-empty" data-cart-empty>
+            <h2>Ihr Warenkorb ist noch leer.</h2>
+            <p>Wählen Sie Ihre Gerichte in der Speisekarte aus – oder bestellen Sie direkt telefonisch bzw. per WhatsApp.</p>
+            <a class="btn btn-primary btn-lg" href="${root}speisekarte/index.html">Zur Speisekarte</a>
+          </div>
+
+          <div class="cart-body" data-cart-body hidden>
+            <section class="cart-card" aria-labelledby="cart-title">
+              <header class="cart-card-head">
+                <h2 id="cart-title">Deine Bestellung</h2>
+                <span class="cart-card-count" data-cart-count-label>0 Artikel</span>
+              </header>
+              <div class="cart-ref" data-ref-box>
+                <p class="cart-ref-label" id="ref-label">Deine Anfragenummer</p>
+                <div class="cart-ref-row">
+                  <code class="cart-ref-nr" data-ref-nr aria-labelledby="ref-label"></code>
+                  <button class="cart-ref-copy" type="button" data-ref-copy>Kopieren</button>
+                </div>
+                <p class="cart-ref-hint">Bitte bei Rückfragen angeben. Sie bleibt für diese Bestellung gleich – auch beim erneuten Öffnen von WhatsApp.</p>
+                <p class="cart-ref-error" data-ref-error role="alert" hidden>Ihr Browser kann keine sichere Anfragenummer erzeugen. Bitte nutzen Sie einen aktuellen Browser oder bestellen Sie telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a>.</p>
+              </div>
+              <ul class="cart-lines" data-cart-lines></ul>
+              <a class="cart-more" href="${root}speisekarte/index.html">${I.back} Weitere Gerichte hinzufügen</a>
+              <dl class="cart-sums" data-cart-sums></dl>
+              <p class="cart-cash">Zahlung ausschließlich bar bei Abholung oder Lieferung.</p>
+              <p class="cart-fine">Alle Preise in Euro inkl. gesetzlicher Umsatzsteuer. Getränkepfand (0,25 € je Getränk, Ayran ohne Pfand) und Lieferkosten werden separat ausgewiesen.</p>
+            </section>
+
+            <h2 class="h-red h-sm">Abholung oder Lieferung</h2>
+            <div class="seg" role="radiogroup" aria-label="Abholung oder Lieferung">
+              <label><input type="radio" name="mode" value="Abholung" checked data-mode><span>Abholung</span></label>
+              <label><input type="radio" name="mode" value="Lieferung" data-mode><span>Lieferung</span></label>
+            </div>
+            <p class="cart-min" data-delivery-off hidden></p>
+            <label class="field" data-place-field hidden><span>Lieferort <b class="req" aria-hidden="true">*</b></span><select data-f-place aria-required="true"></select></label>
+            <p class="cart-min" data-cart-min hidden></p>
+
+            <h2 class="h-red h-sm">Ihre Angaben</h2>
+            <div class="field-grid">
+              <label class="field"><span>Name <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="name" maxlength="80" required aria-required="true" data-f-name></label>
+              <label class="field"><span>Telefon <b class="req" aria-hidden="true">*</b> <small>(für Rückfragen)</small></span><input type="tel" autocomplete="tel" inputmode="tel" maxlength="24" required aria-required="true" data-f-phone></label>
+              <label class="field field-wide" data-address-field hidden><span>Lieferadresse <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="street-address" maxlength="140" placeholder="Straße, Hausnummer" aria-required="true" data-f-address></label>
+              <label class="field"><span>Wunschzeit</span><select data-f-time aria-describedby="time-hint"></select><small class="field-hint" id="time-hint">Frühestens 30 Minuten nach Bestellung, in 15-Minuten-Schritten. Die endgültige Uhrzeit bestätigen wir per WhatsApp.</small><small class="field-hint is-warn" data-time-lost hidden></small></label>
+              <label class="field field-wide"><span>Anmerkungen <small>(optional)</small></span><textarea rows="3" maxlength="300" data-f-note></textarea></label>
+            </div>
+            <p class="fine req-note"><b class="req">*</b> Pflichtfeld</p>
+
+            <details class="order-info">
+              <summary>So läuft Ihre Bestellung ab</summary>
+              <ol>
+                <li><strong>Prüfen:</strong> In der Bestellübersicht sehen Sie alle Gerichte mit Mengen, Varianten und Extras sowie Warenwert, Getränkepfand, Lieferkosten und den Gesamtbetrag.</li>
+                <li><strong>Anfragen:</strong> Mit „Per WhatsApp senden“ öffnet sich WhatsApp mit Ihrer vorbereiteten Bestellanfrage an ${esc(R.whatsappDisplay)}. Gesendet wird sie erst, wenn Sie dort selbst auf Senden tippen.</li>
+                <li><strong>Bestätigung:</strong> Verbindlich wird die Bestellung erst, wenn wir sie und die Uhrzeit per WhatsApp bestätigen. Bis dahin ist nichts bestellt.</li>
+                <li><strong>Bezahlen:</strong> Ausschließlich bar bei Abholung oder Lieferung. Auf der Website findet keine Zahlung statt.</li>
+                <li><strong>Ändern:</strong> Vor dem Absenden direkt hier im Warenkorb; danach per Antwort im WhatsApp-Chat oder telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a>.</li>
+              </ol>
+            </details>
+
+            <p class="cart-closed" data-cart-closed hidden></p>
+            <div class="checkout-bar">
+              <div class="checkout-sum"><small>Insgesamt bar zu zahlen</small><strong data-grand></strong></div>
+              <button class="btn btn-go btn-lg" type="button" data-to-summary aria-describedby="checkout-hint">Weiter zur Übersicht <span aria-hidden="true">→</span></button>
+              <p class="checkout-hint" id="checkout-hint" data-checkout-hint aria-live="polite"></p>
+            </div>
+            <p class="cart-actions"><button class="btn btn-link" type="button" data-cart-clear>Warenkorb und Angaben löschen</button></p>
+          </div>
+        </div>`;
+const bonDialogHtml = (root) => `<dialog class="bon-dialog" id="bon-dialog" aria-labelledby="bon-title">
+      <div class="bon-wrap">
+        <button class="icon-btn bon-close" type="button" data-close aria-label="Übersicht schließen">×</button>
+        <article class="bon">
+          <header class="bon-head">
+            <img src="${root}assets/logo/minar-emblem.svg" alt="" width="56" height="56">
+            <p class="bon-brand">MINAR KÜCHE</p>
+            <p class="bon-addr">${esc(R.street)}<br>${esc(R.zip)} ${esc(R.city)}</p>
+          </header>
+          <p class="bon-ref"><span>Anfrage-Nr.:</span><strong data-bon-ref></strong></p>
+          <h2 class="bon-title" id="bon-title">Ihre Bestellübersicht</h2>
+          <dl class="bon-meta" data-bon-meta></dl>
+          <ul class="bon-lines" data-bon-lines></ul>
+          <dl class="bon-sums" data-bon-sums></dl>
+          <p class="bon-cash">Zahlung ausschließlich bar bei Abholung oder Lieferung.</p>
+          <p class="bon-legal">Alle Preise inkl. gesetzlicher Umsatzsteuer. Dies ist eine Zusammenfassung Ihrer Anfrage – noch keine Bestellbestätigung. Verbindlich wird die Bestellung erst, wenn ${esc(R.name)} sie per WhatsApp bestätigt.</p>
+          <p class="bon-stamp" data-bon-stamp></p>
+        </article>
+        <div class="bon-actions">
+          <p class="bon-alert" data-bon-alert role="alert" hidden></p>
+          <a class="btn btn-whatsapp btn-lg btn-block" href="#" target="_blank" rel="noopener" data-bon-send>${I.wa}Per WhatsApp senden</a>
+          <p class="bon-opened" data-bon-opened role="status" hidden>WhatsApp wurde geöffnet. Bitte senden Sie die Nachricht dort ab – Ihre Bestellung gilt erst nach unserer Bestätigung. Ein erneutes Tippen auf „Per WhatsApp senden“ verwendet dieselbe Anfragenummer.</p>
+          <button class="btn btn-new-order btn-block" type="button" data-new-order hidden>Neue Bestellung beginnen</button>
+          <p class="fine">Beim Tippen öffnet sich WhatsApp mit der vorbereiteten Nachricht an ${esc(R.whatsappDisplay)}; dabei werden die Angaben an WhatsApp übergeben. An uns gesendet wird erst, wenn Sie in WhatsApp selbst auf Senden tippen.</p>
+          <button class="btn btn-link" type="button" data-close>Zurück und ändern</button>
+        </div>
+      </div>
+    </dialog>`;
+/* Warenkorb als Drawer von unten (Test, 14.11.2026): auf allen Seiten außer der Bestellseite eingebunden;
+   aktiv nur bei restaurant.cartDrawer = true in menu-data.js – sonst führen die Warenkorb-Links wie bisher zur Bestellseite. */
+const cartDrawerHtml = (root) => `
+  <dialog class="cart-drawer" id="cart-drawer" aria-labelledby="drawer-title">
+    <div class="drawer-inner">
+      <div class="drawer-grip" aria-hidden="true"></div>
+      <div class="drawer-head">
+        <h2 id="drawer-title">Warenkorb</h2>
+        <button class="icon-btn drawer-close" type="button" data-close aria-label="Warenkorb schließen">×</button>
+      </div>
+${orderMainHtml(root)}
+    </div>
+  </dialog>
+  ${bonDialogHtml(root)}`;
+
 function page({ file, title, desc, active, body, dialog = false, bodyClass = "" }) {
   const depth = file.split("/").length - 1;
   const root = depth ? "../".repeat(depth) : "";
@@ -197,7 +311,7 @@ function page({ file, title, desc, active, body, dialog = false, bodyClass = "" 
   <main id="inhalt">
 ${body(root)}
   </main>
-  ${footer(root)}${dialog ? itemDialog : ""}
+  ${footer(root)}${dialog || (active !== "bestellen" && active !== "404") ? itemDialog : ""}${active !== "bestellen" && active !== "404" ? cartDrawerHtml(root) : ""}
   <script src="${root}assets/js/menu-data.js?v=${CSS_VERSION}"></script>
   <script src="${root}assets/js/app.js?v=${CSS_VERSION}"></script>
   <script src="${root}assets/js/fx.js?v=${CSS_VERSION}"></script>
@@ -456,76 +570,7 @@ built.push(page({
   body: (root) => `${pageHead("Bestellen", "Ihre Bestellung", "Stellen Sie Ihre Bestellung zusammen und senden Sie sie als WhatsApp-Nachricht an uns.")}
     <section class="section section-tight">
       <div class="container order-grid">
-        <div class="order-main">
-          <div class="order-note" role="note"><strong>Wichtig:</strong> Die Bestellung wird erst nach Bestätigung durch das Restaurant angenommen. Es erfolgt keine Onlinezahlung und keine automatische Bestellannahme.</div>
-
-          <div class="cart-empty" data-cart-empty>
-            <h2>Ihr Warenkorb ist noch leer.</h2>
-            <p>Wählen Sie Ihre Gerichte in der Speisekarte aus – oder bestellen Sie direkt telefonisch bzw. per WhatsApp.</p>
-            <a class="btn btn-primary btn-lg" href="${root}speisekarte/index.html">Zur Speisekarte</a>
-          </div>
-
-          <div class="cart-body" data-cart-body hidden>
-            <section class="cart-card" aria-labelledby="cart-title">
-              <header class="cart-card-head">
-                <h2 id="cart-title">Deine Bestellung</h2>
-                <span class="cart-card-count" data-cart-count-label>0 Artikel</span>
-              </header>
-              <div class="cart-ref" data-ref-box>
-                <p class="cart-ref-label" id="ref-label">Deine Anfragenummer</p>
-                <div class="cart-ref-row">
-                  <code class="cart-ref-nr" data-ref-nr aria-labelledby="ref-label"></code>
-                  <button class="cart-ref-copy" type="button" data-ref-copy>Kopieren</button>
-                </div>
-                <p class="cart-ref-hint">Bitte bei Rückfragen angeben. Sie bleibt für diese Bestellung gleich – auch beim erneuten Öffnen von WhatsApp.</p>
-                <p class="cart-ref-error" data-ref-error role="alert" hidden>Ihr Browser kann keine sichere Anfragenummer erzeugen. Bitte nutzen Sie einen aktuellen Browser oder bestellen Sie telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a>.</p>
-              </div>
-              <ul class="cart-lines" data-cart-lines></ul>
-              <a class="cart-more" href="${root}speisekarte/index.html">${I.back} Weitere Gerichte hinzufügen</a>
-              <dl class="cart-sums" data-cart-sums></dl>
-              <p class="cart-cash">Zahlung ausschließlich bar bei Abholung oder Lieferung.</p>
-              <p class="cart-fine">Alle Preise in Euro inkl. gesetzlicher Umsatzsteuer. Getränkepfand (0,25 € je Getränk, Ayran ohne Pfand) und Lieferkosten werden separat ausgewiesen.</p>
-            </section>
-
-            <h2 class="h-red h-sm">Abholung oder Lieferung</h2>
-            <div class="seg" role="radiogroup" aria-label="Abholung oder Lieferung">
-              <label><input type="radio" name="mode" value="Abholung" checked data-mode><span>Abholung</span></label>
-              <label><input type="radio" name="mode" value="Lieferung" data-mode><span>Lieferung</span></label>
-            </div>
-            <p class="cart-min" data-delivery-off hidden></p>
-            <label class="field" data-place-field hidden><span>Lieferort <b class="req" aria-hidden="true">*</b></span><select data-f-place aria-required="true"></select></label>
-            <p class="cart-min" data-cart-min hidden></p>
-
-            <h2 class="h-red h-sm">Ihre Angaben</h2>
-            <div class="field-grid">
-              <label class="field"><span>Name <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="name" maxlength="80" required aria-required="true" data-f-name></label>
-              <label class="field"><span>Telefon <b class="req" aria-hidden="true">*</b> <small>(für Rückfragen)</small></span><input type="tel" autocomplete="tel" inputmode="tel" maxlength="24" required aria-required="true" data-f-phone></label>
-              <label class="field field-wide" data-address-field hidden><span>Lieferadresse <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="street-address" maxlength="140" placeholder="Straße, Hausnummer" aria-required="true" data-f-address></label>
-              <label class="field"><span>Wunschzeit</span><select data-f-time aria-describedby="time-hint"></select><small class="field-hint" id="time-hint">Frühestens 30 Minuten nach Bestellung, in 15-Minuten-Schritten. Die endgültige Uhrzeit bestätigen wir per WhatsApp.</small><small class="field-hint is-warn" data-time-lost hidden></small></label>
-              <label class="field field-wide"><span>Anmerkungen <small>(optional)</small></span><textarea rows="3" maxlength="300" data-f-note></textarea></label>
-            </div>
-            <p class="fine req-note"><b class="req">*</b> Pflichtfeld</p>
-
-            <details class="order-info">
-              <summary>So läuft Ihre Bestellung ab</summary>
-              <ol>
-                <li><strong>Prüfen:</strong> In der Bestellübersicht sehen Sie alle Gerichte mit Mengen, Varianten und Extras sowie Warenwert, Getränkepfand, Lieferkosten und den Gesamtbetrag.</li>
-                <li><strong>Anfragen:</strong> Mit „Per WhatsApp senden“ öffnet sich WhatsApp mit Ihrer vorbereiteten Bestellanfrage an ${esc(R.whatsappDisplay)}. Gesendet wird sie erst, wenn Sie dort selbst auf Senden tippen.</li>
-                <li><strong>Bestätigung:</strong> Verbindlich wird die Bestellung erst, wenn wir sie und die Uhrzeit per WhatsApp bestätigen. Bis dahin ist nichts bestellt.</li>
-                <li><strong>Bezahlen:</strong> Ausschließlich bar bei Abholung oder Lieferung. Auf der Website findet keine Zahlung statt.</li>
-                <li><strong>Ändern:</strong> Vor dem Absenden direkt hier im Warenkorb; danach per Antwort im WhatsApp-Chat oder telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a>.</li>
-              </ol>
-            </details>
-
-            <p class="cart-closed" data-cart-closed hidden></p>
-            <div class="checkout-bar">
-              <div class="checkout-sum"><small>Insgesamt bar zu zahlen</small><strong data-grand></strong></div>
-              <button class="btn btn-go btn-lg" type="button" data-to-summary aria-describedby="checkout-hint">Weiter zur Übersicht <span aria-hidden="true">→</span></button>
-              <p class="checkout-hint" id="checkout-hint" data-checkout-hint aria-live="polite"></p>
-            </div>
-            <p class="cart-actions"><button class="btn btn-link" type="button" data-cart-clear>Warenkorb und Angaben löschen</button></p>
-          </div>
-        </div>
+${orderMainHtml(root)}
         <aside class="order-side">
           <div class="side-card">
             <h2 class="h-sm">Lieber direkt bestellen?</h2>
@@ -540,34 +585,7 @@ built.push(page({
         </aside>
       </div>
     </section>
-    <dialog class="bon-dialog" id="bon-dialog" aria-labelledby="bon-title">
-      <div class="bon-wrap">
-        <button class="icon-btn bon-close" type="button" data-close aria-label="Übersicht schließen">×</button>
-        <article class="bon">
-          <header class="bon-head">
-            <img src="${root}assets/logo/minar-emblem.svg" alt="" width="56" height="56">
-            <p class="bon-brand">MINAR KÜCHE</p>
-            <p class="bon-addr">${esc(R.street)}<br>${esc(R.zip)} ${esc(R.city)}</p>
-          </header>
-          <p class="bon-ref"><span>Anfrage-Nr.:</span><strong data-bon-ref></strong></p>
-          <h2 class="bon-title" id="bon-title">Ihre Bestellübersicht</h2>
-          <dl class="bon-meta" data-bon-meta></dl>
-          <ul class="bon-lines" data-bon-lines></ul>
-          <dl class="bon-sums" data-bon-sums></dl>
-          <p class="bon-cash">Zahlung ausschließlich bar bei Abholung oder Lieferung.</p>
-          <p class="bon-legal">Alle Preise inkl. gesetzlicher Umsatzsteuer. Dies ist eine Zusammenfassung Ihrer Anfrage – noch keine Bestellbestätigung. Verbindlich wird die Bestellung erst, wenn ${esc(R.name)} sie per WhatsApp bestätigt.</p>
-          <p class="bon-stamp" data-bon-stamp></p>
-        </article>
-        <div class="bon-actions">
-          <p class="bon-alert" data-bon-alert role="alert" hidden></p>
-          <a class="btn btn-whatsapp btn-lg btn-block" href="#" target="_blank" rel="noopener" data-bon-send>${I.wa}Per WhatsApp senden</a>
-          <p class="bon-opened" data-bon-opened role="status" hidden>WhatsApp wurde geöffnet. Bitte senden Sie die Nachricht dort ab – Ihre Bestellung gilt erst nach unserer Bestätigung. Ein erneutes Tippen auf „Per WhatsApp senden“ verwendet dieselbe Anfragenummer.</p>
-          <button class="btn btn-new-order btn-block" type="button" data-new-order hidden>Neue Bestellung beginnen</button>
-          <p class="fine">Beim Tippen öffnet sich WhatsApp mit der vorbereiteten Nachricht an ${esc(R.whatsappDisplay)}; dabei werden die Angaben an WhatsApp übergeben. An uns gesendet wird erst, wenn Sie in WhatsApp selbst auf Senden tippen.</p>
-          <button class="btn btn-link" type="button" data-close>Zurück und ändern</button>
-        </div>
-      </div>
-    </dialog>`
+    ${bonDialogHtml(root)}`
 }));
 
 /* ===================== Lieferservice ===================== */

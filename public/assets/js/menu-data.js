@@ -45,6 +45,10 @@ window.MINAR_DATA = {
        testMode: true → Bestellanfragen gehen per WhatsApp an testWhatsappNumber (nicht an das Restaurant),
        Öffnungszeiten/Bestellschluss werden im Bestellvorgang ignoriert, Nachricht und Bon sind als Test markiert. */
     testMode: false,
+
+    /* Warenkorb als Drawer von unten (Test): true = Warenkorb-Symbol öffnet den Warenkorb über der aktuellen Seite,
+       false = Warenkorb-Symbol führt wie bisher zur Seite „Bestellen“. */
+    cartDrawer: true,
     testWhatsappNumber: "4917647830274",
 
     fax: "0800 202 07 702",
