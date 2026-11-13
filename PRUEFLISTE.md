@@ -96,6 +96,7 @@ Rechtschreibprüfung 07.11.2026: Cheddar Käse → Cheddarkäse · Pattie → Pa
 | H7 | Keine Bestellnummer, keine Erfolgsmeldung nach dem Öffnen von WhatsApp; Bon trägt nur Erstellungszeitpunkt mit Hinweis „keine Bestellnummer, keine Bestätigung“ | erledigt |
 | H8 | Datensparsamkeit: Formulardaten nur im sessionStorage, Warenkorb läuft nach 12 h ab, alter Schlüssel `minar-form-v3` wird gelöscht | erledigt |
 | H10 | Anfragenummer `MIN-A/L-YYYYMM-XXXXXXXX`: 8 Zeichen aus `23456789ABCDEFGHJKLMNPQRSTUVWXYZ` per `crypto.getRandomValues()` (kein Fallback), Jahr/Monat Europe/Berlin bei Erstellung, A/L folgt der Bestellart; gespeichert mit dem Warenkorb (localStorage `minar-cart-v4`, ohne Personendaten); stabil bis „Neue Bestellung beginnen“/„Warenkorb und Angaben löschen“, leerem Warenkorb oder 12 h Ablauf; in Warenkorb (mit Kopieren), Bon und WhatsApp identisch. Ohne zentrale Datenbank nicht garantiert einmalig – keine Bestellnummer des Restaurants. | erledigt |
+| H11 | **Testmodus aktiv** (14.11.2026): `testMode: true` in `menu-data.js` – Anfragen an Testnummer +49 176 47830274, Öffnungszeiten ignoriert, Hinweis auf Bestellseite und Bon, Nachricht als TESTBESTELLUNG markiert | **vor Livegang `testMode: false` setzen** |
 | H9 | Google-Bewertung: Link nicht eindeutig verifizierbar → Konfiguration `googleReviewUrl` (leer = ausgeblendet). Link aus Google-Unternehmensprofil → „Um Rezensionen bitten“ | vorbereitet (Liste B) |
 
 ## I. Logo, Marke & Bilder

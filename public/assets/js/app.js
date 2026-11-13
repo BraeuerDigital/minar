@@ -531,7 +531,10 @@
   /* Bestellarten nach Uhrzeit (Europe/Berlin):
      Lieferung 11:30–21:15 · Abholung 11:30–21:30. Vor Öffnung, nach Schluss und am Ruhetag beides aus –
      ausgegraut und durchgestrichen. Keine Vorbestellungen außerhalb der Zeiten. */
+  var TEST = !!R.testMode;                                 // Testmodus (menu-data.js)
+  var ORDER_WA = TEST && R.testWhatsappNumber ? R.testWhatsappNumber : R.whatsappNumber;
   function modeAvailable(m) {
+    if (TEST) return true;
     var n = berlinNow(); if (H.closedDays.indexOf(n.day) > -1) return false;
     if (n.min < toMin(H.open)) return false;
     return n.min < toMin(m === "Lieferung" ? H.orderUntil : H.close);
@@ -633,6 +636,7 @@
   function fillTimes() {
     var sel = F.time; if (!sel) return;
     var keep = sel.value, n = berlinNow(), closedToday = H.closedDays.indexOf(n.day) > -1;
+    if (TEST) { closedToday = false; n = { day: n.day, min: toMin(H.open) }; }   // Test: alle Zeiten des Tages wählbar
     var open = toMin(H.open), end = mode() === "Lieferung" ? toMin(H.orderUntil) : toMin(H.close);
     var start = Math.max(open, Math.ceil((n.min + LEAD) / 15) * 15);
     var opts = ['<option value="asap">So schnell wie möglich</option>'], grp = [];
@@ -667,6 +671,7 @@
   var plain = function (s) { return String(s).replace(/[  ]/g, " "); };
   function buildMessage() {
     var o = orderData(), t = o.t, L = [];
+    if (TEST) L.push("*** TESTBESTELLUNG – bitte nicht zubereiten ***", "");
     L.push("MINAR KÜCHE – BESTELLANFRAGE", "", "Anfrage-Nr.: " + o.ref, "", "Bestellart: " + o.mode, "Name: " + o.name, "Telefon: " + o.phone);
     if (o.delivery) L.push("Lieferadresse: " + o.address + (o.otherPlace ? " (anderer Ort, Konditionen auf Anfrage)" : ""));
     L.push("Wunschzeit: " + o.when, "", "BESTELLUNG", "");
@@ -681,7 +686,7 @@
     L.push("Zahlung bar bei " + (o.delivery ? "Lieferung" : "Abholung") + ".", "Bitte bestätigen Sie meine Bestellung sowie die gewünschte Uhrzeit.");
     return plain(L.join("\n"));
   }
-  var waUrl = function (msg) { return "https://wa.me/" + R.whatsappNumber + "?text=" + encodeURIComponent(msg); };
+  var waUrl = function (msg) { return "https://wa.me/" + ORDER_WA + "?text=" + encodeURIComponent(msg); };
   var bonDialog = $("#bon-dialog"), bonMsg = "";
   function renderBon(alertMsg) {
     var o = orderData(), t = o.t, now = new Date();
@@ -715,6 +720,13 @@
     renderBon(); openDialog(bonDialog);
   }
 
+  if (linesEl && TEST) {
+    var testNr = "+" + ORDER_WA.replace(/^49/, "49 ");
+    var tb = document.createElement("p"); tb.className = "test-banner"; tb.setAttribute("role", "note");
+    tb.innerHTML = "<strong>Testmodus aktiv:</strong> Bestellanfragen gehen an " + esc(testNr) + " (nicht an das Restaurant) und sind unabhängig von den Öffnungszeiten möglich.";
+    $(".order-main").insertBefore(tb, $(".order-main").firstChild);
+    var tb2 = tb.cloneNode(true); $(".bon-actions", bonDialog).insertBefore(tb2, $(".bon-actions", bonDialog).firstChild);
+  }
   if (linesEl) {
     F = { name: $("[data-f-name]"), phone: $("[data-f-phone]"), address: $("[data-f-address]"), time: $("[data-f-time]"), note: $("[data-f-note]"), place: $("[data-f-place]") };
     F.place.innerHTML = '<option value="">Bitte wählen …</option>' + places.slice().sort(function (a, b) { return a.name.localeCompare(b.name, "de"); }).map(function (p) {

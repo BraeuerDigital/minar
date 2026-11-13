@@ -32,6 +32,8 @@ Stand: 13.11.2026 · Repository `BraeuerDigital/minar`, Branch `main` · Sicheru
 | Logo-Animation | unverändert bis auf das entfernte Halal-Siegel |
 | Dokumentation (README, PRUEFLISTE, Cloudflare-Anleitung) | aktualisiert |
 
+> **Achtung:** Testmodus ist aktiv (14.11.2026) – Bestellanfragen gehen an die Testnummer +49 176 47830274. Vor dem Livegang in `public/assets/js/menu-data.js` `testMode: false` setzen.
+
 ## B – Noch vom Inhaber zu bestätigen
 
 Erledigt am 12.11.2026: Verbraucherstreitbeilegung (nicht benötigt), Ayran ohne Pfand, Halal-Angaben (entfernt).

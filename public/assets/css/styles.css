@@ -1578,3 +1578,7 @@ details.opt-group > summary:focus-visible { outline: 2px solid var(--minar-green
 details.opt-group[open] > summary .opt-sum-sel { display: none; }
 details.opt-group > .opt-list { padding: 0 .6rem .7rem; }
 @media (hover: hover) and (pointer: fine) { details.opt-group > summary:hover { background: rgba(166,210,58,.1); } }
+
+/* Testmodus-Hinweis (nur bei testMode: true) */
+.test-banner { margin: 0 0 1rem; padding: .75rem 1rem; border-radius: 12px; background: #FFE1C7; color: #7A3606; font-size: .9rem; box-shadow: inset 0 0 0 2px var(--minar-orange); }
+.bon-actions .test-banner { margin: 0; }

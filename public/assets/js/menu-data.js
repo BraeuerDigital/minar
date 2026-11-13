@@ -41,6 +41,12 @@ window.MINAR_DATA = {
     whatsappDisplay: "0163 359 01 88",
     whatsappNumber: "491633590188", // internationales Format ohne + und ohne führende 0
 
+    /* ===== TESTMODUS – vor dem Livegang auf false stellen =====
+       testMode: true → Bestellanfragen gehen per WhatsApp an testWhatsappNumber (nicht an das Restaurant),
+       Öffnungszeiten/Bestellschluss werden im Bestellvorgang ignoriert, Nachricht und Bon sind als Test markiert. */
+    testMode: true,
+    testWhatsappNumber: "4917647830274",
+
     fax: "0800 202 07 702",
     email: "minarbuchau@gmail.com",
     owner: "Rehan Naveed Raja",
