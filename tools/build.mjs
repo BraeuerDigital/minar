@@ -281,7 +281,6 @@ built.push(page({
           <p class="lead">Pizza, Döner, Burger, Salate, Nudeln sowie indische und pakistanische Gerichte: Bei MINAR Küche in Bad Buchau essen Sie im Restaurant, holen ab oder lassen sich beliefern.</p>
           <div class="hero-actions">
             <a class="btn btn-primary btn-lg" href="${root}speisekarte/index.html">Speisekarte entdecken</a>
-            <a class="btn btn-accent btn-lg" href="${root}bestellen.html">Jetzt bestellen</a>
           </div>
         </div>
       </div>
