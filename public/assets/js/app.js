@@ -258,8 +258,48 @@
     d.addEventListener("click", function (e) { if (e.target === d || e.target.closest("[data-close]")) closeDialog(d); });
   });
 
+  /* Herunterziehen schließt Drawer/Sheets (Touch). Gezogen wird am Kopf oder – wenn der Inhalt
+     ganz oben steht – auch im Inhalt. Kurzer Zug oder langsames Loslassen: Drawer springt zurück. */
+  function swipeToClose(d, scrollerSel, enabled) {
+    if (!d || d._swipe) return; d._swipe = true;
+    var startY = 0, dy = 0, t0 = 0, dragging = false, armed = false, fromHead = false;
+    var scroller = function () { return $(scrollerSel, d) || d; };
+    d.addEventListener("touchstart", function (e) {
+      if (e.touches.length !== 1 || (enabled && !enabled())) { armed = false; return; }
+      armed = true; dragging = false; dy = 0; t0 = Date.now(); startY = e.touches[0].clientY;
+      fromHead = !!e.target.closest(".drawer-grip, .drawer-head, .sheet-head");
+    }, { passive: true });
+    d.addEventListener("touchmove", function (e) {
+      if (!armed) return;
+      var y = e.touches[0].clientY - startY;
+      if (!dragging) {
+        if (y > 8 && (fromHead || scroller().scrollTop <= 0) && !e.target.closest("select, textarea, input[type=range]")) {
+          dragging = true; d.style.transition = "none"; d.style.animation = "none";
+        } else { if (Math.abs(y) > 8) armed = false; return; }
+      }
+      if (e.cancelable) e.preventDefault();
+      dy = Math.max(0, y - 8); d.style.transform = "translateY(" + dy + "px)";
+    }, { passive: false });
+    var end = function () {
+      if (!dragging) { armed = false; return; }
+      dragging = armed = false;
+      var fast = dy / Math.max(1, Date.now() - t0) > 0.5;
+      d.style.transition = "transform .24s cubic-bezier(.2,.8,.2,1)";
+      if (dy > Math.min(140, d.offsetHeight * 0.25) || (fast && dy > 40)) {
+        d.style.transform = "translateY(100%)";
+        setTimeout(function () { closeDialog(d); d.style.transform = d.style.transition = d.style.animation = ""; }, 240);
+      } else {
+        d.style.transform = "";
+        setTimeout(function () { d.style.transition = d.style.animation = ""; }, 260);
+      }
+    };
+    d.addEventListener("touchend", end); d.addEventListener("touchcancel", end);
+  }
+  var isSheetMobile = function () { return window.matchMedia("(max-width: 640px)").matches; };   // Sheets sind nur dort Drawer von unten
+
   /* ---------------- Gericht-Dialog ---------------- */
   var itemDialog = $("#item-dialog"), itemForm = $("[data-item-form]"), cur = null, curQty = 1;
+  swipeToClose(itemDialog, ".sheet-inner", isSheetMobile);
   function optPrice(o, v) { return Array.isArray(o.prices) ? (o.prices[v] != null ? o.prices[v] : o.prices[o.prices.length - 1]) : (o.price || 0); }
   function selectionExtra(it, sel, v) {
     var sum = 0, names = [];
@@ -804,6 +844,7 @@
   /* ---------------- Warenkorb als Drawer von unten (Test, cartDrawer in menu-data.js) ---------------- */
   var drawer = $("#cart-drawer");
   if (drawer && R.cartDrawer) {
+    swipeToClose(drawer, ".drawer-inner");
     var openDrawer = function (e) {
       if (e) e.preventDefault();
       refresh(); openDialog(drawer);
@@ -839,6 +880,7 @@
         '<div class="sheet-foot drink-foot"><button type="button" class="btn btn-link" data-drinks-skip>Ohne Getränk weiter</button>' +
         '<button type="button" class="btn btn-primary btn-grow" data-drinks-go>Weiter zur Übersicht</button></div></div>';
       document.body.appendChild(drinkDialog);
+      swipeToClose(drinkDialog, ".sheet-inner", isSheetMobile);
       drinkDialog.addEventListener("click", function (e) {
         if (e.target === drinkDialog || e.target.closest("[data-close]")) { closeDialog(drinkDialog); return; }
         var b = e.target.closest(".drink-size");
