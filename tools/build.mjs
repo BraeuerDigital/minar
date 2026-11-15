@@ -377,7 +377,6 @@ const GALLERY = [
   ["salat", "Bunter Salat mit Tomaten, Karotten, Gurke und Rotkohl", "salate"],
   ["schnitzel-kaesespaetzle", "Paniertes Schnitzel mit Käsespätzle und Salat", "schnitzel"]
 ];
-const TEASER = ["pizza", "doener", "burger", "indisch", "salate", "nudeln", "fingerfood", "partyplatten"];
 built.push(page({
   file: "index.html", active: "start", bodyClass: "page-home",
   title: "MINAR Küche · Bad Buchau – Restaurant, Lieferservice & Abholung",
@@ -433,21 +432,6 @@ built.push(page({
         </div>
         <div class="gallery">
           ${GALLERY.map(([img, alt, cat], i) => { const c = CATS.find((x) => x.id === cat); return `<a class="gallery-item${i === 0 ? " gallery-item-lg" : ""} reveal" href="${root}speisekarte/${c.slug}.html"><img src="${root}assets/images/${img}${i === 0 ? "" : "-sm"}.jpg" alt="${esc(alt)}" loading="lazy" decoding="async"><span class="gallery-cap">${esc(c.name)}${I.arrow}</span></a>`; }).join("\n          ")}
-        </div>
-      </div>
-    </section>
-
-    <section class="section teaser">
-      <div class="container">
-        <div class="section-head-row">
-          <div>
-            <p class="eyebrow">Aus unserer Speisekarte</p>
-            <h2 class="h-red">Beliebte Kategorien</h2>
-          </div>
-          <a class="btn btn-outline" href="${root}speisekarte/index.html">Alle ${CATS.length} Kategorien</a>
-        </div>
-        <div class="cat-grid">
-          ${TEASER.map((id) => { const c = CATS.find((x) => x.id === id); return `<a class="cat-card reveal" href="${root}speisekarte/${c.slug}.html" data-cat-card="${c.id}"><span class="cat-card-name">${esc(c.name)}</span><span class="cat-card-meta" data-cat-meta></span><span class="cat-card-go">${I.arrow}</span></a>`; }).join("\n          ")}
         </div>
       </div>
     </section>
