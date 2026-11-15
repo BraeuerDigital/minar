@@ -42,6 +42,7 @@ Alle Seiten sind bis zur Freigabe mit `noindex` gekennzeichnet. Stand der Umsetz
 ├── docs/
 │   ├── CLOUDFLARE.md             Hosting-Einrichtung (Vorlage für weitere Kundenprojekte)
 │   ├── ABSCHLUSSBERICHT.md       Listen A (technisch erledigt) und B (vom Inhaber zu bestätigen)
+│   ├── COMPLIANCE-CHECK.md       Datenschutz-, Cookie- und Website-Prüfung (15.11.2026)
 │   └── logo-intro/               Logo-Intro als Kopiervorlage
 ├── PRUEFLISTE.md                 Prüfprotokoll
 └── index.html, .nojekyll         Übergangsweiterleitung nur für GitHub Pages (nach Migration löschen)

@@ -269,7 +269,7 @@ const bonDialogHtml = (root) => `<dialog class="bon-dialog" id="bon-dialog" aria
           <a class="btn btn-whatsapp btn-lg btn-block" href="#" target="_blank" rel="noopener" data-bon-send>${I.wa}Per WhatsApp senden</a>
           <p class="bon-opened" data-bon-opened role="status" hidden>WhatsApp wurde geöffnet. Bitte senden Sie die Nachricht dort ab – Ihre Bestellung gilt erst nach unserer Bestätigung. Ein erneutes Tippen auf „Per WhatsApp senden“ verwendet dieselbe Anfragenummer.</p>
           <button class="btn btn-new-order btn-block" type="button" data-new-order hidden>Neue Bestellung beginnen</button>
-          <p class="fine">Beim Tippen öffnet sich WhatsApp mit der vorbereiteten Nachricht an ${esc(R.whatsappDisplay)}; dabei werden die Angaben an WhatsApp übergeben. An uns gesendet wird erst, wenn Sie in WhatsApp selbst auf Senden tippen.</p>
+          <p class="fine bon-privacy">Mit dem Öffnen von WhatsApp verlassen Sie unsere Website. Ihre vorbereiteten Bestellangaben (einschließlich Name, Telefonnummer und ggf. Lieferadresse) werden dabei im Link an WhatsApp übergeben. An uns (${esc(R.whatsappDisplay)}) gesendet wird die Nachricht erst, wenn Sie sie in WhatsApp selbst absenden. Weitere Informationen finden Sie in unserer <a href="${root}datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
           <button class="btn btn-link" type="button" data-close>Zurück und ändern</button>
         </div>
       </div>
@@ -339,7 +339,7 @@ const contactCards = () => `
         <div class="contact-cards">
           <a class="contact-card" href="${TEL}"><span class="contact-ico">${I.phone}</span><span><small>Telefon</small>${esc(R.phoneDisplay)}</span></a>
           <a class="contact-card" href="${WA}" target="_blank" rel="noopener"><span class="contact-ico">${I.wa}</span><span><small>WhatsApp</small>${esc(R.whatsappDisplay)}</span></a>
-          <a class="contact-card" href="${MAPS}" target="_blank" rel="noopener"><span class="contact-ico">${I.pin}</span><span><small>Route planen</small>In Google Maps öffnen</span></a>
+          <a class="contact-card" href="${MAPS}" target="_blank" rel="noopener noreferrer"><span class="contact-ico">${I.pin}</span><span><small>Route planen</small>In Google Maps öffnen</span></a>
         </div>
         <p class="fine">Der Kartenlink öffnet Google Maps in einem neuen Fenster; erst dann werden Daten an Google übermittelt.</p>`;
 const hoursCard = () => `
@@ -698,13 +698,13 @@ built.push(page({
       <p>Damit Ihre Auswahl beim Wechsel zwischen den Seiten erhalten bleibt, speichert die Website Daten ausschließlich lokal in Ihrem Browser. Diese Daten werden nicht automatisch an uns oder an Dritte übertragen.</p>
       <ul>
         <li><strong>Warenkorb</strong> (localStorage, Schlüssel „minar-cart-v4“): ausgewählte Gerichte, Mengen, Varianten, Extras und Hinweise zum Gericht, der Zeitpunkt der letzten Änderung sowie eine zufällig erzeugte Anfragenummer (Jahr, Monat und acht Zufallszeichen – ohne Bezug zu Name, Telefonnummer oder IP-Adresse), die Ihrer Bestellanfrage zur Zuordnung dient. Der Warenkorb wird spätestens 12 Stunden nach der letzten Änderung beim nächsten Seitenaufruf automatisch gelöscht, außerdem sofort, wenn Sie ihn leeren.</li>
-        <li><strong>Ihre Angaben im Bestellformular</strong> (sessionStorage, Schlüssel „minar-form-v4“): Name, Telefonnummer, Bestellart, Lieferort, Lieferadresse und Anmerkung. Diese Angaben bleiben nur in dem geöffneten Browser-Tab erhalten und werden gelöscht, sobald Sie den Tab bzw. Browser schließen oder „Warenkorb und Angaben löschen“ wählen.</li>
+        <li><strong>Ihre Angaben im Bestellformular</strong> (sessionStorage, Schlüssel „minar-form-v4“): Name, Telefonnummer, Bestellart, Lieferort, Lieferadresse und Anmerkung. Diese Angaben bleiben nur in dem geöffneten Browser-Tab erhalten und werden gelöscht, sobald Sie den Tab bzw. Browser schließen, „Warenkorb und Angaben löschen“ oder „Neue Bestellung beginnen“ wählen.</li>
       </ul>
       <p>Die Speicherung ist für den von Ihnen gewünschten Warenkorb unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Soweit dabei personenbezogene Daten verarbeitet werden, ist Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO (Vorbereitung einer von Ihnen gewünschten Bestellung). Sie können die Daten zusätzlich jederzeit über die Einstellungen Ihres Browsers löschen.</p>
 
       ${h("Bestellanfrage über WhatsApp")}
       <p>Über den Warenkorb können Sie Gerichte auswählen, Abholung oder Lieferung wählen, eine Wunschzeit angeben und eine Bestellübersicht prüfen. Mit „Per WhatsApp senden“ öffnet sich WhatsApp bzw. WhatsApp Web mit einer vorbereiteten Nachricht an unsere WhatsApp-Nummer ${esc(R.whatsappDisplay)}. Die Bestell- und Kontaktangaben sind dabei im aufgerufenen Link enthalten und werden <strong>bereits beim Öffnen des Links</strong> an WhatsApp übergeben. An uns übermittelt wird die Nachricht erst, wenn Sie sie in WhatsApp selbst absenden.</p>
-      <p>Senden Sie uns die Nachricht, verarbeiten wir die darin enthaltenen Angaben (insbesondere Name, Telefonnummer, bestellte Gerichte, Bestellart, Lieferadresse, Wunschzeit und Anmerkungen), um Ihre Anfrage zu prüfen, die Bestellung individuell zu bestätigen oder abzulehnen und sie auszuführen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO; bei allgemeinen Anfragen Art. 6 Abs. 1 lit. f DSGVO (Interesse an der Beantwortung von Anfragen). Auf der Website findet keine Zahlung statt; bezahlt wird ausschließlich bar bei Abholung oder Lieferung.</p>
+      <p>Senden Sie uns die Nachricht, verarbeiten wir die darin enthaltenen Angaben (insbesondere Anfragenummer, Name, Telefonnummer, bestellte Gerichte, Bestellart, Lieferadresse, Wunschzeit und Anmerkungen), um Ihre Anfrage zu prüfen, die Bestellung individuell zu bestätigen oder abzulehnen und sie auszuführen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO; bei allgemeinen Anfragen Art. 6 Abs. 1 lit. f DSGVO (Interesse an der Beantwortung von Anfragen). Auf der Website findet keine Zahlung statt; bezahlt wird ausschließlich bar bei Abholung oder Lieferung.</p>
       <p>Bei der Nutzung von WhatsApp werden Daten auch durch den Anbieter, die WhatsApp Ireland Limited (Irland), verarbeitet. Dabei kann eine Übermittlung in Drittländer, insbesondere in die USA, stattfinden. Die Muttergesellschaft Meta Platforms, Inc. ist nach dem EU-U.S. Data Privacy Framework zertifiziert. Einzelheiten finden Sie in der <a href="https://www.whatsapp.com/legal/privacy-policy-eea" target="_blank" rel="noopener">Datenschutzrichtlinie von WhatsApp</a>. Wenn Sie WhatsApp nicht nutzen möchten, können Sie uns gerne telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a> erreichen.</p>
 
       ${h("Kontakt per Telefon und E-Mail")}
