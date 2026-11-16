@@ -7,7 +7,7 @@ Stand: 16.11.2026 · Matrizen: `docs/SPEISEKARTE-MATRIZEN.md` (erzeugt mit `node
 - **Gedruckte Speisekarte**: maßgebliche Quelle für Preise, Beschreibungen und Kennzeichnungen. Die Bruttopreise wurden nicht verändert.
 - **Lieferando**: Die Lieferando-Seite war von hier aus nicht abrufbar. Erreichbar war nur der Lieferando-Shop `minarkuechebadbuchau.de`, und zwar ausschließlich die Kategorie- und Artikellisten.
 - **Was dort fehlt**: Die Produkt-Konfiguratoren (Extras, Pflichtauswahlen) ließen sich ohne Interaktion bzw. Anmeldung nicht öffnen. Es wurden keine Zugangsbeschränkungen umgangen.
-- **Fehlende Unterlagen**: Es liegen keine Betreiber-Notizen und kein Screenshot „Menü für 1 Person“ vor.
+- **Betreiber-Notizen (handschriftlich, 16.11.2026)** und **Screenshot „Menü für 1 Person“** (Stückzahlen gestrichen) liegen vor und sind umgesetzt (siehe D).
 
 ## B. Lieferando-Abgleich – Ergebnisse
 
@@ -74,7 +74,18 @@ Lieferando zeigt **keine** Artikelnummern, Allergene, Zusatzstoffe oder Steuers�
 
 - Die Matrix steht in `SPEISEKARTE-MATRIZEN.md`, Abschnitt 1.
 - **Neu:** Artikel ohne Kennzeichnung zeigen jetzt „Allergene & Zusatzstoffe auf Anfrage“. Vorher erschien dort nichts, was als „allergenfrei“ hätte verstanden werden können.
-- **28 Artikel ohne gesicherte Kennzeichnung**, darunter die Nr. 99, 99a, 116 und 131–134a. Der Betreiber muss diese Angaben schriftlich ergänzen.
+- **Laut Betreiber-Notizen ergänzt (16.11.2026):**
+
+| Nr. | Gericht | Kennzeichnung |
+|---|---|---|
+| 99 | Istanbul überbacken | A, C, G, F, 6 |
+| 116 | Hackfleisch | A, G, F, J, 6, 7, 8 |
+| 131 | Sardellen | A, D, G, F, J, 6, 7, 8 |
+| 132, 133, 134, 134a | Artischocke, Paprika, Caprese, Oliven | A, G, F, J, 6, 7, 8 |
+| 205, 206 | Chicken Vegetables Nudel, Vegetables Nudel | A, G, F |
+
+  Die Angaben sind aus der Handschrift übernommen; der Betreiber sollte die Lesung einmal gegenprüfen (v. a. die letzte Ziffer bei 132–134a).
+- **Noch 19 Artikel ohne Kennzeichnung** (zeigen „auf Anfrage“): Salate 01–04 und 10, Nr. 39, Beilagen 40–43 und 45, Nr. 66, Nr. 73 (setzt sich aus gekennzeichneten Einzelartikeln zusammen), Nr. 99a sowie Mineralwasser, Multivitamin, Sprite, Eistee und Red Bull.
 
 ## E. Zusatzstoffe
 
@@ -134,9 +145,11 @@ Liefergebühr, Pfand, Ayran, Kombi-Menüs und kostenpflichtige Extras (folgen de
 3. Getränk im Menü für 1 Person: Größe, Auswahl, Pfand.
 4. Sour Cream als Dip; Uludağ 1,0 l.
 5. Platten-Beschreibungen (Frühlingsrollen, Rösti, Kroketten) – Karte oder Lieferando?
-6. Allergene und Zusatzstoffe für die 28 offenen Artikel.
-7. Betreiber-Notizen und Screenshot zum Menü nachreichen.
-8. § 312j-Frage bleibt offen (siehe `CHECKOUT-PRUEFUNG.md`).
+6. Allergene und Zusatzstoffe für die 19 noch offenen Artikel; Lesung der handschriftlich ergänzten Codes gegenprüfen.
+7. Pizza-Zusatzbeläge (Upsell) und Partypizza-Belag über 4 hinaus: Laut Notiz Preise von Lieferando – dort im öffentlich erreichbaren Shop nicht sichtbar. Preisliste vom Betreiber nötig, vorher keine Umsetzung.
+8. Burger-Belag laut Notiz „100 g Patty, grüner Salat, Tomate, Gurke, Zwiebel“ – Beschreibungen wurden nicht ungefragt umgeschrieben; Freigabe zur Ergänzung offen.
+9. In den Notizen steht einmal „Abholung bis 21:15“ und einmal „Abholung 21:30“ – umgesetzt ist 21:15 laut Masterprompt; bitte bestätigen.
+10. § 312j-Frage bleibt offen (siehe `CHECKOUT-PRUEFUNG.md`).
 
 ## J. Unverändert
 

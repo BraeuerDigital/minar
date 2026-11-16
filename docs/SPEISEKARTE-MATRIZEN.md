@@ -80,7 +80,7 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 98 | Dönerteller Minar überbacken | Überbacken | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 98a | BBQ Teller überbacken | Überbacken | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 98b | Lachs Teller überbacken | Überbacken | x |  | x | x |  |  | x |  |  |  |  |  |  | laut Karte |
-| 99 | Istanbul überbacken | Überbacken | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
+| 99 | Istanbul überbacken | Überbacken | x |  | x |  |  | x | x |  |  |  |  |  |  | laut Karte |
 | 99a | Schwäbische überbacken | Überbacken | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
 | 100 | Pizzabrot | Pizza | x |  |  |  |  |  |  |  |  |  |  |  |  | laut Karte |
 | 101 | Margherita | Pizza | x |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
@@ -98,7 +98,7 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 113 | Diavolo | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 114 | Salami-Schinken | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 115 | Roma | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
-| 116 | Hackfleisch | Pizza | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
+| 116 | Hackfleisch | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 117 | Vegetarisch | Pizza | x |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 118 | Pindi Express | Pizza | x |  |  |  |  | x | x |  |  |  |  |  |  | laut Karte |
 | 119 | Salmone | Pizza | x |  |  | x |  |  | x |  |  |  |  |  |  | laut Karte |
@@ -111,11 +111,11 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 126 | Minar Spezial | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 128 | Calzone Spezial | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 129 | Calzone Kebap | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
-| 131 | Sardellen | Pizza | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
-| 132 | Artischocke | Pizza | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
-| 133 | Paprika | Pizza | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
-| 134 | Caprese | Pizza | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
-| 134a | Oliven | Pizza | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
+| 131 | Sardellen | Pizza | x |  |  | x |  | x | x |  | x |  |  |  |  | laut Karte |
+| 132 | Artischocke | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
+| 133 | Paprika | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
+| 134 | Caprese | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
+| 134a | Oliven | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 135 | Partypizza Margherita | Partypizza | x |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 136 | Partypizza | Partypizza | x |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 139 | Aglio Spaghetti | Nudelgerichte | x |  | x |  |  | x |  |  |  |  |  |  |  | laut Karte |
@@ -132,8 +132,8 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 151 | Salmone | Nudelgerichte | x |  | x | x |  |  | x |  |  |  |  |  |  | laut Karte |
 | 152 | Gamberoni | Nudelgerichte | x |  | x | x |  |  | x |  |  |  |  |  |  | laut Karte |
 | 153 | Frutti di Mare | Nudelgerichte | x |  | x | x |  |  | x |  |  |  |  |  |  | laut Karte |
-| 205 | Chicken Vegetables Nudel | Chinesische Nudeln | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
-| 206 | Vegetables Nudel | Chinesische Nudeln | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
+| 205 | Chicken Vegetables Nudel | Chinesische Nudeln | x |  |  |  |  | x | x |  |  |  |  |  |  | laut Karte |
+| 206 | Vegetables Nudel | Chinesische Nudeln | x |  |  |  |  | x | x |  |  |  |  |  |  | laut Karte |
 | 210 | Napoli | Gnocchi | x |  | x |  |  | x |  |  |  |  |  |  |  | laut Karte |
 | 211 | Bolognese | Gnocchi | x |  | x |  |  | x |  |  |  |  |  |  |  | laut Karte |
 | 212 | Vegetarisch | Gnocchi | x |  | x |  |  |  |  |  |  |  |  |  |  | laut Karte |
@@ -247,7 +247,7 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 98 | Dönerteller Minar überbacken |  |  |  |  |  | x | x | x |  |
 | 98a | BBQ Teller überbacken |  |  |  |  |  | x | x | x |  |
 | 98b | Lachs Teller überbacken |  |  |  |  |  | x | x | x |  |
-| 99 | Istanbul überbacken | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 99 | Istanbul überbacken |  |  |  |  |  | x |  |  |  |
 | 99a | Schwäbische überbacken | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 | 100 | Pizzabrot |  |  |  |  |  |  |  |  |  |
 | 101 | Margherita |  |  |  |  |  |  |  |  |  |
@@ -265,7 +265,7 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 113 | Diavolo |  |  |  |  |  | x | x | x |  |
 | 114 | Salami-Schinken |  |  |  |  |  | x | x | x |  |
 | 115 | Roma |  |  |  |  |  | x | x | x |  |
-| 116 | Hackfleisch | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 116 | Hackfleisch |  |  |  |  |  | x | x | x |  |
 | 117 | Vegetarisch |  |  |  |  |  |  |  |  | x |
 | 118 | Pindi Express |  |  |  |  |  |  |  |  |  |
 | 119 | Salmone |  |  |  |  |  |  |  |  |  |
@@ -278,11 +278,11 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 126 | Minar Spezial |  |  |  |  |  | x | x | x |  |
 | 128 | Calzone Spezial |  |  |  |  |  | x | x | x |  |
 | 129 | Calzone Kebap |  |  |  |  |  | x | x | x |  |
-| 131 | Sardellen | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 132 | Artischocke | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 133 | Paprika | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 134 | Caprese | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 134a | Oliven | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 131 | Sardellen |  |  |  |  |  | x | x | x |  |
+| 132 | Artischocke |  |  |  |  |  | x | x | x |  |
+| 133 | Paprika |  |  |  |  |  | x | x | x |  |
+| 134 | Caprese |  |  |  |  |  | x | x | x |  |
+| 134a | Oliven |  |  |  |  |  | x | x | x |  |
 | 135 | Partypizza Margherita |  |  |  |  |  |  |  |  |  |
 | 136 | Partypizza |  |  |  |  |  | x | x | x |  |
 | 139 | Aglio Spaghetti |  |  |  |  |  | x |  |  | x |
@@ -299,8 +299,8 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 151 | Salmone |  |  |  |  |  |  |  |  |  |
 | 152 | Gamberoni |  |  |  |  |  |  |  |  |  |
 | 153 | Frutti di Mare |  |  |  |  |  |  |  |  |  |
-| 205 | Chicken Vegetables Nudel | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 206 | Vegetables Nudel | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 205 | Chicken Vegetables Nudel |  |  |  |  |  |  |  |  |  |
+| 206 | Vegetables Nudel |  |  |  |  |  |  |  |  |  |
 | 210 | Napoli |  |  |  |  |  | x |  |  |  |
 | 211 | Bolognese |  |  |  |  |  | x |  |  |  |
 | 212 | Vegetarisch |  |  |  |  |  |  |  |  |  |
@@ -338,7 +338,7 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | – | Eistee | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 | – | Red Bull | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 
-**Ohne gesicherte Kennzeichnung (28):** Nr. 01 Grüner Salat, Nr. 02 Gurkensalat, Nr. 03 Tomatensalat, Nr. 04 Gemischter Salat, Nr. 10 Chicken Salat, Nr. 39 Cheese-Garnelen Burger, Nr. 40 Pommes, Nr. 41 Wedges, Nr. 42 Süßkartoffeln, Nr. 43 Curly Fries, Nr. 45 Bratkartoffeln, Nr. 66 Filo Pastry Shrimps, Nr. 73 Menü für 1 Person, Nr. 99 Istanbul überbacken, Nr. 99a Schwäbische überbacken, Nr. 116 Hackfleisch, Nr. 131 Sardellen, Nr. 132 Artischocke, Nr. 133 Paprika, Nr. 134 Caprese, Nr. 134a Oliven, Nr. 205 Chicken Vegetables Nudel, Nr. 206 Vegetables Nudel, Mineralwasser, Multivitamin, Sprite, Eistee, Red Bull.
+**Ohne gesicherte Kennzeichnung (19):** Nr. 01 Grüner Salat, Nr. 02 Gurkensalat, Nr. 03 Tomatensalat, Nr. 04 Gemischter Salat, Nr. 10 Chicken Salat, Nr. 39 Cheese-Garnelen Burger, Nr. 40 Pommes, Nr. 41 Wedges, Nr. 42 Süßkartoffeln, Nr. 43 Curly Fries, Nr. 45 Bratkartoffeln, Nr. 66 Filo Pastry Shrimps, Nr. 73 Menü für 1 Person, Nr. 99a Schwäbische überbacken, Mineralwasser, Multivitamin, Sprite, Eistee, Red Bull.
 
 ## 3. Umsatzsteuer-Matrix (Stand: UNBESTÄTIGT – nicht live)
 

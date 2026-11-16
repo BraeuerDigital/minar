@@ -328,7 +328,7 @@ window.MINAR_DATA = {
     { nr: "98", cat: "ueberbacken", name: "Dönerteller Minar überbacken", desc: "Hackfleischdrehspieß, Pommes, Hot Cocktail, Edamer, Cheddarkäse, Dip", prices: [13.5], codes: "A,C,G,6,7,8", opts: ["ueberb-extra", "dips"] },
     { nr: "98a", cat: "ueberbacken", name: "BBQ Teller überbacken", desc: "Hackfleischdrehspieß, Pommes, hausgemachte BBQ-Soße, Emmentaler, Cheddarkäse, Dip", prices: [13.5], codes: "A,C,G,6,7,8", opts: ["ueberb-extra", "dips"] },
     { nr: "98b", cat: "ueberbacken", name: "Lachs Teller überbacken", desc: "gegrillter Lachs, Pommes, Remoulade, Cocktail, Edamer, Dip", prices: [18.9], codes: "A,C,D,G,6,7,8", opts: ["ueberb-extra", "dips"] },
-    { nr: "99", cat: "ueberbacken", name: "Istanbul überbacken", desc: "Hackfleischdrehspieß, Tomatensahnesoße, Penne", prices: [13.5], opts: ["ueberb-extra"] },
+    { nr: "99", cat: "ueberbacken", name: "Istanbul überbacken", desc: "Hackfleischdrehspieß, Tomatensahnesoße, Penne", prices: [13.5], codes: "A,C,G,F,6", opts: ["ueberb-extra"] },
     { nr: "99a", cat: "ueberbacken", name: "Schwäbische überbacken", desc: "Kartoffelscheiben, Sahnesoße, Edamer", prices: [11.9], opts: ["ueberb-extra"] },
 
     /* PIZZA (30 cm) */
@@ -348,7 +348,7 @@ window.MINAR_DATA = {
     { nr: "113", cat: "pizza", name: "Diavolo", desc: "Salami, Jalapeños", prices: [9.9], codes: "A,G,F,J,6,7,8" },
     { nr: "114", cat: "pizza", name: "Salami-Schinken", prices: [10.9], codes: "A,G,F,J,6,7,8" },
     { nr: "115", cat: "pizza", name: "Roma", desc: "mit Schinken und Champignons", prices: [10.9], codes: "A,G,F,J,6,7,8" },
-    { nr: "116", cat: "pizza", name: "Hackfleisch", desc: "mit Zwiebel", prices: [10.9] },
+    { nr: "116", cat: "pizza", name: "Hackfleisch", desc: "mit Zwiebel", prices: [10.9], codes: "A,G,F,J,6,7,8" },
     { nr: "117", cat: "pizza", name: "Vegetarisch", desc: "mit Champignons, Paprika, Oliven und Zwiebeln", prices: [10.4], codes: "A,G,9", tags: ["vegetarisch"] },
     { nr: "118", cat: "pizza", name: "Pindi Express", desc: "mit Chicken, Ananas, Curry", prices: [10.4], codes: "A,G,F" },
     { nr: "119", cat: "pizza", name: "Salmone", desc: "gegrilltes Lachsfilet und Knoblauch", prices: [10.9], codes: "A,G,D" },
@@ -361,11 +361,11 @@ window.MINAR_DATA = {
     { nr: "126", cat: "pizza", name: "Minar Spezial", desc: "mit Hackfleischdrehspieß, Sucuk, Peperoni und Zwiebeln", prices: [11.9], codes: "A,G,F,J,6,7,8" },
     { nr: "128", cat: "pizza", name: "Calzone Spezial", desc: "mit Salami, Schinken, Peperoni und Champignons", prices: [10.9], codes: "A,G,F,J,6,7,8" },
     { nr: "129", cat: "pizza", name: "Calzone Kebap", desc: "mit Hackfleischdrehspieß und Zwiebeln", prices: [10.9], codes: "A,G,F,J,6,7,8" },
-    { nr: "131", cat: "pizza", name: "Sardellen", desc: "mit Oliven und Kapern", prices: [10.9] },
-    { nr: "132", cat: "pizza", name: "Artischocke", prices: [9.9] },
-    { nr: "133", cat: "pizza", name: "Paprika", prices: [9.9] },
-    { nr: "134", cat: "pizza", name: "Caprese", desc: "mit Mozzarella und Tomaten", prices: [10.9] },
-    { nr: "134a", cat: "pizza", name: "Oliven", prices: [8.9] },
+    { nr: "131", cat: "pizza", name: "Sardellen", desc: "mit Oliven und Kapern", prices: [10.9], codes: "A,D,G,F,J,6,7,8" },
+    { nr: "132", cat: "pizza", name: "Artischocke", prices: [9.9], codes: "A,G,F,J,6,7,8" },
+    { nr: "133", cat: "pizza", name: "Paprika", prices: [9.9], codes: "A,G,F,J,6,7,8" },
+    { nr: "134", cat: "pizza", name: "Caprese", desc: "mit Mozzarella und Tomaten", prices: [10.9], codes: "A,G,F,J,6,7,8" },
+    { nr: "134a", cat: "pizza", name: "Oliven", prices: [8.9], codes: "A,G,F,J,6,7,8" },
 
     /* PARTY PIZZA (40 × 60 cm) */
     { nr: "135", cat: "partypizza", name: "Partypizza Margherita", prices: [28.0], codes: "A,G" },
@@ -388,8 +388,8 @@ window.MINAR_DATA = {
     { nr: "153", cat: "nudeln", name: "Frutti di Mare", desc: "Meeresfrüchte, Knoblauch, Tomatensoße", prices: [12.9], codes: "A,C,D,G", opts: ["nudel-sorte", "nudel-ueberb"] },
 
     /* CHINESISCHE NUDELN */
-    { nr: "205", cat: "chinanudeln", name: "Chicken Vegetables Nudel", prices: [9.9] },
-    { nr: "206", cat: "chinanudeln", name: "Vegetables Nudel", prices: [8.9] },
+    { nr: "205", cat: "chinanudeln", name: "Chicken Vegetables Nudel", prices: [9.9], codes: "A,G,F" },
+    { nr: "206", cat: "chinanudeln", name: "Vegetables Nudel", prices: [8.9], codes: "A,G,F" },
 
     /* GNOCCHI */
     { nr: "210", cat: "gnocchi", name: "Napoli", desc: "mit Tomatensoße", prices: [8.9], codes: "A,C,F,6", opts: ["nudel-ueberb"] },
