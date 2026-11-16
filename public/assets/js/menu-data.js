@@ -250,7 +250,7 @@ window.MINAR_DATA = {
     { nr: "06", cat: "salate", name: "Casa Nova", desc: "grüner Salat, Tomaten, Gurken, Mozzarella, Oliven, Paprika", prices: [10.5], codes: "9", opts: ["dressing"] },
     { nr: "07", cat: "salate", name: "Griechischer", desc: "grüner Salat, Tomaten, Gurken, Peperoni, Paprika, Oliven, Zwiebeln und Weichkäse", prices: [10.9], codes: "G,6,9", opts: ["dressing"] },
     { nr: "08", cat: "salate", name: "Nizza Salat", desc: "grüner Salat, Tomaten, Gurken, Oliven, Thunfisch", prices: [10.5], codes: "D,G,6,9", opts: ["dressing"] },
-    { nr: "09", cat: "salate", name: "Schwäbischer Teller", desc: "Salat, Tomaten, Gurken, Kraut, Karotten, Ei, Schinken, Käse", prices: [10.9], codes: "F,J,2,3,6,7,8", opts: ["dressing"] },
+    { nr: "09", cat: "salate", name: "Schwäbischer Teller", desc: "Salat, Tomaten, Gurken, Kraut, Karotten, Ei, Schinken, Käse", prices: [10.9], codes: "C,G,F,J,2,3,6,7,8", opts: ["dressing"] },
     { nr: "10", cat: "salate", name: "Chicken Salat", desc: "grüner Salat, Tomaten, Gurken, Karotten, Paprika, Mais und gegrillte Hähnchenbrust", prices: [11.9], codes: "G", opts: ["dressing"] },
     { nr: "11", cat: "salate", name: "Minar Spezial Salat", desc: "grüner Salat, Tomaten, Gurken, Karotten, Paprika, Mais, Hähnchenbrust mit Cornflakes-Panade", prices: [12.9], codes: "A,C,G", opts: ["dressing"] },
     { nr: "14", cat: "salate", name: "Salmone", desc: "grüner Salat, Tomaten, Gurken, Paprika, Mais, Karotten, gegrillter Lachs (200 g)", prices: [18.9], codes: "D", opts: ["dressing"] },
@@ -388,8 +388,8 @@ window.MINAR_DATA = {
     { nr: "153", cat: "nudeln", name: "Frutti di Mare", desc: "Meeresfrüchte, Knoblauch, Tomatensoße", prices: [12.9], codes: "A,C,D,G", opts: ["nudel-sorte", "nudel-ueberb"] },
 
     /* CHINESISCHE NUDELN */
-    { nr: "205", cat: "chinanudeln", name: "Chicken Vegetables Nudel", prices: [9.9], codes: "A,G,F" },
-    { nr: "206", cat: "chinanudeln", name: "Vegetables Nudel", prices: [8.9], codes: "A,G,F" },
+    { nr: "205", cat: "chinanudeln", name: "Chicken Vegetables Nudel", prices: [9.9], codes: "A,C,F" },
+    { nr: "206", cat: "chinanudeln", name: "Vegetables Nudel", prices: [8.9], codes: "A,C,F" },
 
     /* GNOCCHI */
     { nr: "210", cat: "gnocchi", name: "Napoli", desc: "mit Tomatensoße", prices: [8.9], codes: "A,C,F,6", opts: ["nudel-ueberb"] },

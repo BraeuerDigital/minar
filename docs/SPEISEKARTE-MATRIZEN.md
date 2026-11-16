@@ -16,7 +16,7 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 06 | Casa Nova | Salate |  |  |  |  |  |  |  |  |  |  |  |  |  | laut Karte |
 | 07 | Griechischer | Salate |  |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 08 | Nizza Salat | Salate |  |  |  | x |  |  | x |  |  |  |  |  |  | laut Karte |
-| 09 | Schwäbischer Teller | Salate |  |  |  |  |  | x |  |  | x |  |  |  |  | laut Karte |
+| 09 | Schwäbischer Teller | Salate |  |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 10 | Chicken Salat | Salate |  |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 11 | Minar Spezial Salat | Salate | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 14 | Salmone | Salate |  |  |  | x |  |  |  |  |  |  |  |  |  | laut Karte |
@@ -132,8 +132,8 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 151 | Salmone | Nudelgerichte | x |  | x | x |  |  | x |  |  |  |  |  |  | laut Karte |
 | 152 | Gamberoni | Nudelgerichte | x |  | x | x |  |  | x |  |  |  |  |  |  | laut Karte |
 | 153 | Frutti di Mare | Nudelgerichte | x |  | x | x |  |  | x |  |  |  |  |  |  | laut Karte |
-| 205 | Chicken Vegetables Nudel | Chinesische Nudeln | x |  |  |  |  | x | x |  |  |  |  |  |  | laut Karte |
-| 206 | Vegetables Nudel | Chinesische Nudeln | x |  |  |  |  | x | x |  |  |  |  |  |  | laut Karte |
+| 205 | Chicken Vegetables Nudel | Chinesische Nudeln | x |  | x |  |  | x |  |  |  |  |  |  |  | laut Karte |
+| 206 | Vegetables Nudel | Chinesische Nudeln | x |  | x |  |  | x |  |  |  |  |  |  |  | laut Karte |
 | 210 | Napoli | Gnocchi | x |  | x |  |  | x |  |  |  |  |  |  |  | laut Karte |
 | 211 | Bolognese | Gnocchi | x |  | x |  |  | x |  |  |  |  |  |  |  | laut Karte |
 | 212 | Vegetarisch | Gnocchi | x |  | x |  |  |  |  |  |  |  |  |  |  | laut Karte |
