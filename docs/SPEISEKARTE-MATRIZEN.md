@@ -9,15 +9,15 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | Nr. | Gericht | Kategorie | A | B | C | D | E | F | G | H | J | K | L | N | O | Status |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 01 | Grüner Salat | Salate | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
-| 02 | Gurkensalat | Salate | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
-| 03 | Tomatensalat | Salate | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
-| 04 | Gemischter Salat | Salate | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
+| 02 | Gurkensalat | Salate |  |  |  |  |  |  | x |  |  |  | x |  |  | laut Karte |
+| 03 | Tomatensalat | Salate |  |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
+| 04 | Gemischter Salat | Salate |  |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 05 | Thunfischsalat | Salate |  |  |  | x |  | x |  |  |  |  |  |  |  | laut Karte |
 | 06 | Casa Nova | Salate |  |  |  |  |  |  |  |  |  |  |  |  |  | laut Karte |
 | 07 | Griechischer | Salate |  |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 08 | Nizza Salat | Salate |  |  |  | x |  |  | x |  |  |  |  |  |  | laut Karte |
 | 09 | Schwäbischer Teller | Salate |  |  |  |  |  | x |  |  | x |  |  |  |  | laut Karte |
-| 10 | Chicken Salat | Salate | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
+| 10 | Chicken Salat | Salate |  |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 11 | Minar Spezial Salat | Salate | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 14 | Salmone | Salate |  |  |  | x |  |  |  |  |  |  |  |  |  | laut Karte |
 | 20 | Hamburgerle | Burger | x |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
@@ -176,15 +176,15 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | Nr. | Gericht | 1 Verdickungsmittel | 2 Farbstoffe | 3 Konservierungsstoffe | 4 Säuerungsmittel | 5 Antioxidationsmittel | 6 Geschmacksverstärker | 7 Phosphat | 8 Emulgator | 9 Geschwärzt |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 01 | Grüner Salat | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 02 | Gurkensalat | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 03 | Tomatensalat | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 04 | Gemischter Salat | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 02 | Gurkensalat |  |  |  |  |  |  |  |  |  |
+| 03 | Tomatensalat |  |  |  |  |  |  |  |  |  |
+| 04 | Gemischter Salat |  |  |  |  |  |  |  |  |  |
 | 05 | Thunfischsalat |  |  |  |  |  |  |  |  |  |
 | 06 | Casa Nova |  |  |  |  |  |  |  |  | x |
-| 07 | Griechischer |  |  |  |  |  |  |  |  | x |
-| 08 | Nizza Salat |  |  |  |  |  |  |  |  | x |
-| 09 | Schwäbischer Teller |  | x |  |  |  | x | x | x |  |
-| 10 | Chicken Salat | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 07 | Griechischer |  |  |  |  |  | x |  |  | x |
+| 08 | Nizza Salat |  |  |  |  |  | x |  |  | x |
+| 09 | Schwäbischer Teller |  | x | x |  |  | x | x | x |  |
+| 10 | Chicken Salat |  |  |  |  |  |  |  |  |  |
 | 11 | Minar Spezial Salat |  |  |  |  |  |  |  |  |  |
 | 14 | Salmone |  |  |  |  |  |  |  |  |  |
 | 20 | Hamburgerle |  |  |  |  |  | x | x | x |  |
@@ -338,7 +338,7 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | – | Eistee | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 | – | Red Bull | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 
-**Ohne gesicherte Kennzeichnung (19):** Nr. 01 Grüner Salat, Nr. 02 Gurkensalat, Nr. 03 Tomatensalat, Nr. 04 Gemischter Salat, Nr. 10 Chicken Salat, Nr. 39 Cheese-Garnelen Burger, Nr. 40 Pommes, Nr. 41 Wedges, Nr. 42 Süßkartoffeln, Nr. 43 Curly Fries, Nr. 45 Bratkartoffeln, Nr. 66 Filo Pastry Shrimps, Nr. 73 Menü für 1 Person, Nr. 99a Schwäbische überbacken, Mineralwasser, Multivitamin, Sprite, Eistee, Red Bull.
+**Ohne gesicherte Kennzeichnung (15):** Nr. 01 Grüner Salat, Nr. 39 Cheese-Garnelen Burger, Nr. 40 Pommes, Nr. 41 Wedges, Nr. 42 Süßkartoffeln, Nr. 43 Curly Fries, Nr. 45 Bratkartoffeln, Nr. 66 Filo Pastry Shrimps, Nr. 73 Menü für 1 Person, Nr. 99a Schwäbische überbacken, Mineralwasser, Multivitamin, Sprite, Eistee, Red Bull.
 
 ## 3. Umsatzsteuer-Matrix (Stand: UNBESTÄTIGT – nicht live)
 

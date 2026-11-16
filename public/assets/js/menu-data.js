@@ -243,15 +243,15 @@ window.MINAR_DATA = {
   items: [
     /* SALATE */
     { nr: "01", cat: "salate", name: "Grüner Salat", prices: [4.9], opts: ["dressing"] },
-    { nr: "02", cat: "salate", name: "Gurkensalat", prices: [5.9], opts: ["dressing"] },
-    { nr: "03", cat: "salate", name: "Tomatensalat", desc: "frische Tomaten und Zwiebeln", prices: [5.9], opts: ["dressing"] },
-    { nr: "04", cat: "salate", name: "Gemischter Salat", desc: "grüner Salat, Kraut, Tomaten, Gurken und Karotten", prices: [8.5], opts: ["dressing"] },
+    { nr: "02", cat: "salate", name: "Gurkensalat", prices: [5.9], codes: "G,L", opts: ["dressing"] },
+    { nr: "03", cat: "salate", name: "Tomatensalat", desc: "frische Tomaten und Zwiebeln", prices: [5.9], codes: "G", opts: ["dressing"] },
+    { nr: "04", cat: "salate", name: "Gemischter Salat", desc: "grüner Salat, Kraut, Tomaten, Gurken und Karotten", prices: [8.5], codes: "G", opts: ["dressing"] },
     { nr: "05", cat: "salate", name: "Thunfischsalat", desc: "grüner Salat, Tomaten, Gurken, Thunfisch und Zwiebeln", prices: [9.5], codes: "D,F", opts: ["dressing"] },
     { nr: "06", cat: "salate", name: "Casa Nova", desc: "grüner Salat, Tomaten, Gurken, Mozzarella, Oliven, Paprika", prices: [10.5], codes: "9", opts: ["dressing"] },
-    { nr: "07", cat: "salate", name: "Griechischer", desc: "grüner Salat, Tomaten, Gurken, Peperoni, Paprika, Oliven, Zwiebeln und Weichkäse", prices: [10.9], codes: "G,9", opts: ["dressing"] },
-    { nr: "08", cat: "salate", name: "Nizza Salat", desc: "grüner Salat, Tomaten, Gurken, Oliven, Thunfisch", prices: [10.5], codes: "D,G,9", opts: ["dressing"] },
-    { nr: "09", cat: "salate", name: "Schwäbischer Teller", desc: "Salat, Tomaten, Gurken, Kraut, Karotten, Ei, Schinken, Käse", prices: [10.9], codes: "F,J,6,7,8,2", opts: ["dressing"] },
-    { nr: "10", cat: "salate", name: "Chicken Salat", desc: "grüner Salat, Tomaten, Gurken, Karotten, Paprika, Mais und gegrillte Hähnchenbrust", prices: [11.9], opts: ["dressing"] },
+    { nr: "07", cat: "salate", name: "Griechischer", desc: "grüner Salat, Tomaten, Gurken, Peperoni, Paprika, Oliven, Zwiebeln und Weichkäse", prices: [10.9], codes: "G,6,9", opts: ["dressing"] },
+    { nr: "08", cat: "salate", name: "Nizza Salat", desc: "grüner Salat, Tomaten, Gurken, Oliven, Thunfisch", prices: [10.5], codes: "D,G,6,9", opts: ["dressing"] },
+    { nr: "09", cat: "salate", name: "Schwäbischer Teller", desc: "Salat, Tomaten, Gurken, Kraut, Karotten, Ei, Schinken, Käse", prices: [10.9], codes: "F,J,2,3,6,7,8", opts: ["dressing"] },
+    { nr: "10", cat: "salate", name: "Chicken Salat", desc: "grüner Salat, Tomaten, Gurken, Karotten, Paprika, Mais und gegrillte Hähnchenbrust", prices: [11.9], codes: "G", opts: ["dressing"] },
     { nr: "11", cat: "salate", name: "Minar Spezial Salat", desc: "grüner Salat, Tomaten, Gurken, Karotten, Paprika, Mais, Hähnchenbrust mit Cornflakes-Panade", prices: [12.9], codes: "A,C,G", opts: ["dressing"] },
     { nr: "14", cat: "salate", name: "Salmone", desc: "grüner Salat, Tomaten, Gurken, Paprika, Mais, Karotten, gegrillter Lachs (200 g)", prices: [18.9], codes: "D", opts: ["dressing"] },
 

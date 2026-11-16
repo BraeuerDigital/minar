@@ -85,7 +85,27 @@ Lieferando zeigt **keine** Artikelnummern, Allergene, Zusatzstoffe oder Steuers�
 | 205, 206 | Chicken Vegetables Nudel, Vegetables Nudel | A, G, F |
 
   Die Angaben sind aus der Handschrift übernommen; der Betreiber sollte die Lesung einmal gegenprüfen (v. a. die letzte Ziffer bei 132–134a).
-- **Noch 19 Artikel ohne Kennzeichnung** (zeigen „auf Anfrage“): Salate 01–04 und 10, Nr. 39, Beilagen 40–43 und 45, Nr. 66, Nr. 73 (setzt sich aus gekennzeichneten Einzelartikeln zusammen), Nr. 99a sowie Mineralwasser, Multivitamin, Sprite, Eistee und Red Bull.
+- **Salate laut Lieferando-Produktinfo (Screenshots vom 16.11.2026):** Bei Abweichungen zur gedruckten Karte wurden beide Angaben zusammengeführt. Die Website zeigt also eher eine Kennzeichnung zu viel als eine zu wenig.
+
+| Nr. | Gericht | Karte | Lieferando | jetzt auf der Website |
+|---|---|---|---|---|
+| 02 | Gurkensalat | – | G, L | G, L |
+| 03 | Tomatensalat | – | G | G |
+| 04 | Gemischter Salat | – | G | G |
+| 10 | Chicken Salat | – | G | G |
+| 05 | Thunfischsalat | D, F | D, F | unverändert |
+| 06 | Casa Nova | 9 | 9 | unverändert |
+| 11 | Minar Spezial Salat | A, C, G | A, C, G | unverändert |
+| 14 | Salmone | D | D | unverändert |
+| 07 | Griechischer | G, 9 | 6, 9 (ohne G) | **G, 6, 9** |
+| 08 | Nizza Salat | D, G, 9 | D, 6, 9 (ohne G) | **D, G, 6, 9** |
+| 09 | Schwäbischer Teller | F, J, 2, 6, 7, 8 | F, J, 2, 3, 6, 7, Nitrat (ohne 8) | **F, J, 2, 3, 6, 7, 8** |
+
+  Rückfragen an den Betreiber:
+  - Beim Schwäbischen Teller stehen Ei und Käse in der Beschreibung, aber weder Karte noch Lieferando nennen C (Ei) oder G (Milch).
+  - „Nitrat“ hat keinen eigenen Code. Es ist nur über den Legendenhinweis zum Käse abgedeckt.
+  - Bei Griechischer und Nizza fehlt auf Lieferando das G für Milch, obwohl Käse enthalten ist.
+- **Noch 15 Artikel ohne Kennzeichnung** (zeigen „auf Anfrage“): Nr. 01 Grüner Salat, Nr. 39, Beilagen 40–43 und 45, Nr. 66, Nr. 73 (setzt sich aus gekennzeichneten Einzelartikeln zusammen), Nr. 99a sowie Mineralwasser, Multivitamin, Sprite, Eistee und Red Bull.
 
 ## E. Zusatzstoffe
 
@@ -145,7 +165,7 @@ Liefergebühr, Pfand, Ayran, Kombi-Menüs und kostenpflichtige Extras (folgen de
 3. Getränk im Menü für 1 Person: Größe, Auswahl, Pfand.
 4. Sour Cream als Dip; Uludağ 1,0 l.
 5. Platten-Beschreibungen (Frühlingsrollen, Rösti, Kroketten) – Karte oder Lieferando?
-6. Allergene und Zusatzstoffe für die 19 noch offenen Artikel; Lesung der handschriftlich ergänzten Codes gegenprüfen.
+6. Allergene und Zusatzstoffe für die 15 noch offenen Artikel; Abweichungen Karte ↔ Lieferando bei Nr. 07, 08, 09 bestätigen; Lesung der handschriftlich ergänzten Codes gegenprüfen.
 7. Pizza-Zusatzbeläge (Upsell) und Partypizza-Belag über 4 hinaus: Laut Notiz Preise von Lieferando – dort im öffentlich erreichbaren Shop nicht sichtbar. Preisliste vom Betreiber nötig, vorher keine Umsetzung.
 8. Burger-Belag laut Notiz „100 g Patty, grüner Salat, Tomate, Gurke, Zwiebel“ – Beschreibungen wurden nicht ungefragt umgeschrieben; Freigabe zur Ergänzung offen.
 9. In den Notizen steht einmal „Abholung bis 21:15“ und einmal „Abholung 21:30“ – umgesetzt ist 21:15 laut Masterprompt; bitte bestätigen.
