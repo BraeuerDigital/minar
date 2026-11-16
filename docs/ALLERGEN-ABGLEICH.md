@@ -2,7 +2,11 @@
 
 Stand: 16.11.2026 · Grundlage: 155 Lieferando-Screenshots „Weitere Produktinformationen“ (drei ZIP-Archive), ausgelesen per Texterkennung und bei Abweichungen einzeln gegengeprüft, sowie eine Plausibilitätsprüfung der Beschreibungen (z. B. „Käse“ ohne G).
 
-**Noch nichts auf der Website geändert.** Die Liste unten ist die Grundlage für die Freigabe.
+**Umgesetzt am 17.11.2026 (Freigabe Betreiberin):** Abschnitte 1, 2 und 4 sind komplett auf der Website übernommen.
+- Die Legende ist erweitert um **10 Nitrat/Nitritpökelsalz**, **11 Süßungsmittel**, **12 Phenylalaninquelle** und **13 gewachst**.
+- Bei Fanta und Mezzo Mix ist die 7 durch 4 ersetzt.
+- Red Bull trägt den Hinweis „Erhöhter Koffeingehalt“.
+- Offen bleiben Abschnitt 5 (Artikel ohne Screenshot) und Abschnitt 6.2 (Nitrat bei Wurst und Schinken auf Pizzen).
 
 Legende: A Gluten · B Krebstiere · C Ei · D Fisch · F Soja · G Milch · J Senf · L Sulfite · N Weichtiere · O Koffein — 2 Farbstoff · 3 Konservierungsstoff · 4 Säuerungsmittel · 5 Antioxidationsmittel · 6 Geschmacksverstärker · 7 Phosphat · 8 Emulgator · 9 geschwärzt
 

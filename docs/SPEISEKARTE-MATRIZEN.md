@@ -13,7 +13,7 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 03 | Tomatensalat | Salate |  |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 04 | Gemischter Salat | Salate |  |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 05 | Thunfischsalat | Salate |  |  |  | x |  | x |  |  |  |  |  |  |  | laut Karte |
-| 06 | Casa Nova | Salate |  |  |  |  |  |  |  |  |  |  |  |  |  | laut Karte |
+| 06 | Casa Nova | Salate |  |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 07 | Griechischer | Salate |  |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 08 | Nizza Salat | Salate |  |  |  | x |  |  | x |  |  |  |  |  |  | laut Karte |
 | 09 | Schwäbischer Teller | Salate |  |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
@@ -33,9 +33,9 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 30 | Minar BBQ Burger | Burger | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 34 | Schwaben Burger XXL | Burger | x |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 36 | Minar Burger | Burger | x |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
-| 37 | Vegetarischer Burger | Burger | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
-| 38 | Chicken und Garnelen Burger | Burger | x |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
-| 39 | Cheese-Garnelen Burger | Burger | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
+| 37 | Vegetarischer Burger | Burger | x |  | x |  |  | x | x |  |  |  |  |  |  | laut Karte |
+| 38 | Chicken und Garnelen Burger | Burger | x | x | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
+| 39 | Cheese-Garnelen Burger | Burger | x | x | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 40 | Pommes | Potatoes | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
 | 41 | Wedges | Potatoes | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
 | 42 | Süßkartoffeln | Potatoes | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
@@ -48,18 +48,18 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 52 | Mozzarella Sticks | Fingerfood | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 53 | Fischstäbchen | Fingerfood | x |  | x | x |  | x | x |  |  |  |  |  |  | laut Karte |
 | 54 | Chicken Nuggets | Fingerfood | x |  |  |  |  |  |  |  |  |  |  |  |  | laut Karte |
-| 56 | Chili Cheese Nuggets | Fingerfood | x |  | x |  |  |  |  |  |  |  |  |  |  | laut Karte |
+| 56 | Chili Cheese Nuggets | Fingerfood | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 57 | Chicken Finger | Fingerfood | x |  | x |  |  |  |  |  |  |  |  |  |  | laut Karte |
 | 59 | Camembert | Fingerfood | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 60 | Schnitzel Crunchy | Fingerfood | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 62 | Veggie Schnitzel | Fingerfood | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
-| 63 | Calamari Fritti | Fingerfood | x |  | x | x |  |  | x |  |  |  |  |  |  | laut Karte |
+| 63 | Calamari Fritti | Fingerfood | x |  | x | x |  |  | x |  |  |  |  | x |  | laut Karte |
 | 64 | Chicken Wings | Fingerfood | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
-| 66 | Filo Pastry Shrimps | Fingerfood | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
+| 66 | Filo Pastry Shrimps | Fingerfood | x | x |  |  |  |  |  |  |  |  |  |  |  | laut Karte |
 | 70 | Fingerfood Platte | Partyplatten | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 71 | Burger Platte | Partyplatten | x |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 72 | Minar Spezial Platte | Partyplatten | x |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
-| 73 | Menü für 1 Person | Partyplatten | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
+| 73 | Menü für 1 Person | Partyplatten | x |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 80 | Cocktail Dip | Dips | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 81 | Hot Cocktail Dip | Dips | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 82 | Sour Cream | Dips | x |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
@@ -67,7 +67,7 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 84 | BBQ Soße | Dips | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 85 | Sweet Chili Soße | Dips | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 87 | Dönersoße | Dips | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
-| 88 | Ketchup / Mayo / Remoulade | Dips | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
+| 88 | Ketchup / Mayo / Remoulade | Dips | x |  | x |  |  |  | x |  | x |  |  |  |  | laut Karte |
 | 90 | Hackfleischdrehspieß | Döner | x |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 91 | Hackfleischdrehspieß Minar | Döner | x |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 92 | Vegetarisch | Döner | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
@@ -81,7 +81,7 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 98a | BBQ Teller überbacken | Überbacken | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 98b | Lachs Teller überbacken | Überbacken | x |  | x | x |  |  | x |  |  |  |  |  |  | laut Karte |
 | 99 | Istanbul überbacken | Überbacken | x |  | x |  |  | x | x |  |  |  |  |  |  | laut Karte |
-| 99a | Schwäbische überbacken | Überbacken | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
+| 99a | Schwäbische überbacken | Überbacken |  |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 100 | Pizzabrot | Pizza | x |  |  |  |  |  |  |  |  |  |  |  |  | laut Karte |
 | 101 | Margherita | Pizza | x |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 102 | Zwiebel | Pizza | x |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
@@ -102,11 +102,11 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 117 | Vegetarisch | Pizza | x |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 118 | Pindi Express | Pizza | x |  |  |  |  | x | x |  |  |  |  |  |  | laut Karte |
 | 119 | Salmone | Pizza | x |  |  | x |  |  | x |  |  |  |  |  |  | laut Karte |
-| 120 | Gamberetti | Pizza | x |  |  | x |  |  | x |  |  |  |  |  |  | laut Karte |
-| 121 | Frutti di Mare | Pizza | x |  |  | x |  |  | x |  |  |  |  |  |  | laut Karte |
+| 120 | Gamberetti | Pizza | x | x |  | x |  |  | x |  |  |  |  |  |  | laut Karte |
+| 121 | Frutti di Mare | Pizza | x | x |  | x |  |  | x |  |  |  |  | x |  | laut Karte |
 | 122 | Speziale | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
-| 123 | Venezia | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
-| 124 | Vera | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
+| 123 | Venezia | Pizza | x |  |  | x |  | x | x |  | x |  |  |  |  | laut Karte |
+| 124 | Vera | Pizza | x |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 125 | Quattro Formaggi | Pizza | x |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 126 | Minar Spezial | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 128 | Calzone Spezial | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
@@ -118,20 +118,20 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 134a | Oliven | Pizza | x |  |  |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 135 | Partypizza Margherita | Partypizza | x |  |  |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 136 | Partypizza | Partypizza | x |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
-| 139 | Aglio Spaghetti | Nudelgerichte | x |  | x |  |  | x |  |  |  |  |  |  |  | laut Karte |
+| 139 | Aglio Spaghetti | Nudelgerichte | x |  | x |  |  | x | x |  |  |  |  |  |  | laut Karte |
 | 140 | Napoli | Nudelgerichte | x |  | x |  |  | x |  |  |  |  |  |  |  | laut Karte |
 | 141 | Arrabbiata | Nudelgerichte | x |  | x |  |  | x |  |  |  |  |  |  |  | laut Karte |
 | 142 | Bolognese | Nudelgerichte | x |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
-| 143 | Brokkoli | Nudelgerichte | x |  | x |  |  | x |  |  |  |  |  |  |  | laut Karte |
+| 143 | Brokkoli | Nudelgerichte | x |  | x |  |  | x | x |  |  |  |  |  |  | laut Karte |
 | 144 | Carbonara | Nudelgerichte | x |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
-| 145 | Vegetarisch | Nudelgerichte | x |  | x |  |  |  |  |  |  |  |  |  |  | laut Karte |
+| 145 | Vegetarisch | Nudelgerichte | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 146 | Emiliani | Nudelgerichte | x |  | x |  |  | x | x |  | x |  |  |  |  | laut Karte |
 | 147 | Quattro Formaggi | Nudelgerichte | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 149 | Spinaci | Nudelgerichte | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 150 | Con Pollo | Nudelgerichte | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 151 | Salmone | Nudelgerichte | x |  | x | x |  |  | x |  |  |  |  |  |  | laut Karte |
-| 152 | Gamberoni | Nudelgerichte | x |  | x | x |  |  | x |  |  |  |  |  |  | laut Karte |
-| 153 | Frutti di Mare | Nudelgerichte | x |  | x | x |  |  | x |  |  |  |  |  |  | laut Karte |
+| 152 | Gamberoni | Nudelgerichte | x | x | x | x |  |  | x |  |  |  |  |  |  | laut Karte |
+| 153 | Frutti di Mare | Nudelgerichte | x | x | x | x |  |  | x |  |  |  |  | x |  | laut Karte |
 | 205 | Chicken Vegetables Nudel | Chinesische Nudeln | x |  | x |  |  | x |  |  |  |  |  |  |  | laut Karte |
 | 206 | Vegetables Nudel | Chinesische Nudeln | x |  | x |  |  | x |  |  |  |  |  |  |  | laut Karte |
 | 210 | Napoli | Gnocchi | x |  | x |  |  | x |  |  |  |  |  |  |  | laut Karte |
@@ -152,10 +152,10 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | 172 | Mixed Vegetables | Vegetarische Gerichte |  |  |  |  |  | x | x |  |  |  |  |  |  | laut Karte |
 | 180 | Wiener Art | Schnitzel und Steak | x |  | x |  |  |  |  |  |  |  |  |  |  | laut Karte |
 | 181 | Allgäuer Art | Schnitzel und Steak | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
-| 182 | Hawaii | Schnitzel und Steak | x |  | x |  |  |  |  |  |  |  |  |  |  | laut Karte |
-| 183 | Diabolo | Schnitzel und Steak | x |  | x |  |  |  |  |  |  |  |  |  |  | laut Karte |
+| 182 | Hawaii | Schnitzel und Steak | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
+| 183 | Diabolo | Schnitzel und Steak | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 184 | Los Angeles | Schnitzel und Steak | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
-| 190 | Brownie | Dessert |  |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
+| 190 | Brownie | Dessert | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 192 | Donut | Dessert | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 193 | Ben & Jerry’s | Dessert | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
 | 195 | Tiramisu | Dessert | x |  | x |  |  |  | x |  |  |  |  |  |  | laut Karte |
@@ -167,178 +167,178 @@ Legende: **x** = laut gedruckter Karte gekennzeichnet · **?** = Kennzeichnung f
 | – | Fanta | Getränke |  |  |  |  |  |  |  |  |  |  |  |  |  | laut Karte |
 | – | Mezzo Mix | Getränke |  |  |  |  |  |  |  |  |  |  |  |  | x | laut Karte |
 | – | Uludağ | Getränke |  |  |  |  |  |  |  |  |  |  |  |  |  | laut Karte |
-| – | Sprite | Getränke | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
+| – | Sprite | Getränke |  |  |  |  |  |  |  |  |  |  |  |  |  | laut Karte |
 | – | Eistee | Getränke | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
-| – | Red Bull | Getränke | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | keine Angabe – prüfen |
+| – | Red Bull | Getränke |  |  |  |  |  |  |  |  |  |  |  |  | x | laut Karte |
 
 ## 2. Zusatzstoffe
 
-| Nr. | Gericht | 1 Verdickungsmittel | 2 Farbstoffe | 3 Konservierungsstoffe | 4 Säuerungsmittel | 5 Antioxidationsmittel | 6 Geschmacksverstärker | 7 Phosphat | 8 Emulgator | 9 Geschwärzt |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 01 | Grüner Salat | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 02 | Gurkensalat |  |  |  |  |  |  |  |  |  |
-| 03 | Tomatensalat |  |  |  |  |  |  |  |  |  |
-| 04 | Gemischter Salat |  |  |  |  |  |  |  |  |  |
-| 05 | Thunfischsalat |  |  |  |  |  |  |  |  |  |
-| 06 | Casa Nova |  |  |  |  |  |  |  |  | x |
-| 07 | Griechischer |  |  |  |  |  | x |  |  | x |
-| 08 | Nizza Salat |  |  |  |  |  | x |  |  | x |
-| 09 | Schwäbischer Teller |  | x | x |  |  | x | x | x |  |
-| 10 | Chicken Salat |  |  |  |  |  |  |  |  |  |
-| 11 | Minar Spezial Salat |  |  |  |  |  |  |  |  |  |
-| 14 | Salmone |  |  |  |  |  |  |  |  |  |
-| 20 | Hamburgerle |  |  |  |  |  | x | x | x |  |
-| 21 | Cheeseburgerle |  | x |  |  |  | x | x | x |  |
-| 22 | Fischburgerle |  |  |  |  |  |  |  |  |  |
-| 23 | Chickenburgerle |  |  |  |  |  | x | x | x |  |
-| 24 | Hamburger XXL |  |  |  |  |  | x | x | x |  |
-| 25 | Cheeseburger XXL |  | x |  |  |  | x | x | x |  |
-| 26 | Chickenburger XXL |  |  |  |  |  | x | x | x |  |
-| 27 | Hot Chili Cheeseburger XXL |  | x |  |  |  | x | x | x |  |
-| 28 | Minar Spezial Burger XXL |  | x |  |  |  | x | x | x |  |
-| 29 | Scharf Lady |  | x |  |  |  | x | x | x |  |
-| 30 | Minar BBQ Burger |  |  |  |  |  |  |  |  |  |
-| 34 | Schwaben Burger XXL |  |  |  |  |  | x | x | x |  |
-| 36 | Minar Burger |  | x |  |  |  | x | x | x |  |
-| 37 | Vegetarischer Burger |  |  |  |  |  |  |  |  |  |
-| 38 | Chicken und Garnelen Burger |  | x |  |  |  | x | x | x |  |
-| 39 | Cheese-Garnelen Burger | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 40 | Pommes | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 41 | Wedges | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 42 | Süßkartoffeln | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 43 | Curly Fries | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 44 | Kroketten |  |  |  |  |  |  |  |  |  |
-| 45 | Bratkartoffeln | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 46 | Rösti |  |  |  |  |  |  |  |  |  |
-| 50 | Onion Rings |  |  |  |  |  |  |  |  |  |
-| 51 | Frühlingsrollen |  |  |  |  |  |  |  |  |  |
-| 52 | Mozzarella Sticks |  |  |  |  |  |  |  |  |  |
-| 53 | Fischstäbchen |  |  |  |  |  |  |  |  |  |
-| 54 | Chicken Nuggets |  |  |  |  |  |  | x |  |  |
-| 56 | Chili Cheese Nuggets |  |  |  |  |  |  |  |  |  |
-| 57 | Chicken Finger |  |  |  |  |  |  |  |  |  |
-| 59 | Camembert |  |  |  |  |  |  |  |  |  |
-| 60 | Schnitzel Crunchy |  |  |  |  |  |  |  |  |  |
-| 62 | Veggie Schnitzel |  |  |  |  |  |  |  |  |  |
-| 63 | Calamari Fritti |  |  |  |  |  |  |  |  |  |
-| 64 | Chicken Wings |  |  |  |  |  |  |  |  |  |
-| 66 | Filo Pastry Shrimps | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 70 | Fingerfood Platte |  |  |  |  |  |  |  |  |  |
-| 71 | Burger Platte |  |  |  |  |  | x | x | x |  |
-| 72 | Minar Spezial Platte |  |  |  |  |  | x | x | x |  |
-| 73 | Menü für 1 Person | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 80 | Cocktail Dip |  |  |  |  |  |  |  |  |  |
-| 81 | Hot Cocktail Dip |  |  |  |  |  |  |  |  |  |
-| 82 | Sour Cream |  |  |  |  |  |  |  |  |  |
-| 83 | Minar Spezial Dip |  |  |  |  |  |  |  |  |  |
-| 84 | BBQ Soße |  |  |  |  |  |  |  |  |  |
-| 85 | Sweet Chili Soße |  |  |  |  |  |  |  |  |  |
-| 87 | Dönersoße |  |  |  |  |  |  |  |  |  |
-| 88 | Ketchup / Mayo / Remoulade |  |  |  |  |  |  |  |  |  |
-| 90 | Hackfleischdrehspieß |  |  |  |  |  | x | x | x |  |
-| 91 | Hackfleischdrehspieß Minar |  |  |  |  |  | x | x | x |  |
-| 92 | Vegetarisch |  |  |  |  |  | x | x | x |  |
-| 93 | Dürüm |  |  |  |  |  | x | x | x |  |
-| 94 | Dürüm vegetarisch |  |  |  |  |  | x | x | x |  |
-| 95 | Falafel Teller |  |  |  |  |  | x | x | x |  |
-| 96 | Dönerteller |  |  |  |  |  | x | x | x |  |
-| 96a | Dönerteller mit Beilage |  |  |  |  |  | x | x | x |  |
-| 97 | Dönerteller überbacken |  |  |  |  |  | x | x | x |  |
-| 98 | Dönerteller Minar überbacken |  |  |  |  |  | x | x | x |  |
-| 98a | BBQ Teller überbacken |  |  |  |  |  | x | x | x |  |
-| 98b | Lachs Teller überbacken |  |  |  |  |  | x | x | x |  |
-| 99 | Istanbul überbacken |  |  |  |  |  | x |  |  |  |
-| 99a | Schwäbische überbacken | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 100 | Pizzabrot |  |  |  |  |  |  |  |  |  |
-| 101 | Margherita |  |  |  |  |  |  |  |  |  |
-| 102 | Zwiebel |  |  |  |  |  |  |  |  |  |
-| 103 | Mais |  |  |  |  |  |  |  |  |  |
-| 104 | Brokkoli |  |  |  |  |  |  |  |  |  |
-| 105 | Funghi |  |  |  |  |  |  |  |  |  |
-| 106 | Salami |  |  |  |  |  | x | x | x |  |
-| 107 | Schinken |  |  |  |  |  | x | x | x |  |
-| 108 | Sucuk mit Ei |  |  |  |  |  | x | x | x |  |
-| 109 | Spinat |  |  |  |  |  |  |  |  |  |
-| 110 | Thunfisch |  |  |  |  |  |  |  |  |  |
-| 111 | Hawaii |  |  |  |  |  | x | x | x |  |
-| 112 | Salami-Peperoni |  |  |  |  |  | x | x | x |  |
-| 113 | Diavolo |  |  |  |  |  | x | x | x |  |
-| 114 | Salami-Schinken |  |  |  |  |  | x | x | x |  |
-| 115 | Roma |  |  |  |  |  | x | x | x |  |
-| 116 | Hackfleisch |  |  |  |  |  | x | x | x |  |
-| 117 | Vegetarisch |  |  |  |  |  |  |  |  | x |
-| 118 | Pindi Express |  |  |  |  |  |  |  |  |  |
-| 119 | Salmone |  |  |  |  |  |  |  |  |  |
-| 120 | Gamberetti |  |  |  |  |  |  |  |  |  |
-| 121 | Frutti di Mare |  |  |  |  |  |  |  |  |  |
-| 122 | Speziale |  |  |  |  |  | x | x | x |  |
-| 123 | Venezia |  |  |  |  |  | x | x | x | x |
-| 124 | Vera |  |  |  |  |  | x | x | x |  |
-| 125 | Quattro Formaggi |  | x |  |  |  |  |  |  |  |
-| 126 | Minar Spezial |  |  |  |  |  | x | x | x |  |
-| 128 | Calzone Spezial |  |  |  |  |  | x | x | x |  |
-| 129 | Calzone Kebap |  |  |  |  |  | x | x | x |  |
-| 131 | Sardellen |  |  |  |  |  | x | x | x |  |
-| 132 | Artischocke |  |  |  |  |  | x | x | x |  |
-| 133 | Paprika |  |  |  |  |  | x | x | x |  |
-| 134 | Caprese |  |  |  |  |  | x | x | x |  |
-| 134a | Oliven |  |  |  |  |  | x | x | x |  |
-| 135 | Partypizza Margherita |  |  |  |  |  |  |  |  |  |
-| 136 | Partypizza |  |  |  |  |  | x | x | x |  |
-| 139 | Aglio Spaghetti |  |  |  |  |  | x |  |  | x |
-| 140 | Napoli |  |  |  |  |  | x |  |  |  |
-| 141 | Arrabbiata |  |  |  |  |  | x |  |  |  |
-| 142 | Bolognese |  |  |  |  |  | x | x | x |  |
-| 143 | Brokkoli |  |  |  |  |  | x |  |  |  |
-| 144 | Carbonara |  |  |  |  |  | x | x | x |  |
-| 145 | Vegetarisch |  |  |  |  |  |  |  |  |  |
-| 146 | Emiliani |  |  |  |  |  | x | x | x |  |
-| 147 | Quattro Formaggi |  |  |  |  |  |  |  |  |  |
-| 149 | Spinaci |  |  |  |  |  |  |  |  |  |
-| 150 | Con Pollo |  |  |  |  |  | x |  |  |  |
-| 151 | Salmone |  |  |  |  |  |  |  |  |  |
-| 152 | Gamberoni |  |  |  |  |  |  |  |  |  |
-| 153 | Frutti di Mare |  |  |  |  |  |  |  |  |  |
-| 205 | Chicken Vegetables Nudel |  |  |  |  |  |  |  |  |  |
-| 206 | Vegetables Nudel |  |  |  |  |  |  |  |  |  |
-| 210 | Napoli |  |  |  |  |  | x |  |  |  |
-| 211 | Bolognese |  |  |  |  |  | x |  |  |  |
-| 212 | Vegetarisch |  |  |  |  |  |  |  |  |  |
-| 213 | Quattro Formaggi |  |  |  |  |  |  |  |  |  |
-| 155 | Naan |  |  |  |  |  |  |  |  |  |
-| 156 | Garlic Naan |  |  |  |  |  |  |  |  |  |
-| 157 | Mix Chicken Vegetable Masala |  | x |  |  |  | x |  |  |  |
-| 158 | Minar Chicken Cheese Masala |  | x |  |  |  | x |  |  |  |
-| 160 | Chicken Curry |  | x |  |  |  | x |  |  |  |
-| 161 | Chicken Korma |  | x |  |  |  | x |  |  |  |
-| 162 | Chili Chicken |  | x |  |  |  | x |  |  |  |
-| 163 | Chicken Palak |  | x |  |  |  | x |  |  |  |
-| 166 | Butter Chicken |  | x |  |  |  | x |  |  |  |
-| 167 | Chicken Tikka Masala |  | x |  |  |  | x |  |  |  |
-| 170 | Alu Palak |  | x |  |  |  | x |  |  |  |
-| 172 | Mixed Vegetables |  | x |  |  |  | x |  |  |  |
-| 180 | Wiener Art |  |  |  |  |  |  |  |  |  |
-| 181 | Allgäuer Art |  |  |  |  |  |  |  |  |  |
-| 182 | Hawaii |  |  |  |  |  |  |  |  |  |
-| 183 | Diabolo |  |  |  |  |  |  |  |  |  |
-| 184 | Los Angeles |  |  |  |  |  |  |  |  |  |
-| 190 | Brownie |  |  |  |  |  |  |  |  |  |
-| 192 | Donut |  |  |  |  |  |  |  |  |  |
-| 193 | Ben & Jerry’s |  |  |  |  |  |  |  |  |  |
-| 195 | Tiramisu |  |  |  |  |  |  |  |  |  |
-| – | Ayran |  |  |  |  |  |  |  |  |  |
-| – | Mineralwasser | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| – | Multivitamin | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| – | Coca-Cola |  | x |  |  |  |  |  |  |  |
-| – | Cola Zero |  | x |  |  |  |  |  |  |  |
-| – | Fanta |  | x |  |  | x |  | x |  |  |
-| – | Mezzo Mix |  | x |  |  |  |  | x |  |  |
-| – | Uludağ |  |  | x | x |  |  |  |  |  |
-| – | Sprite | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| – | Eistee | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| – | Red Bull | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| Nr. | Gericht | 1 Verdickungsmittel | 2 Farbstoffe | 3 Konservierungsstoffe | 4 Säuerungsmittel | 5 Antioxidationsmittel | 6 Geschmacksverstärker | 7 Phosphat | 8 Emulgator | 9 Geschwärzt | 10 Nitrat / Nitritpökelsalz | 11 Mit Süßungsmittel(n) | 12 Enthält eine Phenylalaninquelle | 13 Gewachst |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 01 | Grüner Salat | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 02 | Gurkensalat |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 03 | Tomatensalat |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 04 | Gemischter Salat |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 05 | Thunfischsalat |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 06 | Casa Nova |  |  |  |  |  |  |  |  | x |  |  |  |  |
+| 07 | Griechischer |  |  |  |  |  | x |  |  | x |  |  |  |  |
+| 08 | Nizza Salat |  |  |  |  |  | x |  |  | x |  |  |  |  |
+| 09 | Schwäbischer Teller |  | x | x |  |  | x | x | x |  | x |  |  |  |
+| 10 | Chicken Salat |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 11 | Minar Spezial Salat |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 14 | Salmone |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 20 | Hamburgerle |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 21 | Cheeseburgerle |  | x |  |  |  | x | x | x |  |  |  |  |  |
+| 22 | Fischburgerle |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 23 | Chickenburgerle |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 24 | Hamburger XXL |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 25 | Cheeseburger XXL |  | x |  |  |  | x | x | x |  |  |  |  |  |
+| 26 | Chickenburger XXL |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 27 | Hot Chili Cheeseburger XXL |  | x |  |  |  | x | x | x |  |  |  |  |  |
+| 28 | Minar Spezial Burger XXL |  | x |  |  |  | x | x | x |  |  |  |  |  |
+| 29 | Scharf Lady |  | x |  |  |  | x | x | x |  |  |  |  |  |
+| 30 | Minar BBQ Burger |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 34 | Schwaben Burger XXL |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 36 | Minar Burger |  | x | x |  |  | x | x | x | x |  |  |  |  |
+| 37 | Vegetarischer Burger |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 38 | Chicken und Garnelen Burger |  | x | x |  |  | x | x | x | x |  |  |  |  |
+| 39 | Cheese-Garnelen Burger |  |  | x |  |  |  | x |  | x |  |  |  |  |
+| 40 | Pommes | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 41 | Wedges | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 42 | Süßkartoffeln | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 43 | Curly Fries | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 44 | Kroketten |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 45 | Bratkartoffeln | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 46 | Rösti |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 50 | Onion Rings |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 51 | Frühlingsrollen |  |  |  |  |  | x |  |  |  |  |  |  |  |
+| 52 | Mozzarella Sticks |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 53 | Fischstäbchen |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 54 | Chicken Nuggets |  |  |  |  |  |  | x |  |  |  |  |  |  |
+| 56 | Chili Cheese Nuggets |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 57 | Chicken Finger |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 59 | Camembert |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 60 | Schnitzel Crunchy |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 62 | Veggie Schnitzel |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 63 | Calamari Fritti |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 64 | Chicken Wings |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 66 | Filo Pastry Shrimps |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 70 | Fingerfood Platte |  |  |  |  |  | x |  |  |  |  |  |  |  |
+| 71 | Burger Platte |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 72 | Minar Spezial Platte |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 73 | Menü für 1 Person |  | x |  |  |  | x | x | x |  |  |  |  |  |
+| 80 | Cocktail Dip |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 81 | Hot Cocktail Dip |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 82 | Sour Cream |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 83 | Minar Spezial Dip |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 84 | BBQ Soße |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 85 | Sweet Chili Soße |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 87 | Dönersoße |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 88 | Ketchup / Mayo / Remoulade |  |  |  |  | x |  |  |  |  |  |  |  |  |
+| 90 | Hackfleischdrehspieß |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 91 | Hackfleischdrehspieß Minar |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 92 | Vegetarisch |  |  |  |  |  | x | x | x | x |  |  |  | x |
+| 93 | Dürüm |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 94 | Dürüm vegetarisch |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 95 | Falafel Teller |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 96 | Dönerteller |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 96a | Dönerteller mit Beilage |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 97 | Dönerteller überbacken |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 98 | Dönerteller Minar überbacken |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 98a | BBQ Teller überbacken |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 98b | Lachs Teller überbacken |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 99 | Istanbul überbacken |  |  |  |  |  | x |  |  |  |  |  |  |  |
+| 99a | Schwäbische überbacken |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 100 | Pizzabrot |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 101 | Margherita |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 102 | Zwiebel |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 103 | Mais |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 104 | Brokkoli |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 105 | Funghi |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 106 | Salami |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 107 | Schinken |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 108 | Sucuk mit Ei |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 109 | Spinat |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 110 | Thunfisch |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 111 | Hawaii |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 112 | Salami-Peperoni |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 113 | Diavolo |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 114 | Salami-Schinken |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 115 | Roma |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 116 | Hackfleisch |  | x |  |  |  | x | x | x |  |  |  |  |  |
+| 117 | Vegetarisch |  |  |  |  |  |  |  |  | x |  |  |  |  |
+| 118 | Pindi Express |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 119 | Salmone |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 120 | Gamberetti |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 121 | Frutti di Mare |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 122 | Speziale |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 123 | Venezia |  |  |  |  |  | x | x | x | x |  | x |  | x |
+| 124 | Vera |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 125 | Quattro Formaggi |  | x |  |  |  |  |  |  |  |  |  |  |  |
+| 126 | Minar Spezial |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 128 | Calzone Spezial |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 129 | Calzone Kebap |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 131 | Sardellen |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 132 | Artischocke |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 133 | Paprika |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 134 | Caprese |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 134a | Oliven |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 135 | Partypizza Margherita |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 136 | Partypizza |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 139 | Aglio Spaghetti |  |  |  |  |  | x |  |  | x |  |  |  |  |
+| 140 | Napoli |  |  |  |  |  | x |  |  |  |  |  |  |  |
+| 141 | Arrabbiata |  |  |  |  |  | x |  |  |  |  |  |  |  |
+| 142 | Bolognese |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 143 | Brokkoli |  |  |  |  |  | x |  |  |  |  |  |  |  |
+| 144 | Carbonara |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 145 | Vegetarisch |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 146 | Emiliani |  |  |  |  |  | x | x | x |  |  |  |  |  |
+| 147 | Quattro Formaggi |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 149 | Spinaci |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 150 | Con Pollo |  |  |  |  |  | x |  |  |  |  |  |  |  |
+| 151 | Salmone |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 152 | Gamberoni |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 153 | Frutti di Mare |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 205 | Chicken Vegetables Nudel |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 206 | Vegetables Nudel |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 210 | Napoli |  |  |  |  |  | x |  |  | x |  |  |  |  |
+| 211 | Bolognese |  |  |  |  |  | x |  |  | x |  |  |  |  |
+| 212 | Vegetarisch |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 213 | Quattro Formaggi |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 155 | Naan |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 156 | Garlic Naan |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 157 | Mix Chicken Vegetable Masala |  | x |  |  |  | x |  |  |  |  |  |  |  |
+| 158 | Minar Chicken Cheese Masala |  | x |  |  |  | x |  |  |  |  |  |  |  |
+| 160 | Chicken Curry |  | x |  |  |  | x |  |  |  |  |  |  |  |
+| 161 | Chicken Korma |  | x |  |  |  | x |  |  |  |  |  |  |  |
+| 162 | Chili Chicken |  | x |  |  |  | x |  |  |  |  |  |  |  |
+| 163 | Chicken Palak |  | x | x |  |  | x | x |  |  |  |  |  |  |
+| 166 | Butter Chicken |  | x |  |  |  | x |  |  |  |  |  |  |  |
+| 167 | Chicken Tikka Masala |  | x |  |  |  | x |  |  |  |  |  |  |  |
+| 170 | Alu Palak |  | x | x |  |  | x | x |  |  |  |  |  |  |
+| 172 | Mixed Vegetables |  | x |  |  |  | x |  |  |  |  |  |  |  |
+| 180 | Wiener Art |  |  | x |  |  |  |  |  |  | x |  |  |  |
+| 181 | Allgäuer Art |  | x | x |  |  |  |  |  |  | x |  |  |  |
+| 182 | Hawaii |  | x | x |  |  |  |  |  |  | x |  |  |  |
+| 183 | Diabolo |  |  | x |  |  |  |  |  |  | x |  |  |  |
+| 184 | Los Angeles |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 190 | Brownie |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 192 | Donut |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 193 | Ben & Jerry’s |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 195 | Tiramisu |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| – | Ayran |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| – | Mineralwasser | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| – | Multivitamin | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| – | Coca-Cola |  | x |  |  |  |  |  |  |  |  |  |  |  |
+| – | Cola Zero |  | x |  |  |  |  |  |  |  |  | x | x |  |
+| – | Fanta |  | x |  | x | x |  |  |  |  |  |  |  |  |
+| – | Mezzo Mix |  | x |  | x |  |  |  |  |  |  |  |  |  |
+| – | Uludağ |  |  | x | x |  |  |  |  |  |  |  |  |  |
+| – | Sprite |  |  |  | x |  |  |  |  |  |  |  |  |  |
+| – | Eistee | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| – | Red Bull |  | x |  |  |  |  |  |  |  |  |  |  |  |
 
-**Ohne gesicherte Kennzeichnung (15):** Nr. 01 Grüner Salat, Nr. 39 Cheese-Garnelen Burger, Nr. 40 Pommes, Nr. 41 Wedges, Nr. 42 Süßkartoffeln, Nr. 43 Curly Fries, Nr. 45 Bratkartoffeln, Nr. 66 Filo Pastry Shrimps, Nr. 73 Menü für 1 Person, Nr. 99a Schwäbische überbacken, Mineralwasser, Multivitamin, Sprite, Eistee, Red Bull.
+**Ohne gesicherte Kennzeichnung (9):** Nr. 01 Grüner Salat, Nr. 40 Pommes, Nr. 41 Wedges, Nr. 42 Süßkartoffeln, Nr. 43 Curly Fries, Nr. 45 Bratkartoffeln, Mineralwasser, Multivitamin, Eistee.
 
 ## 3. Umsatzsteuer-Matrix (Stand: UNBESTÄTIGT – nicht live)
 

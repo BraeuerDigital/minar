@@ -147,7 +147,11 @@ window.MINAR_DATA = {
       "6": "Geschmacksverstärker",
       "7": "Phosphat",
       "8": "Emulgator",
-      "9": "Geschwärzt"
+      "9": "Geschwärzt",
+      "10": "Nitrat / Nitritpökelsalz",
+      "11": "Mit Süßungsmittel(n)",
+      "12": "Enthält eine Phenylalaninquelle",
+      "13": "Gewachst"
     },
     notes: [
       "Käse: Konservierungsstoffe, Farbstoffe, Nitrat, Natamycin.",
@@ -247,10 +251,10 @@ window.MINAR_DATA = {
     { nr: "03", cat: "salate", name: "Tomatensalat", desc: "frische Tomaten und Zwiebeln", prices: [5.9], codes: "G", opts: ["dressing"] },
     { nr: "04", cat: "salate", name: "Gemischter Salat", desc: "grüner Salat, Kraut, Tomaten, Gurken und Karotten", prices: [8.5], codes: "G", opts: ["dressing"] },
     { nr: "05", cat: "salate", name: "Thunfischsalat", desc: "grüner Salat, Tomaten, Gurken, Thunfisch und Zwiebeln", prices: [9.5], codes: "D,F", opts: ["dressing"] },
-    { nr: "06", cat: "salate", name: "Casa Nova", desc: "grüner Salat, Tomaten, Gurken, Mozzarella, Oliven, Paprika", prices: [10.5], codes: "9", opts: ["dressing"] },
+    { nr: "06", cat: "salate", name: "Casa Nova", desc: "grüner Salat, Tomaten, Gurken, Mozzarella, Oliven, Paprika", prices: [10.5], codes: "G,9", opts: ["dressing"] },
     { nr: "07", cat: "salate", name: "Griechischer", desc: "grüner Salat, Tomaten, Gurken, Peperoni, Paprika, Oliven, Zwiebeln und Weichkäse", prices: [10.9], codes: "G,6,9", opts: ["dressing"] },
     { nr: "08", cat: "salate", name: "Nizza Salat", desc: "grüner Salat, Tomaten, Gurken, Oliven, Thunfisch", prices: [10.5], codes: "D,G,6,9", opts: ["dressing"] },
-    { nr: "09", cat: "salate", name: "Schwäbischer Teller", desc: "Salat, Tomaten, Gurken, Kraut, Karotten, Ei, Schinken, Käse", prices: [10.9], codes: "C,G,F,J,2,3,6,7,8", opts: ["dressing"] },
+    { nr: "09", cat: "salate", name: "Schwäbischer Teller", desc: "Salat, Tomaten, Gurken, Kraut, Karotten, Ei, Schinken, Käse", prices: [10.9], codes: "C,G,F,J,2,3,6,7,8,10", opts: ["dressing"] },
     { nr: "10", cat: "salate", name: "Chicken Salat", desc: "grüner Salat, Tomaten, Gurken, Karotten, Paprika, Mais und gegrillte Hähnchenbrust", prices: [11.9], codes: "G", opts: ["dressing"] },
     { nr: "11", cat: "salate", name: "Minar Spezial Salat", desc: "grüner Salat, Tomaten, Gurken, Karotten, Paprika, Mais, Hähnchenbrust mit Cornflakes-Panade", prices: [12.9], codes: "A,C,G", opts: ["dressing"] },
     { nr: "14", cat: "salate", name: "Salmone", desc: "grüner Salat, Tomaten, Gurken, Paprika, Mais, Karotten, gegrillter Lachs (200 g)", prices: [18.9], codes: "D", opts: ["dressing"] },
@@ -268,10 +272,10 @@ window.MINAR_DATA = {
     { nr: "29", cat: "burger", name: "Scharf Lady", desc: "Hähnchenbrust mit Cornflakes-Panade, Cheddarkäse, Jalapeños, Spiegelei, Hot-Cocktailsoße", prices: [13.5], codes: "A,C,G,F,J,6,7,8,2", opts: ["burger-extra", "dips"] },
     { nr: "30", cat: "burger", name: "Minar BBQ Burger", desc: "Patty, Cheddarkäse, Spiegelei, Röstzwiebeln, BBQ-Soße", prices: [13.9], codes: "A,C,G", opts: ["burger-extra", "dips"] },
     { nr: "34", cat: "burger", name: "Schwaben Burger XXL", desc: "200 g Rindfleisch-Patty, Käsespätzle, grüner Salat, Tomaten, Gurken, Röstzwiebeln und Smoky Cocktailsoße", prices: [18.9], codes: "A,C,G,F,J,6,7,8", opts: ["burger-extra", "dips"] },
-    { nr: "36", cat: "burger", name: "Minar Burger", desc: "mit Rind, Chicken Patty, grüner Salat, Tomaten, Gurken, Röstzwiebeln, Smoky Cocktailsoße, Cheddarkäse", prices: [13.9], codes: "A,C,G,F,J,2,6,7,8", opts: ["burger-extra", "dips"] },
-    { nr: "37", cat: "burger", name: "Vegetarischer Burger", desc: "vegetarisches Schnitzel, Cheddarkäse, Smoky Cocktailsoße", prices: [10.5], codes: "A,C,G", opts: ["burger-extra", "dips"], tags: ["vegetarisch"] },
-    { nr: "38", cat: "burger", name: "Chicken und Garnelen Burger", desc: "mit Tomaten, Gurken, Röstzwiebeln, Cocktailsoße, Cheddarkäse", prices: [12.9], codes: "A,C,G,F,J,2,6,7,8", opts: ["burger-extra", "dips"] },
-    { nr: "39", cat: "burger", name: "Cheese-Garnelen Burger", desc: "mit Tomaten, Cheddarkäse, Gurken, Röstzwiebeln und Cocktailsoße", prices: [12.9], opts: ["burger-extra", "dips"] },
+    { nr: "36", cat: "burger", name: "Minar Burger", desc: "mit Rind, Chicken Patty, grüner Salat, Tomaten, Gurken, Röstzwiebeln, Smoky Cocktailsoße, Cheddarkäse", prices: [13.9], codes: "A,C,G,F,J,2,3,6,7,8,9", opts: ["burger-extra", "dips"] },
+    { nr: "37", cat: "burger", name: "Vegetarischer Burger", desc: "vegetarisches Schnitzel, Cheddarkäse, Smoky Cocktailsoße", prices: [10.5], codes: "A,C,G,F", opts: ["burger-extra", "dips"], tags: ["vegetarisch"] },
+    { nr: "38", cat: "burger", name: "Chicken und Garnelen Burger", desc: "mit Tomaten, Gurken, Röstzwiebeln, Cocktailsoße, Cheddarkäse", prices: [12.9], codes: "A,B,C,G,F,J,2,3,6,7,8,9", opts: ["burger-extra", "dips"] },
+    { nr: "39", cat: "burger", name: "Cheese-Garnelen Burger", desc: "mit Tomaten, Cheddarkäse, Gurken, Röstzwiebeln und Cocktailsoße", prices: [12.9], codes: "A,B,C,G,F,J,3,7,9", opts: ["burger-extra", "dips"] },
 
     /* POTATOES */
     { nr: "40", cat: "potatoes", name: "Pommes", prices: [["klein", 4.9], ["groß", 6.9]], opts: ["dips"] },
@@ -284,24 +288,24 @@ window.MINAR_DATA = {
 
     /* FINGERFOOD */
     { nr: "50", cat: "fingerfood", name: "Onion Rings", desc: "10 Stück", prices: [7.9], codes: "A,C", opts: ["dips"] },
-    { nr: "51", cat: "fingerfood", name: "Frühlingsrollen", desc: "10 Stück", prices: [7.9], codes: "A,C", opts: ["dips"] },
+    { nr: "51", cat: "fingerfood", name: "Frühlingsrollen", desc: "10 Stück", prices: [7.9], codes: "A,C,6", opts: ["dips"] },
     { nr: "52", cat: "fingerfood", name: "Mozzarella Sticks", desc: "10 Stück", prices: [7.9], codes: "A,C,G", opts: ["dips"] },
     { nr: "53", cat: "fingerfood", name: "Fischstäbchen", desc: "10 Stück", prices: [7.9], codes: "A,C,D,G,F", opts: ["dips"] },
     { nr: "54", cat: "fingerfood", name: "Chicken Nuggets", desc: "10 Stück", prices: [7.9], codes: "A,7", opts: ["dips"] },
-    { nr: "56", cat: "fingerfood", name: "Chili Cheese Nuggets", desc: "10 Stück", prices: [8.9], codes: "A,C", opts: ["dips"] },
+    { nr: "56", cat: "fingerfood", name: "Chili Cheese Nuggets", desc: "10 Stück", prices: [8.9], codes: "A,C,G", opts: ["dips"] },
     { nr: "57", cat: "fingerfood", name: "Chicken Finger", desc: "6 Stück", prices: [8.9], codes: "A,C", opts: ["dips"] },
     { nr: "59", cat: "fingerfood", name: "Camembert", desc: "2 Stück mit Pommes", prices: [8.9], codes: "A,C,G", opts: ["dips"] },
     { nr: "60", cat: "fingerfood", name: "Schnitzel Crunchy", desc: "Pute mit Pommes", prices: [8.9], codes: "A,C,G", opts: ["dips"] },
     { nr: "62", cat: "fingerfood", name: "Veggie Schnitzel", desc: "mit Pommes", prices: [8.9], codes: "A,C,G", opts: ["dips"] },
-    { nr: "63", cat: "fingerfood", name: "Calamari Fritti", desc: "10 Stück", prices: [8.9], codes: "A,C,G,D", opts: ["dips"] },
+    { nr: "63", cat: "fingerfood", name: "Calamari Fritti", desc: "10 Stück", prices: [8.9], codes: "A,C,D,G,N", opts: ["dips"] },
     { nr: "64", cat: "fingerfood", name: "Chicken Wings", desc: "8 Stück", prices: [9.9], codes: "A,C,G", opts: ["dips"] },
-    { nr: "66", cat: "fingerfood", name: "Filo Pastry Shrimps", desc: "8 Stück", prices: [9.9], opts: ["dips"] },
+    { nr: "66", cat: "fingerfood", name: "Filo Pastry Shrimps", desc: "8 Stück", prices: [9.9], codes: "A,B", opts: ["dips"] },
 
     /* PARTY PLATTEN */
-    { nr: "70", cat: "partyplatten", name: "Fingerfood Platte", desc: "Putenschnitzel paniert, Onion Rings, Mozzarella Sticks, Chicken Wings, Pommes oder Wedges, Frühlingsrollen, Rösti, Kroketten, verschiedene Dips", prices: [["2 Personen", 34.9], ["4 Personen", 48.9]], codes: "A,C,G", opts: ["beilage-pw", "platte-sossen", "dips-extra"] },
+    { nr: "70", cat: "partyplatten", name: "Fingerfood Platte", desc: "Putenschnitzel paniert, Onion Rings, Mozzarella Sticks, Chicken Wings, Pommes oder Wedges, Frühlingsrollen, Rösti, Kroketten, verschiedene Dips", prices: [["2 Personen", 34.9], ["4 Personen", 48.9]], codes: "A,C,G,6", opts: ["beilage-pw", "platte-sossen", "dips-extra"] },
     { nr: "71", cat: "partyplatten", name: "Burger Platte", desc: "Hamburgerle oder Chicken Burger, Mozzarella Sticks, Chicken Wings, Pommes oder Wedges, Frühlingsrollen, Rösti, Kroketten und verschiedene Dips", prices: [["2 Personen", 34.9], ["4 Personen", 48.9]], codes: "A,C,G,F,J,6,7,8", opts: ["platte-burger", "beilage-pw", "platte-sossen", "dips-extra"] },
     { nr: "72", cat: "partyplatten", name: "Minar Spezial Platte", desc: "Hackfleischdrehspieß, Beilage Salat, Mozzarella Sticks, Chicken Wings, Pommes oder Wedges, Frühlingsrollen, Rösti, Kroketten, verschiedene Dips", prices: [["2 Personen · 2 kleine Salate", 34.9], ["4 Personen · 2 große Salate", 48.9]], codes: "A,C,G,F,J,6,7,8", opts: ["beilage-pw", "platte-sossen", "dips-extra"] },
-    { nr: "73", cat: "partyplatten", name: "Menü für 1 Person", desc: "Burger Nr. 20, 21 oder 23 nach Wahl, Chicken Wings, Onion Rings, Frühlingsrollen, Mozzarella Sticks, Chicken Nuggets und Pommes oder Wedges nach Wahl. Ein Getränk inklusive.", prices: [18.5], opts: ["menu-burger", "beilage-pw", "menu-getraenk", "dips-extra"], tax: "kombi" },
+    { nr: "73", cat: "partyplatten", name: "Menü für 1 Person", desc: "Burger Nr. 20, 21 oder 23 nach Wahl, Chicken Wings, Onion Rings, Frühlingsrollen, Mozzarella Sticks, Chicken Nuggets und Pommes oder Wedges nach Wahl. Ein Getränk inklusive.", prices: [18.5], codes: "A,C,G,F,J,2,6,7,8", opts: ["menu-burger", "beilage-pw", "menu-getraenk", "dips-extra"], tax: "kombi" },
 
     /* DIPS */
     { nr: "80", cat: "dips", name: "Cocktail Dip", prices: [1.2], codes: "A,C,G" },
@@ -311,12 +315,12 @@ window.MINAR_DATA = {
     { nr: "84", cat: "dips", name: "BBQ Soße", prices: [1.2], codes: "A,C,G" },
     { nr: "85", cat: "dips", name: "Sweet Chili Soße", prices: [1.2], codes: "A,C,G" },
     { nr: "87", cat: "dips", name: "Dönersoße", prices: [1.2], codes: "A,C,G" },
-    { nr: "88", cat: "dips", name: "Ketchup / Mayo / Remoulade", prices: [0.5], codes: "A,C,G", opts: ["dip-sorte"] },
+    { nr: "88", cat: "dips", name: "Ketchup / Mayo / Remoulade", prices: [0.5], codes: "A,C,G,J,5", opts: ["dip-sorte"] },
 
     /* DÖNER */
     { nr: "90", cat: "doener", name: "Hackfleischdrehspieß", desc: "mit Salat und Soße im Fladenbrot", prices: [7.0], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "doener-becher", "schaerfe"] },
     { nr: "91", cat: "doener", name: "Hackfleischdrehspieß Minar", desc: "mit Salat, Spiegelei und Soße im Fladenbrot", prices: [7.9], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "doener-becher", "schaerfe"] },
-    { nr: "92", cat: "doener", name: "Vegetarisch", desc: "mit Weichkäse, Salat und Soße im Fladenbrot", prices: [7.0], codes: "A,C,G,6,7,8", tags: ["vegetarisch"], opts: ["doener-sosse", "doener-becher", "schaerfe"] },
+    { nr: "92", cat: "doener", name: "Vegetarisch", desc: "mit Weichkäse, Salat und Soße im Fladenbrot", prices: [7.0], codes: "A,C,G,6,7,8,9,13", tags: ["vegetarisch"], opts: ["doener-sosse", "doener-becher", "schaerfe"] },
     { nr: "93", cat: "doener", name: "Dürüm", desc: "mit Hackfleischdrehspieß, Salat und Soße im Rollteig", prices: [8.5], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "doener-becher", "schaerfe"] },
     { nr: "94", cat: "doener", name: "Dürüm vegetarisch", desc: "mit Weichkäse, Salat und Soße im Rollteig", prices: [8.0], codes: "A,C,G,6,7,8", tags: ["vegetarisch"], opts: ["doener-sosse", "doener-becher", "schaerfe"] },
     { nr: "95", cat: "doener", name: "Falafel Teller", desc: "mit Falafel, Salat, Soße und Pommes", prices: [10.9], codes: "A,C,G,6,7,8", opts: ["doener-sosse", "doener-becher", "schaerfe"] },
@@ -329,7 +333,7 @@ window.MINAR_DATA = {
     { nr: "98a", cat: "ueberbacken", name: "BBQ Teller überbacken", desc: "Hackfleischdrehspieß, Pommes, hausgemachte BBQ-Soße, Emmentaler, Cheddarkäse, Dip", prices: [13.5], codes: "A,C,G,6,7,8", opts: ["ueberb-extra", "dips"] },
     { nr: "98b", cat: "ueberbacken", name: "Lachs Teller überbacken", desc: "gegrillter Lachs, Pommes, Remoulade, Cocktail, Edamer, Dip", prices: [18.9], codes: "A,C,D,G,6,7,8", opts: ["ueberb-extra", "dips"] },
     { nr: "99", cat: "ueberbacken", name: "Istanbul überbacken", desc: "Hackfleischdrehspieß, Tomatensahnesoße, Penne", prices: [13.5], codes: "A,C,G,F,6", opts: ["ueberb-extra"] },
-    { nr: "99a", cat: "ueberbacken", name: "Schwäbische überbacken", desc: "Kartoffelscheiben, Sahnesoße, Edamer", prices: [11.9], opts: ["ueberb-extra"] },
+    { nr: "99a", cat: "ueberbacken", name: "Schwäbische überbacken", desc: "Kartoffelscheiben, Sahnesoße, Edamer", prices: [11.9], codes: "G", opts: ["ueberb-extra"] },
 
     /* PIZZA (30 cm) */
     { nr: "100", cat: "pizza", name: "Pizzabrot", prices: [5.0], codes: "A" },
@@ -348,15 +352,15 @@ window.MINAR_DATA = {
     { nr: "113", cat: "pizza", name: "Diavolo", desc: "Salami, Jalapeños", prices: [9.9], codes: "A,G,F,J,6,7,8" },
     { nr: "114", cat: "pizza", name: "Salami-Schinken", prices: [10.9], codes: "A,G,F,J,6,7,8" },
     { nr: "115", cat: "pizza", name: "Roma", desc: "mit Schinken und Champignons", prices: [10.9], codes: "A,G,F,J,6,7,8" },
-    { nr: "116", cat: "pizza", name: "Hackfleisch", desc: "mit Zwiebel", prices: [10.9], codes: "A,G,F,J,6,7,8" },
+    { nr: "116", cat: "pizza", name: "Hackfleisch", desc: "mit Zwiebel", prices: [10.9], codes: "A,G,F,J,2,6,7,8" },
     { nr: "117", cat: "pizza", name: "Vegetarisch", desc: "mit Champignons, Paprika, Oliven und Zwiebeln", prices: [10.4], codes: "A,G,9", tags: ["vegetarisch"] },
     { nr: "118", cat: "pizza", name: "Pindi Express", desc: "mit Chicken, Ananas, Curry", prices: [10.4], codes: "A,G,F" },
     { nr: "119", cat: "pizza", name: "Salmone", desc: "gegrilltes Lachsfilet und Knoblauch", prices: [10.9], codes: "A,G,D" },
-    { nr: "120", cat: "pizza", name: "Gamberetti", desc: "mit Krabben und Knoblauch", prices: [10.9], codes: "A,G,D" },
-    { nr: "121", cat: "pizza", name: "Frutti di Mare", desc: "Meeresfrüchte, Knoblauch", prices: [10.9], codes: "A,G,D" },
+    { nr: "120", cat: "pizza", name: "Gamberetti", desc: "mit Krabben und Knoblauch", prices: [10.9], codes: "A,B,D,G" },
+    { nr: "121", cat: "pizza", name: "Frutti di Mare", desc: "Meeresfrüchte, Knoblauch", prices: [10.9], codes: "A,B,D,G,N" },
     { nr: "122", cat: "pizza", name: "Speziale", desc: "mit Salami, Schinken, Champignons, Peperoni", prices: [10.9], codes: "A,G,F,J,6,7,8" },
-    { nr: "123", cat: "pizza", name: "Venezia", desc: "mit Salami, Schinken, Champignons und Oliven", prices: [10.9], codes: "A,G,F,J,6,7,8,9" },
-    { nr: "124", cat: "pizza", name: "Vera", desc: "mit Salami, Schinken, Champignons und Ei", prices: [10.9], codes: "A,G,F,J,6,7,8" },
+    { nr: "123", cat: "pizza", name: "Venezia", desc: "mit Salami, Schinken, Champignons und Oliven", prices: [10.9], codes: "A,D,G,F,J,6,7,8,9,11,13" },
+    { nr: "124", cat: "pizza", name: "Vera", desc: "mit Salami, Schinken, Champignons und Ei", prices: [10.9], codes: "A,C,G,F,J,6,7,8" },
     { nr: "125", cat: "pizza", name: "Quattro Formaggi", desc: "mit vier verschiedenen Käsesorten", prices: [10.9], codes: "A,G,2" },
     { nr: "126", cat: "pizza", name: "Minar Spezial", desc: "mit Hackfleischdrehspieß, Sucuk, Peperoni und Zwiebeln", prices: [11.9], codes: "A,G,F,J,6,7,8" },
     { nr: "128", cat: "pizza", name: "Calzone Spezial", desc: "mit Salami, Schinken, Peperoni und Champignons", prices: [10.9], codes: "A,G,F,J,6,7,8" },
@@ -372,28 +376,28 @@ window.MINAR_DATA = {
     { nr: "136", cat: "partypizza", name: "Partypizza", desc: "mit vier Belägen nach Wahl", prices: [34.0], codes: "A,C,G,F,J,6,7,8", opts: ["partypizza-belag"] },
 
     /* NUDELGERICHTE */
-    { nr: "139", cat: "nudeln", name: "Aglio Spaghetti", desc: "mit Knoblauch, Oliven, Peperoni", prices: [8.9], codes: "A,C,F,6,9", opts: ["nudel-sorte", "nudel-ueberb"] },
+    { nr: "139", cat: "nudeln", name: "Aglio Spaghetti", desc: "mit Knoblauch, Oliven, Peperoni", prices: [8.9], codes: "A,C,G,F,6,9", opts: ["nudel-sorte", "nudel-ueberb"] },
     { nr: "140", cat: "nudeln", name: "Napoli", desc: "mit Tomatensoße", prices: [9.0], codes: "A,C,F,6", opts: ["nudel-sorte", "nudel-ueberb"] },
     { nr: "141", cat: "nudeln", name: "Arrabbiata", desc: "Tomatensoße, Peperoni, scharf", prices: [9.9], codes: "A,C,F,6", opts: ["nudel-sorte", "nudel-ueberb"], tags: ["scharf"] },
     { nr: "142", cat: "nudeln", name: "Bolognese", desc: "mit Tomaten-Hackfleischsoße", prices: [10.9], codes: "A,C,G,F,J,6,7,8", opts: ["nudel-sorte", "nudel-ueberb"] },
-    { nr: "143", cat: "nudeln", name: "Brokkoli", desc: "Pilze und Sahnesoße", prices: [10.9], codes: "A,C,F,6", opts: ["nudel-sorte", "nudel-ueberb"] },
+    { nr: "143", cat: "nudeln", name: "Brokkoli", desc: "Pilze und Sahnesoße", prices: [10.9], codes: "A,C,G,F,6", opts: ["nudel-sorte", "nudel-ueberb"] },
     { nr: "144", cat: "nudeln", name: "Carbonara", desc: "mit Schinken, Erbsen, Ei und Sahnesoße", prices: [10.9], codes: "A,C,G,F,J,6,7,8", opts: ["nudel-sorte", "nudel-ueberb"] },
-    { nr: "145", cat: "nudeln", name: "Vegetarisch", desc: "Pilze, Erbsen, Brokkoli, Tomatensahnesoße", prices: [10.9], codes: "A,C", opts: ["nudel-sorte", "nudel-ueberb"], tags: ["vegetarisch"] },
+    { nr: "145", cat: "nudeln", name: "Vegetarisch", desc: "Pilze, Erbsen, Brokkoli, Tomatensahnesoße", prices: [10.9], codes: "A,C,G", opts: ["nudel-sorte", "nudel-ueberb"], tags: ["vegetarisch"] },
     { nr: "146", cat: "nudeln", name: "Emiliani", desc: "mit Schinken, Champignons, Erbsen und Tomatensahnesoße", prices: [10.9], codes: "A,C,G,F,J,6,7,8", opts: ["nudel-sorte", "nudel-ueberb"] },
     { nr: "147", cat: "nudeln", name: "Quattro Formaggi", desc: "vier Käsesorten, Sahnesoße", prices: [10.9], codes: "A,C,G", opts: ["nudel-sorte", "nudel-ueberb"] },
     { nr: "149", cat: "nudeln", name: "Spinaci", desc: "mit Gorgonzola, Sahnesoße", prices: [10.9], codes: "A,C,G", opts: ["nudel-sorte", "nudel-ueberb"] },
     { nr: "150", cat: "nudeln", name: "Con Pollo", desc: "mit Hähnchenbrust, Champignons und Tomaten-Sahnesoße", prices: [11.9], codes: "A,C,G,6", opts: ["nudel-sorte", "nudel-ueberb"] },
     { nr: "151", cat: "nudeln", name: "Salmone", desc: "Lachsfilet, Champignons, Sahnesoße", prices: [13.9], codes: "A,C,D,G", opts: ["nudel-sorte", "nudel-ueberb"] },
-    { nr: "152", cat: "nudeln", name: "Gamberoni", desc: "Krabben, Knoblauch und Tomatensahnesoße", prices: [12.9], codes: "A,C,D,G", opts: ["nudel-sorte", "nudel-ueberb"] },
-    { nr: "153", cat: "nudeln", name: "Frutti di Mare", desc: "Meeresfrüchte, Knoblauch, Tomatensoße", prices: [12.9], codes: "A,C,D,G", opts: ["nudel-sorte", "nudel-ueberb"] },
+    { nr: "152", cat: "nudeln", name: "Gamberoni", desc: "Krabben, Knoblauch und Tomatensahnesoße", prices: [12.9], codes: "A,B,C,D,G", opts: ["nudel-sorte", "nudel-ueberb"] },
+    { nr: "153", cat: "nudeln", name: "Frutti di Mare", desc: "Meeresfrüchte, Knoblauch, Tomatensoße", prices: [12.9], codes: "A,B,C,D,G,N", opts: ["nudel-sorte", "nudel-ueberb"] },
 
     /* CHINESISCHE NUDELN */
     { nr: "205", cat: "chinanudeln", name: "Chicken Vegetables Nudel", prices: [9.9], codes: "A,C,F" },
     { nr: "206", cat: "chinanudeln", name: "Vegetables Nudel", prices: [8.9], codes: "A,C,F" },
 
     /* GNOCCHI */
-    { nr: "210", cat: "gnocchi", name: "Napoli", desc: "mit Tomatensoße", prices: [8.9], codes: "A,C,F,6", opts: ["nudel-ueberb"] },
-    { nr: "211", cat: "gnocchi", name: "Bolognese", desc: "mit Tomaten-Hackfleischsoße", prices: [10.9], codes: "A,C,F,6", opts: ["nudel-ueberb"] },
+    { nr: "210", cat: "gnocchi", name: "Napoli", desc: "mit Tomatensoße", prices: [8.9], codes: "A,C,F,6,9", opts: ["nudel-ueberb"] },
+    { nr: "211", cat: "gnocchi", name: "Bolognese", desc: "mit Tomaten-Hackfleischsoße", prices: [10.9], codes: "A,C,F,6,9", opts: ["nudel-ueberb"] },
     { nr: "212", cat: "gnocchi", name: "Vegetarisch", desc: "Pilze, Erbsen, Brokkoli, Tomatensoße", prices: [10.9], codes: "A,C", tags: ["vegetarisch"], opts: ["nudel-ueberb"] },
     { nr: "213", cat: "gnocchi", name: "Quattro Formaggi", desc: "vier Käsesorten, Sahnesoße", prices: [10.9], codes: "A,C,G", opts: ["nudel-ueberb"] },
 
@@ -405,23 +409,23 @@ window.MINAR_DATA = {
     { nr: "160", cat: "indisch", name: "Chicken Curry", desc: "Hähnchenbrust in Currysoße", prices: [14.9], codes: "F,G,2,6" },
     { nr: "161", cat: "indisch", name: "Chicken Korma", desc: "Hähnchenbrust in Curry-Joghurtsoße", prices: [14.9], codes: "F,G,2,6" },
     { nr: "162", cat: "indisch", name: "Chili Chicken", desc: "Hähnchenbrust in pikanter Soße nach indischer Art", prices: [14.9], codes: "F,G,2,6" },
-    { nr: "163", cat: "indisch", name: "Chicken Palak", desc: "Hähnchenbrust und Spinat in Currysoße", prices: [14.9], codes: "F,G,2,6" },
+    { nr: "163", cat: "indisch", name: "Chicken Palak", desc: "Hähnchenbrust und Spinat in Currysoße", prices: [14.9], codes: "F,G,2,3,6,7" },
     { nr: "166", cat: "indisch", name: "Butter Chicken", desc: "mit Tomaten, Kurkuma, Garam Masala, Joghurt", prices: [14.9], codes: "F,G,2,6" },
     { nr: "167", cat: "indisch", name: "Chicken Tikka Masala", desc: "Hähnchenstücke in Joghurt, Tomatensoße, Zwiebel und Ingwer", prices: [14.9], codes: "F,G,2,6" },
 
     /* VEGETARISCHE GERICHTE */
-    { nr: "170", cat: "vegetarisch", name: "Alu Palak", desc: "Kartoffeln, Spinat in Currysoße", prices: [12.9], codes: "F,G,2,6", tags: ["vegetarisch"] },
+    { nr: "170", cat: "vegetarisch", name: "Alu Palak", desc: "Kartoffeln, Spinat in Currysoße", prices: [12.9], codes: "F,G,2,3,6,7", tags: ["vegetarisch"] },
     { nr: "172", cat: "vegetarisch", name: "Mixed Vegetables", desc: "verschiedenes Gemüse in Currysoße", prices: [13.9], codes: "F,G,2,6", tags: ["vegetarisch"] },
 
     /* SCHNITZEL UND STEAK */
-    { nr: "180", cat: "schnitzel", name: "Wiener Art", prices: [10.9], codes: "A,C", opts: ["dips"] },
-    { nr: "181", cat: "schnitzel", name: "Allgäuer Art", desc: "überbacken mit Schinken, Käse", prices: [14.5], codes: "A,C,G", opts: ["dips"] },
-    { nr: "182", cat: "schnitzel", name: "Hawaii", desc: "überbacken mit Schinken, Ananas und Käse", prices: [14.5], codes: "A,C", opts: ["dips"] },
-    { nr: "183", cat: "schnitzel", name: "Diabolo", desc: "mit Chili, Salami, Jalapeños, Edamer und Cheddarkäse, überbacken", prices: [15.5], codes: "A,C", opts: ["dips"] },
+    { nr: "180", cat: "schnitzel", name: "Wiener Art", prices: [10.9], codes: "A,C,3,10", opts: ["dips"] },
+    { nr: "181", cat: "schnitzel", name: "Allgäuer Art", desc: "überbacken mit Schinken, Käse", prices: [14.5], codes: "A,C,G,2,3,10", opts: ["dips"] },
+    { nr: "182", cat: "schnitzel", name: "Hawaii", desc: "überbacken mit Schinken, Ananas und Käse", prices: [14.5], codes: "A,C,G,2,3,10", opts: ["dips"] },
+    { nr: "183", cat: "schnitzel", name: "Diabolo", desc: "mit Chili, Salami, Jalapeños, Edamer und Cheddarkäse, überbacken", prices: [15.5], codes: "A,C,G,3,10", opts: ["dips"] },
     { nr: "184", cat: "schnitzel", name: "Los Angeles", desc: "mit Jalapeños, Ananas, Edamer und Cheddarkäse, überbacken", prices: [15.5], codes: "A,C,G", opts: ["dips"] },
 
     /* DESSERT */
-    { nr: "190", cat: "dessert", name: "Brownie", prices: [3.9], codes: "C,G" },
+    { nr: "190", cat: "dessert", name: "Brownie", prices: [3.9], codes: "A,C,G" },
     { nr: "192", cat: "dessert", name: "Donut", prices: [2.9], codes: "A,C,G" },
     { nr: "193", cat: "dessert", name: "Ben & Jerry’s", desc: "100 ml", prices: [3.9], codes: "A,C,G", opts: ["eis-sorte"] },
     { nr: "195", cat: "dessert", name: "Tiramisu", prices: [3.9], codes: "A,C,G" },
@@ -431,12 +435,12 @@ window.MINAR_DATA = {
     { cat: "getraenke", name: "Mineralwasser", prices: [["0,5 l", 2.0]], pfand: 0.25 },
     { cat: "getraenke", name: "Multivitamin", prices: [["0,5 l", 2.5]], pfand: 0.25 },
     { cat: "getraenke", name: "Coca-Cola", prices: [["0,33 l", 2.25], ["0,5 l", 2.5], ["1,0 l", 3.5]], codes: "O,2", pfand: 0.25 },
-    { cat: "getraenke", name: "Cola Zero", prices: [["0,33 l", 2.25], ["0,5 l", 2.5], ["1,0 l", 3.5]], codes: "O,2", pfand: 0.25 },
-    { cat: "getraenke", name: "Fanta", prices: [["0,33 l", 2.25], ["0,5 l", 2.5], ["1,0 l", 3.5]], codes: "2,5,7", pfand: 0.25 },
-    { cat: "getraenke", name: "Mezzo Mix", prices: [["0,33 l", 2.25], ["0,5 l", 2.5], ["1,0 l", 3.5]], codes: "O,2,7", pfand: 0.25 },
+    { cat: "getraenke", name: "Cola Zero", prices: [["0,33 l", 2.25], ["0,5 l", 2.5], ["1,0 l", 3.5]], codes: "O,2,11,12", pfand: 0.25 },
+    { cat: "getraenke", name: "Fanta", prices: [["0,33 l", 2.25], ["0,5 l", 2.5], ["1,0 l", 3.5]], codes: "2,4,5", pfand: 0.25 },
+    { cat: "getraenke", name: "Mezzo Mix", prices: [["0,33 l", 2.25], ["0,5 l", 2.5], ["1,0 l", 3.5]], codes: "O,2,4", pfand: 0.25 },
     { cat: "getraenke", name: "Uludağ", prices: [["0,33 l", 2.25], ["0,5 l", 2.5], ["1,0 l", 3.5]], codes: "3,4", pfand: 0.25 },
-    { cat: "getraenke", name: "Sprite", prices: [["0,33 l", 2.25], ["0,5 l", 2.5], ["1,0 l", 3.5]], pfand: 0.25 },
+    { cat: "getraenke", name: "Sprite", prices: [["0,33 l", 2.25], ["0,5 l", 2.5], ["1,0 l", 3.5]], codes: "4", pfand: 0.25 },
     { cat: "getraenke", name: "Eistee", prices: [["1,0 l", 4.5]], pfand: 0.25 },
-    { cat: "getraenke", name: "Red Bull", prices: [3.5], pfand: 0.25 }
+    { cat: "getraenke", name: "Red Bull", desc: "Erhöhter Koffeingehalt. Für Kinder und schwangere oder stillende Frauen nicht empfohlen.", prices: [3.5], codes: "O,2", pfand: 0.25 }
   ]
 };
