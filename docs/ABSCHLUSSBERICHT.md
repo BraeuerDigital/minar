@@ -32,6 +32,7 @@ Stand: 13.11.2026 · Repository `BraeuerDigital/minar`, Branch `main` · Sicheru
 | Logo-Animation | unverändert bis auf das entfernte Halal-Siegel |
 | Dokumentation (README, PRUEFLISTE, Cloudflare-Anleitung) | aktualisiert |
 
+> Verbraucherinformationen (Bestellinformationen, Widerruf) vom 16.11.2026: siehe [`VERBRAUCHERINFORMATIONEN.md`](VERBRAUCHERINFORMATIONEN.md).
 > Checkout- und Vertragsschluss-Prüfung vom 16.11.2026: siehe [`CHECKOUT-PRUEFUNG.md`](CHECKOUT-PRUEFUNG.md) (Abschnitt I = Launch-Freigaben) und [`WHATSAPP-SCHNELLANTWORTEN.md`](WHATSAPP-SCHNELLANTWORTEN.md).
 > Datenschutz-/Cookie-Prüfung vom 15.11.2026: siehe [`COMPLIANCE-CHECK.md`](COMPLIANCE-CHECK.md) – Ergebnis: kein Cookie-Banner erforderlich (technische Einschätzung), offene rechtliche Freigaben dort in Abschnitt D.
 

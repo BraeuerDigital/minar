@@ -1629,3 +1629,23 @@ details.opt-group > .opt-list { padding: 0 .6rem .7rem; }
   html.print-bon .bon { -webkit-mask: none; mask: none; box-shadow: none; }
   html.print-bon .bon-close, html.print-bon .bon-actions { display: none !important; }
 }
+
+/* ---------- Bestellinformationen / Widerruf ---------- */
+.legal-toc { padding: .7rem 1rem; border-radius: var(--radius-sm); background: #EEF4DD; font-size: .92rem; }
+.legal h3 { font-size: 1.05rem; margin: 1.2rem 0 .4rem; }
+.legal ol, .legal ul { padding-left: 1.2rem; }
+.legal li { margin: .3rem 0; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.legal-table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+.legal-table th, .legal-table td { padding: .55rem .6rem; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(29,36,22,.12); }
+.legal-table th { font-family: var(--mono); font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--minar-green); }
+.legal-table td:nth-child(n+2), .legal-table th:nth-child(n+2) { white-space: nowrap; text-align: right; }
+.legal-box { margin: .6rem 0 1rem; padding: 1rem 1.2rem; border-radius: var(--radius-sm); background: #fff; box-shadow: inset 0 0 0 1.5px var(--minar-cream); }
+.legal-box h3:first-child { margin-top: 0; }
+.form-lines { list-style: none; padding-left: 0 !important; }
+.form-lines li { padding: .45rem 0; border-bottom: 1px dashed rgba(29,36,22,.25); }
+.footer-legal { line-height: 1.8; }
+.bon-terms { padding: .75rem .9rem; border-radius: 10px; background: #fff; box-shadow: inset 0 0 0 1.5px var(--minar-cream); font-size: .84rem; }
+.bon-terms-title { margin: 0 0 .35rem; font-weight: 800; color: var(--minar-green); }
+.bon-terms ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .3rem; }
+.bon-terms-more { margin: .5rem 0 0; font-size: .8rem; }

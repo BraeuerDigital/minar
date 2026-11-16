@@ -121,7 +121,7 @@ function footer(root) {
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
         <p>© <span data-year>2026</span> ${esc(R.name)} · ${esc(R.city)}</p>
-        <p><a href="${root}impressum.html">Impressum</a> · <a href="${root}datenschutz.html">Datenschutz</a></p>
+        <p class="footer-legal"><a href="${root}impressum.html">Impressum</a> · <a href="${root}datenschutz.html">Datenschutz</a> · <a href="${root}bestellinformationen.html">Bestellinformationen</a> · <a href="${root}widerruf.html">Widerruf &amp; Verbraucherrechte</a></p>
         <p class="footer-credit"><span>Webauftritt von</span> <a class="credit-link" href="https://braeuer.digital" target="_blank" rel="noopener">Bräuer.Digital</a></p>
       </div>
     </div>
@@ -186,7 +186,8 @@ const HOW_TEXT = (root) => `<p>Sie stellen Ihre Bestellung auf unserer Website z
                 <li><strong>Korrigieren:</strong> Bis zum Absenden jederzeit hier im Warenkorb oder über „Zurück und ändern“ in der Bestellübersicht.</li>
                 <li><strong>Vertragssprache:</strong> Deutsch.</li>
                 <li><strong>Speichern:</strong> Die Website selbst speichert keine Bestellungen. Ihre Bestellung bleibt als Nachricht in Ihrem WhatsApp-Chat mit uns erhalten; die Bestellübersicht können Sie vorher drucken oder als PDF speichern.</li>
-                <li><strong>Rechtstexte:</strong> <a href="${root}impressum.html">Impressum</a> · <a href="${root}datenschutz.html">Datenschutzerklärung</a></li>
+                <li><strong>Widerruf:</strong> Für frisch nach Ihrer Auswahl zubereitete Speisen besteht kein Widerrufsrecht; für Getränke in verschlossenen Flaschen und Dosen gilt das gesetzliche Widerrufsrecht (<a href="${root}widerruf.html">Details &amp; Formular</a>).</li>
+                <li><strong>Mehr dazu:</strong> <a href="${root}bestellinformationen.html">Bestellinformationen</a> · <a href="${root}widerruf.html">Widerruf &amp; Verbraucherrechte</a> · <a href="${root}impressum.html">Impressum</a> · <a href="${root}datenschutz.html">Datenschutzerklärung</a></li>
               </ul>`;
 const orderMainHtml = (root) => `        <div class="order-main">
           <div class="order-note" role="note"><strong>Vor dem Bestellen:</strong> Zahlung ausschließlich bar bei Abholung oder Lieferung – keine Onlinezahlung. Lieferung nur in die <a href="${root}lieferservice.html">aufgeführten Liefergebiete</a> mit Mindestbestellwert und Liefergebühr je Ort. Bestellungen nur während der Öffnungszeiten: Lieferung bis ${D.hours.orderUntil} Uhr, Abholung bis ${D.hours.close} Uhr, dienstags Ruhetag. Ein Vertrag kommt erst durch die persönliche Annahme von ${esc(R.name)} zustande.</div>
@@ -279,12 +280,24 @@ const bonDialogHtml = (root) => `<dialog class="bon-dialog" id="bon-dialog" aria
         </article>
         <div class="bon-actions">
           <p class="bon-alert" data-bon-alert role="alert" hidden></p>
+          <div class="bon-terms" aria-labelledby="bon-terms-title">
+            <p class="bon-terms-title" id="bon-terms-title">Bestellbedingungen auf einen Blick</p>
+            <ul>
+              <li>Gesamtbetrag wie oben – Endpreise inkl. USt., Getränkepfand und Liefergebühr separat ausgewiesen.</li>
+              <li><strong>Zahlung ausschließlich bar</strong> bei Abholung oder Lieferung.</li>
+              <li>Lieferung nur in die aufgeführten Orte, ab dem jeweiligen Mindestbestellwert (Warenwert).</li>
+              <li>Ihre Uhrzeit ist eine Wunschzeit; Lieferzeit ca. 20–90 Minuten ab Annahme. Die bestätigte Zeit erhalten Sie per WhatsApp.</li>
+              <li>Vertrag erst durch unsere ausdrückliche Annahme per WhatsApp; wesentliche Änderungen nur mit Ihrer Zustimmung.</li>
+              <li><strong>Widerruf:</strong> Für frisch nach Ihrer Auswahl zubereitete Speisen besteht kein Widerrufsrecht (§ 312g Abs. 2 Nr. 1 und 2 BGB). Für Getränke in verschlossenen Flaschen und Dosen gilt das gesetzliche Widerrufsrecht – <a href="${root}widerruf.html" target="_blank" rel="noopener">Widerrufsbelehrung &amp; Formular</a>.</li>
+            </ul>
+            <p class="bon-terms-more">Ausführlich: <a href="${root}bestellinformationen.html" target="_blank" rel="noopener">Bestellinformationen</a> · <a href="${root}widerruf.html" target="_blank" rel="noopener">Widerruf &amp; Verbraucherrechte</a></p>
+          </div>
           <p class="bon-commit" id="bon-commit"><strong>Wichtig:</strong> „Weiter zu WhatsApp“ öffnet nur Ihre vorbereitete Bestellnachricht. Erst wenn Sie diese in WhatsApp selbst absenden, wird Ihre Bestellung an ${esc(R.name)} übermittelt. Mit dem Absenden geben Sie nach dem vorgesehenen Bestellmodell eine verbindliche, zahlungspflichtige Bestellung ab. Ein Vertrag kommt erst zustande, wenn ${esc(R.name)} Ihre Bestellung ausdrücklich annimmt.</p>
           <a class="btn btn-whatsapp btn-lg btn-block" href="#" target="_blank" rel="noopener" aria-describedby="bon-commit" data-bon-send>${I.wa}Weiter zu WhatsApp</a>
           <p class="bon-opened" data-bon-opened role="status" hidden>WhatsApp wurde geöffnet. Ihre Bestellung wird erst übermittelt, wenn Sie die Nachricht dort absenden; ein Vertrag kommt erst mit unserer ausdrücklichen Annahme zustande. Ein erneutes Öffnen verwendet dieselbe Bestellreferenz.</p>
           <button class="btn btn-new-order btn-block" type="button" data-new-order hidden>Neue Bestellung beginnen</button>
           <p class="fine bon-privacy">Mit dem Öffnen von WhatsApp verlassen Sie unsere Website. Ihre vorbereiteten Bestellangaben (einschließlich Name, Telefonnummer und ggf. Lieferadresse) werden dabei im Link an WhatsApp übergeben. An uns (${esc(R.whatsappDisplay)}) gesendet wird die Nachricht erst, wenn Sie sie in WhatsApp selbst absenden. Weitere Informationen finden Sie in unserer <a href="${root}datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
-          <p class="bon-links"><button class="btn-text" type="button" data-bon-print>Übersicht drucken / als PDF speichern</button> · <a href="${root}impressum.html" target="_blank" rel="noopener">Impressum</a> · <a href="${root}datenschutz.html" target="_blank" rel="noopener">Datenschutz</a></p>
+          <p class="bon-links"><button class="btn-text" type="button" data-bon-print>Übersicht drucken / als PDF speichern</button> · <a href="${root}impressum.html" target="_blank" rel="noopener">Impressum</a> · <a href="${root}datenschutz.html" target="_blank" rel="noopener">Datenschutz</a> · <a href="${root}bestellinformationen.html" target="_blank" rel="noopener">Bestellinformationen</a> · <a href="${root}widerruf.html" target="_blank" rel="noopener">Widerruf</a></p>
           <button class="btn btn-link" type="button" data-close>Zurück und ändern</button>
         </div>
       </div>
@@ -383,7 +396,7 @@ const tape = (words, n) => { const one = Array(n).fill(words).flat().map((w) => 
 const REVIEW = (R.googleReviewUrl || "").trim();
 const reviewOk = /^https:\/\/(g\.page\/r\/|search\.google\.com\/local\/writereview\?placeid=|www\.google\.[a-z.]+\/maps\/)/.test(REVIEW);
 /* Google-Bewertung als eigener, gut sichtbarer Bereich direkt über dem Footer (alle Seiten außer Kontakt – dort steht die Karte im Inhalt) */
-const reviewBand = (active) => reviewOk && !["kontakt", "404", "impressum", "datenschutz"].includes(active) ? `
+const reviewBand = (active) => reviewOk && !["kontakt", "404", "impressum", "datenschutz", "bestellinfo", "widerruf"].includes(active) ? `
   <section class="section section-tight review-band" aria-label="Google-Bewertung">
     <div class="container">
       <div class="review-card reveal">
@@ -689,6 +702,151 @@ ${ctaBand(root)}`
 }));
 
 /* ===================== Rechtliches ===================== */
+const money = (n) => n.toFixed(2).replace(".", ",") + "\u00a0€";
+/* ===================== Bestellinformationen ===================== */
+built.push(page({
+  file: "bestellinformationen.html", active: "bestellinfo", bodyClass: "page-legal",
+  title: "Bestellinformationen · MINAR Küche Bad Buchau",
+  desc: "So funktioniert die Bestellung bei MINAR Küche: Ablauf, Vertragsschluss, Liefergebiete, Barzahlung, Lieferzeiten.",
+  body: (root) => {
+    let n = 0; const h = (t, id) => `<h2${id ? ` id="${id}"` : ""}>${++n}. ${t}</h2>`;
+    const zoneRows = D.delivery.zones.map((z) => `<tr><td>${z.places.map(esc).join(", ")}</td><td>${money(z.minOrder)}</td><td>${money(z.fee)}</td></tr>`).join("");
+    return `${pageHead("Rechtliches", "Bestellinformationen", "Alles Wichtige zu Ihrer Bestellung bei MINAR Küche – vom Warenkorb bis zur Übergabe.")}
+    <section class="section section-tight"><div class="container prose legal">
+      <p class="legal-toc">Weitere Informationen: <a href="${root}widerruf.html">Widerruf &amp; Verbraucherrechte</a> · <a href="${root}datenschutz.html">Datenschutzerklärung</a> · <a href="${root}impressum.html">Impressum</a></p>
+
+      ${h("Ihr Vertragspartner")}
+      <p>${esc(R.owner)}, Einzelunternehmer, handelnd unter ${esc(R.name)}, ${esc(R.street)}, ${esc(R.zip)} ${esc(R.city)}. Telefon <a href="${TEL}">${esc(R.phoneDisplay)}</a>, E-Mail <a href="mailto:${esc(R.email)}">${esc(R.email)}</a>. Weitere Angaben im <a href="${root}impressum.html">Impressum</a>.</p>
+
+      ${h("Ablauf Ihrer Bestellung", "ablauf")}
+      <ol>
+        <li><strong>Auswählen:</strong> Sie wählen in der Speisekarte Gerichte und Getränke und legen bei Bedarf Größe, Soßen, Beläge, Extras und einen Hinweis fest.</li>
+        <li><strong>Warenkorb prüfen:</strong> Im Warenkorb sehen Sie alle Positionen mit Einzel- und Gesamtpreisen und können Mengen ändern, Positionen bearbeiten oder entfernen.</li>
+        <li><strong>Angaben machen:</strong> Sie wählen Abholung oder Lieferung, geben Name und Telefonnummer, bei Lieferung Lieferort und Adresse sowie eine Wunschzeit an.</li>
+        <li><strong>Bestellübersicht kontrollieren:</strong> Die Übersicht zeigt Ihre Bestellreferenz, alle Angaben und Positionen, Warenwert, Liefergebühr, Getränkepfand und Gesamtbetrag. Mit „Zurück und ändern“ können Sie alles korrigieren.</li>
+        <li><strong>„Weiter zu WhatsApp“:</strong> Dieser Button öffnet WhatsApp mit Ihrer vorbereiteten Bestellnachricht an ${esc(R.whatsappDisplay)}. Dabei wird noch nichts an uns gesendet.</li>
+        <li><strong>Absenden in WhatsApp:</strong> Erst wenn Sie die Nachricht in WhatsApp selbst absenden, wird Ihre Bestellung an uns übermittelt.</li>
+        <li><strong>Prüfung und Annahme:</strong> Wir prüfen Ihre Bestellung und nehmen sie ausdrücklich per WhatsApp-Antwort an – oder melden uns, falls etwas nicht möglich ist.</li>
+        <li><strong>Übergabe und Bezahlung:</strong> Sie holen Ihre Bestellung ab oder wir liefern sie. Bezahlt wird bar bei Abholung oder Lieferung.</li>
+      </ol>
+      <p>Die Website selbst nimmt keine Bestellungen entgegen und speichert keine Bestellungen; sie bereitet nur die WhatsApp-Nachricht vor.</p>
+
+      ${h("Vertragsschluss", "vertragsschluss")}
+      <p>Die Darstellung der Speisen und Getränke auf dieser Website ist noch kein verbindliches Angebot von uns. Mit dem Absenden der vorbereiteten Nachricht in WhatsApp geben Sie nach dem vorgesehenen Bestellmodell eine verbindliche, zahlungspflichtige Bestellung ab.</p>
+      <p>Ein Vertrag kommt erst zustande, wenn wir Ihre Bestellung <strong>ausdrücklich per WhatsApp annehmen</strong>. Ohne diese Annahme kommt kein Vertrag zustande; Schweigen gilt nicht als Annahme. Wir können eine Bestellung auch ablehnen, zum Beispiel wenn ein Artikel nicht verfügbar ist oder die Lieferadresse außerhalb unseres Liefergebiets liegt.</p>
+
+      ${h("Eingangs- und Vertragsbestätigung", "bestaetigung")}
+      <p>Eine automatische Eingangsbestätigung gibt es nicht, weil die Website keine Daten an uns sendet. Ob Ihre Nachricht zugestellt wurde, zeigt Ihnen WhatsApp an. Wir antworten Ihnen persönlich im selben Chat: Diese Antwort enthält die Annahme Ihrer Bestellung und die bestätigte Abhol- oder Lieferzeit. Ihre Bestellnachricht und unsere Antwort bleiben in Ihrem WhatsApp-Chat gespeichert.</p>
+
+      ${h("Korrekturen vor dem Absenden")}
+      <p>Bis zum Absenden in WhatsApp können Sie jederzeit alles ändern: im Warenkorb (Menge, „Ändern“, „Entfernen“), bei Ihren Angaben und über „Zurück und ändern“ in der Bestellübersicht. Auch die vorbereitete Nachricht in WhatsApp sehen Sie vor dem Absenden vollständig.</p>
+
+      ${h("Vertragssprache und Vertragstext")}
+      <p>Vertragssprache ist Deutsch. Die Website speichert keine Bestellungen. Ihre Bestellung ist vollständig in der WhatsApp-Nachricht enthalten, die in Ihrem Chat mit uns erhalten bleibt. Die Bestellübersicht können Sie vor dem Absenden über „Übersicht drucken / als PDF speichern“ sichern.</p>
+
+      ${h("Preise", "preise")}
+      <p>Alle Preise sind Endpreise in Euro inklusive der gesetzlichen Umsatzsteuer. Zusätzlich und getrennt ausgewiesen werden:</p>
+      <ul>
+        <li><strong>Getränkepfand:</strong> 0,25 € je pfandpflichtigem Getränk (bei der jeweiligen Sorte in der Speisekarte angegeben),</li>
+        <li><strong>Liefergebühr:</strong> je nach Lieferort, siehe Tabelle.</li>
+      </ul>
+      <p>Die Bestellübersicht ist keine Rechnung.</p>
+
+      ${h("Liefergebiete und Mindestbestellwerte", "liefergebiete")}
+      <div class="table-wrap"><table class="legal-table">
+        <thead><tr><th>Lieferort</th><th>Mindestbestellwert</th><th>Liefergebühr</th></tr></thead>
+        <tbody>${zoneRows}</tbody>
+      </table></div>
+      <p>Der Mindestbestellwert bezieht sich auf den Warenwert; Getränkepfand und Liefergebühr zählen nicht dazu. Online bestellen können Sie eine Lieferung nur in die aufgeführten Orte und erst, wenn der Mindestbestellwert erreicht ist. Für andere Orte fragen Sie bitte telefonisch an. Die Lieferung erfolgt ohne Teller, Besteck und Dekoration.</p>
+
+      ${h("Bezahlung", "zahlung")}
+      <p><strong>Bezahlt wird ausschließlich bar</strong> bei Abholung oder bei Lieferung. Eine Onlinezahlung, Kartenzahlung über die Website oder Vorkasse gibt es nicht.</p>
+
+      ${h("Bestellzeiten", "bestellzeiten")}
+      <p>Bestellungen nehmen wir täglich außer dienstags ab ${D.hours.open} Uhr an – für Lieferungen bis ${D.hours.orderUntil} Uhr, zur Abholung bis ${D.hours.close} Uhr. Außerhalb dieser Zeiten ist die Online-Bestellung gesperrt; Vorbestellungen für spätere Tage sind nicht möglich.</p>
+
+      ${h("Frische Zubereitung, Lieferzeit und Wunschzeit", "lieferzeit")}
+      <p>${FRESH_TEXT}</p>
+      <p><strong>Wunschzeit:</strong> Bei der Bestellung können Sie „so schnell wie möglich“ oder eine Uhrzeit am selben Tag wählen (frühestens 30 Minuten nach der Bestellung, in 15-Minuten-Schritten). Das ist ein Wunsch, keine zugesagte Zeit.</p>
+      <p><strong>Bestätigte Zeit:</strong> Die verbindliche Abhol- oder Lieferzeit teilen wir Ihnen mit der Annahme Ihrer Bestellung per WhatsApp mit.</p>
+
+      ${h("Wesentliche Änderungen und Verzögerungen", "aenderungen")}
+      <p><strong>Vor der Annahme:</strong> Können wir Ihre Bestellung nur verändert ausführen – etwa weil ein Artikel nicht verfügbar ist, sich der Preis ändern würde oder die gewünschte Zeit deutlich nicht einzuhalten ist –, nehmen wir sie nicht einfach an, sondern teilen Ihnen die Änderung mit. Die Bestellung wird dann nur ausgeführt, wenn Sie den geänderten Bedingungen ausdrücklich zustimmen.</p>
+      <p><strong>Nach der Annahme:</strong> Kommt es zu einer Verzögerung, informieren wir Sie per WhatsApp oder telefonisch.</p>
+      <p><strong>Änderungswünsche von Ihnen</strong> nach dem Absenden richten Sie bitte per Antwort im WhatsApp-Chat oder telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a> an uns. Sie gelten erst, wenn wir sie bestätigen.</p>
+
+      ${h("Allergene und Zusatzstoffe")}
+      <p>Allergene und Zusatzstoffe stehen bei jedem Gericht in der <a href="${root}speisekarte/index.html">Speisekarte</a>. Bei Fragen zu Allergien sprechen Sie uns bitte vor der Bestellung an.</p>
+
+      ${h("Widerruf und Verbraucherrechte")}
+      <p>Informationen zum Widerrufsrecht, zu den gesetzlichen Ausnahmen und zur Mängelhaftung finden Sie auf der Seite <a href="${root}widerruf.html">Widerruf &amp; Verbraucherrechte</a>.</p>
+
+      <p class="fine">Stand: 16. November 2026</p>
+    </div></section>`;
+  }
+}));
+
+/* ===================== Widerruf & Verbraucherrechte ===================== */
+built.push(page({
+  file: "widerruf.html", active: "widerruf", bodyClass: "page-legal",
+  title: "Widerruf & Verbraucherrechte · MINAR Küche Bad Buchau",
+  desc: "Widerrufsrecht, gesetzliche Ausnahmen, Muster-Widerrufsformular und Mängelhaftung bei MINAR Küche.",
+  body: (root) => `${pageHead("Rechtliches", "Widerruf & Verbraucherrechte", "Ihre Rechte bei Bestellungen über unsere Website und WhatsApp.")}
+    <section class="section section-tight"><div class="container prose legal">
+      <p class="legal-toc">Siehe auch: <a href="${root}bestellinformationen.html">Bestellinformationen</a> · <a href="${root}impressum.html">Impressum</a></p>
+
+      <h2>1. Überblick</h2>
+      <p>Verbraucherinnen und Verbrauchern steht bei Verträgen, die über Fernkommunikationsmittel wie WhatsApp geschlossen werden, grundsätzlich ein gesetzliches Widerrufsrecht zu. Für viele unserer Artikel besteht dieses Recht jedoch nach dem Gesetz <strong>nicht</strong>. Welche Regel gilt, hängt vom einzelnen Artikel ab:</p>
+      <ul>
+        <li><strong>Frisch zubereitete Speisen</strong> (z. B. Döner, Pizza, Burger, Salate, Beilagen, Dips): kein Widerrufsrecht – siehe Abschnitt 2.</li>
+        <li><strong>Getränke in verschlossenen Flaschen oder Dosen:</strong> gesetzliches Widerrufsrecht nach der Widerrufsbelehrung in Abschnitt 3 – soweit nicht im Einzelfall eine gesetzliche Ausnahme greift.</li>
+      </ul>
+
+      <h2>2. Gesetzliche Ausnahmen vom Widerrufsrecht</h2>
+      <p>Das Widerrufsrecht besteht nach § 312g Abs. 2 BGB unter anderem nicht bei Verträgen</p>
+      <ul>
+        <li>zur Lieferung von Waren, die nicht vorgefertigt sind und für deren Herstellung eine individuelle Auswahl oder Bestimmung durch den Verbraucher maßgeblich ist oder die eindeutig auf die persönlichen Bedürfnisse des Verbrauchers zugeschnitten sind (Nr. 1),</li>
+        <li>zur Lieferung von Waren, die schnell verderben können oder deren Verfallsdatum schnell überschritten würde (Nr. 2).</li>
+      </ul>
+      <p>Unsere Speisen werden erst nach Ihrer Bestellung frisch und nach Ihrer Auswahl (Größe, Soßen, Beläge, Extras, Hinweise) zubereitet und sind zum sofortigen Verzehr bestimmt. Für sie besteht daher kein Widerrufsrecht.</p>
+
+      <h2>3. Widerrufsbelehrung für Getränke in verschlossenen Flaschen und Dosen</h2>
+      <div class="legal-box">
+        <h3>Widerrufsrecht</h3>
+        <p>Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen.</p>
+        <p>Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag, an dem Sie oder ein von Ihnen benannter Dritter, der nicht der Beförderer ist, die Waren in Besitz genommen haben bzw. hat.</p>
+        <p>Um Ihr Widerrufsrecht auszuüben, müssen Sie uns (${esc(R.owner)}, ${esc(R.name)}, ${esc(R.street)}, ${esc(R.zip)} ${esc(R.city)}, Telefon ${esc(R.phoneDisplay)}, E-Mail ${esc(R.email)}) mittels einer eindeutigen Erklärung (z. B. ein mit der Post versandter Brief oder eine E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren. Sie können dafür das beigefügte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.</p>
+        <p>Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist absenden.</p>
+        <h3>Folgen des Widerrufs</h3>
+        <p>Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen erhalten haben, einschließlich der Lieferkosten (mit Ausnahme der zusätzlichen Kosten, die sich daraus ergeben, dass Sie eine andere Art der Lieferung als die von uns angebotene, günstigste Standardlieferung gewählt haben), unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über Ihren Widerruf dieses Vertrags bei uns eingegangen ist. Für diese Rückzahlung verwenden wir dasselbe Zahlungsmittel, das Sie bei der ursprünglichen Transaktion eingesetzt haben, es sei denn, mit Ihnen wurde ausdrücklich etwas anderes vereinbart; in keinem Fall werden Ihnen wegen dieser Rückzahlung Entgelte berechnet.</p>
+        <p>Wir können die Rückzahlung verweigern, bis wir die Waren wieder zurückerhalten haben oder bis Sie den Nachweis erbracht haben, dass Sie die Waren zurückgesandt haben, je nachdem, welches der frühere Zeitpunkt ist.</p>
+        <p>Sie haben die Waren unverzüglich und in jedem Fall spätestens binnen vierzehn Tagen ab dem Tag, an dem Sie uns über den Widerruf dieses Vertrags unterrichten, an uns zurückzusenden oder zu übergeben. Die Frist ist gewahrt, wenn Sie die Waren vor Ablauf der Frist von vierzehn Tagen absenden. Sie können die Waren auch persönlich bei uns in ${esc(R.street)}, ${esc(R.zip)} ${esc(R.city)} abgeben.</p>
+        <p>Sie tragen die unmittelbaren Kosten der Rücksendung der Waren.</p>
+        <p>Sie müssen für einen etwaigen Wertverlust der Waren nur aufkommen, wenn dieser Wertverlust auf einen zur Prüfung der Beschaffenheit, Eigenschaften und Funktionsweise der Waren nicht notwendigen Umgang mit ihnen zurückzuführen ist.</p>
+      </div>
+
+      <h2>4. Muster-Widerrufsformular</h2>
+      <div class="legal-box">
+        <p>(Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte dieses Formular aus und senden Sie es zurück.)</p>
+        <ul class="form-lines">
+          <li>An ${esc(R.owner)}, ${esc(R.name)}, ${esc(R.street)}, ${esc(R.zip)} ${esc(R.city)}, E-Mail: ${esc(R.email)}:</li>
+          <li>Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*) abgeschlossenen Vertrag über den Kauf der folgenden Waren (*)/die Erbringung der folgenden Dienstleistung (*)</li>
+          <li>Bestellt am (*)/erhalten am (*)</li>
+          <li>Name des/der Verbraucher(s)</li>
+          <li>Anschrift des/der Verbraucher(s)</li>
+          <li>Unterschrift des/der Verbraucher(s) (nur bei Mitteilung auf Papier)</li>
+          <li>Datum</li>
+        </ul>
+        <p>(*) Unzutreffendes streichen.</p>
+      </div>
+
+      <h2>5. Gesetzliche Mängelhaftung</h2>
+      <p>Es gilt das gesetzliche Mängelhaftungsrecht. Sollte mit Ihrer Bestellung etwas nicht stimmen – etwa ein falsches oder fehlendes Gericht –, melden Sie sich bitte möglichst sofort telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a> oder per WhatsApp, damit wir schnell eine Lösung finden.</p>
+
+      <p class="fine">Stand: 16. November 2026</p>
+    </div></section>`
+}));
+
 built.push(page({
   file: "impressum.html", active: "impressum", bodyClass: "page-legal",
   title: "Impressum · MINAR Küche Bad Buchau", desc: "Impressum von MINAR Küche Bad Buchau.",
@@ -732,7 +890,7 @@ built.push(page({
 
       ${h("Bestellung über WhatsApp")}
       <p>Über den Warenkorb können Sie Gerichte auswählen, Abholung oder Lieferung wählen, eine Wunschzeit angeben und eine Bestellübersicht prüfen. Mit „Weiter zu WhatsApp“ öffnet sich WhatsApp bzw. WhatsApp Web mit einer vorbereiteten Nachricht an unsere WhatsApp-Nummer ${esc(R.whatsappDisplay)}. Die Bestell- und Kontaktangaben sind dabei im aufgerufenen Link enthalten und werden <strong>bereits beim Öffnen des Links</strong> an WhatsApp übergeben. An uns übermittelt wird die Nachricht erst, wenn Sie sie in WhatsApp selbst absenden.</p>
-      <p>Senden Sie uns die Nachricht, verarbeiten wir die darin enthaltenen Angaben (insbesondere Bestellreferenz, Name, Telefonnummer, bestellte Gerichte, Bestellart, Lieferadresse, Wunschzeit und Anmerkungen), um Ihre Anfrage zu prüfen, die Bestellung individuell zu bestätigen oder abzulehnen und sie auszuführen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO; bei allgemeinen Anfragen Art. 6 Abs. 1 lit. f DSGVO (Interesse an der Beantwortung von Anfragen). Auf der Website findet keine Zahlung statt; bezahlt wird ausschließlich bar bei Abholung oder Lieferung.</p>
+      <p>Senden Sie uns die Nachricht, verarbeiten wir die darin enthaltenen Angaben (insbesondere Bestellreferenz, Name, Telefonnummer, bestellte Gerichte, Bestellart, Lieferadresse, Wunschzeit und Anmerkungen), um Ihre Anfrage zu prüfen, die Bestellung individuell zu bestätigen oder abzulehnen und sie auszuführen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO; bei allgemeinen Anfragen Art. 6 Abs. 1 lit. f DSGVO (Interesse an der Beantwortung von Anfragen). Auf der Website werden keine Zahlungsdaten verarbeitet.</p>
       <p>Bei der Nutzung von WhatsApp werden Daten auch durch den Anbieter, die WhatsApp Ireland Limited (Irland), verarbeitet. Dabei kann eine Übermittlung in Drittländer, insbesondere in die USA, stattfinden. Die Muttergesellschaft Meta Platforms, Inc. ist nach dem EU-U.S. Data Privacy Framework zertifiziert. Einzelheiten finden Sie in der <a href="https://www.whatsapp.com/legal/privacy-policy-eea" target="_blank" rel="noopener">Datenschutzrichtlinie von WhatsApp</a>. Wenn Sie WhatsApp nicht nutzen möchten, können Sie uns gerne telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a> erreichen.</p>
 
       ${h("Kontakt per Telefon und E-Mail")}

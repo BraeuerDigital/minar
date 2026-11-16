@@ -10,7 +10,7 @@
   <link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="../assets/logo/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="../assets/logo/apple-touch-icon.png">
-  <link rel="stylesheet" href="../assets/css/styles.css?v=mwj6bc0o">
+  <link rel="stylesheet" href="../assets/css/styles.css?v=mwj7l6of">
 </head>
 <body class="page-menu page-fullmenu" data-page="speisekarte">
   <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
@@ -240,7 +240,7 @@
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
         <p>© <span data-year>2026</span> MINAR Küche · Bad Buchau</p>
-        <p><a href="../impressum.html">Impressum</a> · <a href="../datenschutz.html">Datenschutz</a></p>
+        <p class="footer-legal"><a href="../impressum.html">Impressum</a> · <a href="../datenschutz.html">Datenschutz</a> · <a href="../bestellinformationen.html">Bestellinformationen</a> · <a href="../widerruf.html">Widerruf &amp; Verbraucherrechte</a></p>
         <p class="footer-credit"><span>Webauftritt von</span> <a class="credit-link" href="https://braeuer.digital" target="_blank" rel="noopener">Bräuer.Digital</a></p>
       </div>
     </div>
@@ -362,7 +362,8 @@
                 <li><strong>Korrigieren:</strong> Bis zum Absenden jederzeit hier im Warenkorb oder über „Zurück und ändern“ in der Bestellübersicht.</li>
                 <li><strong>Vertragssprache:</strong> Deutsch.</li>
                 <li><strong>Speichern:</strong> Die Website selbst speichert keine Bestellungen. Ihre Bestellung bleibt als Nachricht in Ihrem WhatsApp-Chat mit uns erhalten; die Bestellübersicht können Sie vorher drucken oder als PDF speichern.</li>
-                <li><strong>Rechtstexte:</strong> <a href="../impressum.html">Impressum</a> · <a href="../datenschutz.html">Datenschutzerklärung</a></li>
+                <li><strong>Widerruf:</strong> Für frisch nach Ihrer Auswahl zubereitete Speisen besteht kein Widerrufsrecht; für Getränke in verschlossenen Flaschen und Dosen gilt das gesetzliche Widerrufsrecht (<a href="../widerruf.html">Details &amp; Formular</a>).</li>
+                <li><strong>Mehr dazu:</strong> <a href="../bestellinformationen.html">Bestellinformationen</a> · <a href="../widerruf.html">Widerruf &amp; Verbraucherrechte</a> · <a href="../impressum.html">Impressum</a> · <a href="../datenschutz.html">Datenschutzerklärung</a></li>
               </ul>
             </details>
 
@@ -398,18 +399,30 @@
         </article>
         <div class="bon-actions">
           <p class="bon-alert" data-bon-alert role="alert" hidden></p>
+          <div class="bon-terms" aria-labelledby="bon-terms-title">
+            <p class="bon-terms-title" id="bon-terms-title">Bestellbedingungen auf einen Blick</p>
+            <ul>
+              <li>Gesamtbetrag wie oben – Endpreise inkl. USt., Getränkepfand und Liefergebühr separat ausgewiesen.</li>
+              <li><strong>Zahlung ausschließlich bar</strong> bei Abholung oder Lieferung.</li>
+              <li>Lieferung nur in die aufgeführten Orte, ab dem jeweiligen Mindestbestellwert (Warenwert).</li>
+              <li>Ihre Uhrzeit ist eine Wunschzeit; Lieferzeit ca. 20–90 Minuten ab Annahme. Die bestätigte Zeit erhalten Sie per WhatsApp.</li>
+              <li>Vertrag erst durch unsere ausdrückliche Annahme per WhatsApp; wesentliche Änderungen nur mit Ihrer Zustimmung.</li>
+              <li><strong>Widerruf:</strong> Für frisch nach Ihrer Auswahl zubereitete Speisen besteht kein Widerrufsrecht (§ 312g Abs. 2 Nr. 1 und 2 BGB). Für Getränke in verschlossenen Flaschen und Dosen gilt das gesetzliche Widerrufsrecht – <a href="../widerruf.html" target="_blank" rel="noopener">Widerrufsbelehrung &amp; Formular</a>.</li>
+            </ul>
+            <p class="bon-terms-more">Ausführlich: <a href="../bestellinformationen.html" target="_blank" rel="noopener">Bestellinformationen</a> · <a href="../widerruf.html" target="_blank" rel="noopener">Widerruf &amp; Verbraucherrechte</a></p>
+          </div>
           <p class="bon-commit" id="bon-commit"><strong>Wichtig:</strong> „Weiter zu WhatsApp“ öffnet nur Ihre vorbereitete Bestellnachricht. Erst wenn Sie diese in WhatsApp selbst absenden, wird Ihre Bestellung an MINAR Küche übermittelt. Mit dem Absenden geben Sie nach dem vorgesehenen Bestellmodell eine verbindliche, zahlungspflichtige Bestellung ab. Ein Vertrag kommt erst zustande, wenn MINAR Küche Ihre Bestellung ausdrücklich annimmt.</p>
           <a class="btn btn-whatsapp btn-lg btn-block" href="#" target="_blank" rel="noopener" aria-describedby="bon-commit" data-bon-send><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19l-4 1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.2c.3 2.5 2.3 4.6 4.8 5l1.2-1.2 1.6.8c-.2 1-1 1.7-2 1.7-3.4 0-6.1-2.8-6.1-6.1 0-1 .7-1.8 1.7-2l.8 1.6L9 9.2Z" fill="currentColor"/></svg>Weiter zu WhatsApp</a>
           <p class="bon-opened" data-bon-opened role="status" hidden>WhatsApp wurde geöffnet. Ihre Bestellung wird erst übermittelt, wenn Sie die Nachricht dort absenden; ein Vertrag kommt erst mit unserer ausdrücklichen Annahme zustande. Ein erneutes Öffnen verwendet dieselbe Bestellreferenz.</p>
           <button class="btn btn-new-order btn-block" type="button" data-new-order hidden>Neue Bestellung beginnen</button>
           <p class="fine bon-privacy">Mit dem Öffnen von WhatsApp verlassen Sie unsere Website. Ihre vorbereiteten Bestellangaben (einschließlich Name, Telefonnummer und ggf. Lieferadresse) werden dabei im Link an WhatsApp übergeben. An uns (0163 359 01 88) gesendet wird die Nachricht erst, wenn Sie sie in WhatsApp selbst absenden. Weitere Informationen finden Sie in unserer <a href="../datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
-          <p class="bon-links"><button class="btn-text" type="button" data-bon-print>Übersicht drucken / als PDF speichern</button> · <a href="../impressum.html" target="_blank" rel="noopener">Impressum</a> · <a href="../datenschutz.html" target="_blank" rel="noopener">Datenschutz</a></p>
+          <p class="bon-links"><button class="btn-text" type="button" data-bon-print>Übersicht drucken / als PDF speichern</button> · <a href="../impressum.html" target="_blank" rel="noopener">Impressum</a> · <a href="../datenschutz.html" target="_blank" rel="noopener">Datenschutz</a> · <a href="../bestellinformationen.html" target="_blank" rel="noopener">Bestellinformationen</a> · <a href="../widerruf.html" target="_blank" rel="noopener">Widerruf</a></p>
           <button class="btn btn-link" type="button" data-close>Zurück und ändern</button>
         </div>
       </div>
     </dialog>
-  <script src="../assets/js/menu-data.js?v=mwj6bc0o"></script>
-  <script src="../assets/js/app.js?v=mwj6bc0o"></script>
-  <script src="../assets/js/fx.js?v=mwj6bc0o"></script>
+  <script src="../assets/js/menu-data.js?v=mwj7l6of"></script>
+  <script src="../assets/js/app.js?v=mwj7l6of"></script>
+  <script src="../assets/js/fx.js?v=mwj7l6of"></script>
 </body>
 </html>

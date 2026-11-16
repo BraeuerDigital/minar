@@ -19,6 +19,7 @@ Alle Seiten sind bis zur Freigabe mit `noindex` gekennzeichnet. Stand der Umsetz
 | `ueber-uns.html` | Restaurantvorstellung |
 | `kontakt.html` | Adresse, Telefon, WhatsApp, Öffnungszeiten, Google-Maps-Link, Google-Bewertung (sobald Link hinterlegt) |
 | `impressum.html`, `datenschutz.html` | Impressum und Datenschutzerklärung (Cloudflare Pages) |
+| `bestellinformationen.html`, `widerruf.html` | Bestellinformationen sowie Widerruf & Verbraucherrechte (mit Muster-Widerrufsformular) |
 | `404.html` | Fehlerseite für Cloudflare Pages |
 
 ## Struktur
@@ -43,6 +44,7 @@ Alle Seiten sind bis zur Freigabe mit `noindex` gekennzeichnet. Stand der Umsetz
 │   ├── CLOUDFLARE.md             Hosting-Einrichtung (Vorlage für weitere Kundenprojekte)
 │   ├── ABSCHLUSSBERICHT.md       Listen A (technisch erledigt) und B (vom Inhaber zu bestätigen)
 │   ├── COMPLIANCE-CHECK.md       Datenschutz-, Cookie- und Website-Prüfung (15.11.2026)
+│   ├── VERBRAUCHERINFORMATIONEN.md  Bestellinformationen, Widerruf, Footer-Links – Bericht (16.11.2026)
 │   ├── CHECKOUT-PRUEFUNG.md      Checkout, Vertragsschluss, Steuern, rechtliche Bewertung, Launch-Freigaben
 │   ├── WHATSAPP-SCHNELLANTWORTEN.md  Annahme-Texte und Einrichtung für das Restaurant
 │   └── logo-intro/               Logo-Intro als Kopiervorlage
