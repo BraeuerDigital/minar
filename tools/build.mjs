@@ -280,8 +280,8 @@ const bonDialogHtml = (root) => `<dialog class="bon-dialog" id="bon-dialog" aria
         </article>
         <div class="bon-actions">
           <p class="bon-alert" data-bon-alert role="alert" hidden></p>
-          <div class="bon-terms" aria-labelledby="bon-terms-title">
-            <p class="bon-terms-title" id="bon-terms-title">Bestellbedingungen auf einen Blick</p>
+          <details class="bon-terms" open>
+            <summary class="bon-terms-title">Bestellbedingungen auf einen Blick</summary>
             <ul>
               <li>Gesamtbetrag wie oben – Endpreise inkl. USt., Getränkepfand und Liefergebühr separat ausgewiesen.</li>
               <li><strong>Zahlung ausschließlich bar</strong> bei Abholung oder Lieferung.</li>
@@ -290,8 +290,8 @@ const bonDialogHtml = (root) => `<dialog class="bon-dialog" id="bon-dialog" aria
               <li>Vertrag erst durch unsere ausdrückliche Annahme per WhatsApp; wesentliche Änderungen nur mit Ihrer Zustimmung.</li>
               <li><strong>Widerruf:</strong> Für frisch nach Ihrer Auswahl zubereitete Speisen besteht kein Widerrufsrecht (§ 312g Abs. 2 Nr. 1 und 2 BGB). Für Getränke in verschlossenen Flaschen und Dosen gilt das gesetzliche Widerrufsrecht – <a href="${root}widerruf.html" target="_blank" rel="noopener">Widerrufsbelehrung &amp; Formular</a>.</li>
             </ul>
-            <p class="bon-terms-more">Ausführlich: <a href="${root}bestellinformationen.html" target="_blank" rel="noopener">Bestellinformationen</a> · <a href="${root}widerruf.html" target="_blank" rel="noopener">Widerruf &amp; Verbraucherrechte</a></p>
-          </div>
+          </details>
+          <p class="bon-terms-more">Ausführlich: <a href="${root}bestellinformationen.html" target="_blank" rel="noopener">Bestellinformationen</a> · <a href="${root}widerruf.html" target="_blank" rel="noopener">Widerruf &amp; Verbraucherrechte</a></p>
           <p class="bon-commit" id="bon-commit"><strong>Wichtig:</strong> „Weiter zu WhatsApp“ öffnet nur Ihre vorbereitete Bestellnachricht. Erst wenn Sie diese in WhatsApp selbst absenden, wird Ihre Bestellung an ${esc(R.name)} übermittelt. Mit dem Absenden geben Sie nach dem vorgesehenen Bestellmodell eine verbindliche, zahlungspflichtige Bestellung ab. Ein Vertrag kommt erst zustande, wenn ${esc(R.name)} Ihre Bestellung ausdrücklich annimmt.</p>
           <a class="btn btn-whatsapp btn-lg btn-block" href="#" target="_blank" rel="noopener" aria-describedby="bon-commit" data-bon-send>${I.wa}Weiter zu WhatsApp</a>
           <p class="bon-opened" data-bon-opened role="status" hidden>WhatsApp wurde geöffnet. Ihre Bestellung wird erst übermittelt, wenn Sie die Nachricht dort absenden; ein Vertrag kommt erst mit unserer ausdrücklichen Annahme zustande. Ein erneutes Öffnen verwendet dieselbe Bestellreferenz.</p>

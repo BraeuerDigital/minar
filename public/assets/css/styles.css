@@ -1662,3 +1662,16 @@ details.opt-group > .opt-list { padding: 0 .6rem .7rem; }
 .order-info > summary:focus-visible { outline: 2px solid var(--minar-green); outline-offset: 2px; border-radius: 6px; }
 .order-info-links { margin: .2rem 0 1rem; font-size: .9rem; line-height: 1.5; }
 .order-info-links a { display: inline-block; padding: .45rem .1rem; position: relative; z-index: 1; }
+
+/* Bestellbedingungen im Bon: aufklappbar (startet geöffnet), Links darunter immer sichtbar */
+details.bon-terms > summary { list-style: none; cursor: pointer; position: relative; padding: .15rem 2rem .15rem 0; min-height: 36px; display: flex; align-items: center; }
+details.bon-terms > summary::-webkit-details-marker { display: none; }
+details.bon-terms > summary::after {
+  content: ""; position: absolute; right: .3rem; top: 50%; width: 8px; height: 8px; margin-top: -5px;
+  border-right: 2px solid var(--minar-green); border-bottom: 2px solid var(--minar-green); transform: rotate(45deg); transition: transform .3s var(--ease);
+}
+details.bon-terms[open] > summary::after { transform: rotate(225deg); margin-top: -1px; }
+details.bon-terms:not([open]) > summary { margin-bottom: 0; }
+details.bon-terms[open] > summary { margin-bottom: .35rem; }
+.bon-actions .bon-terms-more { margin: -.2rem 0 0; font-size: .82rem; text-align: center; }
+.bon-terms-more a { display: inline-block; padding: .35rem .1rem; }
