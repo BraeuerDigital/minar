@@ -1607,3 +1607,25 @@ details.opt-group > .opt-list { padding: 0 .6rem .7rem; }
   .sheet .sheet-inner { padding-top: 1.6rem; }
 }
 .drawer-grip, .drawer-head { touch-action: none; }
+
+/* ---------- Checkout: Frische-Hinweis, Vertragsschluss, Rechtstexte, Druck ---------- */
+.fresh-note { margin: 1rem 0 .4rem; padding: .8rem 1rem; border-radius: var(--radius-sm); background: #FFF3E6; box-shadow: inset 3px 0 0 var(--minar-orange); font-size: .9rem; }
+.fresh-note p { margin: 0; }
+.fresh-note .fresh-title { margin-bottom: .25rem; font-weight: 800; color: var(--orange-deep); }
+.order-info p { margin: 0 0 .6rem; font-size: .92rem; }
+.order-info-facts { margin: 0 0 .9rem; padding-left: 1.1rem; display: grid; gap: .35rem; font-size: .88rem; }
+.bon-fresh { margin: .7rem 0 0; font-size: .78rem; color: #5A6250; text-align: center; }
+.bon-commit { margin: 0; padding: .7rem .85rem; border-radius: 10px; background: #FFF3E6; color: #4A2A0C; font-size: .86rem; line-height: 1.45; box-shadow: inset 0 0 0 1.5px rgba(248,112,18,.45); }
+.bon-links { margin: 0; text-align: center; font-size: .82rem; }
+.btn-text { border: 0; background: none; padding: .3rem .1rem; font: inherit; color: var(--green-deep); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; min-height: 40px; }
+.place-hint { margin: .2rem 0 .6rem; }
+@media print {
+  html.print-bon body *:not(:has(#bon-dialog)):not(#bon-dialog):not(#bon-dialog *) { display: none !important; }
+  html.print-bon body *:has(#bon-dialog) { margin: 0 !important; padding: 0 !important; background: none !important; min-height: 0 !important; }
+  html.print-bon #bon-dialog { position: absolute !important; inset: 0 auto auto 0 !important; margin: 0 !important; transform: none !important; animation: none !important; display: block; height: auto !important; max-height: none !important; width: 100% !important; max-width: none !important; overflow: visible !important; box-shadow: none; }
+  html.print-bon .bon { padding: .5rem 1rem; break-inside: avoid; }
+  html.print-bon #bon-dialog::backdrop { background: none; }
+  html.print-bon .bon-wrap { max-height: none; overflow: visible; }
+  html.print-bon .bon { -webkit-mask: none; mask: none; box-shadow: none; }
+  html.print-bon .bon-close, html.print-bon .bon-actions { display: none !important; }
+}

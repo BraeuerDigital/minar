@@ -43,6 +43,8 @@ Alle Seiten sind bis zur Freigabe mit `noindex` gekennzeichnet. Stand der Umsetz
 │   ├── CLOUDFLARE.md             Hosting-Einrichtung (Vorlage für weitere Kundenprojekte)
 │   ├── ABSCHLUSSBERICHT.md       Listen A (technisch erledigt) und B (vom Inhaber zu bestätigen)
 │   ├── COMPLIANCE-CHECK.md       Datenschutz-, Cookie- und Website-Prüfung (15.11.2026)
+│   ├── CHECKOUT-PRUEFUNG.md      Checkout, Vertragsschluss, Steuern, rechtliche Bewertung, Launch-Freigaben
+│   ├── WHATSAPP-SCHNELLANTWORTEN.md  Annahme-Texte und Einrichtung für das Restaurant
 │   └── logo-intro/               Logo-Intro als Kopiervorlage
 ├── PRUEFLISTE.md                 Prüfprotokoll
 └── index.html, .nojekyll         Übergangsweiterleitung nur für GitHub Pages (nach Migration löschen)
@@ -79,7 +81,7 @@ Aufbau eines Gerichts:
 2. Warenkorb „Deine Bestellung“: Menge (− / +, bei 1 entfernt „−“ die Position), „Ändern“ öffnet die Auswahl mit allen bisherigen Werten, „Entfernen“.
 3. Abholung oder Lieferung, Angaben, Wunschzeit („so schnell wie möglich“ oder heute in 15-Min.-Schritten, mind. 30 Min. Vorlauf).
 4. „Weiter zur Übersicht“ (ggf. vorher Getränke-Abfrage) → Bestellübersicht im Bon-Stil.
-5. „Per WhatsApp senden“ öffnet WhatsApp mit der Nachricht an 0163 359 01 88; der Kunde sendet selbst. Keine Bestellnummer, keine Erfolgsmeldung – das Restaurant bestätigt individuell.
+5. „Weiter zu WhatsApp“ öffnet WhatsApp mit der Nachricht an 0163 359 01 88; der Kunde sendet selbst. Keine Bestellnummer, keine Erfolgsmeldung – das Restaurant bestätigt individuell.
 
 Berechnung zentral in `app.js` (`lineCalc`, `totals`): Warenwert, Getränkepfand (0,25 €/Getränk, Ayran 0 €), Lieferkosten je Ort; Mindestbestellwert zählt nur den Warenwert. Bestellannahme Europe/Berlin: Lieferung 11:30–21:15, Abholung 11:30–21:30, Dienstag Ruhetag; außerhalb ist alles gesperrt. Vor „Per WhatsApp senden“ wird mit aktueller Uhrzeit erneut geprüft (auch bei lange offenem Tab).
 

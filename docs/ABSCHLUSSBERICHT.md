@@ -15,7 +15,7 @@ Stand: 13.11.2026 · Repository `BraeuerDigital/minar`, Branch `main` · Sicheru
 | Wunschzeit: so schnell wie möglich oder heute in 15-Min.-Schritten mit 30 Min. Vorlauf | erledigt; ungültig gewordene Zeit wird gemeldet |
 | Zahlungs- und Verbraucherinformationen (bar, inkl. USt., Pfand/Lieferkosten separat, Ablauf „So läuft Ihre Bestellung ab“) | erledigt – rechtliche Prüfung siehe B |
 | Datensparsamkeit (Formulardaten nur sessionStorage, Warenkorb-Ablauf 12 h, Löschfunktion für alles) | erledigt |
-| Google-Bewertungsfunktion („Jetzt auf Google bewerten“ auf Kontakt, dezent im Footer, neues Fenster, `noopener noreferrer`, kein Skript) | vorbereitet – erscheint, sobald `googleReviewUrl` gesetzt ist (Link war nicht eindeutig verifizierbar) |
+| Google-Bewertungsfunktion („Jetzt auf Google bewerten“ auf Kontakt, dezent im Footer, neues Fenster, `noopener noreferrer`, kein Skript) | aktiv – Link vom Auftraggeber am 16.11.2026 geliefert und eingetragen |
 | Impressum bereinigt (ohne Platzhalter, mit „Webdesign: Bräuer.Digital“, kein OS-Plattform-Link) | erledigt |
 | Datenschutzerklärung auf Cloudflare Pages angepasst (ohne GitHub, Namecheap, Lexware) | erledigt – fachliche Prüfung offen |
 | Hinweis „Stand 04/2023, ohne Gewähr“ entfernt | erledigt |
@@ -32,6 +32,7 @@ Stand: 13.11.2026 · Repository `BraeuerDigital/minar`, Branch `main` · Sicheru
 | Logo-Animation | unverändert bis auf das entfernte Halal-Siegel |
 | Dokumentation (README, PRUEFLISTE, Cloudflare-Anleitung) | aktualisiert |
 
+> Checkout- und Vertragsschluss-Prüfung vom 16.11.2026: siehe [`CHECKOUT-PRUEFUNG.md`](CHECKOUT-PRUEFUNG.md) (Abschnitt I = Launch-Freigaben) und [`WHATSAPP-SCHNELLANTWORTEN.md`](WHATSAPP-SCHNELLANTWORTEN.md).
 > Datenschutz-/Cookie-Prüfung vom 15.11.2026: siehe [`COMPLIANCE-CHECK.md`](COMPLIANCE-CHECK.md) – Ergebnis: kein Cookie-Banner erforderlich (technische Einschätzung), offene rechtliche Freigaben dort in Abschnitt D.
 
 ## B – Noch vom Inhaber zu bestätigen
@@ -46,7 +47,7 @@ Erledigt am 12.11.2026: Verbraucherstreitbeilegung (nicht benötigt), Ayran ohne
 6. **Allergenangaben:** Vollständigkeit, insbesondere Nr. 99, 116 und 131–134a.
 7. **Sieben Soßen:** Verfügbarkeit von Dönersoße, Cocktail, Hot Cocktail, Sour Cream, Minar Spezial, BBQ, Sweet Chili.
 8. **Medien- und Logonutzungsrechte:** Fotos und Logo (Originaldatei).
-9. **Google-Bewertungslink:** im Google-Unternehmensprofil „Um Rezensionen bitten“ → Link kopieren → in `menu-data.js` (`googleReviewUrl`) eintragen.
+9. **Google-Bewertungslink:** eingetragen (16.11.2026) – einmal auf dem Handy testen.
 10. **Finaler Domainname** (Registrierung bei Namecheap) – danach Datenschutz um Registrar/DNS ergänzen.
 11. **Rechtliche Freigabe für den Kundenbetrieb:** Impressum, Datenschutzerklärung, Bestellstrecke (§§ 312i, 312j BGB, vorvertragliche Informationen, Angaben zum Widerrufsrecht bzw. dessen gesetzlichen Ausnahmen); außerdem Inhaberschaft des Cloudflare-Kontos und Auftragsverarbeitung mit Cloudflare.
 12. **Partypizza-Beläge:** Auswahl von 21 Belägen aus der Pizzakarte (Salami, Schinken, Sucuk, Hackfleischdrehspieß, Chicken, Champignons, Paprika, Peperoni, Jalapeños, Zwiebeln, Mais, Brokkoli, Spinat, Artischocken, Oliven, Ananas, Tomaten, Ei, Weichkäse, Mozzarella, Knoblauch) – Fisch/Meeresfrüchte bewusst ausgelassen; Allergen-/Zusatzstoffangaben für gewählte Beläge (z. B. Oliven „9“) prüfen.

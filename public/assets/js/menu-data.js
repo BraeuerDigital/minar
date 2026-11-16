@@ -59,7 +59,7 @@ window.MINAR_DATA = {
     /* Google-Bewertungslink: im Google-Unternehmensprofil über „Um Rezensionen bitten“
        kopieren (Format z. B. https://g.page/r/…/review). Leer = Bewertungs-Buttons bleiben
        ausgeblendet. Nur einen geprüften Link des MINAR-Profils eintragen. */
-    googleReviewUrl: "",
+    googleReviewUrl: "https://search.google.com/local/writereview?placeid=ChIJ-xNfGurLm0cRVIpvUiGI9UI",   // vom Auftraggeber bereitgestellt (16.11.2026)
     offer: ["Restaurant", "Abholung", "Lieferservice"]
   },
 

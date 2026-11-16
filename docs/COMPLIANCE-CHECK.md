@@ -1,6 +1,6 @@
 # MINAR Küche – Datenschutz-, Cookie- und Website-Compliance-Check
 
-Stand: 15.11.2026 · Grundlage: Quellcode im Repository `BraeuerDigital/minar` (Branch `main`) und automatisierte Browsertests.
+Stand: 15.11.2026, ergänzt 16.11.2026 (siehe `CHECKOUT-PRUEFUNG.md`) · Grundlage: Quellcode im Repository `BraeuerDigital/minar` (Branch `main`) und automatisierte Browsertests.
 
 > Das ist eine **technische Prüfung**, keine Rechtsberatung. Rechtlich offene Punkte stehen in Abschnitt D und müssen vor dem produktiven Einsatz fachlich freigegeben werden.
 
@@ -77,7 +77,7 @@ Folgerung: Die GitHub-Pages-Adresse ist **nicht** für den öffentlichen Betrieb
 ## C. Offene Betreiberentscheidungen
 
 1. **Google-Maps-Ziel:** Bitte einmal auf dem Handy prüfen, ob der Link direkt beim MINAR-Eintrag landet. Optional kann der „Teilen“-Link aus dem eigenen Google-Unternehmensprofil eingesetzt werden.
-2. **Google-Bewertungslink:** Den Link aus dem Google-Unternehmensprofil („Um Rezensionen bitten“) liefern. Bis dahin bleibt die Funktion ausgeblendet. Es wurde keine Place-ID erfunden.
+2. **Google-Bewertungslink:** Am 16.11.2026 vom Auftraggeber geliefert und eingetragen (Kontaktseite, Footer, Datenschutzabschnitt aktiv). Bitte einmal auf dem Handy prüfen.
 3. **Unternehmensdaten bestätigen:** Inhaber, Rechtsform (Einzelunternehmer), Anschrift, Telefon, E-Mail, USt-IdNr. DE 364887498, keine Handelsregistereintragung.
 4. **E-Mail über Gmail:** Die Datenschutzerklärung nennt Google als E-Mail-Anbieter (aus der Adresse abgeleitet). Bitte bestätigen.
 5. **Interne Abläufe:** Wer nimmt WhatsApp-Bestellungen an (Messenger oder Business), wie lange werden Chats und Bestelldaten aufbewahrt, wer hat Zugriff?

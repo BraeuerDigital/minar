@@ -498,7 +498,7 @@
     t.grand = cents(t.goods + t.pfand + t.fee);
     return t;
   }
-  function feeText(t) { return !t.delivery ? "entfällt (Abholung)" : t.zone ? money(t.fee) : (F.place && F.place.value === "__other" ? "auf Anfrage" : "nach Wahl des Lieferorts"); }
+  function feeText(t) { return !t.delivery ? "entfällt (Abholung)" : t.zone ? money(t.fee) : "nach Wahl des Lieferorts"; }
   function grandText(t) { return money(t.grand) + (t.feeOpen ? " zzgl. Lieferkosten" : ""); }
   function grandHtml(t) { return money(t.grand) + (t.feeOpen ? '<small class="sum-note">zzgl. Lieferkosten</small>' : ""); }
 
@@ -539,7 +539,7 @@
   var F = {};
   function mode() { return ($("[data-mode]:checked") || {}).value || "Abholung"; }
   function currentZone() { if (!F.place) return null; var p = places.filter(function (x) { return x.name === F.place.value; })[0]; return p ? zones[p.zone] : null; }
-  function saveForm() { sess.set(FORM_KEY, { name: F.name.value, phone: F.phone.value, address: F.address.value, place: F.place.value, note: F.note.value, mode: mode() }); }
+  function saveForm() { sess.set(FORM_KEY, { name: F.name.value, phone: F.phone.value, address: F.address.value, address2: F.address2.value, place: F.place.value, note: F.note.value, mode: mode() }); }
   var TRASH = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M9 3h6l1 2h4v2H4V5h4l1-2Zm-3 6h12l-1 12H7L6 9Zm4 2v8h1.5v-8H10Zm3.5 0v8H15v-8h-1.5Z"/></svg>';
   var sumRow = function (k, v, cls) { return '<div class="' + (cls || "") + '"><dt>' + k + "</dt><dd>" + v + "</dd></div>"; };
 
@@ -617,7 +617,7 @@
     if (!cart.length) out.push({ msg: "Der Warenkorb ist leer" });
     if (!anyModeAvailable()) { out.push({ msg: "Derzeit geschlossen", long: closedText() }); return out; }
     if (!modeAvailable(mode())) out.push({ msg: mode() + " ist gerade nicht möglich" });
-    if (refError) out.push({ msg: "Anfragenummer nicht verfügbar", long: "Ihr Browser kann keine sichere Anfragenummer erzeugen. Bitte nutzen Sie einen aktuellen Browser oder bestellen Sie telefonisch unter " + R.phoneDisplay + "." });
+    if (refError) out.push({ msg: "Bestellreferenz nicht verfügbar", long: "Ihr Browser kann keine sichere Bestellreferenz erzeugen. Bitte nutzen Sie einen aktuellen Browser oder bestellen Sie telefonisch unter " + R.phoneDisplay + "." });
     var t = totals();                                        // Mindestbestellwert sperrt die Bestellung (nur Warenwert)
     if (t.zone && t.goods < t.zone.minOrder) out.push({ el: F.place, msg: "Mindestbestellwert " + money(t.zone.minOrder) + " – noch " + money(cents(t.zone.minOrder - t.goods)) });
     return out.concat(requiredMissing());
@@ -638,7 +638,8 @@
     var t = totals(), delivery = t.delivery;
     $("[data-address-field]").hidden = !delivery;
     $("[data-place-field]").hidden = !delivery;
-    F.address.placeholder = F.place.value === "__other" ? "Straße, Hausnummer, PLZ und Ort" : "Straße, Hausnummer";
+    $("[data-address2-field]").hidden = !delivery;
+    $("[data-place-hint]").hidden = !delivery;
     $("[data-cart-sums]").innerHTML = sumRow("Warenwert", money(t.goods)) +
       (t.pfand ? sumRow("Getränkepfand", money(t.pfand)) : "") +
       (delivery ? sumRow("Lieferkosten", feeText(t)) : "") +
@@ -646,8 +647,7 @@
     $$("[data-grand]").forEach(function (el) { el.innerHTML = grandHtml(t); });
     var minEl = $("[data-cart-min]");
     minEl.classList.remove("is-ok"); minEl.hidden = true;
-    if (delivery && F.place.value === "__other") { minEl.hidden = false; minEl.textContent = "Weitere Orte auf Anfrage – Mindestbestellwert und Lieferkosten bestätigt Ihnen das Restaurant."; }
-    else if (t.zone) {
+    if (t.zone) {
       minEl.hidden = false;
       if (t.goods < t.zone.minOrder) minEl.textContent = "Mindestbestellwert für " + F.place.value + ": " + money(t.zone.minOrder) + " Warenwert (noch " + money(cents(t.zone.minOrder - t.goods)) + "). Pfand und Lieferkosten zählen nicht dazu. Die Bestellung ist möglich, sobald er erreicht ist.";
       else { minEl.classList.add("is-ok"); minEl.textContent = "Mindestbestellwert für " + F.place.value + " (" + money(t.zone.minOrder) + ") erreicht."; }
@@ -699,11 +699,10 @@
   /* Bestellübersicht (Bon) und WhatsApp-Nachricht – aus denselben Daten */
   function orderData() {
     var t = totals(), m = mode(), del = m === "Lieferung";
-    var place = del ? (F.place.value === "__other" ? "" : F.place.value) : "";
+    var place = del ? F.place.value : "";
     return {
       t: t, mode: m, delivery: del, name: F.name.value.trim(), phone: F.phone.value.trim(),
-      address: del ? [F.address.value.trim(), place].filter(Boolean).join(", ") : "",
-      otherPlace: del && F.place.value === "__other",
+      address: del ? [F.address.value.trim(), F.address2.value.trim(), place].filter(Boolean).join(", ") : "",
       when: F.time.value && F.time.value !== "asap" ? "heute, " + F.time.value + " Uhr" : "so schnell wie möglich",
       note: F.note.value.trim(), lines: cart.map(lineCalc), ref: refFor(m)
     };
@@ -712,8 +711,8 @@
   function buildMessage() {
     var o = orderData(), t = o.t, L = [];
     if (TEST) L.push("*** TESTBESTELLUNG – bitte nicht zubereiten ***", "");
-    L.push("MINAR KÜCHE – BESTELLANFRAGE", "", "Anfrage-Nr.: " + o.ref, "", "Bestellart: " + o.mode, "Name: " + o.name, "Telefon: " + o.phone);
-    if (o.delivery) L.push("Lieferadresse: " + o.address + (o.otherPlace ? " (anderer Ort, Konditionen auf Anfrage)" : ""));
+    L.push("MINAR KÜCHE – BESTELLUNG", "", "Bestellreferenz: " + o.ref, "Bestellart: " + o.mode, "Name: " + o.name, "Telefon: " + o.phone);
+    if (o.delivery) L.push("Lieferadresse: " + o.address);
     L.push("Wunschzeit: " + o.when, "", "BESTELLUNG", "");
     o.lines.forEach(function (c) {
       L.push(c.qty + " × " + (c.it.nr ? "Nr. " + c.it.nr + " " : "") + c.it.name + " – " + money(c.total) + (c.qty > 1 ? " (je " + money(c.unit) + ")" : ""));
@@ -722,8 +721,9 @@
       L.push("");
     });
     if (o.note) L.push("Anmerkung: " + o.note, "");
-    L.push("Warenwert: " + money(t.goods), "Lieferkosten: " + feeText(t), "Getränkepfand: " + money(t.pfand), "INSGESAMT BAR: " + grandText(t), "");
-    L.push("Zahlung bar bei " + (o.delivery ? "Lieferung" : "Abholung") + ".", "Bitte bestätigen Sie meine Bestellung sowie die gewünschte Uhrzeit.");
+    L.push("Warenwert: " + money(t.goods), "Liefergebühr: " + feeText(t), "Pfand: " + money(t.pfand), "GESAMTBETRAG: " + grandText(t), "");
+    L.push("Zahlungsart: Barzahlung bei " + (o.delivery ? "Lieferung" : "Abholung"), "");
+    L.push("Ich möchte die aufgeführten Artikel zu den angegebenen Konditionen verbindlich bestellen. Mir ist bekannt, dass der Vertrag erst durch die ausdrückliche Annahme von MINAR Küche zustande kommt und die Bezahlung bar bei " + (o.delivery ? "Lieferung" : "Abholung") + " erfolgt.");
     return plain(L.join("\n"));
   }
   var waUrl = function (msg) { return "https://wa.me/" + ORDER_WA + "?text=" + encodeURIComponent(msg); };
@@ -731,8 +731,8 @@
   function renderBon(alertMsg) {
     var o = orderData(), t = o.t, now = new Date();
     var meta = [["Bestellart", o.mode], ["Name", o.name], ["Telefon", o.phone]];
-    if (o.delivery) meta.push(["Lieferadresse", o.address + (o.otherPlace ? " (anderer Ort – Konditionen auf Anfrage)" : "")]);
-    meta.push(["Wunschzeit", o.when]);
+    if (o.delivery) meta.push(["Lieferadresse", o.address]);
+    meta.push(["Wunschzeit", o.when + " (unverbindlich)"]);
     if (o.note) meta.push(["Anmerkung", o.note]);
     $("[data-bon-ref]", bonDialog).textContent = o.ref;
     $("[data-bon-meta]", bonDialog).innerHTML = meta.map(function (r) { return sumRow(esc(r[0]), esc(r[1])); }).join("");
@@ -741,8 +741,8 @@
         '<ul class="bon-sub">' + c.details.map(function (d) { return "<li>" + esc(d.k) + ": " + esc(d.t) + "</li>"; }).join("") +
         "<li>je " + money(c.unit) + (c.pfandUnit ? " · Pfand " + c.qty + " × " + money(c.pfandUnit) : "") + "</li></ul></li>";
     }).join("");
-    $("[data-bon-sums]", bonDialog).innerHTML = sumRow("Warenwert", money(t.goods)) + sumRow("Lieferkosten", feeText(t)) +
-      sumRow("Getränkepfand", money(t.pfand)) + sumRow("Insgesamt bar zu zahlen", grandHtml(t), "is-grand");
+    $("[data-bon-sums]", bonDialog).innerHTML = sumRow("Warenwert", money(t.goods)) + sumRow("Liefergebühr", feeText(t)) +
+      sumRow("Getränkepfand", money(t.pfand)) + sumRow("Gesamtbetrag – bar zu zahlen", grandHtml(t), "is-grand");
     $("[data-bon-stamp]", bonDialog).textContent = "Übersicht erstellt am " + now.toLocaleDateString("de-DE", { timeZone: H.timezone }) + " um " +
       now.toLocaleTimeString("de-DE", { timeZone: H.timezone, hour: "2-digit", minute: "2-digit" }) + " Uhr · Übersicht, keine Bestätigung";
     bonMsg = buildMessage();
@@ -768,13 +768,14 @@
     var tb2 = tb.cloneNode(true); $(".bon-actions", bonDialog).insertBefore(tb2, $(".bon-actions", bonDialog).firstChild);
   }
   if (linesEl) {
-    F = { name: $("[data-f-name]"), phone: $("[data-f-phone]"), address: $("[data-f-address]"), time: $("[data-f-time]"), note: $("[data-f-note]"), place: $("[data-f-place]") };
+    F = { name: $("[data-f-name]"), phone: $("[data-f-phone]"), address: $("[data-f-address]"), address2: $("[data-f-address2]"), time: $("[data-f-time]"), note: $("[data-f-note]"), place: $("[data-f-place]") };
     F.place.innerHTML = '<option value="">Bitte wählen …</option>' + places.slice().sort(function (a, b) { return a.name.localeCompare(b.name, "de"); }).map(function (p) {
       var z = zones[p.zone];
       return '<option value="' + esc(p.name) + '">' + esc(p.name) + " (ab " + money(z.minOrder) + ", Lieferkosten " + money(z.fee) + ")</option>";
-    }).join("") + '<option value="__other">Anderer Ort (auf Anfrage)</option>';
+    }).join("");                                         // nur bestätigte Liefergebiete – kein „anderer Ort“
     var saved = sess.get(FORM_KEY) || {};
-    ["name", "phone", "address", "place", "note"].forEach(function (k) { if (saved[k]) F[k].value = saved[k]; });
+    ["name", "phone", "address", "address2", "place", "note"].forEach(function (k) { if (saved[k]) F[k].value = saved[k]; });
+    if (F.place.selectedIndex < 0) F.place.value = "";
     if (saved.mode) $$("[data-mode]").forEach(function (r) { r.checked = r.value === saved.mode; });
     applyDeliveryCutoff(); fillTimes();
     setInterval(refresh, 30000);
@@ -793,7 +794,7 @@
     });
     ["input", "change"].forEach(function (ev) {
       $("[data-cart-body]").addEventListener(ev, function (e) {
-        if (!e.target.matches("[data-f-name],[data-f-phone],[data-f-address],[data-f-time],[data-f-note],[data-f-place],[data-mode]")) return;
+        if (!e.target.matches("[data-f-name],[data-f-phone],[data-f-address],[data-f-address2],[data-f-time],[data-f-note],[data-f-place],[data-mode]")) return;
         if (e.target.matches("[data-mode]")) fillTimes();
         if (e.target.matches("[data-f-time]")) { timeLost = ""; fillTimes(); }
         saveForm(); updateCheckout(); markInvalid();
@@ -801,17 +802,17 @@
     });
     function newOrder() {
       cart = []; saveCart(); sess.del(FORM_KEY);
-      ["name", "phone", "address", "note"].forEach(function (k) { F[k].value = ""; }); F.place.value = "";
+      ["name", "phone", "address", "address2", "note"].forEach(function (k) { F[k].value = ""; }); F.place.value = "";
       triedSend = false; drinksAsked = false; renderBadge(); renderCartPage(); markInvalid();
     }
     $("[data-cart-clear]").addEventListener("click", function () { newOrder(); toast("Warenkorb und Angaben gelöscht"); });
     $("[data-new-order]", bonDialog).addEventListener("click", function () {
-      closeDialog(bonDialog); newOrder(); toast("Neue Bestellung – die nächste Anfrage erhält eine neue Anfragenummer");
+      closeDialog(bonDialog); newOrder(); toast("Neue Bestellung – sie erhält eine neue Bestellreferenz");
       location.href = "speisekarte/index.html";
     });
     $("[data-ref-copy]").addEventListener("click", function () {
       var nr = refFor(mode()); if (!nr) return;
-      var done = function () { toast("Anfragenummer " + nr + " kopiert"); };
+      var done = function () { toast("Bestellreferenz " + nr + " kopiert"); };
       var fallback = function () {
         var r = document.createRange(), el = $("[data-ref-nr]"); r.selectNodeContents(el);
         var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
@@ -821,7 +822,14 @@
     });
     $("[data-to-summary]").addEventListener("click", toSummary);
 
-    /* „Per WhatsApp senden“: unmittelbar vorher erneut prüfen (Uhrzeit, Öffnungsstatus, Angaben).
+    /* Bestellübersicht drucken / als PDF speichern (nur der Bon, siehe @media print) */
+    $("[data-bon-print]", bonDialog).addEventListener("click", function () {
+      document.documentElement.classList.add("print-bon");
+      window.print();
+      setTimeout(function () { document.documentElement.classList.remove("print-bon"); }, 500);
+    });
+
+    /* „Weiter zu WhatsApp“: unmittelbar vorher erneut prüfen (Uhrzeit, Öffnungsstatus, Angaben).
        Hat sich etwas geändert, wird die Übersicht aktualisiert statt eine veraltete Nachricht zu öffnen. */
     $("[data-bon-send]", bonDialog).addEventListener("click", function (e) {
       var before = bonMsg; refresh();
@@ -833,7 +841,7 @@
         return;
       }
       var now = buildMessage();
-      if (now !== before) { e.preventDefault(); renderBon("Ihre Übersicht wurde aktualisiert (z. B. Uhrzeit oder Verfügbarkeit). Bitte prüfen und erneut auf „Per WhatsApp senden“ tippen."); return; }
+      if (now !== before) { e.preventDefault(); renderBon("Ihre Übersicht wurde aktualisiert (z. B. Uhrzeit oder Verfügbarkeit). Bitte prüfen und erneut auf „Weiter zu WhatsApp“ tippen."); return; }
       this.href = waUrl(now);
       $("[data-bon-alert]", bonDialog).hidden = true;
       $("[data-bon-opened]", bonDialog).hidden = false;     // neutraler Hinweis – keine Erfolgsmeldung

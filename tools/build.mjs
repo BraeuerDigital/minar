@@ -121,7 +121,7 @@ function footer(root) {
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
         <p>© <span data-year>2026</span> ${esc(R.name)} · ${esc(R.city)}</p>
-        <p><a href="${root}impressum.html">Impressum</a> · <a href="${root}datenschutz.html">Datenschutz</a>${reviewOk ? ` · <a class="footer-review" href="${esc(REVIEW)}" target="_blank" rel="noopener noreferrer">Auf Google bewerten</a>` : ""}</p>
+        <p><a href="${root}impressum.html">Impressum</a> · <a href="${root}datenschutz.html">Datenschutz</a>${reviewOk ? ` · <a class="footer-review" href="${esc(REVIEW)}" target="_blank" rel="noopener noreferrer">Jetzt auf Google bewerten</a>` : ""}</p>
         <p class="footer-credit"><span>Webauftritt von</span> <a class="credit-link" href="https://braeuer.digital" target="_blank" rel="noopener">Bräuer.Digital</a></p>
       </div>
     </div>
@@ -176,8 +176,20 @@ const itemDialog = `
   </dialog>`;
 
 /* ===================== Warenkorb-Inhalt (Bestellseite und Warenkorb-Drawer) ===================== */
+/* Hinweis lt. Flyer, sprachlich angepasst; Bezugspunkt der Lieferzeit = Annahme der Bestellung (vom Inhaber zu bestätigen) */
+const FRESH_TEXT = "Wir bereiten alle Speisen frisch für Sie zu. Die voraussichtliche Lieferzeit beträgt je nach Entfernung und Bestellaufkommen 20–90 Minuten ab Annahme Ihrer Bestellung – sie ist keine garantierte Zeit. Ihre ausgewählte Uhrzeit ist eine Wunschzeit. " + esc(R.name) + " teilt Ihnen die bestätigte Abhol- oder Lieferzeit persönlich über WhatsApp mit.";
+/* Ablauf und Vertragsschluss (Text lt. Vorgabe 16.11.2026, in Sie-Form). Kein Ersatz für die rechtliche Prüfung der Absendehandlung. */
+const HOW_TEXT = (root) => `<p>Sie stellen Ihre Bestellung auf unserer Website zusammen und kontrollieren alle Angaben. Über „Weiter zu WhatsApp“ öffnen Sie Ihre vorbereitete Bestellnachricht. Erst wenn Sie diese in WhatsApp selbst absenden, wird Ihre Bestellung an ${esc(R.name)} übermittelt.</p>
+              <p>Mit dem Absenden geben Sie nach dem vorgesehenen Bestellmodell eine verbindliche, zahlungspflichtige Bestellung ab. Ein Vertrag kommt erst zustande, wenn ${esc(R.name)} Ihre Bestellung ausdrücklich annimmt.</p>
+              <p>Die Bestätigung und die Abhol- oder Lieferzeit erhalten Sie persönlich über WhatsApp. Bezahlt wird ausschließlich bar bei Abholung oder Lieferung.</p>
+              <ul class="order-info-facts">
+                <li><strong>Korrigieren:</strong> Bis zum Absenden jederzeit hier im Warenkorb oder über „Zurück und ändern“ in der Bestellübersicht.</li>
+                <li><strong>Vertragssprache:</strong> Deutsch.</li>
+                <li><strong>Speichern:</strong> Die Website selbst speichert keine Bestellungen. Ihre Bestellung bleibt als Nachricht in Ihrem WhatsApp-Chat mit uns erhalten; die Bestellübersicht können Sie vorher drucken oder als PDF speichern.</li>
+                <li><strong>Rechtstexte:</strong> <a href="${root}impressum.html">Impressum</a> · <a href="${root}datenschutz.html">Datenschutzerklärung</a></li>
+              </ul>`;
 const orderMainHtml = (root) => `        <div class="order-main">
-          <div class="order-note" role="note"><strong>Wichtig:</strong> Die Bestellung wird erst nach Bestätigung durch das Restaurant angenommen. Es erfolgt keine Onlinezahlung und keine automatische Bestellannahme.</div>
+          <div class="order-note" role="note"><strong>Vor dem Bestellen:</strong> Zahlung ausschließlich bar bei Abholung oder Lieferung – keine Onlinezahlung. Lieferung nur in die <a href="${root}lieferservice.html">aufgeführten Liefergebiete</a> mit Mindestbestellwert und Liefergebühr je Ort. Bestellungen nur während der Öffnungszeiten: Lieferung bis ${D.hours.orderUntil} Uhr, Abholung bis ${D.hours.close} Uhr, dienstags Ruhetag. Ein Vertrag kommt erst durch die persönliche Annahme von ${esc(R.name)} zustande.</div>
 
           <div class="cart-empty" data-cart-empty>
             <h2>Ihr Warenkorb ist noch leer.</h2>
@@ -192,13 +204,13 @@ const orderMainHtml = (root) => `        <div class="order-main">
                 <span class="cart-card-count" data-cart-count-label>0 Artikel</span>
               </header>
               <div class="cart-ref" data-ref-box>
-                <p class="cart-ref-label" id="ref-label">Deine Anfragenummer</p>
+                <p class="cart-ref-label" id="ref-label">Deine Bestellreferenz</p>
                 <div class="cart-ref-row">
                   <code class="cart-ref-nr" data-ref-nr aria-labelledby="ref-label"></code>
                   <button class="cart-ref-copy" type="button" data-ref-copy>Kopieren</button>
                 </div>
                 <p class="cart-ref-hint">Bitte bei Rückfragen angeben. Sie bleibt für diese Bestellung gleich – auch beim erneuten Öffnen von WhatsApp.</p>
-                <p class="cart-ref-error" data-ref-error role="alert" hidden>Ihr Browser kann keine sichere Anfragenummer erzeugen. Bitte nutzen Sie einen aktuellen Browser oder bestellen Sie telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a>.</p>
+                <p class="cart-ref-error" data-ref-error role="alert" hidden>Ihr Browser kann keine sichere Bestellreferenz erzeugen. Bitte nutzen Sie einen aktuellen Browser oder bestellen Sie telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a>.</p>
               </div>
               <ul class="cart-lines" data-cart-lines></ul>
               <a class="cart-more" href="${root}speisekarte/index.html">${I.back} Weitere Gerichte hinzufügen</a>
@@ -215,26 +227,26 @@ const orderMainHtml = (root) => `        <div class="order-main">
             <p class="cart-min" data-delivery-off hidden></p>
             <label class="field" data-place-field hidden><span>Lieferort <b class="req" aria-hidden="true">*</b></span><select data-f-place aria-required="true"></select></label>
             <p class="cart-min" data-cart-min hidden></p>
+            <p class="fine place-hint" data-place-hint hidden>Ihr Ort ist nicht aufgeführt? Dorthin können wir leider nicht liefern – gerne zur Abholung, oder fragen Sie telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a> nach.</p>
 
             <h2 class="h-red h-sm">Ihre Angaben</h2>
             <div class="field-grid">
               <label class="field"><span>Name <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="name" maxlength="80" required aria-required="true" data-f-name></label>
               <label class="field"><span>Telefon <b class="req" aria-hidden="true">*</b> <small>(für Rückfragen)</small></span><input type="tel" autocomplete="tel" inputmode="tel" maxlength="24" required aria-required="true" data-f-phone></label>
-              <label class="field field-wide" data-address-field hidden><span>Lieferadresse <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="street-address" maxlength="140" placeholder="Straße, Hausnummer" aria-required="true" data-f-address></label>
-              <label class="field"><span>Wunschzeit</span><select data-f-time aria-describedby="time-hint"></select><small class="field-hint" id="time-hint">Frühestens 30 Minuten nach Bestellung, in 15-Minuten-Schritten. Die endgültige Uhrzeit bestätigen wir per WhatsApp.</small><small class="field-hint is-warn" data-time-lost hidden></small></label>
+              <label class="field field-wide" data-address-field hidden><span>Straße und Hausnummer <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="address-line1" maxlength="140" placeholder="z. B. Schussenrieder Straße 21" aria-required="true" data-f-address></label>
+              <label class="field field-wide" data-address2-field hidden><span>Adresszusatz <small>(optional)</small></span><input type="text" autocomplete="address-line2" maxlength="100" placeholder="z. B. Etage, Klingelname, Hinterhaus" data-f-address2></label>
+              <label class="field"><span>Wunschzeit</span><select data-f-time aria-describedby="time-hint"></select><small class="field-hint" id="time-hint">Frühestens 30 Minuten nach Bestellung, in 15-Minuten-Schritten. Dies ist eine Wunschzeit – die bestätigte Uhrzeit erhalten Sie per WhatsApp.</small><small class="field-hint is-warn" data-time-lost hidden></small></label>
               <label class="field field-wide"><span>Anmerkungen <small>(optional)</small></span><textarea rows="3" maxlength="300" data-f-note></textarea></label>
             </div>
             <p class="fine req-note"><b class="req">*</b> Pflichtfeld</p>
+            <div class="fresh-note" role="note">
+              <p class="fresh-title">Frische Zubereitung &amp; Lieferzeit</p>
+              <p>${FRESH_TEXT}</p>
+            </div>
 
-            <details class="order-info">
-              <summary>So läuft Ihre Bestellung ab</summary>
-              <ol>
-                <li><strong>Prüfen:</strong> In der Bestellübersicht sehen Sie alle Gerichte mit Mengen, Varianten und Extras sowie Warenwert, Getränkepfand, Lieferkosten und den Gesamtbetrag.</li>
-                <li><strong>Anfragen:</strong> Mit „Per WhatsApp senden“ öffnet sich WhatsApp mit Ihrer vorbereiteten Bestellanfrage an ${esc(R.whatsappDisplay)}. Gesendet wird sie erst, wenn Sie dort selbst auf Senden tippen.</li>
-                <li><strong>Bestätigung:</strong> Verbindlich wird die Bestellung erst, wenn wir sie und die Uhrzeit per WhatsApp bestätigen. Bis dahin ist nichts bestellt.</li>
-                <li><strong>Bezahlen:</strong> Ausschließlich bar bei Abholung oder Lieferung. Auf der Website findet keine Zahlung statt.</li>
-                <li><strong>Ändern:</strong> Vor dem Absenden direkt hier im Warenkorb; danach per Antwort im WhatsApp-Chat oder telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a>.</li>
-              </ol>
+            <details class="order-info" open>
+              <summary>So funktioniert Ihre Bestellung</summary>
+              ${HOW_TEXT(root)}
             </details>
 
             <p class="cart-closed" data-cart-closed hidden></p>
@@ -255,21 +267,24 @@ const bonDialogHtml = (root) => `<dialog class="bon-dialog" id="bon-dialog" aria
             <p class="bon-brand">MINAR KÜCHE</p>
             <p class="bon-addr">${esc(R.street)}<br>${esc(R.zip)} ${esc(R.city)}</p>
           </header>
-          <p class="bon-ref"><span>Anfrage-Nr.:</span><strong data-bon-ref></strong></p>
+          <p class="bon-ref"><span>Bestellreferenz</span><strong data-bon-ref></strong></p>
           <h2 class="bon-title" id="bon-title">Ihre Bestellübersicht</h2>
           <dl class="bon-meta" data-bon-meta></dl>
           <ul class="bon-lines" data-bon-lines></ul>
           <dl class="bon-sums" data-bon-sums></dl>
           <p class="bon-cash">Zahlung ausschließlich bar bei Abholung oder Lieferung.</p>
-          <p class="bon-legal">Alle Preise inkl. gesetzlicher Umsatzsteuer. Dies ist eine Zusammenfassung Ihrer Anfrage – noch keine Bestellbestätigung. Verbindlich wird die Bestellung erst, wenn ${esc(R.name)} sie per WhatsApp bestätigt.</p>
+          <p class="bon-fresh"><strong>Frische Zubereitung &amp; Lieferzeit:</strong> ${FRESH_TEXT}</p>
+          <p class="bon-legal">Alle Preise inkl. gesetzlicher Umsatzsteuer. Diese Übersicht ist weder Rechnung noch Bestellbestätigung. Ein Vertrag kommt erst zustande, wenn ${esc(R.name)} Ihre Bestellung ausdrücklich per WhatsApp annimmt.</p>
           <p class="bon-stamp" data-bon-stamp></p>
         </article>
         <div class="bon-actions">
           <p class="bon-alert" data-bon-alert role="alert" hidden></p>
-          <a class="btn btn-whatsapp btn-lg btn-block" href="#" target="_blank" rel="noopener" data-bon-send>${I.wa}Per WhatsApp senden</a>
-          <p class="bon-opened" data-bon-opened role="status" hidden>WhatsApp wurde geöffnet. Bitte senden Sie die Nachricht dort ab – Ihre Bestellung gilt erst nach unserer Bestätigung. Ein erneutes Tippen auf „Per WhatsApp senden“ verwendet dieselbe Anfragenummer.</p>
+          <p class="bon-commit" id="bon-commit"><strong>Wichtig:</strong> „Weiter zu WhatsApp“ öffnet nur Ihre vorbereitete Bestellnachricht. Erst wenn Sie diese in WhatsApp selbst absenden, wird Ihre Bestellung an ${esc(R.name)} übermittelt. Mit dem Absenden geben Sie nach dem vorgesehenen Bestellmodell eine verbindliche, zahlungspflichtige Bestellung ab. Ein Vertrag kommt erst zustande, wenn ${esc(R.name)} Ihre Bestellung ausdrücklich annimmt.</p>
+          <a class="btn btn-whatsapp btn-lg btn-block" href="#" target="_blank" rel="noopener" aria-describedby="bon-commit" data-bon-send>${I.wa}Weiter zu WhatsApp</a>
+          <p class="bon-opened" data-bon-opened role="status" hidden>WhatsApp wurde geöffnet. Ihre Bestellung wird erst übermittelt, wenn Sie die Nachricht dort absenden; ein Vertrag kommt erst mit unserer ausdrücklichen Annahme zustande. Ein erneutes Öffnen verwendet dieselbe Bestellreferenz.</p>
           <button class="btn btn-new-order btn-block" type="button" data-new-order hidden>Neue Bestellung beginnen</button>
           <p class="fine bon-privacy">Mit dem Öffnen von WhatsApp verlassen Sie unsere Website. Ihre vorbereiteten Bestellangaben (einschließlich Name, Telefonnummer und ggf. Lieferadresse) werden dabei im Link an WhatsApp übergeben. An uns (${esc(R.whatsappDisplay)}) gesendet wird die Nachricht erst, wenn Sie sie in WhatsApp selbst absenden. Weitere Informationen finden Sie in unserer <a href="${root}datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
+          <p class="bon-links"><button class="btn-text" type="button" data-bon-print>Übersicht drucken / als PDF speichern</button> · <a href="${root}impressum.html" target="_blank" rel="noopener">Impressum</a> · <a href="${root}datenschutz.html" target="_blank" rel="noopener">Datenschutz</a></p>
           <button class="btn btn-link" type="button" data-close>Zurück und ändern</button>
         </div>
       </div>
@@ -697,14 +712,14 @@ built.push(page({
       ${h("Warenkorb – Speicherung in Ihrem Browser")}
       <p>Damit Ihre Auswahl beim Wechsel zwischen den Seiten erhalten bleibt, speichert die Website Daten ausschließlich lokal in Ihrem Browser. Diese Daten werden nicht automatisch an uns oder an Dritte übertragen.</p>
       <ul>
-        <li><strong>Warenkorb</strong> (localStorage, Schlüssel „minar-cart-v4“): ausgewählte Gerichte, Mengen, Varianten, Extras und Hinweise zum Gericht, der Zeitpunkt der letzten Änderung sowie eine zufällig erzeugte Anfragenummer (Jahr, Monat und acht Zufallszeichen – ohne Bezug zu Name, Telefonnummer oder IP-Adresse), die Ihrer Bestellanfrage zur Zuordnung dient. Der Warenkorb wird spätestens 12 Stunden nach der letzten Änderung beim nächsten Seitenaufruf automatisch gelöscht, außerdem sofort, wenn Sie ihn leeren.</li>
-        <li><strong>Ihre Angaben im Bestellformular</strong> (sessionStorage, Schlüssel „minar-form-v4“): Name, Telefonnummer, Bestellart, Lieferort, Lieferadresse und Anmerkung. Diese Angaben bleiben nur in dem geöffneten Browser-Tab erhalten und werden gelöscht, sobald Sie den Tab bzw. Browser schließen, „Warenkorb und Angaben löschen“ oder „Neue Bestellung beginnen“ wählen.</li>
+        <li><strong>Warenkorb</strong> (localStorage, Schlüssel „minar-cart-v4“): ausgewählte Gerichte, Mengen, Varianten, Extras und Hinweise zum Gericht, der Zeitpunkt der letzten Änderung sowie eine zufällig erzeugte Bestellreferenz (Jahr, Monat und acht Zufallszeichen – ohne Bezug zu Name, Telefonnummer oder IP-Adresse), die Ihrer Bestellanfrage zur Zuordnung dient. Der Warenkorb wird spätestens 12 Stunden nach der letzten Änderung beim nächsten Seitenaufruf automatisch gelöscht, außerdem sofort, wenn Sie ihn leeren.</li>
+        <li><strong>Ihre Angaben im Bestellformular</strong> (sessionStorage, Schlüssel „minar-form-v4“): Name, Telefonnummer, Bestellart, Lieferort, Lieferadresse mit Adresszusatz und Anmerkung. Diese Angaben bleiben nur in dem geöffneten Browser-Tab erhalten und werden gelöscht, sobald Sie den Tab bzw. Browser schließen, „Warenkorb und Angaben löschen“ oder „Neue Bestellung beginnen“ wählen.</li>
       </ul>
       <p>Die Speicherung ist für den von Ihnen gewünschten Warenkorb unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Soweit dabei personenbezogene Daten verarbeitet werden, ist Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO (Vorbereitung einer von Ihnen gewünschten Bestellung). Sie können die Daten zusätzlich jederzeit über die Einstellungen Ihres Browsers löschen.</p>
 
-      ${h("Bestellanfrage über WhatsApp")}
-      <p>Über den Warenkorb können Sie Gerichte auswählen, Abholung oder Lieferung wählen, eine Wunschzeit angeben und eine Bestellübersicht prüfen. Mit „Per WhatsApp senden“ öffnet sich WhatsApp bzw. WhatsApp Web mit einer vorbereiteten Nachricht an unsere WhatsApp-Nummer ${esc(R.whatsappDisplay)}. Die Bestell- und Kontaktangaben sind dabei im aufgerufenen Link enthalten und werden <strong>bereits beim Öffnen des Links</strong> an WhatsApp übergeben. An uns übermittelt wird die Nachricht erst, wenn Sie sie in WhatsApp selbst absenden.</p>
-      <p>Senden Sie uns die Nachricht, verarbeiten wir die darin enthaltenen Angaben (insbesondere Anfragenummer, Name, Telefonnummer, bestellte Gerichte, Bestellart, Lieferadresse, Wunschzeit und Anmerkungen), um Ihre Anfrage zu prüfen, die Bestellung individuell zu bestätigen oder abzulehnen und sie auszuführen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO; bei allgemeinen Anfragen Art. 6 Abs. 1 lit. f DSGVO (Interesse an der Beantwortung von Anfragen). Auf der Website findet keine Zahlung statt; bezahlt wird ausschließlich bar bei Abholung oder Lieferung.</p>
+      ${h("Bestellung über WhatsApp")}
+      <p>Über den Warenkorb können Sie Gerichte auswählen, Abholung oder Lieferung wählen, eine Wunschzeit angeben und eine Bestellübersicht prüfen. Mit „Weiter zu WhatsApp“ öffnet sich WhatsApp bzw. WhatsApp Web mit einer vorbereiteten Nachricht an unsere WhatsApp-Nummer ${esc(R.whatsappDisplay)}. Die Bestell- und Kontaktangaben sind dabei im aufgerufenen Link enthalten und werden <strong>bereits beim Öffnen des Links</strong> an WhatsApp übergeben. An uns übermittelt wird die Nachricht erst, wenn Sie sie in WhatsApp selbst absenden.</p>
+      <p>Senden Sie uns die Nachricht, verarbeiten wir die darin enthaltenen Angaben (insbesondere Bestellreferenz, Name, Telefonnummer, bestellte Gerichte, Bestellart, Lieferadresse, Wunschzeit und Anmerkungen), um Ihre Anfrage zu prüfen, die Bestellung individuell zu bestätigen oder abzulehnen und sie auszuführen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO; bei allgemeinen Anfragen Art. 6 Abs. 1 lit. f DSGVO (Interesse an der Beantwortung von Anfragen). Auf der Website findet keine Zahlung statt; bezahlt wird ausschließlich bar bei Abholung oder Lieferung.</p>
       <p>Bei der Nutzung von WhatsApp werden Daten auch durch den Anbieter, die WhatsApp Ireland Limited (Irland), verarbeitet. Dabei kann eine Übermittlung in Drittländer, insbesondere in die USA, stattfinden. Die Muttergesellschaft Meta Platforms, Inc. ist nach dem EU-U.S. Data Privacy Framework zertifiziert. Einzelheiten finden Sie in der <a href="https://www.whatsapp.com/legal/privacy-policy-eea" target="_blank" rel="noopener">Datenschutzrichtlinie von WhatsApp</a>. Wenn Sie WhatsApp nicht nutzen möchten, können Sie uns gerne telefonisch unter <a href="${TEL}">${esc(R.phoneDisplay)}</a> erreichen.</p>
 
       ${h("Kontakt per Telefon und E-Mail")}

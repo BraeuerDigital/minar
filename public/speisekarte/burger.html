@@ -10,7 +10,7 @@
   <link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="../assets/logo/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="../assets/logo/apple-touch-icon.png">
-  <link rel="stylesheet" href="../assets/css/styles.css?v=mwi19lrq">
+  <link rel="stylesheet" href="../assets/css/styles.css?v=mwj5ptlx">
 </head>
 <body class="page-menu page-category" data-page="speisekarte">
   <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
@@ -111,7 +111,7 @@
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
         <p>© <span data-year>2026</span> MINAR Küche · Bad Buchau</p>
-        <p><a href="../impressum.html">Impressum</a> · <a href="../datenschutz.html">Datenschutz</a></p>
+        <p><a href="../impressum.html">Impressum</a> · <a href="../datenschutz.html">Datenschutz</a> · <a class="footer-review" href="https://search.google.com/local/writereview?placeid=ChIJ-xNfGurLm0cRVIpvUiGI9UI" target="_blank" rel="noopener noreferrer">Jetzt auf Google bewerten</a></p>
         <p class="footer-credit"><span>Webauftritt von</span> <a class="credit-link" href="https://braeuer.digital" target="_blank" rel="noopener">Bräuer.Digital</a></p>
       </div>
     </div>
@@ -169,7 +169,7 @@
         <button class="icon-btn drawer-close" type="button" data-close aria-label="Warenkorb schließen">×</button>
       </div>
         <div class="order-main">
-          <div class="order-note" role="note"><strong>Wichtig:</strong> Die Bestellung wird erst nach Bestätigung durch das Restaurant angenommen. Es erfolgt keine Onlinezahlung und keine automatische Bestellannahme.</div>
+          <div class="order-note" role="note"><strong>Vor dem Bestellen:</strong> Zahlung ausschließlich bar bei Abholung oder Lieferung – keine Onlinezahlung. Lieferung nur in die <a href="../lieferservice.html">aufgeführten Liefergebiete</a> mit Mindestbestellwert und Liefergebühr je Ort. Bestellungen nur während der Öffnungszeiten: Lieferung bis 21:15 Uhr, Abholung bis 21:30 Uhr, dienstags Ruhetag. Ein Vertrag kommt erst durch die persönliche Annahme von MINAR Küche zustande.</div>
 
           <div class="cart-empty" data-cart-empty>
             <h2>Ihr Warenkorb ist noch leer.</h2>
@@ -184,13 +184,13 @@
                 <span class="cart-card-count" data-cart-count-label>0 Artikel</span>
               </header>
               <div class="cart-ref" data-ref-box>
-                <p class="cart-ref-label" id="ref-label">Deine Anfragenummer</p>
+                <p class="cart-ref-label" id="ref-label">Deine Bestellreferenz</p>
                 <div class="cart-ref-row">
                   <code class="cart-ref-nr" data-ref-nr aria-labelledby="ref-label"></code>
                   <button class="cart-ref-copy" type="button" data-ref-copy>Kopieren</button>
                 </div>
                 <p class="cart-ref-hint">Bitte bei Rückfragen angeben. Sie bleibt für diese Bestellung gleich – auch beim erneuten Öffnen von WhatsApp.</p>
-                <p class="cart-ref-error" data-ref-error role="alert" hidden>Ihr Browser kann keine sichere Anfragenummer erzeugen. Bitte nutzen Sie einen aktuellen Browser oder bestellen Sie telefonisch unter <a href="tel:+4975829346944">07582 934 69 44</a>.</p>
+                <p class="cart-ref-error" data-ref-error role="alert" hidden>Ihr Browser kann keine sichere Bestellreferenz erzeugen. Bitte nutzen Sie einen aktuellen Browser oder bestellen Sie telefonisch unter <a href="tel:+4975829346944">07582 934 69 44</a>.</p>
               </div>
               <ul class="cart-lines" data-cart-lines></ul>
               <a class="cart-more" href="../speisekarte/index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Weitere Gerichte hinzufügen</a>
@@ -207,26 +207,34 @@
             <p class="cart-min" data-delivery-off hidden></p>
             <label class="field" data-place-field hidden><span>Lieferort <b class="req" aria-hidden="true">*</b></span><select data-f-place aria-required="true"></select></label>
             <p class="cart-min" data-cart-min hidden></p>
+            <p class="fine place-hint" data-place-hint hidden>Ihr Ort ist nicht aufgeführt? Dorthin können wir leider nicht liefern – gerne zur Abholung, oder fragen Sie telefonisch unter <a href="tel:+4975829346944">07582 934 69 44</a> nach.</p>
 
             <h2 class="h-red h-sm">Ihre Angaben</h2>
             <div class="field-grid">
               <label class="field"><span>Name <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="name" maxlength="80" required aria-required="true" data-f-name></label>
               <label class="field"><span>Telefon <b class="req" aria-hidden="true">*</b> <small>(für Rückfragen)</small></span><input type="tel" autocomplete="tel" inputmode="tel" maxlength="24" required aria-required="true" data-f-phone></label>
-              <label class="field field-wide" data-address-field hidden><span>Lieferadresse <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="street-address" maxlength="140" placeholder="Straße, Hausnummer" aria-required="true" data-f-address></label>
-              <label class="field"><span>Wunschzeit</span><select data-f-time aria-describedby="time-hint"></select><small class="field-hint" id="time-hint">Frühestens 30 Minuten nach Bestellung, in 15-Minuten-Schritten. Die endgültige Uhrzeit bestätigen wir per WhatsApp.</small><small class="field-hint is-warn" data-time-lost hidden></small></label>
+              <label class="field field-wide" data-address-field hidden><span>Straße und Hausnummer <b class="req" aria-hidden="true">*</b></span><input type="text" autocomplete="address-line1" maxlength="140" placeholder="z. B. Schussenrieder Straße 21" aria-required="true" data-f-address></label>
+              <label class="field field-wide" data-address2-field hidden><span>Adresszusatz <small>(optional)</small></span><input type="text" autocomplete="address-line2" maxlength="100" placeholder="z. B. Etage, Klingelname, Hinterhaus" data-f-address2></label>
+              <label class="field"><span>Wunschzeit</span><select data-f-time aria-describedby="time-hint"></select><small class="field-hint" id="time-hint">Frühestens 30 Minuten nach Bestellung, in 15-Minuten-Schritten. Dies ist eine Wunschzeit – die bestätigte Uhrzeit erhalten Sie per WhatsApp.</small><small class="field-hint is-warn" data-time-lost hidden></small></label>
               <label class="field field-wide"><span>Anmerkungen <small>(optional)</small></span><textarea rows="3" maxlength="300" data-f-note></textarea></label>
             </div>
             <p class="fine req-note"><b class="req">*</b> Pflichtfeld</p>
+            <div class="fresh-note" role="note">
+              <p class="fresh-title">Frische Zubereitung &amp; Lieferzeit</p>
+              <p>Wir bereiten alle Speisen frisch für Sie zu. Die voraussichtliche Lieferzeit beträgt je nach Entfernung und Bestellaufkommen 20–90 Minuten ab Annahme Ihrer Bestellung – sie ist keine garantierte Zeit. Ihre ausgewählte Uhrzeit ist eine Wunschzeit. MINAR Küche teilt Ihnen die bestätigte Abhol- oder Lieferzeit persönlich über WhatsApp mit.</p>
+            </div>
 
-            <details class="order-info">
-              <summary>So läuft Ihre Bestellung ab</summary>
-              <ol>
-                <li><strong>Prüfen:</strong> In der Bestellübersicht sehen Sie alle Gerichte mit Mengen, Varianten und Extras sowie Warenwert, Getränkepfand, Lieferkosten und den Gesamtbetrag.</li>
-                <li><strong>Anfragen:</strong> Mit „Per WhatsApp senden“ öffnet sich WhatsApp mit Ihrer vorbereiteten Bestellanfrage an 0163 359 01 88. Gesendet wird sie erst, wenn Sie dort selbst auf Senden tippen.</li>
-                <li><strong>Bestätigung:</strong> Verbindlich wird die Bestellung erst, wenn wir sie und die Uhrzeit per WhatsApp bestätigen. Bis dahin ist nichts bestellt.</li>
-                <li><strong>Bezahlen:</strong> Ausschließlich bar bei Abholung oder Lieferung. Auf der Website findet keine Zahlung statt.</li>
-                <li><strong>Ändern:</strong> Vor dem Absenden direkt hier im Warenkorb; danach per Antwort im WhatsApp-Chat oder telefonisch unter <a href="tel:+4975829346944">07582 934 69 44</a>.</li>
-              </ol>
+            <details class="order-info" open>
+              <summary>So funktioniert Ihre Bestellung</summary>
+              <p>Sie stellen Ihre Bestellung auf unserer Website zusammen und kontrollieren alle Angaben. Über „Weiter zu WhatsApp“ öffnen Sie Ihre vorbereitete Bestellnachricht. Erst wenn Sie diese in WhatsApp selbst absenden, wird Ihre Bestellung an MINAR Küche übermittelt.</p>
+              <p>Mit dem Absenden geben Sie nach dem vorgesehenen Bestellmodell eine verbindliche, zahlungspflichtige Bestellung ab. Ein Vertrag kommt erst zustande, wenn MINAR Küche Ihre Bestellung ausdrücklich annimmt.</p>
+              <p>Die Bestätigung und die Abhol- oder Lieferzeit erhalten Sie persönlich über WhatsApp. Bezahlt wird ausschließlich bar bei Abholung oder Lieferung.</p>
+              <ul class="order-info-facts">
+                <li><strong>Korrigieren:</strong> Bis zum Absenden jederzeit hier im Warenkorb oder über „Zurück und ändern“ in der Bestellübersicht.</li>
+                <li><strong>Vertragssprache:</strong> Deutsch.</li>
+                <li><strong>Speichern:</strong> Die Website selbst speichert keine Bestellungen. Ihre Bestellung bleibt als Nachricht in Ihrem WhatsApp-Chat mit uns erhalten; die Bestellübersicht können Sie vorher drucken oder als PDF speichern.</li>
+                <li><strong>Rechtstexte:</strong> <a href="../impressum.html">Impressum</a> · <a href="../datenschutz.html">Datenschutzerklärung</a></li>
+              </ul>
             </details>
 
             <p class="cart-closed" data-cart-closed hidden></p>
@@ -249,27 +257,30 @@
             <p class="bon-brand">MINAR KÜCHE</p>
             <p class="bon-addr">Schussenrieder Straße 21<br>88422 Bad Buchau</p>
           </header>
-          <p class="bon-ref"><span>Anfrage-Nr.:</span><strong data-bon-ref></strong></p>
+          <p class="bon-ref"><span>Bestellreferenz</span><strong data-bon-ref></strong></p>
           <h2 class="bon-title" id="bon-title">Ihre Bestellübersicht</h2>
           <dl class="bon-meta" data-bon-meta></dl>
           <ul class="bon-lines" data-bon-lines></ul>
           <dl class="bon-sums" data-bon-sums></dl>
           <p class="bon-cash">Zahlung ausschließlich bar bei Abholung oder Lieferung.</p>
-          <p class="bon-legal">Alle Preise inkl. gesetzlicher Umsatzsteuer. Dies ist eine Zusammenfassung Ihrer Anfrage – noch keine Bestellbestätigung. Verbindlich wird die Bestellung erst, wenn MINAR Küche sie per WhatsApp bestätigt.</p>
+          <p class="bon-fresh"><strong>Frische Zubereitung &amp; Lieferzeit:</strong> Wir bereiten alle Speisen frisch für Sie zu. Die voraussichtliche Lieferzeit beträgt je nach Entfernung und Bestellaufkommen 20–90 Minuten ab Annahme Ihrer Bestellung – sie ist keine garantierte Zeit. Ihre ausgewählte Uhrzeit ist eine Wunschzeit. MINAR Küche teilt Ihnen die bestätigte Abhol- oder Lieferzeit persönlich über WhatsApp mit.</p>
+          <p class="bon-legal">Alle Preise inkl. gesetzlicher Umsatzsteuer. Diese Übersicht ist weder Rechnung noch Bestellbestätigung. Ein Vertrag kommt erst zustande, wenn MINAR Küche Ihre Bestellung ausdrücklich per WhatsApp annimmt.</p>
           <p class="bon-stamp" data-bon-stamp></p>
         </article>
         <div class="bon-actions">
           <p class="bon-alert" data-bon-alert role="alert" hidden></p>
-          <a class="btn btn-whatsapp btn-lg btn-block" href="#" target="_blank" rel="noopener" data-bon-send><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19l-4 1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.2c.3 2.5 2.3 4.6 4.8 5l1.2-1.2 1.6.8c-.2 1-1 1.7-2 1.7-3.4 0-6.1-2.8-6.1-6.1 0-1 .7-1.8 1.7-2l.8 1.6L9 9.2Z" fill="currentColor"/></svg>Per WhatsApp senden</a>
-          <p class="bon-opened" data-bon-opened role="status" hidden>WhatsApp wurde geöffnet. Bitte senden Sie die Nachricht dort ab – Ihre Bestellung gilt erst nach unserer Bestätigung. Ein erneutes Tippen auf „Per WhatsApp senden“ verwendet dieselbe Anfragenummer.</p>
+          <p class="bon-commit" id="bon-commit"><strong>Wichtig:</strong> „Weiter zu WhatsApp“ öffnet nur Ihre vorbereitete Bestellnachricht. Erst wenn Sie diese in WhatsApp selbst absenden, wird Ihre Bestellung an MINAR Küche übermittelt. Mit dem Absenden geben Sie nach dem vorgesehenen Bestellmodell eine verbindliche, zahlungspflichtige Bestellung ab. Ein Vertrag kommt erst zustande, wenn MINAR Küche Ihre Bestellung ausdrücklich annimmt.</p>
+          <a class="btn btn-whatsapp btn-lg btn-block" href="#" target="_blank" rel="noopener" aria-describedby="bon-commit" data-bon-send><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19l-4 1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.2c.3 2.5 2.3 4.6 4.8 5l1.2-1.2 1.6.8c-.2 1-1 1.7-2 1.7-3.4 0-6.1-2.8-6.1-6.1 0-1 .7-1.8 1.7-2l.8 1.6L9 9.2Z" fill="currentColor"/></svg>Weiter zu WhatsApp</a>
+          <p class="bon-opened" data-bon-opened role="status" hidden>WhatsApp wurde geöffnet. Ihre Bestellung wird erst übermittelt, wenn Sie die Nachricht dort absenden; ein Vertrag kommt erst mit unserer ausdrücklichen Annahme zustande. Ein erneutes Öffnen verwendet dieselbe Bestellreferenz.</p>
           <button class="btn btn-new-order btn-block" type="button" data-new-order hidden>Neue Bestellung beginnen</button>
           <p class="fine bon-privacy">Mit dem Öffnen von WhatsApp verlassen Sie unsere Website. Ihre vorbereiteten Bestellangaben (einschließlich Name, Telefonnummer und ggf. Lieferadresse) werden dabei im Link an WhatsApp übergeben. An uns (0163 359 01 88) gesendet wird die Nachricht erst, wenn Sie sie in WhatsApp selbst absenden. Weitere Informationen finden Sie in unserer <a href="../datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
+          <p class="bon-links"><button class="btn-text" type="button" data-bon-print>Übersicht drucken / als PDF speichern</button> · <a href="../impressum.html" target="_blank" rel="noopener">Impressum</a> · <a href="../datenschutz.html" target="_blank" rel="noopener">Datenschutz</a></p>
           <button class="btn btn-link" type="button" data-close>Zurück und ändern</button>
         </div>
       </div>
     </dialog>
-  <script src="../assets/js/menu-data.js?v=mwi19lrq"></script>
-  <script src="../assets/js/app.js?v=mwi19lrq"></script>
-  <script src="../assets/js/fx.js?v=mwi19lrq"></script>
+  <script src="../assets/js/menu-data.js?v=mwj5ptlx"></script>
+  <script src="../assets/js/app.js?v=mwj5ptlx"></script>
+  <script src="../assets/js/fx.js?v=mwj5ptlx"></script>
 </body>
 </html>
