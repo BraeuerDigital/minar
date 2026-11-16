@@ -1675,3 +1675,11 @@ details.bon-terms:not([open]) > summary { margin-bottom: 0; }
 details.bon-terms[open] > summary { margin-bottom: .35rem; }
 .bon-actions .bon-terms-more { margin: -.2rem 0 0; font-size: .82rem; text-align: center; }
 .bon-terms-more a { display: inline-block; padding: .35rem .1rem; }
+
+/* Mengen-Auswahl in Zusatzgruppen (Burger-Platte, inklusive Soßen, Soße separat im Becher) */
+.opt.opt-count { cursor: default; padding-right: .4rem; }
+.opt-count .pill-qty { background: var(--minar-cream); box-shadow: none; padding: 2px; }
+.opt-count .pill-qty button { width: 40px; height: 40px; color: var(--minar-dark); font-size: 1.2rem; touch-action: manipulation; }
+.opt-count .pill-qty output { color: var(--minar-dark); }
+.opt-count .opt-price:empty { display: none; }
+.sum-row.sum-tax { font-size: .8rem; opacity: .75; }

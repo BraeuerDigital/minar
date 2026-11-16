@@ -11,7 +11,7 @@ Stand: 13.11.2026 · Repository `BraeuerDigital/minar`, Branch `main` · Sicheru
 | Bestellübersicht im Bon-Stil (MINAR KÜCHE, Adresse, „Ihre Bestellübersicht“, Bestellart, Name, Telefon, Lieferadresse, Wunschzeit, alle Positionen mit Varianten/Soßen/Extras/Hinweisen, Warenwert, Lieferkosten, Pfand, „Insgesamt bar zu zahlen“, Barzahlungshinweis, „Per WhatsApp senden“) | erledigt – ohne Bestellnummer, ohne Erfolgsmeldung |
 | Pfandberechnung (0,25 € je Getränk, Ayran 0 €) zentral in den Produktdaten; separat in Karte, Warenkorb, Bon und Nachricht; nicht im Mindestbestellwert | erledigt, getestet |
 | WhatsApp-Nachricht im vorgegebenen Format an 0163 359 01 88, korrekt kodiert, Versand nur durch den Kunden | erledigt – keine Testnachricht an das Restaurant gesendet |
-| Bestellsperre nach Öffnungszeiten (Europe/Berlin): Lieferung bis 21:15, Abholung bis 21:30, Dienstag Ruhetag, Hinweis auf nächste Öffnung; erneute Prüfung beim Senden (lange offener Tab) | erledigt, getestet inkl. Sommerzeit |
+| Bestellsperre nach Öffnungszeiten (Europe/Berlin): Lieferung und Abholung bis 21:15 (seit 16.11.2026), Dienstag Ruhetag, Hinweis auf nächste Öffnung; erneute Prüfung beim Senden (lange offener Tab) | erledigt, getestet inkl. Sommerzeit |
 | Wunschzeit: so schnell wie möglich oder heute in 15-Min.-Schritten mit 30 Min. Vorlauf | erledigt; ungültig gewordene Zeit wird gemeldet |
 | Zahlungs- und Verbraucherinformationen (bar, inkl. USt., Pfand/Lieferkosten separat, Ablauf „So läuft Ihre Bestellung ab“) | erledigt – rechtliche Prüfung siehe B |
 | Datensparsamkeit (Formulardaten nur sessionStorage, Warenkorb-Ablauf 12 h, Löschfunktion für alles) | erledigt |

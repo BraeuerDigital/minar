@@ -93,13 +93,14 @@
     var n = berlinNow(), closedToday = H.closedDays.indexOf(n.day) > -1;
     var o = toMin(H.open), c = toMin(H.close), ou = toMin(H.orderUntil);
     var open = !closedToday && n.min >= o && n.min < c, ordering = !closedToday && n.min >= o && n.min < ou, text;
-    if (open) text = ordering ? "Jetzt geöffnet · Lieferung bis " + H.orderUntil + ", Abholung bis " + H.close + " Uhr" : "Geöffnet bis " + H.close + " Uhr · nur noch Abholung";
+    var d = n.day, add = 0;                            // nächster Öffnungstag
+    if (closedToday || n.min >= o) { do { d = (d + 1) % 7; add++; } while (H.closedDays.indexOf(d) > -1); }
+    var next = (add === 0 ? "heute" : add === 1 ? "morgen" : DAYS[d]) + " um " + H.open + " Uhr";
+    if (open) text = ordering ? "Jetzt geöffnet · Bestellannahme bis " + H.orderUntil + " Uhr" : "Geöffnet bis " + H.close + " Uhr · Bestellannahme beendet";
     else {
-      var d = n.day, add = 0;
-      if (closedToday || n.min >= o) { do { d = (d + 1) % 7; add++; } while (H.closedDays.indexOf(d) > -1); }
       text = (closedToday ? "Heute Ruhetag" : "Geschlossen") + " · öffnet " + (add === 0 ? "heute" : add === 1 ? "morgen" : DAYS[d]) + " um " + H.open + " Uhr";
     }
-    return { open: open, ordering: ordering, day: n.day, text: text, short: open ? "Jetzt geöffnet" : (closedToday ? "Heute Ruhetag" : "Derzeit geschlossen") };
+    return { open: open, ordering: ordering, day: n.day, text: text, next: next, short: open ? "Jetzt geöffnet" : (closedToday ? "Heute Ruhetag" : "Derzeit geschlossen") };
   }
   function renderStatus() {
     var s = status();
@@ -135,7 +136,8 @@
     var p = [];
     if (it.allergens.length) p.push("Allergene: " + codeList(it.allergens, LEG.allergens || {}));
     if (it.additives.length) p.push("Zusatzstoffe: " + codeList(it.additives, LEG.additives || {}));
-    return p.length ? '<span class="allergens">' + p.join(" · ") + "</span>" : "";
+    // Fehlende Kennzeichnung heißt NICHT allergenfrei → „auf Anfrage“
+    return p.length ? '<span class="allergens">' + p.join(" · ") + "</span>" : '<span class="allergens allergens-check">Allergene &amp; Zusatzstoffe auf Anfrage</span>';
   }
   function priceHtml(it) {
     if (it.prices.length === 1) return money(it.prices[0].price) + (it.prices[0].label ? "<small>" + esc(it.prices[0].label) + "</small>" : "");
@@ -308,9 +310,20 @@
     });
     return { sum: sum, names: names };
   }
+  /* Mengen-Gruppen (type "count"): jede Option mit −/+; Auswahl wird als Liste von Indizes gespeichert
+     (z. B. [0, 0, 1] = 2 × Option 0, 1 × Option 1). total/totalByVariant = exakte Gesamtzahl, maxEach = Obergrenze je Option. */
+  function groupTotal(g, v) { return g.totalByVariant ? (g.totalByVariant[v] != null ? g.totalByVariant[v] : g.totalByVariant[g.totalByVariant.length - 1]) : (g.total || 0); }
+  function counts(gid) { return $$('[data-cnt^="' + gid + ':"]', itemForm).map(function (o) { return +o.value || 0; }); }
+  function setCount(gid, i, n) { var o = $('[data-cnt="' + gid + ":" + i + '"]', itemForm); if (o) { o.value = n; o.textContent = n; } }
+  function countSum(gid) { return counts(gid).reduce(function (a, b) { return a + b; }, 0); }
   function readSelection() {
     var sel = {};
-    cur.opts.forEach(function (gid) { sel[gid] = $$('input[data-g="' + gid + '"]:checked', itemForm).map(function (x) { return +x.value; }); });
+    cur.opts.forEach(function (gid) {
+      if (GROUPS[gid].type === "count") {
+        var arr = []; counts(gid).forEach(function (n, i) { for (var k = 0; k < n; k++) arr.push(i); });
+        sel[gid] = arr;
+      } else sel[gid] = $$('input[data-g="' + gid + '"]:checked', itemForm).map(function (x) { return +x.value; });
+    });
     return sel;
   }
   function variantIdx() { return +((itemForm.querySelector("input[name=variant]:checked") || {}).value || 0); }
@@ -329,7 +342,13 @@
   // Pflichtauswahl (min), z. B. 4 Beläge bei der Partypizza
   function minMissing() {
     for (var i = 0; i < cur.opts.length; i++) {
-      var gid = cur.opts[i], g = GROUPS[gid]; if (!g.min) continue;
+      var gid = cur.opts[i], g = GROUPS[gid];
+      if (g.type === "count") {
+        var t = groupTotal(g, variantIdx()), sm = countSum(gid);
+        if (t && sm < t) return { gid: gid, n: t - sm };
+        continue;
+      }
+      if (!g.min) continue;
       var n = $$('input[data-g="' + gid + '"]:checked', itemForm).length;
       if (n < g.min) return { gid: gid, n: g.min - n };
     }
@@ -348,20 +367,27 @@
       return '<label class="opt"><input type="radio" name="variant" value="' + i + '"' + (i === 0 ? " checked" : "") + "><span>" + esc(p.label || "Standard") + '</span><span class="opt-price">' + money(p.price) + "</span></label>";
     }).join("");
     $("[data-item-opts]", itemForm).innerHTML = it.opts.map(function (gid) {
-      var g = GROUPS[gid], one = g.type === "one";
+      var g = GROUPS[gid], one = g.type === "one", cnt = g.type === "count", req = g.min || (cnt && (g.total || g.totalByVariant));
       // Zusatz-Kategorie als aufklappbarer Bereich; die Kopfzeile zeigt die aktuelle Auswahl
-      return '<details class="opt-group" data-group="' + gid + '"' + (g.min && !line ? " open" : "") + '><summary><span class="opt-sum-head"><span class="opt-sum-title">' + esc(g.label) + (one || g.min ? "" : " (optional)") + "</span>" +
-        (g.max ? ' <span class="opt-max" data-max-hint="' + gid + '">0 von ' + g.max + " gewählt</span>" : "") +
+      return '<details class="opt-group' + (cnt ? " opt-group-count" : "") + '" data-group="' + gid + '"' + (req && !line ? " open" : "") + '><summary><span class="opt-sum-head"><span class="opt-sum-title">' + esc(g.label) + (one || req ? "" : " (optional)") + "</span>" +
+        (g.max || req ? ' <span class="opt-max" data-max-hint="' + gid + '"></span>' : "") +
         '</span><span class="opt-sum-sel" data-sel-hint="' + gid + '"></span></summary><div class="opt-list" role="group" aria-label="' + esc(g.label) + '">' +
-        g.options.map(function (o, i) {
+        (cnt ? g.options.map(function (o, i) {
+          var k = gid + ":" + i;
+          return '<div class="opt opt-count"><span>' + esc(o.name) + '</span><span class="opt-price" data-opt-price="' + k + '"></span>' +
+            '<div class="pill-qty pill-qty-sm" role="group" aria-label="Anzahl ' + esc(o.name) + '"><button type="button" data-cnt-minus="' + k + '" aria-label="' + esc(o.name) + ' weniger">−</button>' +
+            '<output data-cnt="' + k + '" aria-live="polite" value="0">0</output><button type="button" data-cnt-plus="' + k + '" aria-label="' + esc(o.name) + ' mehr">+</button></div></div>';
+        }).join("") + "</div></details>" : "") +
+        (cnt ? "" : g.options.map(function (o, i) {
           return '<label class="opt"><input type="' + (one ? "radio" : "checkbox") + '" name="g-' + gid + '" data-g="' + gid + '" value="' + i + '"' + (one && i === 0 ? " checked" : "") +
             "><span>" + esc(o.name) + '</span><span class="opt-price" data-opt-price="' + gid + ":" + i + '"></span></label>';
-        }).join("") + "</div></details>";
+        }).join("") + "</div></details>");
     }).join("");
     if (line) {                                          // bisherige Auswahl vorbelegen
       var vr = itemForm.querySelector('input[name=variant][value="' + line.v + '"]'); if (vr) vr.checked = true;
       it.opts.forEach(function (gid) {
         var chosen = (line.sel && line.sel[gid]) || [];
+        if (GROUPS[gid].type === "count") { chosen.forEach(function (i) { var o = $('[data-cnt="' + gid + ":" + i + '"]', itemForm); if (o) setCount(gid, i, (+o.value || 0) + 1); }); return; }
         $$('input[data-g="' + gid + '"]', itemForm).forEach(function (x) { x.checked = chosen.indexOf(+x.value) > -1; });
         if (GROUPS[gid].type === "one" && !chosen.length) { var f = $('input[data-g="' + gid + '"]', itemForm); if (f) f.checked = true; }
       });
@@ -372,6 +398,21 @@
   }
   function enforceMax() {
     if (!cur) return;
+    var v = variantIdx();
+    cur.opts.forEach(function (gid) {                    // Mengen-Gruppen: Gesamtzahl je Variante einhalten
+      var g = GROUPS[gid]; if (g.type !== "count") return;
+      var t = groupTotal(g, v), c = counts(gid), sm = c.reduce(function (a, b) { return a + b; }, 0);
+      for (var i = c.length - 1; t && sm > t && i >= 0; i--) { while (c[i] > 0 && sm > t) { c[i]--; sm--; } setCount(gid, i, c[i]); }
+      c.forEach(function (n, i) {
+        var plus = $('[data-cnt-plus="' + gid + ":" + i + '"]', itemForm), minus = $('[data-cnt-minus="' + gid + ":" + i + '"]', itemForm);
+        plus.disabled = (t && sm >= t) || n >= (g.maxEach || 99); minus.disabled = n <= 0;
+      });
+      var hint = $('[data-max-hint="' + gid + '"]', itemForm);
+      if (hint) hint.textContent = t ? sm + " von " + t + " gewählt" : "";
+      var el = $('[data-sel-hint="' + gid + '"]', itemForm);
+      var parts = []; c.forEach(function (n, i) { if (n) parts.push(n + " × " + g.options[i].name); });
+      if (el) { el.textContent = parts.length ? parts.join(", ") : "keine Auswahl"; el.classList.toggle("is-empty", !parts.length); }
+    });
     cur.opts.forEach(function (gid) {
       var max = GROUPS[gid].max; if (!max) return;
       var boxes = $$('input[data-g="' + gid + '"]', itemForm);
@@ -381,6 +422,7 @@
       if (hint) hint.textContent = n + " von " + max + " gewählt";
     });
     cur.opts.forEach(function (gid) {                    // Auswahl in der zugeklappten Kopfzeile anzeigen
+      if (GROUPS[gid].type === "count") return;
       var names = $$('input[data-g="' + gid + '"]:checked', itemForm).map(function (b) { return GROUPS[gid].options[+b.value].name; });
       var el = $('[data-sel-hint="' + gid + '"]', itemForm);
       if (el) { el.textContent = names.length ? names.join(", ") : "keine Auswahl"; el.classList.toggle("is-empty", !names.length); }
@@ -388,6 +430,12 @@
   }
   if (itemForm) {
     itemForm.addEventListener("change", function () { enforceMax(); updateItemPrice(); });
+    itemForm.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-cnt-plus],[data-cnt-minus]"); if (!b || b.disabled) return;
+      var k = (b.getAttribute("data-cnt-plus") || b.getAttribute("data-cnt-minus")).split(":"), o = $('[data-cnt="' + k[0] + ":" + k[1] + '"]', itemForm);
+      setCount(k[0], +k[1], Math.max(0, (+o.value || 0) + (b.hasAttribute("data-cnt-plus") ? 1 : -1)));
+      enforceMax(); updateItemPrice();
+    });
     $("[data-qty-minus]", itemForm).addEventListener("click", function () { curQty = Math.max(1, curQty - 1); updateItemPrice(); });
     $("[data-qty-plus]", itemForm).addEventListener("click", function () { curQty = Math.min(50, curQty + 1); updateItemPrice(); });
     itemForm.addEventListener("submit", function (e) {
@@ -479,6 +527,13 @@
     it.opts.forEach(function (gid) {
       var g = GROUPS[gid], chosen = (l.sel[gid] || []).map(function (i) { return g.options[i]; }).filter(Boolean);
       if (!chosen.length) return;
+      if (g.type === "count") {                         // Mengen zusammenfassen: „2 × BBQ Soße (+2,40 €)“
+        var cnt = {}; (l.sel[gid] || []).forEach(function (i) { if (g.options[i]) cnt[i] = (cnt[i] || 0) + 1; });
+        details.push({ k: g.short || g.label, t: Object.keys(cnt).sort(function (a, b) { return a - b; }).map(function (i) {
+          var o = g.options[i], p = cents(optPrice(o, v) * cnt[i]); unit += p; return cnt[i] + " × " + o.name + (p ? " (+" + money(p) + ")" : "");
+        }).join(", ") });
+        return;
+      }
       details.push({ k: g.short || g.label, t: chosen.map(function (o) {
         var p = optPrice(o, v); unit += p; return o.name + (p ? " (+" + money(p) + ")" : "");
       }).join(", ") });
@@ -499,6 +554,25 @@
     return t;
   }
   function feeText(t) { return !t.delivery ? "entfällt (Abholung)" : t.zone ? money(t.fee) : "nach Wahl des Lieferorts"; }
+  /* Umsatzsteuer: rein informativ, aus Bruttopreisen in ganzen Cent herausgerechnet (nie aufgeschlagen).
+     Nur aktiv, wenn D.tax bestätigt ist und jede Position eine bestätigte Klasse mit Satz hat. */
+  var TAX = D.tax || {};
+  function taxClassOf(it) { return it.tax || (TAX.byName || {})[it.name] || (TAX.byCategory || {})[it.cat] || "speise"; }
+  function taxOk(k) { var c = (TAX.classes || {})[k]; return !!(c && c.status === "bestaetigt" && typeof c.rate === "number"); }
+  function taxBreakdown(t) {
+    if (!(TAX.confirmed && TAX.regime === "regel" && TAX.showBreakdown)) return null;
+    var by = {}, add = function (k, eur) { var c = Math.round(eur * 100); if (c) by[k] = (by[k] || 0) + c; }, bad = false;
+    cart.forEach(function (l) { var c = lineCalc(l), k = taxClassOf(c.it); if (!taxOk(k)) bad = true; add(k, c.total); if (c.pfand) { if (!taxOk("pfand")) bad = true; add("pfand", c.pfand); } });
+    if (t.fee) { if (!taxOk("liefer")) bad = true; add("liefer", t.fee); }
+    if (bad) return null;
+    var rates = {};
+    Object.keys(by).forEach(function (k) { var r = TAX.classes[k].rate; rates[r] = (rates[r] || 0) + by[k]; });
+    return Object.keys(rates).sort().map(function (r) {
+      var g = rates[r], net = Math.round(g * 100 / (100 + +r));   // Brutto in Cent → Netto in Cent, Steuer = Differenz
+      return { rate: +r, gross: g / 100, net: net / 100, tax: (g - net) / 100 };
+    });
+  }
+  function taxLines(t) { var b = taxBreakdown(t); return b ? b.map(function (x) { return "enth. USt. " + x.rate + " %: " + money(x.tax) + " (netto " + money(x.net) + ")"; }) : []; }
   function grandText(t) { return money(t.grand) + (t.feeOpen ? " zzgl. Lieferkosten" : ""); }
   function grandHtml(t) { return money(t.grand) + (t.feeOpen ? '<small class="sum-note">zzgl. Lieferkosten</small>' : ""); }
 
@@ -569,7 +643,7 @@
   }
 
   /* Bestellarten nach Uhrzeit (Europe/Berlin):
-     Lieferung 11:30–21:15 · Abholung 11:30–21:30. Vor Öffnung, nach Schluss und am Ruhetag beides aus –
+     Lieferung und Abholung 11:30–21:15 (Bestellannahme), Restaurant bis 21:30. Vor Öffnung, nach Schluss und am Ruhetag beides aus –
      ausgegraut und durchgestrichen. Keine Vorbestellungen außerhalb der Zeiten. */
   var TEST = !!R.testMode;                                 // Testmodus (menu-data.js)
   var ORDER_WA = TEST && R.testWhatsappNumber ? R.testWhatsappNumber : R.whatsappNumber;
@@ -577,10 +651,14 @@
     if (TEST) return true;
     var n = berlinNow(); if (H.closedDays.indexOf(n.day) > -1) return false;
     if (n.min < toMin(H.open)) return false;
-    return n.min < toMin(m === "Lieferung" ? H.orderUntil : H.close);
+    return n.min < toMin(H.orderUntil);                   // Bestellannahme Lieferung UND Abholung bis orderUntil (21:15)
   }
   function anyModeAvailable() { return modeAvailable("Abholung") || modeAvailable("Lieferung"); }
-  function closedText() { return "Wir haben gerade geschlossen – " + status().text.replace(/^(Geschlossen|Heute Ruhetag) · /, "").replace(/^öffnet/, "wir öffnen") + ". Dann können Sie wieder bestellen."; }
+  function closedText() {
+    var st = status();
+    if (st.open && !st.ordering) return "Die Bestellannahme für Lieferung und Abholung endet um " + H.orderUntil + " Uhr. Wieder bestellen können Sie " + st.next + ".";
+    return "Wir haben gerade geschlossen – " + status().text.replace(/^(Geschlossen|Heute Ruhetag) · /, "").replace(/^öffnet/, "wir öffnen") + ". Dann können Sie wieder bestellen.";
+  }
   function applyDeliveryCutoff() {
     var info = $("[data-delivery-off]"), radios = $$("[data-mode]"); if (!radios.length) return;
     var avail = {};
@@ -596,7 +674,7 @@
     if (!info) return;
     var msg = "";
     if (!avail.Abholung && !avail.Lieferung) msg = closedText();
-    else if (!avail.Lieferung) msg = "Lieferungen nehmen wir bis " + H.orderUntil + " Uhr an (Dienstag Ruhetag). Jetzt ist nur noch Abholung bis " + H.close + " Uhr möglich.";
+    else if (!avail.Lieferung) msg = "Lieferungen sind derzeit nicht möglich.";
     info.hidden = !msg; info.textContent = msg;
   }
 
@@ -677,7 +755,7 @@
     var sel = F.time; if (!sel) return;
     var keep = sel.value, n = berlinNow(), closedToday = H.closedDays.indexOf(n.day) > -1;
     if (TEST) { closedToday = false; n = { day: n.day, min: toMin(H.open) }; }   // Test: alle Zeiten des Tages wählbar
-    var open = toMin(H.open), end = mode() === "Lieferung" ? toMin(H.orderUntil) : toMin(H.close);
+    var open = toMin(H.open), end = toMin(H.orderUntil);
     var start = Math.max(open, Math.ceil((n.min + LEAD) / 15) * 15);
     var opts = ['<option value="asap">So schnell wie möglich</option>'], grp = [];
     if (!closedToday && n.min >= open && n.min < end) {
@@ -721,7 +799,9 @@
       L.push("");
     });
     if (o.note) L.push("Anmerkung: " + o.note, "");
-    L.push("Warenwert: " + money(t.goods), "Liefergebühr: " + feeText(t), "Pfand: " + money(t.pfand), "GESAMTBETRAG: " + grandText(t), "");
+    L.push("Warenwert: " + money(t.goods), "Liefergebühr: " + feeText(t), "Pfand: " + money(t.pfand), "GESAMTBETRAG: " + grandText(t));
+    taxLines(t).forEach(function (x) { L.push(x); });
+    L.push("");
     L.push("Zahlungsart: Barzahlung bei " + (o.delivery ? "Lieferung" : "Abholung"), "");
     L.push("Ich möchte die aufgeführten Artikel zu den angegebenen Konditionen verbindlich bestellen. Mir ist bekannt, dass der Vertrag erst durch die ausdrückliche Annahme von MINAR Küche zustande kommt und die Bezahlung bar bei " + (o.delivery ? "Lieferung" : "Abholung") + " erfolgt.");
     return plain(L.join("\n"));
@@ -742,7 +822,8 @@
         "<li>je " + money(c.unit) + (c.pfandUnit ? " · Pfand " + c.qty + " × " + money(c.pfandUnit) : "") + "</li></ul></li>";
     }).join("");
     $("[data-bon-sums]", bonDialog).innerHTML = sumRow("Warenwert", money(t.goods)) + sumRow("Liefergebühr", feeText(t)) +
-      sumRow("Getränkepfand", money(t.pfand)) + sumRow("Gesamtbetrag – bar zu zahlen", grandHtml(t), "is-grand");
+      sumRow("Getränkepfand", money(t.pfand)) + sumRow("Gesamtbetrag – bar zu zahlen", grandHtml(t), "is-grand") +
+      taxLines(t).map(function (x) { return '<div class="sum-row sum-tax"><span>' + esc(x) + "</span></div>"; }).join("");
     $("[data-bon-stamp]", bonDialog).textContent = "Übersicht erstellt am " + now.toLocaleDateString("de-DE", { timeZone: H.timezone }) + " um " +
       now.toLocaleTimeString("de-DE", { timeZone: H.timezone, hour: "2-digit", minute: "2-digit" }) + " Uhr · Übersicht, keine Bestätigung";
     bonMsg = buildMessage();

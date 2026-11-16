@@ -51,9 +51,9 @@ Keine Kennzeichnung ist mehr als „auf Anfrage“ markiert.
 | D13 | Dip-/Soßen-Abfrage beim Hinzufügen (Preise laut Nr. 80–88: Dips 1,20 €, Ketchup/Majo/Remoulade 0,50 €) | bei allen Burgern, Potatoes, Fingerfood, Party Platten inkl. Menü 73, Schnitzel sowie 95, 96a, 97, 98, 98a, 98b – je Dip eine Portion pro Gericht | auf Kundenwunsch umgesetzt |
 | D14 | Döner (90–96a): bis zu 2 Soßen inklusive, Auswahl aus den Soßen der Karte (Dönersoße, Cocktail, Hot Cocktail, Sour Cream, Minar Spezial, BBQ, Sweet Chili) + optional „scharf“ | bitte bestätigen, welche Soßen für Döner angeboten werden | auf Kundenwunsch umgesetzt |
 | D15 | Getränke-Abfrage vor der Bestellübersicht, wenn noch kein Getränk im Warenkorb ist (einmal pro Besuch, überspringbar) | | auf Kundenwunsch umgesetzt |
-| D16 | Pflichtfelder: Abholung → Name, Telefon · Lieferung → Name, Telefon, Lieferort, Adresse. Wunschzeit: „So schnell wie möglich“ oder heute in 15-Min.-Schritten (frühestens 30 Min. ab jetzt, bis 21:30 Uhr) | Vorlaufzeit 30 Min. und Endzeit bitte bestätigen | auf Kundenwunsch umgesetzt |
+| D16 | Pflichtfelder: Abholung → Name, Telefon · Lieferung → Name, Telefon, Lieferort, Adresse. Wunschzeit: „So schnell wie möglich“ oder heute in 15-Min.-Schritten (frühestens 30 Min. ab jetzt, bis 21:15 Uhr) | Vorlaufzeit 30 Min. und Endzeit bitte bestätigen | auf Kundenwunsch umgesetzt |
 | D17 | Warenkorb: jede Position über „Ändern“ nachträglich änderbar (Größe, Dressing, Soßen, Dips, Extras, Hinweis) – vorhandene Auswahl bleibt erhalten; identische Positionen werden zusammengeführt | | umgesetzt (V3.0) |
-| D18 | Bestellen nur während der Öffnungszeiten: Lieferung 11:30–21:15, Abholung 11:30–21:30; vor Öffnung, danach und dienstags beides ausgegraut/durchgestrichen und Absenden gesperrt; Liefer-Wunschzeiten bis 21:15, Abholung bis 21:30, jeweils 15-Min.-Schritte | | auf Kundenwunsch umgesetzt |
+| D18 | Bestellen nur während der Öffnungszeiten: Lieferung und Abholung 11:30–21:15 (Stand 16.11.2026); vor Öffnung, danach und dienstags beides ausgegraut/durchgestrichen und Absenden gesperrt; Wunschzeiten bis 21:15, jeweils 15-Min.-Schritte | | auf Kundenwunsch umgesetzt |
 
 ## E. Korrigierte Schreibweisen
 
@@ -66,7 +66,7 @@ Rechtschreibprüfung 07.11.2026: Cheddar Käse → Cheddarkäse · Pattie → Pa
 | # | Angabe | Status |
 |---|--------|--------|
 | F1 | Schussenrieder Straße 21, 88422 Bad Buchau · Tel. 07582 934 69 44 · WhatsApp 0163 359 01 88 | bestätigt (Impressumsangaben des Kunden) |
-| F2 | Täglich 11:30–21:30 Uhr, Dienstag Ruhetag; Lieferung bis 21:15 Uhr, Abholung bis 21:30 Uhr (Texte auf allen Seiten vereinheitlicht) | bestätigt |
+| F2 | Täglich 11:30–21:30 Uhr, Dienstag Ruhetag; Bestellannahme Lieferung und Abholung bis 21:15 Uhr (Texte auf allen Seiten vereinheitlicht) | bestätigt |
 | F3 | WhatsApp-Nummer für Bestellungen | bestätigt – wird genutzt |
 | F4 | Domain – Registrierung über Namecheap geplant, **bewusst nicht verknüpft** (kein CNAME, keine DNS-Änderung) | offen (Liste B) |
 | F6 | Hinweis „Stand 04/2023“ | entfernt (V3.0) |
@@ -128,12 +128,15 @@ Rechtschreibprüfung 07.11.2026: Cheddar Käse → Cheddarkäse · Pattie → Pa
 | Pflichtfelder, Telefon „abc“ | blockiert mit Hinweis |
 | WhatsApp-Link | `wa.me/491633590188`, Nachricht im vorgegebenen Format, korrekte Kodierung, keine geschützten Leerzeichen; nichts wurde an das Restaurant gesendet |
 | Öffnungszeiten: Mi 10:00, 11:30, 18:00, 21:10, 21:20, 21:31; Mo 22:00 (→ „Mittwoch“); Di Ruhetag; Sommerzeit; Rechner in UTC | Freigaben/Sperren und Hinweise korrekt, Zeiten ab +30 Min. in 15-Min.-Schritten |
-| Veralteter Tab: Bon offen, Uhr springt vor | Wunschzeit ungültig → Übersicht wird aktualisiert statt gesendet; Lieferung nach 21:15 gesperrt; Abholung bis 21:30 möglich |
+| Veralteter Tab: Bon offen, Uhr springt vor | Wunschzeit ungültig → Übersicht wird aktualisiert statt gesendet; Lieferung und Abholung nach 21:15 gesperrt |
 | Speicher | localStorage nur `minar-cart-v4` (ohne Name/Telefon), sessionStorage `minar-form-v4` |
 | Logo-Intro | Dateien unverändert (nur verschoben), Seite ohne Fehler |
 
 | Anfragenummer (13.11.2026) | 16 Fälle bestanden: MIN-A/MIN-L, 202611, 8 Zeichen, Zeichensatz, `getRandomValues`, Neuladen, Menge, Extras, Wunschzeit, Seitenwechsel, Monatswechsel nach Erstellung, Rechner in UTC (→ Berliner Monat), Kürzelwechsel, Warenkorb = Bon = WhatsApp, zweimal WhatsApp geöffnet → gleiche Nummer, zweiter Tab gleicher Entwurf, neue Bestellung → neue Kennung, ohne `crypto` → keine Ersatznummer und Sperre; mobil per Touch bedient |
 | Belastungstest 100.000 Kennungen (Browser, echte Funktion) | 0 Formatfehler, 0 Kollisionen in diesem Lauf, alle 32 Zeichen, je Zeichen 24.737–25.275 (erwartet 25.000), χ² = 17,76 bei 31 Freiheitsgraden (unauffällig). Hinweis: Kollisionsfreiheit in einem Lauf ist kein Beweis für Eindeutigkeit. |
+| Platten/Menü/Döner (16.11.2026) | Burger-Platte exakt 2/4 Burger mit Stepper, Platten 2/4 Soßen inklusive, Menü für 1 Person (Burger, Beilage, Getränk), Döner „Soße im Döner“ / „SEPARAT IM BECHER“ – in Warenkorb, Bon und WhatsApp; Auswahl bleibt bei „Ändern“ erhalten |
+| Bestellschluss 21:15 (16.11.2026) | 21:10 beide Modi frei, 21:20 beide gesperrt („Bestellannahme beendet“), Dienstag gesperrt |
+| Umsatzsteuer (16.11.2026) | unbestätigt: kein Ausweis; simuliert bestätigt: 5,00 € → enth. USt. 7 % 0,33 € (netto 4,67 €). Offene Punkte: `docs/SPEISEKARTE-PRUEFUNG.md` |
 | Mindestbestellwert | Ingoldingen (40 €) bei 18 € Warenwert gesperrt mit „noch 22,00 €“, Bad Buchau (15 €) freigegeben |
 
 Nicht getestet: echte Mobilgeräte (iOS Safari/Android), Screenreader, Cloudflare-Deployment selbst (Verbindung erfordert Anmeldung im Cloudflare-Konto, siehe `docs/CLOUDFLARE.md`).

@@ -64,6 +64,32 @@ window.MINAR_DATA = {
   },
 
 
+  /* ===== UMSATZSTEUER – zentrale Konfiguration (Stand: UNBESTÄTIGT) =====
+     Die Bruttopreise sind Endpreise und werden durch diese Konfiguration NIE verändert.
+     Ein Steuerausweis (Netto/USt je Satz) erscheint auf Bon/WhatsApp nur, wenn
+       confirmed === true  UND  regime === "regel"  UND  showBreakdown === true
+       UND kein Artikel im Warenkorb eine ungeklärte Klasse hat.
+     regime: null = ungeklärt · "regel" = Regelbesteuerung · "kleinunternehmer" = § 19 UStG (dann nie USt ausweisen)
+     classes: Steuerklassen mit Satz in Prozent; status "ungeklaert" bis Steuerberater/Inhaber bestätigt.
+     Zuordnung: item.tax überschreibt die Kategorie-Vorgabe (byCategory); Standard = "speise".
+     Pfand und Liefergebühr sind eigene Positionen mit eigener, ebenfalls ungeklärter Klasse.
+     Kombi-Menüs (Speise + Getränk): KEINE pauschale 30-%-Vereinfachung – Aufteilung offen. */
+  tax: {
+    regime: null,
+    confirmed: false,
+    showBreakdown: false,
+    classes: {
+      speise:  { label: "Speisen", rate: 7,    status: "ungeklaert" },
+      getraenk:{ label: "Getränke", rate: 19,  status: "ungeklaert" },
+      ayran:   { label: "Ayran (Milchmischgetränk – Satz prüfen)", rate: null, status: "ungeklaert" },
+      kombi:   { label: "Kombi-Menü mit Getränk (Aufteilung prüfen)", rate: null, status: "ungeklaert" },
+      pfand:   { label: "Getränkepfand", rate: null, status: "ungeklaert" },
+      liefer:  { label: "Liefergebühr", rate: null, status: "ungeklaert" }
+    },
+    byCategory: { getraenke: "getraenk" },
+    byName: { "Ayran": "ayran" }
+  },
+
   menuSource: "Alle Preise in Euro inkl. gesetzlicher Umsatzsteuer. Getränke zzgl. 0,25 € Pfand (Ayran ohne Pfand). Zahlung ausschließlich bar.",
 
   /* --- Öffnungszeiten (laut Karte) ---
@@ -71,7 +97,7 @@ window.MINAR_DATA = {
   hours: {
     open: "11:30",
     close: "21:30",
-    orderUntil: "21:15",
+    orderUntil: "21:15",        // Bestellannahme (Lieferung UND Abholung) endet um 21:15 – Betreiberentscheidung 16.11.2026
     closedDays: [2], // Dienstag Ruhetag
     timezone: "Europe/Berlin"
   },
@@ -141,19 +167,35 @@ window.MINAR_DATA = {
                         { name: "Fleisch-Patty", price: 5 }, { name: "Käsespätzle", price: 7 } ] },
     "beilage-pw":     { label: "Beilage", type: "one", options: [{ name: "Pommes" }, { name: "Wedges" }] },
     "beilage-pwr":    { label: "Beilage", type: "one", options: [{ name: "Pommes" }, { name: "Wedges" }, { name: "Reis" }] },
-    "platte-burger":  { label: "Burger", type: "one", options: [{ name: "Hamburgerle" }, { name: "Chicken Burger" }] },
+    /* Burger-Platte: exakt 2 (2 Personen) bzw. 4 (4 Personen) Burger, beliebig kombinierbar */
+    "platte-burger":  { label: "Burger", short: "Burger", unit: "Burger", unitOne: "Burger", type: "count", totalByVariant: [2, 4],
+                        options: [{ name: "Hamburgerle" }, { name: "Chickenburgerle" }] },
+    /* Alle Platten: 2 Soßen inklusive (2 Personen) bzw. 4 (4 Personen); dieselbe Soße mehrfach möglich */
+    "platte-sossen":  { label: "Soßen inklusive", short: "Soßen inklusive", unit: "Soßen", unitOne: "Soße", type: "count", totalByVariant: [2, 4],
+                        options: [{ name: "Dönersoße" }, { name: "Cocktailsoße" }, { name: "Hot Cocktailsoße" }, { name: "Sour Cream" },
+                                  { name: "Minar Spezial Soße" }, { name: "BBQ Soße" }, { name: "Sweet Chili Soße" },
+                                  { name: "Ketchup" }, { name: "Mayo" }, { name: "Remoulade" }] },
+    /* Menü für 1 Person: ein Getränk inklusive (Sorte). Größe/Gebinde und Pfand vom Betreiber zu bestätigen. */
+    "menu-getraenk":  { label: "Getränk inklusive", short: "Getränk inklusive", type: "one", options: [
+                        { name: "Coca-Cola" }, { name: "Cola Zero" }, { name: "Fanta" }, { name: "Mezzo Mix" }, { name: "Sprite" },
+                        { name: "Uludağ" }, { name: "Mineralwasser" }, { name: "Ayran" } ] },
+    "dips-extra":     { label: "Weitere Dips gegen Aufpreis", short: "Weitere Dips", type: "count", maxEach: 5, options: [
+                        { name: "Dönersoße", price: 1.2 }, { name: "Cocktailsoße", price: 1.2 }, { name: "Hot Cocktailsoße", price: 1.2 },
+                        { name: "Sour Cream", price: 1.2 }, { name: "Minar Spezial Soße", price: 1.2 }, { name: "BBQ Soße", price: 1.2 },
+                        { name: "Sweet Chili Soße", price: 1.2 }, { name: "Ketchup", price: 0.5 }, { name: "Mayo", price: 0.5 }, { name: "Remoulade", price: 0.5 } ] },
     "menu-burger":    { label: "Burger", type: "one", options: [{ name: "Nr. 20 Hamburgerle" }, { name: "Nr. 21 Cheeseburgerle" }, { name: "Nr. 23 Chickenburgerle" }] },
     "dip-sorte":      { label: "Sorte", type: "one", options: [{ name: "Ketchup" }, { name: "Mayo" }, { name: "Remoulade" }] },
     "ueberb-extra":   { label: "Extra", type: "many", options: [{ name: "Extra Weichkäse", price: 1 }] },
     "nudel-sorte":    { label: "Nudeln", type: "one", options: [{ name: "Spaghetti" }, { name: "Penne" }] },
     "nudel-ueberb":   { label: "Extra", type: "many", options: [{ name: "überbacken", price: 2.5 }] },
-    "doener-sosse":   { label: "Soßen – bis zu 2 inklusive", short: "Soßen", type: "many", max: 2, options: [
+    "doener-sosse":   { label: "Soße im Döner – bis zu 2 inklusive", short: "Soße im Döner", type: "many", max: 2, options: [
                         { name: "Dönersoße" }, { name: "Cocktailsoße" }, { name: "Hot Cocktailsoße" },
                         { name: "Sour Cream" }, { name: "Minar Spezial Soße" }, { name: "BBQ Soße" }, { name: "Sweet Chili Soße" } ] },
-    "doener-sosse-extra": { label: "Weitere Soßen gegen Aufpreis", short: "Weitere Soßen", type: "many", options: [
+    /* Separat im Becher – wird NIE in den Döner gegeben. Preise = Dip-Preise der Karte (Lieferando-Dips identisch, Sour Cream nur auf der Karte). */
+    "doener-becher":  { label: "Soße separat im Becher (Aufpreis)", short: "SEPARAT IM BECHER", type: "count", maxEach: 5, options: [
                         { name: "Dönersoße", price: 1.2 }, { name: "Cocktailsoße", price: 1.2 }, { name: "Hot Cocktailsoße", price: 1.2 },
                         { name: "Sour Cream", price: 1.2 }, { name: "Minar Spezial Soße", price: 1.2 }, { name: "BBQ Soße", price: 1.2 },
-                        { name: "Sweet Chili Soße", price: 1.2 } ] },
+                        { name: "Sweet Chili Soße", price: 1.2 }, { name: "Ketchup", price: 0.5 }, { name: "Mayo", price: 0.5 }, { name: "Remoulade", price: 0.5 } ] },
     "schaerfe":       { label: "Schärfe", type: "many", options: [{ name: "scharf" }] },
     /* Partypizza: genau 4 Beläge (min = max = 4) – Auswahl aus den Belägen der Pizzakarte, ohne Fisch/Meeresfrüchte
        (Allergenkennzeichnung der Nr. 136 enthält kein D) */
@@ -256,10 +298,10 @@ window.MINAR_DATA = {
     { nr: "66", cat: "fingerfood", name: "Filo Pastry Shrimps", desc: "8 Stück", prices: [9.9], opts: ["dips"] },
 
     /* PARTY PLATTEN */
-    { nr: "70", cat: "partyplatten", name: "Fingerfood Platte", desc: "Putenschnitzel paniert, Onion Rings, Mozzarella Sticks, Chicken Wings, Pommes oder Wedges, Frühlingsrollen, Rösti, Kroketten, verschiedene Dips", prices: [["2 Personen", 34.9], ["4 Personen", 48.9]], codes: "A,C,G", opts: ["beilage-pw", "dips"] },
-    { nr: "71", cat: "partyplatten", name: "Burger Platte", desc: "Hamburgerle oder Chicken Burger, Mozzarella Sticks, Chicken Wings, Pommes oder Wedges, Frühlingsrollen, Rösti, Kroketten und verschiedene Dips", prices: [["2 Personen", 34.9], ["4 Personen", 48.9]], codes: "A,C,G,F,J,6,7,8", opts: ["platte-burger", "beilage-pw", "dips"] },
-    { nr: "72", cat: "partyplatten", name: "Minar Spezial Platte", desc: "Hackfleischdrehspieß, Beilage Salat, Mozzarella Sticks, Chicken Wings, Pommes oder Wedges, Frühlingsrollen, Rösti, Kroketten, verschiedene Dips", prices: [["2 Personen", 34.9], ["4 Personen", 48.9]], codes: "A,C,G,F,J,6,7,8", opts: ["beilage-pw", "dips"] },
-    { nr: "73", cat: "partyplatten", name: "Menü für 1 Person", desc: "Burger 20 oder 21 oder 23, 2 Chicken Wings, 2 Onion Rings, 2 Frühlingsrollen, 2 Mozzarella Sticks, 2 Chicken Nuggets und Pommes", prices: [18.5], opts: ["menu-burger", "dips"] },
+    { nr: "70", cat: "partyplatten", name: "Fingerfood Platte", desc: "Putenschnitzel paniert, Onion Rings, Mozzarella Sticks, Chicken Wings, Pommes oder Wedges, Frühlingsrollen, Rösti, Kroketten, verschiedene Dips", prices: [["2 Personen", 34.9], ["4 Personen", 48.9]], codes: "A,C,G", opts: ["beilage-pw", "platte-sossen", "dips-extra"] },
+    { nr: "71", cat: "partyplatten", name: "Burger Platte", desc: "Hamburgerle oder Chicken Burger, Mozzarella Sticks, Chicken Wings, Pommes oder Wedges, Frühlingsrollen, Rösti, Kroketten und verschiedene Dips", prices: [["2 Personen", 34.9], ["4 Personen", 48.9]], codes: "A,C,G,F,J,6,7,8", opts: ["platte-burger", "beilage-pw", "platte-sossen", "dips-extra"] },
+    { nr: "72", cat: "partyplatten", name: "Minar Spezial Platte", desc: "Hackfleischdrehspieß, Beilage Salat, Mozzarella Sticks, Chicken Wings, Pommes oder Wedges, Frühlingsrollen, Rösti, Kroketten, verschiedene Dips", prices: [["2 Personen · 2 kleine Salate", 34.9], ["4 Personen · 2 große Salate", 48.9]], codes: "A,C,G,F,J,6,7,8", opts: ["beilage-pw", "platte-sossen", "dips-extra"] },
+    { nr: "73", cat: "partyplatten", name: "Menü für 1 Person", desc: "Burger Nr. 20, 21 oder 23 nach Wahl, Chicken Wings, Onion Rings, Frühlingsrollen, Mozzarella Sticks, Chicken Nuggets und Pommes oder Wedges nach Wahl. Ein Getränk inklusive.", prices: [18.5], opts: ["menu-burger", "beilage-pw", "menu-getraenk", "dips-extra"], tax: "kombi" },
 
     /* DIPS */
     { nr: "80", cat: "dips", name: "Cocktail Dip", prices: [1.2], codes: "A,C,G" },
@@ -272,14 +314,14 @@ window.MINAR_DATA = {
     { nr: "88", cat: "dips", name: "Ketchup / Mayo / Remoulade", prices: [0.5], codes: "A,C,G", opts: ["dip-sorte"] },
 
     /* DÖNER */
-    { nr: "90", cat: "doener", name: "Hackfleischdrehspieß", desc: "mit Salat und Soße im Fladenbrot", prices: [7.0], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "doener-sosse-extra", "schaerfe"] },
-    { nr: "91", cat: "doener", name: "Hackfleischdrehspieß Minar", desc: "mit Salat, Spiegelei und Soße im Fladenbrot", prices: [7.9], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "doener-sosse-extra", "schaerfe"] },
-    { nr: "92", cat: "doener", name: "Vegetarisch", desc: "mit Weichkäse, Salat und Soße im Fladenbrot", prices: [7.0], codes: "A,C,G,6,7,8", tags: ["vegetarisch"], opts: ["doener-sosse", "doener-sosse-extra", "schaerfe"] },
-    { nr: "93", cat: "doener", name: "Dürüm", desc: "mit Hackfleischdrehspieß, Salat und Soße im Rollteig", prices: [8.5], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "doener-sosse-extra", "schaerfe"] },
-    { nr: "94", cat: "doener", name: "Dürüm vegetarisch", desc: "mit Weichkäse, Salat und Soße im Rollteig", prices: [8.0], codes: "A,C,G,6,7,8", tags: ["vegetarisch"], opts: ["doener-sosse", "doener-sosse-extra", "schaerfe"] },
-    { nr: "95", cat: "doener", name: "Falafel Teller", desc: "mit Falafel, Salat, Soße und Pommes", prices: [10.9], codes: "A,C,G,6,7,8", opts: ["doener-sosse", "schaerfe", "dips"] },
-    { nr: "96", cat: "doener", name: "Dönerteller", desc: "mit Hackfleischdrehspieß, Salat und Soße", prices: [10.9], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "doener-sosse-extra", "schaerfe"] },
-    { nr: "96a", cat: "doener", name: "Dönerteller mit Beilage", desc: "mit Hackfleischdrehspieß, Salat, Soße und wahlweise Pommes, Wedges oder Reis", prices: [11.9], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "schaerfe", "beilage-pwr", "dips"] },
+    { nr: "90", cat: "doener", name: "Hackfleischdrehspieß", desc: "mit Salat und Soße im Fladenbrot", prices: [7.0], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "doener-becher", "schaerfe"] },
+    { nr: "91", cat: "doener", name: "Hackfleischdrehspieß Minar", desc: "mit Salat, Spiegelei und Soße im Fladenbrot", prices: [7.9], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "doener-becher", "schaerfe"] },
+    { nr: "92", cat: "doener", name: "Vegetarisch", desc: "mit Weichkäse, Salat und Soße im Fladenbrot", prices: [7.0], codes: "A,C,G,6,7,8", tags: ["vegetarisch"], opts: ["doener-sosse", "doener-becher", "schaerfe"] },
+    { nr: "93", cat: "doener", name: "Dürüm", desc: "mit Hackfleischdrehspieß, Salat und Soße im Rollteig", prices: [8.5], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "doener-becher", "schaerfe"] },
+    { nr: "94", cat: "doener", name: "Dürüm vegetarisch", desc: "mit Weichkäse, Salat und Soße im Rollteig", prices: [8.0], codes: "A,C,G,6,7,8", tags: ["vegetarisch"], opts: ["doener-sosse", "doener-becher", "schaerfe"] },
+    { nr: "95", cat: "doener", name: "Falafel Teller", desc: "mit Falafel, Salat, Soße und Pommes", prices: [10.9], codes: "A,C,G,6,7,8", opts: ["doener-sosse", "doener-becher", "schaerfe"] },
+    { nr: "96", cat: "doener", name: "Dönerteller", desc: "mit Hackfleischdrehspieß, Salat und Soße", prices: [10.9], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "doener-becher", "schaerfe"] },
+    { nr: "96a", cat: "doener", name: "Dönerteller mit Beilage", desc: "mit Hackfleischdrehspieß, Salat, Soße und wahlweise Pommes, Wedges oder Reis", prices: [11.9], codes: "A,C,G,F,J,6,7,8", opts: ["doener-sosse", "doener-becher", "schaerfe", "beilage-pwr"] },
 
     /* ÜBERBACKEN */
     { nr: "97", cat: "ueberbacken", name: "Dönerteller überbacken", desc: "mit Hackfleischdrehspieß, Tomaten, Tomatensoße, Pommes", prices: [13.5], codes: "A,C,G,F,J,6,7,8", opts: ["ueberb-extra", "dips"] },

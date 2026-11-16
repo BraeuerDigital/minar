@@ -85,7 +85,7 @@ Aufbau eines Gerichts:
 4. „Weiter zur Übersicht“ (ggf. vorher Getränke-Abfrage) → Bestellübersicht im Bon-Stil.
 5. „Weiter zu WhatsApp“ öffnet WhatsApp mit der Nachricht an 0163 359 01 88; der Kunde sendet selbst. Keine Bestellnummer, keine Erfolgsmeldung – das Restaurant bestätigt individuell.
 
-Berechnung zentral in `app.js` (`lineCalc`, `totals`): Warenwert, Getränkepfand (0,25 €/Getränk, Ayran 0 €), Lieferkosten je Ort; Mindestbestellwert zählt nur den Warenwert. Bestellannahme Europe/Berlin: Lieferung 11:30–21:15, Abholung 11:30–21:30, Dienstag Ruhetag; außerhalb ist alles gesperrt. Vor „Per WhatsApp senden“ wird mit aktueller Uhrzeit erneut geprüft (auch bei lange offenem Tab).
+Berechnung zentral in `app.js` (`lineCalc`, `totals`): Warenwert, Getränkepfand (0,25 €/Getränk, Ayran 0 €), Lieferkosten je Ort; Mindestbestellwert zählt nur den Warenwert. Bestellannahme Europe/Berlin: Lieferung und Abholung 11:30–21:15 (Restaurant bis 21:30), Dienstag Ruhetag; außerhalb ist alles gesperrt. Vor „Per WhatsApp senden“ wird mit aktueller Uhrzeit erneut geprüft (auch bei lange offenem Tab).
 
 Anfragenummer `MIN-A-YYYYMM-XXXXXXXX` (Abholung) bzw. `MIN-L-…` (Lieferung): 8 Zeichen aus `23456789ABCDEFGHJKLMNPQRSTUVWXYZ` via `crypto.getRandomValues()`, Jahr/Monat Europe/Berlin bei Erstellung. Sie gehört zum Warenkorb-Entwurf und bleibt bis „Neue Bestellung beginnen“ / „Warenkorb und Angaben löschen“, leerem Warenkorb oder Ablauf gleich; der Wechsel Abholung/Lieferung ändert nur A/L. Keine garantiert einmalige Bestell-ID (keine Datenbank). Ohne sichere Zufallserzeugung wird keine Nummer erzeugt und die Bestellung gesperrt. Mindestbestellwert sperrt bei Lieferung, bis er erreicht ist.
 
@@ -130,3 +130,8 @@ Ablauf: Logo-Aufbau (Sonne → Linien → Siegel → Halbmond → MINAR → Küc
 - **Dateien:** `public/assets/logo/minar-logo-anim.svg` (wird von `tools/build.mjs` inline eingesetzt), `public/assets/js/logo-anim.js` (direkt hinter dem SVG laden).
 - **Einbau in andere Seiten:** `docs/logo-intro/index.html` enthält SVG, CSS und JS zusammenhängend zum Kopieren.
 - **Anpassen:** Zeiten und Posen stehen kommentiert oben in `public/assets/js/logo-anim.js` (Phasen A–E). Nach Änderungen am Rig: `python3 tools/logo_anim.py && node tools/build.mjs`.
+
+
+## Speisekarten-Prüfung, Allergene, Umsatzsteuer
+
+`docs/SPEISEKARTE-PRUEFUNG.md` (Bericht A–J) und `docs/SPEISEKARTE-MATRIZEN.md` (erzeugt mit `node tools/pruefung.mjs`). Steuerausweis über `tax` in `menu-data.js` – bleibt aus, bis Regime und Sätze bestätigt sind.

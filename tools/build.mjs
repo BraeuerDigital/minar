@@ -189,7 +189,7 @@ const HOW_TEXT = (root) => `<p>Sie stellen Ihre Bestellung auf unserer Website z
                 <li><strong>Widerruf:</strong> Für frisch nach Ihrer Auswahl zubereitete Speisen besteht kein Widerrufsrecht; für Getränke in verschlossenen Flaschen und Dosen gilt das gesetzliche Widerrufsrecht (<a href="${root}widerruf.html">Details &amp; Formular</a>).</li>
               </ul>`;
 const orderMainHtml = (root) => `        <div class="order-main">
-          <div class="order-note" role="note"><strong>Vor dem Bestellen:</strong> Zahlung ausschließlich bar bei Abholung oder Lieferung – keine Onlinezahlung. Lieferung nur in die <a href="${root}lieferservice.html">aufgeführten Liefergebiete</a> mit Mindestbestellwert und Liefergebühr je Ort. Bestellungen nur während der Öffnungszeiten: Lieferung bis ${D.hours.orderUntil} Uhr, Abholung bis ${D.hours.close} Uhr, dienstags Ruhetag. Ein Vertrag kommt erst durch die persönliche Annahme von ${esc(R.name)} zustande.</div>
+          <div class="order-note" role="note"><strong>Vor dem Bestellen:</strong> Zahlung ausschließlich bar bei Abholung oder Lieferung – keine Onlinezahlung. Lieferung nur in die <a href="${root}lieferservice.html">aufgeführten Liefergebiete</a> mit Mindestbestellwert und Liefergebühr je Ort. Bestellungen nur während der Öffnungszeiten: Lieferung und Abholung bis ${D.hours.orderUntil} Uhr, dienstags Ruhetag. Ein Vertrag kommt erst durch die persönliche Annahme von ${esc(R.name)} zustande.</div>
 
           <div class="cart-empty" data-cart-empty>
             <h2>Ihr Warenkorb ist noch leer.</h2>
@@ -374,7 +374,7 @@ const hoursCard = () => `
         <div class="hours-card">
           <h2 class="hours-title">${I.clock}Öffnungszeiten</h2>
           <ul class="hours-list" data-hours-list></ul>
-          <p class="hours-note">Lieferung bis ${D.hours.orderUntil} Uhr · Abholung bis ${D.hours.close} Uhr · Dienstag Ruhetag</p>
+          <p class="hours-note">Bestellannahme Lieferung &amp; Abholung bis ${D.hours.orderUntil} Uhr · Dienstag Ruhetag</p>
           <p class="hours-live"><span class="status-dot" data-open-dot></span><span data-open-status-long></span></p>
         </div>`;
 const ctaBand = (root) => `
@@ -639,7 +639,7 @@ built.push(page({
       <div class="container visit-grid">
         <div>
           <h2 class="h-red">Bestell- und Abholzeiten</h2>
-          <p>Bestellungen nehmen wir täglich außer dienstags ab ${D.hours.open} Uhr entgegen – für Lieferungen bis ${D.hours.orderUntil} Uhr, zur Abholung bis ${D.hours.close} Uhr. Die Lieferzeit beträgt je nach Entfernung 20–90 Minuten.</p>
+          <p>Bestellungen nehmen wir täglich außer dienstags ab ${D.hours.open} Uhr entgegen – für Lieferung und Abholung bis ${D.hours.orderUntil} Uhr. Die Lieferzeit beträgt je nach Entfernung 20–90 Minuten.</p>
           <p>Die Lieferung erfolgt ohne Teller, Besteck und Dekoration.</p>
           ${contactCards()}
         </div>
@@ -682,7 +682,7 @@ built.push(page({
           <address class="address address-lg"><strong>${esc(R.name)}</strong><br>${esc(R.street)}<br>${esc(R.zip)} ${esc(R.city)}</address>
           ${contactCards()}
           <p>E-Mail: <a href="mailto:${esc(R.email)}">${esc(R.email)}</a> · Fax: ${esc(R.fax)}</p>
-          <p>Bestellungen nehmen wir für Lieferungen bis ${D.hours.orderUntil} Uhr und zur Abholung bis ${D.hours.close} Uhr an – telefonisch, per WhatsApp oder über unseren <a href="${root}bestellen.html">Online-Warenkorb</a>.</p>
+          <p>Bestellungen nehmen wir für Lieferung und Abholung bis ${D.hours.orderUntil} Uhr an – telefonisch, per WhatsApp oder über unseren <a href="${root}bestellen.html">Online-Warenkorb</a>.</p>
         </div>
         <div>${hoursCard()}</div>
       </div>
@@ -763,7 +763,7 @@ built.push(page({
       <p><strong>Bezahlt wird ausschließlich bar</strong> bei Abholung oder bei Lieferung. Eine Onlinezahlung, Kartenzahlung über die Website oder Vorkasse gibt es nicht.</p>
 
       ${h("Bestellzeiten", "bestellzeiten")}
-      <p>Bestellungen nehmen wir täglich außer dienstags ab ${D.hours.open} Uhr an – für Lieferungen bis ${D.hours.orderUntil} Uhr, zur Abholung bis ${D.hours.close} Uhr. Außerhalb dieser Zeiten ist die Online-Bestellung gesperrt; Vorbestellungen für spätere Tage sind nicht möglich.</p>
+      <p>Bestellungen nehmen wir täglich außer dienstags ab ${D.hours.open} Uhr an – für Lieferung und Abholung bis ${D.hours.orderUntil} Uhr. Außerhalb dieser Zeiten ist die Online-Bestellung gesperrt; Vorbestellungen für spätere Tage sind nicht möglich.</p>
 
       ${h("Frische Zubereitung, Lieferzeit und Wunschzeit", "lieferzeit")}
       <p>${FRESH_TEXT}</p>
