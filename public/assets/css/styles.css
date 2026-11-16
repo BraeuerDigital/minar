@@ -1649,3 +1649,16 @@ details.opt-group > .opt-list { padding: 0 .6rem .7rem; }
 .bon-terms-title { margin: 0 0 .35rem; font-weight: 800; color: var(--minar-green); }
 .bon-terms ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .3rem; }
 .bon-terms-more { margin: .5rem 0 0; font-size: .8rem; }
+
+/* „So funktioniert Ihre Bestellung“: aufklappbar mit Pfeil; Rechtslinks darunter immer sichtbar und mit einem Tipp erreichbar */
+.order-info { margin-bottom: .5rem; }
+.order-info > summary { list-style: none; position: relative; padding-right: 2.2rem; font-size: 1.05rem; }
+.order-info > summary::-webkit-details-marker { display: none; }
+.order-info > summary::after {
+  content: ""; position: absolute; right: .3rem; top: 50%; width: 9px; height: 9px; margin-top: -6px;
+  border-right: 2px solid var(--minar-green); border-bottom: 2px solid var(--minar-green); transform: rotate(45deg); transition: transform .3s var(--ease);
+}
+.order-info[open] > summary::after { transform: rotate(225deg); margin-top: -2px; }
+.order-info > summary:focus-visible { outline: 2px solid var(--minar-green); outline-offset: 2px; border-radius: 6px; }
+.order-info-links { margin: .2rem 0 1rem; font-size: .9rem; line-height: 1.5; }
+.order-info-links a { display: inline-block; padding: .45rem .1rem; position: relative; z-index: 1; }

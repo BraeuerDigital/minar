@@ -187,7 +187,6 @@ const HOW_TEXT = (root) => `<p>Sie stellen Ihre Bestellung auf unserer Website z
                 <li><strong>Vertragssprache:</strong> Deutsch.</li>
                 <li><strong>Speichern:</strong> Die Website selbst speichert keine Bestellungen. Ihre Bestellung bleibt als Nachricht in Ihrem WhatsApp-Chat mit uns erhalten; die Bestellübersicht können Sie vorher drucken oder als PDF speichern.</li>
                 <li><strong>Widerruf:</strong> Für frisch nach Ihrer Auswahl zubereitete Speisen besteht kein Widerrufsrecht; für Getränke in verschlossenen Flaschen und Dosen gilt das gesetzliche Widerrufsrecht (<a href="${root}widerruf.html">Details &amp; Formular</a>).</li>
-                <li><strong>Mehr dazu:</strong> <a href="${root}bestellinformationen.html">Bestellinformationen</a> · <a href="${root}widerruf.html">Widerruf &amp; Verbraucherrechte</a> · <a href="${root}impressum.html">Impressum</a> · <a href="${root}datenschutz.html">Datenschutzerklärung</a></li>
               </ul>`;
 const orderMainHtml = (root) => `        <div class="order-main">
           <div class="order-note" role="note"><strong>Vor dem Bestellen:</strong> Zahlung ausschließlich bar bei Abholung oder Lieferung – keine Onlinezahlung. Lieferung nur in die <a href="${root}lieferservice.html">aufgeführten Liefergebiete</a> mit Mindestbestellwert und Liefergebühr je Ort. Bestellungen nur während der Öffnungszeiten: Lieferung bis ${D.hours.orderUntil} Uhr, Abholung bis ${D.hours.close} Uhr, dienstags Ruhetag. Ein Vertrag kommt erst durch die persönliche Annahme von ${esc(R.name)} zustande.</div>
@@ -245,10 +244,11 @@ const orderMainHtml = (root) => `        <div class="order-main">
               <p>${FRESH_TEXT}</p>
             </div>
 
-            <details class="order-info" open>
+            <details class="order-info">
               <summary>So funktioniert Ihre Bestellung</summary>
               ${HOW_TEXT(root)}
             </details>
+            <p class="order-info-links"><strong>Mehr dazu:</strong> <a href="${root}bestellinformationen.html">Bestellinformationen</a> · <a href="${root}widerruf.html">Widerruf &amp; Verbraucherrechte</a> · <a href="${root}impressum.html">Impressum</a> · <a href="${root}datenschutz.html">Datenschutzerklärung</a></p>
 
             <p class="cart-closed" data-cart-closed hidden></p>
             <div class="checkout-bar">
