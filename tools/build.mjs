@@ -121,7 +121,7 @@ function footer(root) {
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
         <p>© <span data-year>2026</span> ${esc(R.name)} · ${esc(R.city)}</p>
-        <p><a href="${root}impressum.html">Impressum</a> · <a href="${root}datenschutz.html">Datenschutz</a>${reviewOk ? ` · <a class="footer-review" href="${esc(REVIEW)}" target="_blank" rel="noopener noreferrer">Jetzt auf Google bewerten</a>` : ""}</p>
+        <p><a href="${root}impressum.html">Impressum</a> · <a href="${root}datenschutz.html">Datenschutz</a></p>
         <p class="footer-credit"><span>Webauftritt von</span> <a class="credit-link" href="https://braeuer.digital" target="_blank" rel="noopener">Bräuer.Digital</a></p>
       </div>
     </div>
@@ -326,7 +326,7 @@ function page({ file, title, desc, active, body, dialog = false, bodyClass = "" 
   <main id="inhalt">
 ${body(root)}
   </main>
-  ${footer(root)}${dialog || (active !== "bestellen" && active !== "404") ? itemDialog : ""}${active !== "bestellen" && active !== "404" ? cartDrawerHtml(root) : ""}
+  ${reviewBand(active)}${footer(root)}${dialog || (active !== "bestellen" && active !== "404") ? itemDialog : ""}${active !== "bestellen" && active !== "404" ? cartDrawerHtml(root) : ""}
   <script src="${root}assets/js/menu-data.js?v=${CSS_VERSION}"></script>
   <script src="${root}assets/js/app.js?v=${CSS_VERSION}"></script>
   <script src="${root}assets/js/fx.js?v=${CSS_VERSION}"></script>
@@ -382,6 +382,19 @@ const tape = (words, n) => { const one = Array(n).fill(words).flat().map((w) => 
 
 const REVIEW = (R.googleReviewUrl || "").trim();
 const reviewOk = /^https:\/\/(g\.page\/r\/|search\.google\.com\/local\/writereview\?placeid=|www\.google\.[a-z.]+\/maps\/)/.test(REVIEW);
+/* Google-Bewertung als eigener, gut sichtbarer Bereich direkt über dem Footer (alle Seiten außer Kontakt – dort steht die Karte im Inhalt) */
+const reviewBand = (active) => reviewOk && !["kontakt", "404", "impressum", "datenschutz"].includes(active) ? `
+  <section class="section section-tight review-band" aria-label="Google-Bewertung">
+    <div class="container">
+      <div class="review-card reveal">
+        <div>
+          <h2>Wie hat es Ihnen bei MINAR gefallen?</h2>
+          <p>Wir freuen uns über Ihre ehrliche Bewertung auf Google.</p>
+        </div>
+        <a class="btn btn-accent btn-lg" href="${esc(REVIEW)}" target="_blank" rel="noopener noreferrer">Jetzt auf Google bewerten</a>
+      </div>
+    </div>
+  </section>` : "";
 const built = [];
 
 /* ===================== Startseite ===================== */
